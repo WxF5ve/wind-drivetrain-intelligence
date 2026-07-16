@@ -1,0 +1,16 @@
+name = "wind-intel-feedback"
+main = "src/index.js"
+compatibility_date = "2026-07-01"
+workers_dev = true
+preview_urls = false
+
+[[d1_databases]]
+binding = "DB"
+database_name = "wind-intel-feedback"
+database_id = "d821720f-dc37-40bb-b1aa-7fe77a689d77"
+
+[vars]
+ALLOWED_ORIGIN = "https://wxf5ve.github.io"
+
+[observability]
+enabled = true

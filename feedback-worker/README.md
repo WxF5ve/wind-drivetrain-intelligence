@@ -13,3 +13,5 @@
    - `FEEDBACK_AGGREGATE_URL`：Worker 的 `/aggregates` 地址。
 
 前端提交失败时会保留本机反馈。每周采集器读取聚合结果；只有同一资料至少收到 5 份反馈时，才允许在 `-6` 至 `+6` 分范围内修正可靠度。
+
+当前生产地址：`https://wind-intel-feedback.wxf5ve-wind-intel.workers.dev`

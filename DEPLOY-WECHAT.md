@@ -22,6 +22,8 @@ git push -u origin main
 4. 打开仓库 `Actions`，手动运行一次 `Collect and publish wind drivetrain intelligence`。
 5. 成功后访问 `https://你的用户名.github.io/wind-intel/`，将此链接发送到微信好友、群聊或朋友圈。
 
+当前项目已经发布到：`https://wxf5ve.github.io/wind-drivetrain-intelligence/`
+
 ## AI 中文摘要
 
 没有 API 密钥时，系统使用发布方公开摘要或明确提示“原始索引未提供可用摘要”，不会补造结论。需要结构化中文工程摘要时：
@@ -41,3 +43,7 @@ git push -u origin main
 普通 HTTPS 页面可直接在微信打开并使用右上角菜单传播，页面也提供整站和单条资讯分享按钮。若要强制指定好友/朋友圈卡片标题、描述和封面，需要已认证公众号、已备案的 JS 接口安全域名及微信 JS-SDK 签名服务；这些身份资料不能由静态网页代替。
 
 面向中国大陆长期公开运营时，建议使用自有域名和境内云服务，并根据实际业务完成 ICP 备案及数据合规检查。
+
+## 可靠度与反馈
+
+页面会显示可解释可靠度，不将自动评分等同于事实确认。反馈服务当前部署在 `https://wind-intel-feedback.wxf5ve-wind-intel.workers.dev`，仅保存文章 ID、匿名浏览器 ID、四类反馈和更新时间。同一浏览器对同一文章只保留最新选择。
