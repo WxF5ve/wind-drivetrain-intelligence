@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 const publicDirectory = new URL("../public/", import.meta.url);
 const outputDirectory = new URL("../dist/", import.meta.url);
 const baseUrl = String(process.env.PUBLIC_BASE_URL || "").replace(/\/$/, "");
+const feedbackEndpoint = String(process.env.FEEDBACK_API_URL || "").replace(/\/$/, "");
 
 await rm(outputDirectory, { recursive: true, force: true });
 await cp(publicDirectory, outputDirectory, { recursive: true });
@@ -19,6 +20,11 @@ if (baseUrl) {
 }
 
 await writeFile(indexPath, html, "utf8");
+await writeFile(
+  new URL("runtime-config.js", outputDirectory),
+  `window.WIND_INTEL_CONFIG = Object.freeze(${JSON.stringify({ feedbackEndpoint }, null, 2)});\n`,
+  "utf8"
+);
 await writeFile(new URL(".nojekyll", outputDirectory), "", "utf8");
 
 console.log(`已构建微信 H5: ${fileURLToPath(outputDirectory)}`);

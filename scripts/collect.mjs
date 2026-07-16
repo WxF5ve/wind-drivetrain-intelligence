@@ -154,7 +154,9 @@ async function collectGdelt(source, lookbackDays) {
     url: item.url,
     imageUrl: item.socialimage || "",
     sourceChannel: "GDELT",
-    linkType: "publisher"
+    linkType: "publisher",
+    linkVerified: false,
+    evidence: { hasPublisherDescription: false }
   }));
 }
 
@@ -266,7 +268,9 @@ async function collectGoogleNews(source, lookbackDays) {
       sourceUrl,
       imageUrl: "",
       sourceChannel: "Google News RSS",
-      linkType: hasPublisherLink ? "publisher" : "aggregator"
+      linkType: hasPublisherLink ? "publisher" : "aggregator",
+      linkVerified: false,
+      evidence: { hasPublisherDescription: false }
     };
   });
 
@@ -280,13 +284,18 @@ async function collectGoogleNews(source, lookbackDays) {
         ...article,
         url: originalItem?.link || article.url,
         snippet: cleanText(originalItem?.description || article.title),
-        linkType: "aggregator"
+        linkType: "aggregator",
+        linkVerified: false,
+        evidence: { hasPublisherDescription: false }
       };
     }
+    const description = usefulPublisherDescription(metadata.description, article.title);
     return {
       ...article,
       url: metadata.finalUrl || article.url,
-      snippet: usefulPublisherDescription(metadata.description, article.title) || article.snippet
+      snippet: description || article.snippet,
+      linkVerified: Boolean(metadata.finalUrl),
+      evidence: { hasPublisherDescription: Boolean(description) }
     };
   }));
 }
@@ -320,7 +329,9 @@ async function collectBingNews(source, lookbackDays) {
         url: originalUrl,
         imageUrl: "",
         sourceChannel: "Bing News RSS",
-        linkType: "publisher"
+        linkType: "publisher",
+        linkVerified: false,
+        evidence: { hasPublisherDescription: cleanText(item.description).length >= 70 }
       };
     })
     .filter((article) => new Date(article.publishedAt).getTime() >= cutoff);
@@ -381,7 +392,15 @@ async function collectOpenAlex(source, lookbackDays) {
         url: urlValue,
         imageUrl: "",
         sourceChannel: "OpenAlex",
-        linkType: "publisher"
+        linkType: "publisher",
+        linkVerified: Boolean(item.doi),
+        evidence: {
+          hasAbstract: Boolean(abstract),
+          doi: item.doi || "",
+          authorsCount: (item.authorships || []).length,
+          citedByCount: Number(item.cited_by_count || 0),
+          publicationType: item.type === "preprint" ? "preprint" : item.type || "article"
+        }
       };
     })
     .filter((item) => item.title && item.url);
@@ -529,6 +548,49 @@ function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
   };
 }
 
+function sourceIdentity(article) {
+  try {
+    return new URL(article.sourceUrl || article.url).hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return cleanText(article.source).toLowerCase();
+  }
+}
+
+function findCorroboratingSources(article, pool) {
+  const identity = sourceIdentity(article);
+  const sources = new Set();
+  for (const candidate of pool) {
+    const candidateIdentity = sourceIdentity(candidate);
+    if (!candidateIdentity || candidateIdentity === identity) continue;
+    if (titleSimilarity(article.title, candidate.title) >= 0.55) {
+      sources.add(cleanText(candidate.source || candidateIdentity));
+    }
+  }
+  return [...sources].slice(0, 6);
+}
+
+function feedbackArticleMap(payload) {
+  if (Array.isArray(payload?.articles)) {
+    return new Map(payload.articles.map((item) => [item.articleId || item.id, item]));
+  }
+  return new Map(Object.entries(payload?.articles || payload || {}));
+}
+
+async function loadFeedbackAggregates() {
+  const localPath = new URL("../public/data/feedback-aggregates.json", import.meta.url);
+  let payload = await readJson(localPath, { generatedAt: null, articles: {} });
+  const endpoint = process.env.FEEDBACK_AGGREGATE_URL;
+  if (endpoint) {
+    try {
+      payload = await fetchJson(endpoint);
+      console.log("已载入集中用户反馈汇总。");
+    } catch (error) {
+      console.warn(`集中反馈暂时不可用，继续使用本地汇总: ${error.message}`);
+    }
+  }
+  return { payload, map: feedbackArticleMap(payload) };
+}
+
 async function main() {
   const config = await readJson(configPath, {});
   const previous = await readJson(outputPath, { articles: [] });
@@ -537,6 +599,8 @@ async function main() {
   const historyMaxArticles = Number(process.env.HISTORY_MAX_ARTICLES || config.historyMaxArticles || 160);
   const historyRetentionDays = Number(process.env.HISTORY_RETENTION_DAYS || config.historyRetentionDays || 365);
   const keywordWeights = config.relevanceKeywords || {};
+  const reliabilityConfig = config.reliability || {};
+  const feedbackAggregates = await loadFeedbackAggregates();
 
   const newsJobs = (config.newsQueries || []).map((source) => ({
       id: source.id,
@@ -574,11 +638,14 @@ async function main() {
     }
   });
 
-  const candidates = deduplicateArticles(rawArticles)
-    .filter(isDomainRelevant)
+  const relevantRawArticles = rawArticles.filter(isDomainRelevant);
+  const candidates = deduplicateArticles(relevantRawArticles)
     .map((article) => ({
       ...article,
-      relevanceScore: relevanceScore(article, keywordWeights)
+      relevanceScore: relevanceScore(article, keywordWeights),
+      corroboratingSources: findCorroboratingSources(article, relevantRawArticles),
+      feedbackAggregate: feedbackAggregates.map.get(article.id) || {},
+      reliabilityConfig
     }))
     .filter((article) => article.relevanceScore >= Number(config.minimumRelevanceScore || 3))
     .sort((a, b) => {
@@ -609,17 +676,18 @@ async function main() {
 
   const currentArticles = candidates.map((article) => {
     const existing = previousByUrl.get(article.url);
-    if (existing) {
-      return {
-        ...existing,
-        publishedAt: article.publishedAt,
-        collectedAt: article.collectedAt,
-        relevanceScore: article.relevanceScore
-      };
-    }
+    const summaryData = existing
+      ? {
+          summary: existing.summary,
+          keyPoints: existing.keyPoints,
+          engineeringImpact: existing.engineeringImpact,
+          category: existing.category,
+          tags: existing.tags
+        }
+      : aiSummaries.get(article.id) || createFallbackSummary(article);
     return toPublicArticle(
       article,
-      aiSummaries.get(article.id) || createFallbackSummary(article)
+      summaryData
     );
   });
 
@@ -655,6 +723,15 @@ async function main() {
       currentCount: currentArticles.length,
       archiveCount: articles.length,
       sources: channelResults
+    },
+    reliabilityMethod: {
+      version: "1.0",
+      minimumFeedback: Number(reliabilityConfig.minimumFeedback || 5),
+      note: "可靠度评估来源质量、证据完整度和可追溯性，不等同于事实已经证实。"
+    },
+    feedbackStatus: {
+      aggregateGeneratedAt: feedbackAggregates.payload?.generatedAt || null,
+      centralized: Boolean(process.env.FEEDBACK_AGGREGATE_URL)
     },
     weeklyBrief: buildWeeklyBrief(currentArticles, lookbackDays, aiSummaries.size > 0, articles.length),
     articles

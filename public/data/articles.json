@@ -1,9 +1,9 @@
 {
   "app": "风传智研",
-  "generatedAt": "2026-07-15T00:45:17.631Z",
+  "generatedAt": "2026-07-16T16:18:06.452Z",
   "period": {
-    "from": "2026-07-07T00:45:17.631Z",
-    "to": "2026-07-15T00:45:17.631Z"
+    "from": "2026-07-08T16:18:06.452Z",
+    "to": "2026-07-16T16:18:06.452Z"
   },
   "collectionStatus": {
     "dataMode": "live",
@@ -11,16 +11,16 @@
     "channels": 11,
     "succeeded": 11,
     "failed": 0,
-    "rawFetched": 38,
-    "currentCount": 3,
-    "archiveCount": 3,
+    "rawFetched": 34,
+    "currentCount": 4,
+    "archiveCount": 4,
     "sources": [
       {
         "id": "news-cn-gearbox",
         "label": "国内齿轮箱与传动链资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 2,
+        "fetched": 1,
         "error": ""
       },
       {
@@ -68,7 +68,7 @@
         "label": "风电齿轮箱论文",
         "type": "research",
         "status": "ok",
-        "fetched": 21,
+        "fetched": 19,
         "error": ""
       },
       {
@@ -84,7 +84,7 @@
         "label": "传动链监测论文",
         "type": "research",
         "status": "ok",
-        "fetched": 2,
+        "fetched": 1,
         "error": ""
       },
       {
@@ -105,23 +105,113 @@
       }
     ]
   },
+  "reliabilityMethod": {
+    "version": "1.0",
+    "minimumFeedback": 5,
+    "note": "可靠度评估来源质量、证据完整度和可追溯性，不等同于事实已经证实。"
+  },
+  "feedbackStatus": {
+    "aggregateGeneratedAt": null,
+    "centralized": false
+  },
   "weeklyBrief": {
-    "title": "本周聚焦：齿轮箱、轴承、学术论文",
-    "summary": "过去 8 天共筛选 3 条高相关资料，其中国内 2 条、论文 1 篇。资料库累计保留 3 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
+    "title": "本周聚焦：学术论文、齿轮箱、轴承",
+    "summary": "过去 8 天共筛选 4 条高相关资料，其中国内 2 条、论文 2 篇。资料库累计保留 4 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
     "signals": [
+      "Early fault warning for wind turbine main bearings using XGBoost and parameter-based transfer learning with SCADA data",
       "韦伯咨询：《2026年中国风电齿轮箱行业专题调研与深度分析报告》",
-      "新强联：公司主要产品涵盖风电主轴轴承等",
-      "Design and analysis of nonlinear observer to reduce torsional vibrations in shaft of wind energy conversion systems"
+      "新强联：公司主要产品涵盖风电主轴轴承等"
     ],
     "metrics": {
-      "total": 3,
+      "total": 4,
       "domestic": 2,
-      "overseas": 1,
-      "papers": 1
+      "overseas": 2,
+      "papers": 2
     },
     "summaryMode": "原文索引摘要"
   },
   "articles": [
+    {
+      "id": "ebff0a6c5619",
+      "title": "Early fault warning for wind turbine main bearings using XGBoost and parameter-based transfer learning with SCADA data",
+      "source": "Ocean Engineering",
+      "sourceType": "论文",
+      "region": "海外",
+      "language": "en",
+      "publishedAt": "2026-07-14T00:00:00Z",
+      "collectedAt": "2026-07-16T16:18:06.452Z",
+      "url": "https://doi.org/10.1016/j.oceaneng.2026.127049",
+      "sourceUrl": "",
+      "sourceChannel": "OpenAlex",
+      "linkType": "publisher",
+      "linkVerified": true,
+      "evidence": {
+        "hasAbstract": true,
+        "hasPublisherDescription": false,
+        "doi": "https://doi.org/10.1016/j.oceaneng.2026.127049",
+        "authorsCount": 6,
+        "citedByCount": 0,
+        "publicationType": "article"
+      },
+      "corroboratingSources": [],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
+      "category": "学术论文",
+      "tags": [
+        "状态监测",
+        "轴承",
+        "齿轮箱",
+        "海外",
+        "论文"
+      ],
+      "summary": "Main bearings in wind turbines, operating under low-speed heavy-load conditions, are prone to incipient faults that cause extended downtime and high m",
+      "keyPoints": [
+        "来源：Ocean Engineering",
+        "主题：学术论文",
+        "发布时间：2026-07-14"
+      ],
+      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "readingMinutes": 10,
+      "relevanceScore": 10,
+      "reliability": {
+        "score": 81,
+        "grade": "A",
+        "label": "高",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 30,
+          "evidence": 20,
+          "traceability": 15,
+          "corroboration": 0,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": 0
+        },
+        "factors": [
+          "论文具有 DOI 与期刊来源记录",
+          "索引提供了论文摘要",
+          "原文直链已在采集时验证",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "本轮采集未发现独立来源交叉印证"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      }
+    },
     {
       "id": "e50668a068a5",
       "title": "韦伯咨询：《2026年中国风电齿轮箱行业专题调研与深度分析报告》",
@@ -130,11 +220,28 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-11T12:14:35.000Z",
-      "collectedAt": "2026-07-15T00:45:17.631Z",
+      "collectedAt": "2026-07-16T16:18:06.452Z",
       "url": "https://cj.sina.com.cn/articles/view/2442012107/918e25cb00101mm52",
       "sourceUrl": "https://cj.sina.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
+      "linkVerified": true,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": true,
+        "doi": "",
+        "authorsCount": 0,
+        "citedByCount": 0,
+        "publicationType": ""
+      },
+      "corroboratingSources": [],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
       "category": "齿轮箱",
       "tags": [
         "齿轮箱",
@@ -149,21 +256,73 @@
       ],
       "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
       "readingMinutes": 2,
-      "relevanceScore": 8
+      "relevanceScore": 8,
+      "reliability": {
+        "score": 52,
+        "grade": "C",
+        "label": "待核验",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 16,
+          "evidence": 13,
+          "traceability": 15,
+          "corroboration": 0,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": -8
+        },
+        "factors": [
+          "来源为可识别的新闻或财经发布平台",
+          "发布方提供了可核查的内容简介",
+          "原文直链已在采集时验证",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "媒体转载不能替代技术报告、试验数据或原始公告",
+          "本轮采集未发现独立来源交叉印证",
+          "内容含商业报告或市场预测信号，方法与样本需额外核验"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      }
     },
     {
       "id": "9c6eaa35ebbe",
       "title": "新强联：公司主要产品涵盖风电主轴轴承等",
-      "source": "腾讯新闻",
+      "source": "QQ News",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-09T01:04:00.000Z",
-      "collectedAt": "2026-07-15T00:45:17.631Z",
+      "collectedAt": "2026-07-16T16:18:06.452Z",
       "url": "https://news.qq.com/rain/a/20260709A02K6600",
       "sourceUrl": "https://news.qq.com/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
+      "linkVerified": true,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": true,
+        "doi": "",
+        "authorsCount": 0,
+        "citedByCount": 0,
+        "publicationType": ""
+      },
+      "corroboratingSources": [],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
       "category": "轴承",
       "tags": [
         "轴承",
@@ -173,42 +332,127 @@
       ],
       "summary": "原始索引未提供可用摘要。资料主题为“新强联：公司主要产品涵盖风电主轴轴承等”，请打开原文核对研究方法、数据和结论边界。",
       "keyPoints": [
-        "来源：腾讯新闻",
+        "来源：QQ News",
         "主题：轴承",
         "发布时间：2026-07-09"
       ],
       "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
       "readingMinutes": 3,
-      "relevanceScore": 14
+      "relevanceScore": 14,
+      "reliability": {
+        "score": 54,
+        "grade": "C",
+        "label": "待核验",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 16,
+          "evidence": 13,
+          "traceability": 15,
+          "corroboration": 0,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": -6
+        },
+        "factors": [
+          "来源为可识别的新闻或财经发布平台",
+          "发布方提供了可核查的内容简介",
+          "原文直链已在采集时验证",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "媒体转载不能替代技术报告、试验数据或原始公告",
+          "本轮采集未发现独立来源交叉印证",
+          "内容可能主要来自企业自述，尚不能视为独立验证"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      }
     },
     {
-      "id": "34e453af14fd",
-      "title": "Design and analysis of nonlinear observer to reduce torsional vibrations in shaft of wind energy conversion systems",
-      "source": "Scientific Reports",
+      "id": "0bee36dabcdb",
+      "title": "Semantic-driven dynamic graph learning for wind turbine gearbox anomaly detection",
+      "source": "Applied Soft Computing",
       "sourceType": "论文",
       "region": "海外",
       "language": "en",
-      "publishedAt": "2026-07-07T00:00:00Z",
-      "collectedAt": "2026-07-15T00:45:17.631Z",
-      "url": "https://doi.org/10.1038/s41598-026-49637-2",
+      "publishedAt": "2026-07-08T00:00:00Z",
+      "collectedAt": "2026-07-16T16:18:06.452Z",
+      "url": "https://doi.org/10.1016/j.asoc.2026.115904",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
       "linkType": "publisher",
+      "linkVerified": true,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": false,
+        "doi": "https://doi.org/10.1016/j.asoc.2026.115904",
+        "authorsCount": 7,
+        "citedByCount": 0,
+        "publicationType": "article"
+      },
+      "corroboratingSources": [],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
       "category": "学术论文",
       "tags": [
-        "状态监测",
+        "齿轮箱",
         "海外",
         "论文"
       ],
-      "summary": "This paper addresses the challenge of torsional vibrations in wind energy conversion systems (WECSs) with multiple interconnected rotating masses.",
+      "summary": "Authors: Ying Xie, Yi-Xiang Wang, Rongbin Xu, Lijie Wen",
       "keyPoints": [
-        "来源：Scientific Reports",
+        "来源：Applied Soft Computing",
         "主题：学术论文",
-        "发布时间：2026-07-07"
+        "发布时间：2026-07-08"
       ],
       "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
-      "readingMinutes": 6,
-      "relevanceScore": 8
+      "readingMinutes": 2,
+      "relevanceScore": 6,
+      "reliability": {
+        "score": 65,
+        "grade": "B",
+        "label": "较高",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 30,
+          "evidence": 4,
+          "traceability": 15,
+          "corroboration": 0,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": 0
+        },
+        "factors": [
+          "论文具有 DOI 与期刊来源记录",
+          "原文直链已在采集时验证",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "公开索引缺少足够摘要，无法仅凭标题判断结论",
+          "本轮采集未发现独立来源交叉印证"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      }
     }
   ]
 }

@@ -118,6 +118,157 @@ export function inferTags(article) {
   return [...new Set(tags)].slice(0, 5);
 }
 
+function articleHostname(article) {
+  try {
+    return new URL(article.url || article.sourceUrl || "").hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+
+function domainMatches(hostname, domains = []) {
+  return domains.some((domain) => hostname === domain || hostname.endsWith(`.${domain}`));
+}
+
+function reliabilityLevel(score) {
+  if (score >= 80) return { grade: "A", label: "高" };
+  if (score >= 65) return { grade: "B", label: "较高" };
+  if (score >= 50) return { grade: "C", label: "待核验" };
+  return { grade: "D", label: "谨慎" };
+}
+
+function normalizedFeedback(value = {}) {
+  const result = {};
+  for (const key of ["useful", "questionable", "irrelevant", "broken"]) {
+    result[key] = Math.max(0, Number(value[key] || 0));
+  }
+  result.total = result.useful + result.questionable + result.irrelevant + result.broken;
+  return result;
+}
+
+export function assessReliability(article, config = {}) {
+  const hostname = articleHostname(article);
+  const evidence = article.evidence || {};
+  const factors = [];
+  const limitations = [];
+  const dimensions = {
+    authority: 0,
+    evidence: 0,
+    traceability: 0,
+    corroboration: 0,
+    recency: 0,
+    transparency: 0,
+    feedback: 0,
+    riskPenalty: 0
+  };
+
+  const authority = config.authorityDomains || {};
+  if (article.sourceType === "论文" && evidence.doi) {
+    dimensions.authority = 30;
+    factors.push("论文具有 DOI 与期刊来源记录");
+  } else if (article.sourceType === "论文") {
+    dimensions.authority = 22;
+    factors.push("来源为学术索引记录");
+    limitations.push("未提供 DOI，出版状态需回到原文确认");
+  } else if (domainMatches(hostname, authority.primary || [])) {
+    dimensions.authority = 28;
+    factors.push("来源属于政府、科研机构或行业标准组织");
+  } else if (domainMatches(hostname, authority.industry || [])) {
+    dimensions.authority = 23;
+    factors.push("来源属于可识别的行业机构或技术发布方");
+  } else if (domainMatches(hostname, authority.media || [])) {
+    dimensions.authority = 16;
+    factors.push("来源为可识别的新闻或财经发布平台");
+    limitations.push("媒体转载不能替代技术报告、试验数据或原始公告");
+  } else {
+    dimensions.authority = 11;
+    limitations.push("来源权威层级尚未纳入已知清单");
+  }
+
+  const excerpt = cleanText(article.snippet || "");
+  if (evidence.hasAbstract || excerpt.length >= 180) {
+    dimensions.evidence = 20;
+    factors.push(article.sourceType === "论文" ? "索引提供了论文摘要" : "发布方提供了较完整的公开摘要");
+  } else if (evidence.hasPublisherDescription || excerpt.length >= 70) {
+    dimensions.evidence = 13;
+    factors.push("发布方提供了可核查的内容简介");
+  } else {
+    dimensions.evidence = 4;
+    limitations.push("公开索引缺少足够摘要，无法仅凭标题判断结论");
+  }
+
+  if (article.linkType === "publisher" && article.linkVerified) {
+    dimensions.traceability = 15;
+    factors.push("原文直链已在采集时验证");
+  } else if (article.linkType === "publisher") {
+    dimensions.traceability = 11;
+    factors.push("链接指向发布方或 DOI 页面");
+  } else {
+    dimensions.traceability = 4;
+    limitations.push("当前为聚合跳转链接，需确认最终发布方页面");
+  }
+
+  const corroboratingSources = [...new Set(article.corroboratingSources || [])].filter(Boolean);
+  dimensions.corroboration = Math.min(14, corroboratingSources.length * 6);
+  if (corroboratingSources.length) {
+    factors.push(`发现 ${corroboratingSources.length} 个独立来源报道相近信息`);
+  } else {
+    limitations.push("本轮采集未发现独立来源交叉印证");
+  }
+
+  const ageDays = Math.max(0, (Date.now() - new Date(article.publishedAt || 0).getTime()) / 86400000);
+  dimensions.recency = ageDays <= 30 ? 8 : ageDays <= 180 ? 5 : 2;
+  if (dimensions.recency >= 5) factors.push("发布时间处于当前监测窗口");
+
+  if (article.source && article.publishedAt && article.sourceChannel) {
+    dimensions.transparency = 8;
+    factors.push("来源、日期和采集通道信息完整");
+  } else {
+    dimensions.transparency = 3;
+    limitations.push("来源元数据不完整");
+  }
+
+  const claimText = `${article.title || ""} ${excerpt}`.toLowerCase();
+  const commercialSignals = config.commercialSignals || ["咨询", "市场规模", "深度分析报告", "market size", "market forecast"];
+  const selfClaimSignals = config.selfClaimSignals || ["公司表示", "公司称", "主要产品涵盖", "宣布", "unveils", "announces"];
+  if (commercialSignals.some((signal) => claimText.includes(signal.toLowerCase()))) {
+    dimensions.riskPenalty -= 8;
+    limitations.push("内容含商业报告或市场预测信号，方法与样本需额外核验");
+  }
+  if (selfClaimSignals.some((signal) => claimText.includes(signal.toLowerCase()))) {
+    dimensions.riskPenalty -= 6;
+    limitations.push("内容可能主要来自企业自述，尚不能视为独立验证");
+  }
+  if (evidence.publicationType === "preprint") {
+    dimensions.riskPenalty -= 5;
+    limitations.push("资料为预印本，尚未确认同行评审状态");
+  }
+
+  const feedback = normalizedFeedback(article.feedbackAggregate);
+  const minimumFeedback = Number(config.minimumFeedback || 5);
+  if (feedback.total >= minimumFeedback) {
+    const sentiment = (feedback.useful - feedback.questionable - 1.25 * feedback.irrelevant - 1.5 * feedback.broken) /
+      feedback.total;
+    dimensions.feedback = Math.max(-6, Math.min(6, Math.round(sentiment * 6)));
+    const direction = dimensions.feedback >= 0 ? `+${dimensions.feedback}` : String(dimensions.feedback);
+    factors.push(`${feedback.total} 份用户反馈带来 ${direction} 分有限修正`);
+  }
+
+  const rawScore = Object.values(dimensions).reduce((sum, value) => sum + value, 0);
+  const score = Math.max(0, Math.min(100, Math.round(rawScore)));
+  const level = reliabilityLevel(score);
+  return {
+    score,
+    grade: level.grade,
+    label: level.label,
+    methodVersion: "1.0",
+    dimensions,
+    factors: factors.slice(0, 5),
+    limitations: limitations.slice(0, 5),
+    feedback
+  };
+}
+
 export function deduplicateArticles(articles) {
   const seenUrls = new Set();
   const seenTitles = new Set();
@@ -163,7 +314,7 @@ export function createFallbackSummary(article) {
 }
 
 export function toPublicArticle(article, summaryData) {
-  return {
+  const publicArticle = {
     id: article.id || makeArticleId(article.url, article.title),
     title: cleanText(article.title),
     source: cleanText(article.source || "未知来源"),
@@ -176,6 +327,17 @@ export function toPublicArticle(article, summaryData) {
     sourceUrl: normalizeUrl(article.sourceUrl || ""),
     sourceChannel: cleanText(article.sourceChannel || "网络公开来源"),
     linkType: article.linkType === "aggregator" ? "aggregator" : "publisher",
+    linkVerified: Boolean(article.linkVerified),
+    evidence: {
+      hasAbstract: Boolean(article.evidence?.hasAbstract),
+      hasPublisherDescription: Boolean(article.evidence?.hasPublisherDescription),
+      doi: cleanText(article.evidence?.doi || ""),
+      authorsCount: Number(article.evidence?.authorsCount || 0),
+      citedByCount: Number(article.evidence?.citedByCount || 0),
+      publicationType: cleanText(article.evidence?.publicationType || "")
+    },
+    corroboratingSources: [...new Set(article.corroboratingSources || [])].map(cleanText).filter(Boolean).slice(0, 6),
+    feedbackAggregate: normalizedFeedback(article.feedbackAggregate),
     category: summaryData.category || inferCategory(article),
     tags: summaryData.tags?.length ? summaryData.tags : inferTags(article),
     summary: cleanText(summaryData.summary),
@@ -184,4 +346,6 @@ export function toPublicArticle(article, summaryData) {
     readingMinutes: Math.max(2, Math.min(12, Math.round(cleanText(article.snippet).length / 240) + 2)),
     relevanceScore: Number(article.relevanceScore || 0)
   };
+  publicArticle.reliability = assessReliability(article, article.reliabilityConfig || {});
+  return publicArticle;
 }

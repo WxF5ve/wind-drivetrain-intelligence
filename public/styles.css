@@ -506,8 +506,8 @@ kbd {
 
 .segmented-control {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: 126px;
+  grid-template-columns: repeat(3, 1fr);
+  width: 232px;
   padding: 3px;
   background: #e6ece9;
   border-radius: 7px;
@@ -630,6 +630,33 @@ kbd {
 .article-meta .source {
   color: var(--green);
   font-weight: 750;
+}
+
+.reliability-badge {
+  display: inline-flex;
+  min-height: 20px;
+  align-items: center;
+  padding: 1px 6px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.grade-a {
+  color: #137455;
+}
+
+.grade-b {
+  color: #176f7c;
+}
+
+.grade-c {
+  color: #9a6508;
+}
+
+.grade-d {
+  color: #a4433d;
 }
 
 .meta-separator {
@@ -1081,6 +1108,82 @@ dialog::backdrop {
   line-height: 1.8;
 }
 
+.reliability-section {
+  padding: 18px 0 4px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.reliability-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.dialog-article .reliability-heading h3 {
+  margin: 0 0 4px;
+}
+
+.reliability-heading p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+
+.reliability-score {
+  display: grid;
+  flex: 0 0 auto;
+  grid-template-columns: auto auto;
+  gap: 2px 8px;
+  align-items: baseline;
+  min-width: 92px;
+  text-align: right;
+}
+
+.reliability-score strong {
+  grid-row: 1 / span 2;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.reliability-score span {
+  color: currentColor;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.reliability-reasons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 14px;
+  margin: 15px 0 14px;
+}
+
+.reliability-reasons span {
+  display: grid;
+  grid-template-columns: 15px minmax(0, 1fr);
+  gap: 6px;
+  align-items: start;
+  color: var(--ink-soft);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.reliability-reasons svg {
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+}
+
+.reliability-reasons .positive svg {
+  color: var(--green);
+}
+
+.reliability-reasons .limitation svg {
+  color: #9a6508;
+}
+
 .dialog-article h3 {
   margin: 22px 0 9px;
   font-size: 14px;
@@ -1122,6 +1225,61 @@ dialog::backdrop {
   padding: 13px 14px;
   font-size: 13px;
   line-height: 1.75;
+}
+
+.feedback-section {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) minmax(0, 1fr);
+  gap: 14px 20px;
+  align-items: center;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.dialog-article .feedback-section h3 {
+  margin: 0;
+}
+
+.feedback-total {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: 10px;
+}
+
+.feedback-actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.feedback-actions button {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 7px;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.feedback-actions button:hover,
+.feedback-actions button[aria-pressed="true"] {
+  color: var(--green);
+  background: var(--green-soft);
+  border-color: #a8cfc1;
+}
+
+.feedback-actions svg {
+  width: 14px;
+  height: 14px;
 }
 
 .dialog-actions {
@@ -1503,6 +1661,22 @@ dialog::backdrop {
 
   .dialog-article h2 {
     font-size: 21px;
+  }
+
+  .reliability-heading {
+    gap: 10px;
+  }
+
+  .reliability-reasons {
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-section {
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .filter-dialog {

@@ -8,8 +8,12 @@ const state = {
   sort: "latest",
   view: "all",
   saved: new Set(readStorage("wind-intel-saved", [])),
-  watchlist: readStorage("wind-intel-watchlist", ["白色蚀刻裂纹", "行星架轴承", "油液监测"])
+  watchlist: readStorage("wind-intel-watchlist", ["白色蚀刻裂纹", "行星架轴承", "油液监测"]),
+  feedback: readObjectStorage("wind-intel-feedback", {}),
+  clientId: readClientId()
 };
+
+const runtimeConfig = window.WIND_INTEL_CONFIG || {};
 
 const defaultShareMetadata = {
   title: document.title,
@@ -57,6 +61,23 @@ function readStorage(key, fallback) {
   } catch {
     return fallback;
   }
+}
+
+function readObjectStorage(key, fallback) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key));
+    return value && typeof value === "object" && !Array.isArray(value) ? value : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function readClientId() {
+  const existing = localStorage.getItem("wind-intel-client-id");
+  if (existing) return existing;
+  const value = crypto.randomUUID?.() || `local-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  localStorage.setItem("wind-intel-client-id", value);
+  return value;
 }
 
 function writeStorage(key, value) {
@@ -125,7 +146,7 @@ function searchTokens() {
 
 function articleSearchScore(article) {
   const tokens = searchTokens();
-  if (!tokens.length) return article.relevanceScore || 0;
+  if (!tokens.length) return (article.relevanceScore || 0) + (article.reliability?.score || 0) / 10;
 
   const fields = {
     title: article.title.toLowerCase(),
@@ -149,7 +170,26 @@ function articleSearchScore(article) {
       (fields.source.includes(token) ? 1 : 0) +
       (fields.classification.includes(token) ? 1 : 0)
     );
-  }, article.relevanceScore || 0);
+  }, (article.relevanceScore || 0) + (article.reliability?.score || 0) / 10);
+}
+
+function feedbackVoteWeight(vote) {
+  return { useful: 8, questionable: -3, irrelevant: -18, broken: -20 }[vote] || 0;
+}
+
+function personalScore(article) {
+  let score = (article.reliability?.score || 0) * 0.6 + (article.relevanceScore || 0) * 2;
+  score += feedbackVoteWeight(state.feedback[article.id]);
+  const articleTags = new Set(article.tags || []);
+  for (const [articleId, vote] of Object.entries(state.feedback)) {
+    const rated = state.articles.find((item) => item.id === articleId);
+    if (!rated) continue;
+    const direction = vote === "useful" ? 1.5 : vote === "irrelevant" ? -2 : 0;
+    if (!direction) continue;
+    const overlap = (rated.tags || []).filter((tag) => articleTags.has(tag)).length;
+    score += Math.min(6, overlap * direction);
+  }
+  return score;
 }
 
 function matchesCategory(article) {
@@ -177,6 +217,8 @@ function getVisibleArticles() {
     })
     .sort((a, b) => {
       if (state.sort === "relevance" || state.query) return b.searchScore - a.searchScore;
+      if (state.sort === "reliability") return (b.article.reliability?.score || 0) - (a.article.reliability?.score || 0);
+      if (state.sort === "personal") return personalScore(b.article) - personalScore(a.article);
       return new Date(b.article.publishedAt) - new Date(a.article.publishedAt);
     })
     .map(({ article }) => article);
@@ -223,6 +265,7 @@ function renderWeeklyBrief() {
 
 function articleCard(article) {
   const saved = state.saved.has(article.id);
+  const reliability = article.reliability || { score: 0, grade: "D", label: "待评估" };
   return `
     <article class="article-card" data-id="${escapeHtml(article.id)}">
       <div class="article-media">
@@ -232,6 +275,9 @@ function articleCard(article) {
       <div class="article-body">
         <div class="article-meta">
           <span class="source">${escapeHtml(article.source)}</span>
+          <span class="reliability-badge grade-${escapeHtml(reliability.grade.toLowerCase())}" title="可靠度 ${reliability.score} 分">
+            ${escapeHtml(reliability.grade)} · ${escapeHtml(reliability.label)}
+          </span>
           <span class="meta-separator" aria-hidden="true"></span>
           <span>${escapeHtml(article.region)}</span>
           <span class="meta-separator" aria-hidden="true"></span>
@@ -388,6 +434,9 @@ function openArticle(article) {
   updateShareMetadata(`${article.title}｜风传智研`, article.summary);
   elements.dialogSource.textContent = `${article.source} · ${article.sourceType}`;
   const linkLabel = article.linkType === "aggregator" ? "聚合跳转" : "发布方原文";
+  const reliability = article.reliability || { score: 0, grade: "D", label: "待评估", factors: [], limitations: [], feedback: {} };
+  const selectedFeedback = state.feedback[article.id] || "";
+  const aggregateTotal = reliability.feedback?.total || 0;
   elements.dialogContent.innerHTML = `
     <article class="dialog-article">
       <h2>${escapeHtml(article.title)}</h2>
@@ -404,6 +453,22 @@ function openArticle(article) {
         <span>${linkLabel}</span>
       </div>
       <p class="dialog-summary">${escapeHtml(article.summary)}</p>
+      <section class="reliability-section" aria-labelledby="reliability-title">
+        <div class="reliability-heading">
+          <div>
+            <h3 id="reliability-title">可靠度评估</h3>
+            <p>评估来源、证据与可追溯性，不代表结论已经证实。</p>
+          </div>
+          <div class="reliability-score grade-${escapeHtml(reliability.grade.toLowerCase())}">
+            <strong>${reliability.score}</strong>
+            <span>${escapeHtml(reliability.grade)} · ${escapeHtml(reliability.label)}</span>
+          </div>
+        </div>
+        <div class="reliability-reasons">
+          ${(reliability.factors || []).map((item) => `<span class="positive"><i data-lucide="check"></i>${escapeHtml(item)}</span>`).join("")}
+          ${(reliability.limitations || []).map((item) => `<span class="limitation"><i data-lucide="triangle-alert"></i>${escapeHtml(item)}</span>`).join("")}
+        </div>
+      </section>
       <h3>关键信息</h3>
       <ol class="key-points">
         ${(article.keyPoints || [])
@@ -415,6 +480,26 @@ function openArticle(article) {
       <div class="tag-list" style="margin-top: 18px">
         ${(article.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
       </div>
+      <section class="feedback-section" aria-labelledby="feedback-title">
+        <div>
+          <h3 id="feedback-title">你的判断</h3>
+          ${aggregateTotal ? `<span class="feedback-total">已汇总 ${aggregateTotal} 份反馈</span>` : ""}
+        </div>
+        <div class="feedback-actions" role="group" aria-label="评价这条资料">
+          <button type="button" data-feedback="useful" data-id="${escapeHtml(article.id)}" aria-pressed="${selectedFeedback === "useful"}">
+            <i data-lucide="thumbs-up"></i><span>有价值</span>
+          </button>
+          <button type="button" data-feedback="questionable" data-id="${escapeHtml(article.id)}" aria-pressed="${selectedFeedback === "questionable"}">
+            <i data-lucide="circle-help"></i><span>需核验</span>
+          </button>
+          <button type="button" data-feedback="irrelevant" data-id="${escapeHtml(article.id)}" aria-pressed="${selectedFeedback === "irrelevant"}">
+            <i data-lucide="circle-minus"></i><span>不相关</span>
+          </button>
+          <button type="button" data-feedback="broken" data-id="${escapeHtml(article.id)}" aria-pressed="${selectedFeedback === "broken"}">
+            <i data-lucide="unlink"></i><span>链接失效</span>
+          </button>
+        </div>
+      </section>
       <div class="dialog-actions">
         <a class="primary-button" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer">
           <i data-lucide="external-link"></i>
@@ -436,6 +521,73 @@ function openArticle(article) {
   shareUrl.searchParams.set("article", article.id);
   history.replaceState(null, "", shareUrl);
   renderIcons();
+}
+
+async function sendCentralFeedback(article, vote) {
+  if (!runtimeConfig.feedbackEndpoint) return;
+  const endpoint = new URL("feedback", runtimeConfig.feedbackEndpoint.endsWith("/")
+    ? runtimeConfig.feedbackEndpoint
+    : `${runtimeConfig.feedbackEndpoint}/`);
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      articleId: article.id,
+      vote,
+      clientId: state.clientId,
+      reliabilityScore: article.reliability?.score || 0,
+      submittedAt: new Date().toISOString()
+    })
+  });
+  if (!response.ok) throw new Error(`Feedback API ${response.status}`);
+  const pending = readObjectStorage("wind-intel-feedback-pending", {});
+  delete pending[article.id];
+  writeStorage("wind-intel-feedback-pending", pending);
+}
+
+function queuePendingFeedback(article, vote) {
+  const pending = readObjectStorage("wind-intel-feedback-pending", {});
+  pending[article.id] = { vote, updatedAt: new Date().toISOString() };
+  writeStorage("wind-intel-feedback-pending", pending);
+}
+
+async function flushPendingFeedback() {
+  if (!runtimeConfig.feedbackEndpoint) return;
+  const pending = readObjectStorage("wind-intel-feedback-pending", {});
+  for (const [articleId, item] of Object.entries(pending)) {
+    const article = findArticle(articleId);
+    if (!article) continue;
+    try {
+      await sendCentralFeedback(article, item.vote);
+    } catch {
+      return;
+    }
+  }
+}
+
+async function submitFeedback(article, vote) {
+  if (!article || !["useful", "questionable", "irrelevant", "broken"].includes(vote)) return;
+  if (state.feedback[article.id] === vote) {
+    delete state.feedback[article.id];
+  } else {
+    state.feedback[article.id] = vote;
+  }
+  writeStorage("wind-intel-feedback", state.feedback);
+  const selected = state.feedback[article.id] || "";
+  renderFeed();
+  openArticle(article);
+  try {
+    await sendCentralFeedback(article, selected || "clear");
+    showToast(!selected
+      ? "已撤销反馈"
+      : runtimeConfig.feedbackEndpoint
+        ? "反馈已汇总并用于后续校准"
+        : "已根据反馈调整本机推荐");
+  } catch (error) {
+    console.warn(error);
+    queuePendingFeedback(article, selected || "clear");
+    showToast("反馈已保存在本机，下次打开自动重试");
+  }
 }
 
 function closeArticle() {
@@ -626,10 +778,16 @@ function wireEvents() {
   elements.articleDialog.addEventListener("click", (event) => {
     if (event.target === elements.articleDialog) closeArticle();
     const button = event.target.closest("[data-dialog-action]");
-    if (!button) return;
-    const article = findArticle(button.dataset.id);
-    if (button.dataset.dialogAction === "save") toggleSaved(article);
-    if (button.dataset.dialogAction === "share") shareArticle(article);
+    const feedbackButton = event.target.closest("[data-feedback]");
+    if (feedbackButton) {
+      submitFeedback(findArticle(feedbackButton.dataset.id), feedbackButton.dataset.feedback);
+      return;
+    }
+    if (button) {
+      const article = findArticle(button.dataset.id);
+      if (button.dataset.dialogAction === "save") toggleSaved(article);
+      if (button.dataset.dialogAction === "share") shareArticle(article);
+    }
   });
   elements.articleDialog.addEventListener("close", () => {
     const url = new URL(window.location.href);
@@ -660,6 +818,7 @@ async function loadData() {
     renderWatchlist();
     renderFeed();
     renderIcons();
+    flushPendingFeedback();
 
     const articleId = new URL(window.location.href).searchParams.get("article");
     if (articleId) openArticle(findArticle(articleId));

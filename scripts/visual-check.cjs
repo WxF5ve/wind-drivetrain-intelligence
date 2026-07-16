@@ -45,12 +45,14 @@ async function inspectLayout(page, label) {
     viewportWidth: window.innerWidth,
     cards: document.querySelectorAll(".article-card").length,
     title: document.querySelector("#brief-title")?.textContent?.trim(),
-    searchWidth: document.querySelector(".search-box")?.getBoundingClientRect().width
+    searchWidth: document.querySelector(".search-box")?.getBoundingClientRect().width,
+    reliabilityBadges: document.querySelectorAll(".reliability-badge").length
   }));
   if (result.bodyScrollWidth > result.viewportWidth + 1) {
     throw new Error(`${label} has horizontal overflow: ${result.bodyScrollWidth} > ${result.viewportWidth}`);
   }
   if (!result.cards) throw new Error(`${label} rendered no article cards`);
+  if (result.reliabilityBadges !== result.cards) throw new Error(`${label} is missing reliability badges`);
   return result;
 }
 
@@ -79,8 +81,18 @@ async function inspectLayout(page, label) {
     if (searchResults < 1) throw new Error("Search for 轴承 returned no results");
     await desktop.locator(".article-card").first().locator('[data-action="details"]').click();
     await desktop.waitForSelector("#article-dialog[open]");
+    const reliabilityScore = Number(await desktop.locator(".reliability-score strong").textContent());
+    if (!Number.isFinite(reliabilityScore) || reliabilityScore <= 0) throw new Error("Reliability score did not render");
+    await desktop.locator('[data-feedback="useful"]').click();
+    if (await desktop.locator('[data-feedback="useful"]').getAttribute("aria-pressed") !== "true") {
+      throw new Error("Feedback selection was not persisted");
+    }
     await desktop.screenshot({ path: path.join(outputDir, "detail-dialog.png") });
     await desktop.locator("#close-dialog").click();
+    await desktop.locator('[data-sort="personal"]').click();
+    if (!(await desktop.locator('[data-sort="personal"]').evaluate((element) => element.classList.contains("active")))) {
+      throw new Error("Personalized sorting did not activate");
+    }
 
     const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
     mobile.on("console", (message) => {
@@ -100,7 +112,7 @@ async function inspectLayout(page, label) {
       throw new Error(`Browser console errors:\n${consoleErrors.join("\n")}`);
     }
 
-    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults }, null, 2));
+    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults, reliabilityScore }, null, 2));
   } finally {
     if (browser) await browser.close();
     server.kill();

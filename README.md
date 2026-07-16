@@ -13,10 +13,14 @@
 - PWA 离线壳与移动端底部导航
 - Google News/Bing News 新闻索引、OpenAlex 学术索引和相关性过滤
 - 发布方原文 URL 解析、页面标题一致性校验和公开摘要元数据提取
+- 可解释可靠度评分：来源、证据、原文、交叉印证、声明风险和有限用户反馈修正
+- 用户反馈与个性化推荐：有价值、需核验、不相关、链接失效
 - 可选 OpenAI 结构化中文摘要，未配置密钥时使用规则摘要
 - GitHub Actions 每周一 08:30（北京时间）自动刷新并发布
 
 `public/data/articles.json` 已由真实网络采集生成。生产数据会明确标记 `dataMode: live`、采集通道、采集时间和原文链接类型；演示数据不会进入正式资料库。
+
+可靠度分数用于提示核验优先级，不等同于事实已经证实。少于 5 份的用户反馈不会修改公共可靠度；达到阈值后最多只允许 `-6` 至 `+6` 分修正，避免少数点击覆盖来源与证据判断。
 
 ## 本地运行
 
@@ -104,6 +108,8 @@ flowchart LR
 
 完整的一次性上线步骤见 [DEPLOY-WECHAT.md](DEPLOY-WECHAT.md)。
 
+集中反馈服务位于 `feedback-worker`。未配置服务时，反馈只保存在当前浏览器并用于本机个性化排序；配置后会匿名汇总到每周可靠度校准流程。
+
 ## 关键文件
 
 - `public/index.html`：应用页面结构
@@ -113,3 +119,4 @@ flowchart LR
 - `config/sources.json`：关键词、数据通道和相关性权重
 - `.github/workflows/weekly-collect.yml`：每周一自动任务
 - `scripts/build.mjs`：生成带微信分享元信息的部署目录
+- `feedback-worker`：匿名结构化反馈与聚合服务

@@ -4,6 +4,52 @@
   "historyMaxArticles": 160,
   "historyRetentionDays": 365,
   "minimumRelevanceScore": 3,
+  "reliability": {
+    "minimumFeedback": 5,
+    "authorityDomains": {
+      "primary": [
+        "nrel.gov",
+        "energy.gov",
+        "iea.org",
+        "iec.ch",
+        "iso.org"
+      ],
+      "industry": [
+        "cwea.org.cn",
+        "windpower.org.cn",
+        "windpowerengineering.com",
+        "windpowermonthly.com",
+        "dnv.com",
+        "ul.com",
+        "skf.com",
+        "timken.com",
+        "schaeffler.com"
+      ],
+      "media": [
+        "sina.com.cn",
+        "sina.cn",
+        "qq.com",
+        "163.com",
+        "cls.cn",
+        "ne21.com"
+      ]
+    },
+    "commercialSignals": [
+      "咨询",
+      "市场规模",
+      "深度分析报告",
+      "market size",
+      "market forecast"
+    ],
+    "selfClaimSignals": [
+      "公司表示",
+      "公司称",
+      "主要产品涵盖",
+      "宣布",
+      "unveils",
+      "announces"
+    ]
+  },
   "newsQueries": [
     {
       "id": "news-cn-gearbox",

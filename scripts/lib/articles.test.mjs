@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  assessReliability,
   cleanText,
   createFallbackSummary,
   deduplicateArticles,
@@ -11,6 +12,15 @@ import {
   relevanceScore,
   resolveNewsUrl
 } from "./articles.mjs";
+
+const reliabilityConfig = {
+  authorityDomains: {
+    primary: ["nrel.gov", "energy.gov"],
+    industry: ["dnv.com", "skf.com"],
+    media: ["qq.com", "sina.com.cn"]
+  },
+  minimumFeedback: 5
+};
 
 test("cleanText removes markup and compacts whitespace", () => {
   assert.equal(cleanText("<p>齿轮箱&nbsp; 轴承</p>"), "齿轮箱 轴承");
@@ -127,4 +137,51 @@ test("public articles expose provenance without carrying source snippets", async
   assert.equal(article.sourceChannel, "Google News RSS");
   assert.equal(article.linkType, "publisher");
   assert.equal("snippet" in article, false);
+  assert.equal(typeof article.reliability.score, "number");
+});
+
+test("peer-reviewed DOI records score above unsupported company claims", () => {
+  const paper = assessReliability({
+    title: "Wind turbine gearbox vibration study",
+    snippet: "A detailed abstract describing methods, datasets, validation, limitations, and measured results for a wind turbine drivetrain experiment.".repeat(2),
+    source: "Scientific Reports",
+    sourceType: "论文",
+    sourceChannel: "OpenAlex",
+    publishedAt: new Date().toISOString(),
+    url: "https://doi.org/10.1000/example",
+    linkType: "publisher",
+    linkVerified: true,
+    evidence: { doi: "https://doi.org/10.1000/example", hasAbstract: true, publicationType: "article" }
+  }, reliabilityConfig);
+  const claim = assessReliability({
+    title: "公司表示主要产品涵盖风电主轴轴承",
+    snippet: "",
+    source: "腾讯新闻",
+    sourceType: "行业资讯",
+    sourceChannel: "Google News RSS",
+    publishedAt: new Date().toISOString(),
+    url: "https://news.qq.com/example",
+    linkType: "publisher",
+    linkVerified: true
+  }, reliabilityConfig);
+  assert.ok(paper.score >= 80);
+  assert.ok(claim.score < paper.score);
+  assert.match(claim.limitations.join(" "), /企业自述/);
+});
+
+test("small feedback samples do not change reliability", () => {
+  const base = {
+    title: "Wind turbine gearbox report",
+    snippet: "A sufficiently detailed publisher description with methods and stated limitations for engineering review.",
+    source: "Technical publisher",
+    sourceType: "行业资讯",
+    sourceChannel: "RSS",
+    publishedAt: new Date().toISOString(),
+    url: "https://example.com/report",
+    linkType: "publisher",
+    linkVerified: true
+  };
+  const withoutFeedback = assessReliability(base, reliabilityConfig);
+  const withSmallSample = assessReliability({ ...base, feedbackAggregate: { useful: 4 } }, reliabilityConfig);
+  assert.equal(withSmallSample.score, withoutFeedback.score);
 });

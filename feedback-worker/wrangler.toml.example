@@ -1,0 +1,11 @@
+name = "wind-intel-feedback"
+main = "src/index.js"
+compatibility_date = "2026-07-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "wind-intel-feedback"
+database_id = "在 Cloudflare 创建 D1 后填入"
+
+[vars]
+ALLOWED_ORIGIN = "https://你的用户名.github.io"
