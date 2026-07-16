@@ -1,0 +1,108 @@
+{
+  "lookbackDays": 8,
+  "maxArticles": 48,
+  "historyMaxArticles": 160,
+  "historyRetentionDays": 365,
+  "minimumRelevanceScore": 3,
+  "newsQueries": [
+    {
+      "id": "news-cn-gearbox",
+      "label": "国内齿轮箱与传动链资讯",
+      "query": "风电 (齿轮箱 OR 主齿轮箱 OR 传动链 OR 行星架)",
+      "language": "Chinese",
+      "region": "国内"
+    },
+    {
+      "id": "news-cn-bearing",
+      "label": "国内轴承与润滑资讯",
+      "query": "风电 (轴承 OR 主轴承 OR 齿轮箱轴承 OR 润滑 OR 油液监测)",
+      "language": "Chinese",
+      "region": "国内"
+    },
+    {
+      "id": "news-cn-monitoring",
+      "label": "国内故障诊断资讯",
+      "query": "风电 (故障诊断 OR 状态监测 OR 振动监测 OR 预测性维护)",
+      "language": "Chinese",
+      "region": "国内"
+    },
+    {
+      "id": "news-global-gearbox",
+      "label": "海外齿轮箱与传动链资讯",
+      "query": "\"wind turbine\" (gearbox OR drivetrain OR planetary carrier)",
+      "language": "English",
+      "region": "海外"
+    },
+    {
+      "id": "news-global-bearing",
+      "label": "海外轴承与润滑资讯",
+      "query": "\"wind turbine\" (bearing OR main bearing OR lubrication OR oil debris)",
+      "language": "English",
+      "region": "海外"
+    },
+    {
+      "id": "news-global-monitoring",
+      "label": "海外状态监测资讯",
+      "query": "\"wind turbine\" (condition monitoring OR fault diagnosis OR vibration monitoring OR predictive maintenance)",
+      "language": "English",
+      "region": "海外"
+    }
+  ],
+  "researchQueries": [
+    {
+      "id": "research-gearbox",
+      "label": "风电齿轮箱论文",
+      "query": "wind turbine gearbox",
+      "region": "海外"
+    },
+    {
+      "id": "research-bearing",
+      "label": "风电轴承论文",
+      "query": "wind turbine bearing main shaft bearing",
+      "region": "海外"
+    },
+    {
+      "id": "research-drivetrain-monitoring",
+      "label": "传动链监测论文",
+      "query": "wind turbine drivetrain condition monitoring fault diagnosis",
+      "region": "海外"
+    },
+    {
+      "id": "research-lubrication",
+      "label": "风电润滑与摩擦学论文",
+      "query": "wind turbine gearbox lubrication tribology oil debris",
+      "region": "海外"
+    },
+    {
+      "id": "research-cn",
+      "label": "国内风电传动论文",
+      "query": "风电 齿轮箱 轴承 故障诊断",
+      "region": "国内"
+    }
+  ],
+  "relevanceKeywords": {
+    "风电": 2,
+    "风力发电": 2,
+    "风机": 1,
+    "齿轮箱": 4,
+    "齿轮": 2,
+    "轴承": 4,
+    "传动链": 4,
+    "主轴": 2,
+    "润滑": 2,
+    "振动": 2,
+    "状态监测": 3,
+    "故障诊断": 3,
+    "白色蚀刻裂纹": 4,
+    "wind turbine": 2,
+    "gearbox": 4,
+    "bearing": 4,
+    "drivetrain": 4,
+    "main shaft": 2,
+    "lubrication": 2,
+    "vibration": 2,
+    "condition monitoring": 3,
+    "fault diagnosis": 3,
+    "white etching crack": 4
+  }
+}

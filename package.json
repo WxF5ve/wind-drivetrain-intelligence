@@ -1,0 +1,26 @@
+{
+  "name": "wind-drivetrain-intelligence",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "面向风电齿轮箱与轴承工程师的每周行业情报 PWA",
+  "scripts": {
+    "start": "node server.mjs",
+    "collect": "node scripts/collect.mjs",
+    "collect:dry": "node scripts/collect.mjs --dry-run",
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "test:visual": "node scripts/visual-check.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.10.0",
+    "google-news-url-decoder": "^1.2.2",
+    "node-html-parser": "^7.0.1"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.1"
+  }
+}

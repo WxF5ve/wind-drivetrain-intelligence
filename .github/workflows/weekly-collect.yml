@@ -1,0 +1,78 @@
+name: Collect and publish wind drivetrain intelligence
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    # 每周一 08:30（北京时间）
+    - cron: "30 0 * * 1"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: wind-intel-pages
+  cancel-in-progress: false
+
+jobs:
+  collect-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install collector dependencies
+        run: npm ci
+
+      - name: Collect and summarize
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: npm run collect
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.6-mini' }}
+
+      - name: Commit refreshed intelligence
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        run: |
+          if git diff --quiet -- public/data/articles.json; then
+            echo "No intelligence changes."
+            exit 0
+          fi
+          git config user.name "wind-intel-bot"
+          git config user.email "wind-intel-bot@users.noreply.github.com"
+          git add public/data/articles.json
+          git commit -m "data: refresh weekly drivetrain intelligence"
+          git push
+
+      - name: Run tests
+        run: npm test
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build WeChat H5
+        run: npm run build
+        env:
+          PUBLIC_BASE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

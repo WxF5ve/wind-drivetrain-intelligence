@@ -1,0 +1,214 @@
+{
+  "app": "风传智研",
+  "generatedAt": "2026-07-15T00:45:17.631Z",
+  "period": {
+    "from": "2026-07-07T00:45:17.631Z",
+    "to": "2026-07-15T00:45:17.631Z"
+  },
+  "collectionStatus": {
+    "dataMode": "live",
+    "demo": false,
+    "channels": 11,
+    "succeeded": 11,
+    "failed": 0,
+    "rawFetched": 38,
+    "currentCount": 3,
+    "archiveCount": 3,
+    "sources": [
+      {
+        "id": "news-cn-gearbox",
+        "label": "国内齿轮箱与传动链资讯",
+        "type": "news",
+        "status": "ok",
+        "fetched": 2,
+        "error": ""
+      },
+      {
+        "id": "news-cn-bearing",
+        "label": "国内轴承与润滑资讯",
+        "type": "news",
+        "status": "ok",
+        "fetched": 1,
+        "error": ""
+      },
+      {
+        "id": "news-cn-monitoring",
+        "label": "国内故障诊断资讯",
+        "type": "news",
+        "status": "ok",
+        "fetched": 0,
+        "error": ""
+      },
+      {
+        "id": "news-global-gearbox",
+        "label": "海外齿轮箱与传动链资讯",
+        "type": "news",
+        "status": "ok",
+        "fetched": 0,
+        "error": ""
+      },
+      {
+        "id": "news-global-bearing",
+        "label": "海外轴承与润滑资讯",
+        "type": "news",
+        "status": "ok",
+        "fetched": 0,
+        "error": ""
+      },
+      {
+        "id": "news-global-monitoring",
+        "label": "海外状态监测资讯",
+        "type": "news",
+        "status": "ok",
+        "fetched": 0,
+        "error": ""
+      },
+      {
+        "id": "research-gearbox",
+        "label": "风电齿轮箱论文",
+        "type": "research",
+        "status": "ok",
+        "fetched": 21,
+        "error": ""
+      },
+      {
+        "id": "research-bearing",
+        "label": "风电轴承论文",
+        "type": "research",
+        "status": "ok",
+        "fetched": 11,
+        "error": ""
+      },
+      {
+        "id": "research-drivetrain-monitoring",
+        "label": "传动链监测论文",
+        "type": "research",
+        "status": "ok",
+        "fetched": 2,
+        "error": ""
+      },
+      {
+        "id": "research-lubrication",
+        "label": "风电润滑与摩擦学论文",
+        "type": "research",
+        "status": "ok",
+        "fetched": 1,
+        "error": ""
+      },
+      {
+        "id": "research-cn",
+        "label": "国内风电传动论文",
+        "type": "research",
+        "status": "ok",
+        "fetched": 0,
+        "error": ""
+      }
+    ]
+  },
+  "weeklyBrief": {
+    "title": "本周聚焦：齿轮箱、轴承、学术论文",
+    "summary": "过去 8 天共筛选 3 条高相关资料，其中国内 2 条、论文 1 篇。资料库累计保留 3 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
+    "signals": [
+      "韦伯咨询：《2026年中国风电齿轮箱行业专题调研与深度分析报告》",
+      "新强联：公司主要产品涵盖风电主轴轴承等",
+      "Design and analysis of nonlinear observer to reduce torsional vibrations in shaft of wind energy conversion systems"
+    ],
+    "metrics": {
+      "total": 3,
+      "domestic": 2,
+      "overseas": 1,
+      "papers": 1
+    },
+    "summaryMode": "原文索引摘要"
+  },
+  "articles": [
+    {
+      "id": "e50668a068a5",
+      "title": "韦伯咨询：《2026年中国风电齿轮箱行业专题调研与深度分析报告》",
+      "source": "新浪财经",
+      "sourceType": "行业资讯",
+      "region": "国内",
+      "language": "zh",
+      "publishedAt": "2026-07-11T12:14:35.000Z",
+      "collectedAt": "2026-07-15T00:45:17.631Z",
+      "url": "https://cj.sina.com.cn/articles/view/2442012107/918e25cb00101mm52",
+      "sourceUrl": "https://cj.sina.cn/",
+      "sourceChannel": "Google News RSS",
+      "linkType": "publisher",
+      "category": "齿轮箱",
+      "tags": [
+        "齿轮箱",
+        "国内",
+        "行业资讯"
+      ],
+      "summary": "一、报告简介《2026年中国风电齿轮箱行业专题调研与深度分析报告》由韦伯咨询风电齿轮箱行业研究专家团队耗时数月，经过全面深入的市场调研，引用.",
+      "keyPoints": [
+        "来源：新浪财经",
+        "主题：齿轮箱",
+        "发布时间：2026-07-11"
+      ],
+      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "readingMinutes": 2,
+      "relevanceScore": 8
+    },
+    {
+      "id": "9c6eaa35ebbe",
+      "title": "新强联：公司主要产品涵盖风电主轴轴承等",
+      "source": "腾讯新闻",
+      "sourceType": "行业资讯",
+      "region": "国内",
+      "language": "zh",
+      "publishedAt": "2026-07-09T01:04:00.000Z",
+      "collectedAt": "2026-07-15T00:45:17.631Z",
+      "url": "https://news.qq.com/rain/a/20260709A02K6600",
+      "sourceUrl": "https://news.qq.com/",
+      "sourceChannel": "Google News RSS",
+      "linkType": "publisher",
+      "category": "轴承",
+      "tags": [
+        "轴承",
+        "齿轮箱",
+        "国内",
+        "行业资讯"
+      ],
+      "summary": "原始索引未提供可用摘要。资料主题为“新强联：公司主要产品涵盖风电主轴轴承等”，请打开原文核对研究方法、数据和结论边界。",
+      "keyPoints": [
+        "来源：腾讯新闻",
+        "主题：轴承",
+        "发布时间：2026-07-09"
+      ],
+      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "readingMinutes": 3,
+      "relevanceScore": 14
+    },
+    {
+      "id": "34e453af14fd",
+      "title": "Design and analysis of nonlinear observer to reduce torsional vibrations in shaft of wind energy conversion systems",
+      "source": "Scientific Reports",
+      "sourceType": "论文",
+      "region": "海外",
+      "language": "en",
+      "publishedAt": "2026-07-07T00:00:00Z",
+      "collectedAt": "2026-07-15T00:45:17.631Z",
+      "url": "https://doi.org/10.1038/s41598-026-49637-2",
+      "sourceUrl": "",
+      "sourceChannel": "OpenAlex",
+      "linkType": "publisher",
+      "category": "学术论文",
+      "tags": [
+        "状态监测",
+        "海外",
+        "论文"
+      ],
+      "summary": "This paper addresses the challenge of torsional vibrations in wind energy conversion systems (WECSs) with multiple interconnected rotating masses.",
+      "keyPoints": [
+        "来源：Scientific Reports",
+        "主题：学术论文",
+        "发布时间：2026-07-07"
+      ],
+      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "readingMinutes": 6,
+      "relevanceScore": 8
+    }
+  ]
+}
