@@ -199,7 +199,7 @@ svg {
 .brief-media {
   position: absolute;
   inset: 0;
-  background-image: url("/assets/gearbox-cover.png");
+  background-image: url("./assets/gearbox-cover.png");
   background-position: center;
   background-size: cover;
   opacity: 0.54;
