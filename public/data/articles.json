@@ -1,9 +1,9 @@
 {
   "app": "风传智研",
-  "generatedAt": "2026-07-16T16:18:06.452Z",
+  "generatedAt": "2026-07-16T18:40:10.690Z",
   "period": {
-    "from": "2026-07-08T16:18:06.452Z",
-    "to": "2026-07-16T16:18:06.452Z"
+    "from": "2026-07-08T18:40:10.690Z",
+    "to": "2026-07-16T18:40:10.690Z"
   },
   "collectionStatus": {
     "dataMode": "live",
@@ -111,8 +111,8 @@
     "note": "可靠度评估来源质量、证据完整度和可追溯性，不等同于事实已经证实。"
   },
   "feedbackStatus": {
-    "aggregateGeneratedAt": null,
-    "centralized": false
+    "aggregateGeneratedAt": "2026-07-16T18:40:11.230Z",
+    "centralized": true
   },
   "weeklyBrief": {
     "title": "本周聚焦：学术论文、齿轮箱、轴承",
@@ -139,7 +139,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-14T00:00:00Z",
-      "collectedAt": "2026-07-16T16:18:06.452Z",
+      "collectedAt": "2026-07-16T18:40:10.690Z",
       "url": "https://doi.org/10.1016/j.oceaneng.2026.127049",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -220,7 +220,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-11T12:14:35.000Z",
-      "collectedAt": "2026-07-16T16:18:06.452Z",
+      "collectedAt": "2026-07-16T18:40:10.690Z",
       "url": "https://cj.sina.com.cn/articles/view/2442012107/918e25cb00101mm52",
       "sourceUrl": "https://cj.sina.cn/",
       "sourceChannel": "Google News RSS",
@@ -301,7 +301,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-09T01:04:00.000Z",
-      "collectedAt": "2026-07-16T16:18:06.452Z",
+      "collectedAt": "2026-07-16T18:40:10.690Z",
       "url": "https://news.qq.com/rain/a/20260709A02K6600",
       "sourceUrl": "https://news.qq.com/",
       "sourceChannel": "Google News RSS",
@@ -383,7 +383,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-08T00:00:00Z",
-      "collectedAt": "2026-07-16T16:18:06.452Z",
+      "collectedAt": "2026-07-16T18:40:10.690Z",
       "url": "https://doi.org/10.1016/j.asoc.2026.115904",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
