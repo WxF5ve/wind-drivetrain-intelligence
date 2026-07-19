@@ -1,9 +1,10 @@
 {
   "lookbackDays": 8,
-  "maxArticles": 48,
-  "historyMaxArticles": 160,
-  "historyRetentionDays": 365,
+  "maxArticles": 80,
+  "historyMaxArticles": 400,
+  "historyRetentionDays": 730,
   "minimumRelevanceScore": 3,
+  "industryRelevanceBoost": 3,
   "reliability": {
     "minimumFeedback": 5,
     "authorityDomains": {
@@ -23,7 +24,28 @@
         "ul.com",
         "skf.com",
         "timken.com",
-        "schaeffler.com"
+        "schaeffler.com",
+        "vestas.com",
+        "siemensgamesa.com",
+        "gevernova.com",
+        "nordex-online.com",
+        "enercon.de",
+        "goldwind.com",
+        "envision-group.com",
+        "myse.com.cn",
+        "windeyenergy.com",
+        "shanghai-electric.com",
+        "zf.com",
+        "flender.com",
+        "ngc.com.cn",
+        "moventas.com",
+        "eickhoff-bochum.de",
+        "zwz-bearing.com",
+        "lyc.cn",
+        "xinql.com",
+        "zys.com.cn",
+        "nsk.com",
+        "ntn.com"
       ],
       "media": [
         "sina.com.cn",
@@ -31,7 +53,9 @@
         "qq.com",
         "163.com",
         "cls.cn",
-        "ne21.com"
+        "ne21.com",
+        "windpowermonthly.com",
+        "rechargenews.com"
       ]
     },
     "commercialSignals": [
@@ -92,6 +116,128 @@
       "query": "\"wind turbine\" (condition monitoring OR fault diagnosis OR vibration monitoring OR predictive maintenance)",
       "language": "English",
       "region": "海外"
+    },
+    {
+      "id": "news-cn-design-loads",
+      "label": "国内齿轮设计与载荷资讯",
+      "query": "风电 (行星轮 OR 行星架 OR 太阳轮 OR 内齿圈 OR 齿轮修形 OR 载荷谱 OR 扭矩密度 OR 均载)",
+      "language": "Chinese",
+      "region": "国内"
+    },
+    {
+      "id": "news-cn-failure-materials",
+      "label": "国内失效与材料资讯",
+      "query": "风电 (齿轮箱 OR 轴承) (微点蚀 OR 点蚀 OR 胶合 OR 断齿 OR 白色蚀刻裂纹 OR 电蚀 OR 热处理 OR 渗碳)",
+      "language": "Chinese",
+      "region": "国内"
+    },
+    {
+      "id": "news-cn-test-digital",
+      "label": "国内试验与数字化资讯",
+      "query": "风电 (齿轮箱试验台 OR 台架试验 OR 型式试验 OR 可靠性试验 OR NVH OR 数字孪生 OR 剩余寿命)",
+      "language": "Chinese",
+      "region": "国内"
+    },
+    {
+      "id": "news-global-design-loads",
+      "label": "海外齿轮设计与载荷资讯",
+      "query": "\"wind turbine\" (\"planetary gear\" OR \"planet carrier\" OR \"gear microgeometry\" OR \"load spectrum\" OR \"torque density\" OR \"load sharing\")",
+      "language": "English",
+      "region": "海外"
+    },
+    {
+      "id": "news-global-failure-materials",
+      "label": "海外失效与材料资讯",
+      "query": "\"wind turbine\" (micropitting OR scuffing OR \"white etching crack\" OR \"electrical damage\" OR smearing OR carburizing OR \"tooth fracture\")",
+      "language": "English",
+      "region": "海外"
+    },
+    {
+      "id": "news-global-test-digital",
+      "label": "海外试验与数字化资讯",
+      "query": "\"wind turbine gearbox\" (\"test rig\" OR validation OR NVH OR \"digital twin\" OR reliability OR endoscopy)",
+      "language": "English",
+      "region": "海外"
+    },
+    {
+      "id": "industry-cn-oem",
+      "label": "国内整机厂商动态",
+      "query": "风电 (金风科技 OR 远景能源 OR 明阳智能 OR 运达股份 OR 电气风电 OR 东方风电 OR 中车株洲所) (订单 OR 中标 OR 新品 OR 交付 OR 项目 OR 产能 OR 技术)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "industry",
+      "matchTerms": ["金风科技", "远景能源", "明阳智能", "运达股份", "电气风电", "东方风电", "中车株洲所"],
+      "contextTags": ["整机厂商"]
+    },
+    {
+      "id": "industry-global-oem",
+      "label": "海外整机厂商动态",
+      "query": "wind (Vestas OR \"Siemens Gamesa\" OR \"GE Vernova\" OR Nordex OR Enercon OR Goldwind OR Envision OR MingYang) (order OR contract OR turbine OR project OR technology OR factory)",
+      "language": "English",
+      "region": "海外",
+      "topic": "industry",
+      "matchTerms": ["Vestas", "Siemens Gamesa", "GE Vernova", "Nordex", "Enercon", "Goldwind", "Envision", "MingYang"],
+      "contextTags": ["整机厂商"]
+    },
+    {
+      "id": "industry-cn-gearbox",
+      "label": "国内齿轮箱厂商动态",
+      "query": "风电 (南高齿 OR 南京高速齿轮 OR 重庆齿轮箱 OR 重齿 OR 宁波东力 OR 德力佳 OR 中车戚墅堰所 OR 杭齿前进) (齿轮箱 OR 订单 OR 基地 OR 产能 OR 投产 OR 技术)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "industry",
+      "matchTerms": ["南高齿", "南京高速齿轮", "重庆齿轮箱", "重齿", "宁波东力", "德力佳", "中车戚墅堰所", "杭齿前进"],
+      "contextTags": ["齿轮箱厂商"]
+    },
+    {
+      "id": "industry-global-gearbox",
+      "label": "海外齿轮箱厂商动态",
+      "query": "wind (\"ZF Wind Power\" OR Winergy OR Flender OR Moventas OR Eickhoff OR RENK OR Wikov OR NGC) (gearbox OR drivetrain OR plant OR contract OR technology)",
+      "language": "English",
+      "region": "海外",
+      "topic": "industry",
+      "matchTerms": ["ZF Wind Power", "Winergy", "Flender", "Moventas", "Eickhoff", "RENK", "Wikov", "NGC"],
+      "contextTags": ["齿轮箱厂商"]
+    },
+    {
+      "id": "industry-cn-bearing",
+      "label": "国内轴承厂商动态",
+      "query": "风电 (洛轴 OR LYC OR 瓦轴 OR ZWZ OR 新强联 OR 天马轴承 OR 轴研科技 OR ZYS) (轴承 OR 订单 OR 产能 OR 项目 OR 技术)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "industry",
+      "matchTerms": ["洛轴", "LYC", "瓦轴", "ZWZ", "新强联", "天马轴承", "轴研科技", "ZYS"],
+      "contextTags": ["轴承厂商"]
+    },
+    {
+      "id": "industry-global-bearing",
+      "label": "海外轴承厂商动态",
+      "query": "wind (SKF OR Schaeffler OR Timken OR NSK OR NTN OR Liebherr) (bearing OR \"main shaft\" OR contract OR technology OR plant)",
+      "language": "English",
+      "region": "海外",
+      "topic": "industry",
+      "matchTerms": ["SKF", "Schaeffler", "Timken", "NSK", "NTN", "Liebherr"],
+      "contextTags": ["轴承厂商"]
+    },
+    {
+      "id": "industry-cn-lubrication",
+      "label": "国内润滑供应商动态",
+      "query": "风电 (昆仑润滑 OR 长城润滑油 OR 美孚 OR 克鲁勃 OR 福斯) (齿轮油 OR 润滑 OR 油液 OR 技术)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "industry",
+      "matchTerms": ["昆仑润滑", "长城润滑油", "美孚", "克鲁勃", "福斯"],
+      "contextTags": ["润滑供应商"]
+    },
+    {
+      "id": "industry-global-lubrication",
+      "label": "海外润滑供应商动态",
+      "query": "\"wind turbine\" (Castrol OR ExxonMobil OR Mobil OR Kluber OR Klüber OR Shell OR FUCHS) (\"gear oil\" OR lubricant OR lubrication OR monitoring)",
+      "language": "English",
+      "region": "海外",
+      "topic": "industry",
+      "matchTerms": ["Castrol", "ExxonMobil", "Mobil", "Kluber", "Klüber", "Shell", "FUCHS"],
+      "contextTags": ["润滑供应商"]
     }
   ],
   "researchQueries": [
@@ -124,6 +270,54 @@
       "label": "国内风电传动论文",
       "query": "风电 齿轮箱 轴承 故障诊断",
       "region": "国内"
+    },
+    {
+      "id": "research-planetary-loads",
+      "label": "行星级与均载论文",
+      "query": "wind turbine planetary gear planet carrier load sharing tooth modification",
+      "region": "海外"
+    },
+    {
+      "id": "research-gear-failures",
+      "label": "齿面失效与摩擦学论文",
+      "query": "wind turbine gearbox micropitting scuffing tooth fracture tribology",
+      "region": "海外"
+    },
+    {
+      "id": "research-bearing-failures",
+      "label": "轴承失效机理论文",
+      "query": "wind turbine bearing white etching cracks electrical damage smearing",
+      "region": "海外"
+    },
+    {
+      "id": "research-materials-manufacturing",
+      "label": "材料与制造论文",
+      "query": "wind turbine gearbox materials carburizing heat treatment manufacturing",
+      "region": "海外"
+    },
+    {
+      "id": "research-test-digital-twin",
+      "label": "试验与数字孪生论文",
+      "query": "wind turbine drivetrain test rig validation digital twin NVH",
+      "region": "海外"
+    },
+    {
+      "id": "research-floating-loads",
+      "label": "海上与漂浮式传动载荷论文",
+      "query": "floating offshore wind turbine drivetrain gearbox bearing loads",
+      "region": "海外"
+    },
+    {
+      "id": "research-cn-design",
+      "label": "国内齿轮设计论文",
+      "query": "风电 齿轮箱 行星架 齿轮修形 载荷谱 均载",
+      "region": "国内"
+    },
+    {
+      "id": "research-cn-bearing-failure",
+      "label": "国内轴承失效论文",
+      "query": "风电 轴承 白色蚀刻裂纹 润滑 电蚀 失效",
+      "region": "国内"
     }
   ],
   "relevanceKeywords": {
@@ -149,6 +343,70 @@
     "vibration": 2,
     "condition monitoring": 3,
     "fault diagnosis": 3,
-    "white etching crack": 4
+    "white etching crack": 4,
+    "行星轮": 4,
+    "行星架": 4,
+    "太阳轮": 3,
+    "内齿圈": 3,
+    "齿轮修形": 4,
+    "均载": 3,
+    "功率分流": 3,
+    "载荷谱": 4,
+    "扭矩密度": 3,
+    "啮合刚度": 3,
+    "传动误差": 3,
+    "接触应力": 2,
+    "弯曲应力": 2,
+    "微点蚀": 4,
+    "点蚀": 3,
+    "胶合": 4,
+    "断齿": 4,
+    "齿根裂纹": 4,
+    "电蚀": 4,
+    "滑移": 2,
+    "偏载": 3,
+    "游隙": 2,
+    "预紧": 2,
+    "保持架": 2,
+    "油液": 2,
+    "清洁度": 2,
+    "磨损颗粒": 3,
+    "添加剂": 2,
+    "热平衡": 2,
+    "声发射": 2,
+    "SCADA": 2,
+    "CMS": 2,
+    "PHM": 2,
+    "剩余寿命": 3,
+    "数字孪生": 3,
+    "台架试验": 3,
+    "型式试验": 3,
+    "加速寿命": 3,
+    "内窥镜": 2,
+    "渗碳": 3,
+    "氮化": 3,
+    "磨齿": 2,
+    "喷丸": 2,
+    "planetary gear": 4,
+    "planet carrier": 4,
+    "sun gear": 3,
+    "ring gear": 3,
+    "gear microgeometry": 4,
+    "load sharing": 3,
+    "load spectrum": 4,
+    "torque density": 3,
+    "mesh stiffness": 3,
+    "transmission error": 3,
+    "micropitting": 4,
+    "scuffing": 4,
+    "tooth fracture": 4,
+    "electrical damage": 4,
+    "smearing": 3,
+    "oil debris": 3,
+    "digital twin": 3,
+    "test rig": 3,
+    "endoscopy": 2,
+    "carburizing": 3,
+    "heat treatment": 3
   }
 }

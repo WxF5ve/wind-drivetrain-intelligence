@@ -8,6 +8,7 @@ import {
   createFallbackSummary,
   deduplicateArticles,
   isDomainRelevant,
+  isIndustryRelevant,
   makeArticleId,
   relevanceScore,
   resolveNewsUrl,
@@ -48,22 +49,29 @@ function abstractFromInvertedIndex(index) {
   return words.filter(Boolean).join(" ");
 }
 
-async function fetchJson(url) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 25000);
-  try {
-    const response = await fetch(url, {
-      headers: {
-        Accept: "application/json",
-        "User-Agent": "wind-drivetrain-intelligence/0.1 (weekly engineering research digest)"
-      },
-      signal: controller.signal
-    });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    return response.json();
-  } finally {
-    clearTimeout(timeout);
+async function fetchJson(url, retries = 2) {
+  for (let attempt = 0; attempt <= retries; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 25000);
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+          "User-Agent": "wind-drivetrain-intelligence/0.1 (weekly engineering research digest)"
+        },
+        signal: controller.signal
+      });
+      if (response.ok) return response.json();
+      if (attempt === retries || (response.status !== 429 && response.status < 500)) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      const retryAfter = Number(response.headers.get("retry-after") || 0) * 1000;
+      await delay(Math.max(retryAfter, 2500 * (attempt + 1)));
+    } finally {
+      clearTimeout(timeout);
+    }
   }
+  throw new Error("JSON request failed after retries");
 }
 
 async function fetchText(url) {
@@ -156,7 +164,8 @@ async function collectGdelt(source, lookbackDays) {
     sourceChannel: "GDELT",
     linkType: "publisher",
     linkVerified: false,
-    evidence: { hasPublisherDescription: false }
+    evidence: { hasPublisherDescription: false },
+    ...sourceContext(source)
   }));
 }
 
@@ -212,6 +221,18 @@ function usefulPublisherDescription(description, title) {
   return cleanDescription;
 }
 
+function sourceContext(source) {
+  return {
+    queryTopic: source.topic === "industry" ? "industry" : "technical",
+    matchTerms: Array.isArray(source.matchTerms) ? source.matchTerms : [],
+    contextTags: Array.isArray(source.contextTags) ? source.contextTags : []
+  };
+}
+
+function isCandidateRelevant(article) {
+  return isDomainRelevant(article) || isIndustryRelevant(article);
+}
+
 async function collectGoogleNews(source, lookbackDays) {
   const locale = googleNewsLocale(source);
   const url = new URL("https://news.google.com/rss/search");
@@ -230,9 +251,10 @@ async function collectGoogleNews(source, lookbackDays) {
     .filter(({ publishedAt }) => !Number.isNaN(publishedAt.getTime()) && publishedAt.getTime() >= cutoff)
     .filter(({ item }) => {
       const sourceName = xmlText(item.source, source.label);
-      return isDomainRelevant({
+      return isCandidateRelevant({
         title: removeSourceSuffix(item.title, sourceName),
-        snippet: cleanText(item.description || "")
+        snippet: cleanText(item.description || ""),
+        ...sourceContext(source)
       });
     })
     .slice(0, Number(source.maxRecords || 30));
@@ -270,7 +292,8 @@ async function collectGoogleNews(source, lookbackDays) {
       sourceChannel: "Google News RSS",
       linkType: hasPublisherLink ? "publisher" : "aggregator",
       linkVerified: false,
-      evidence: { hasPublisherDescription: false }
+      evidence: { hasPublisherDescription: false },
+      ...sourceContext(source)
     };
   });
 
@@ -331,7 +354,8 @@ async function collectBingNews(source, lookbackDays) {
         sourceChannel: "Bing News RSS",
         linkType: "publisher",
         linkVerified: false,
-        evidence: { hasPublisherDescription: cleanText(item.description).length >= 70 }
+        evidence: { hasPublisherDescription: cleanText(item.description).length >= 70 },
+        ...sourceContext(source)
       };
     })
     .filter((article) => new Date(article.publishedAt).getTime() >= cutoff);
@@ -400,7 +424,8 @@ async function collectOpenAlex(source, lookbackDays) {
           authorsCount: (item.authorships || []).length,
           citedByCount: Number(item.cited_by_count || 0),
           publicationType: item.type === "preprint" ? "preprint" : item.type || "article"
-        }
+        },
+        ...sourceContext(source)
       };
     })
     .filter((item) => item.title && item.url);
@@ -442,7 +467,7 @@ async function summarizeWithOpenAI(articles) {
             engineeringImpact: { type: "string" },
             category: {
               type: "string",
-              enum: ["齿轮箱", "轴承", "润滑", "状态监测", "白色蚀刻裂纹", "标准政策", "学术论文", "行业资讯"]
+              enum: ["齿轮箱", "轴承", "润滑", "状态监测", "白色蚀刻裂纹", "标准政策", "学术论文", "行业资讯", "厂商动态"]
             },
             tags: {
               type: "array",
@@ -482,7 +507,7 @@ async function summarizeWithOpenAI(articles) {
         "所有输出使用简洁中文，保留必要的英文缩写、标准号、材料名和故障机理术语。",
         "summary 用 60-110 个汉字说明研究或资讯做了什么以及结论边界。",
         "keyPoints 给出三条可核查的信息；engineeringImpact 说明对设计、验证、运维或供应链的潜在意义，并明确需要进一步验证之处。",
-        "论文统一归入“学术论文”，其余按最相关技术主题分类。"
+        "论文统一归入“学术论文”；queryTopic 为 industry 的资料归入“厂商动态”；其余按最相关技术主题分类。"
       ].join("\n"),
       input: JSON.stringify(inputArticles),
       text: {
@@ -626,7 +651,15 @@ async function main() {
     }
     await delay(1800);
   }
-  const researchResults = await Promise.allSettled(researchJobs.map((job) => job.run()));
+  const researchResults = [];
+  for (const job of researchJobs) {
+    try {
+      researchResults.push({ status: "fulfilled", value: await job.run() });
+    } catch (reason) {
+      researchResults.push({ status: "rejected", reason });
+    }
+    await delay(1200);
+  }
   const results = [...newsResults, ...researchResults];
   const rawArticles = [];
   results.forEach((result, index) => {
@@ -638,11 +671,14 @@ async function main() {
     }
   });
 
-  const relevantRawArticles = rawArticles.filter(isDomainRelevant);
-  const candidates = deduplicateArticles(relevantRawArticles)
+  const relevantRawArticles = rawArticles.filter(isCandidateRelevant);
+  const candidates = deduplicateArticles([...relevantRawArticles].sort((left, right) =>
+    Number(right.queryTopic === "industry") - Number(left.queryTopic === "industry")
+  ))
     .map((article) => ({
       ...article,
-      relevanceScore: relevanceScore(article, keywordWeights),
+      relevanceScore: relevanceScore(article, keywordWeights) +
+        (article.queryTopic === "industry" ? Number(config.industryRelevanceBoost || 3) : 0),
       corroboratingSources: findCorroboratingSources(article, relevantRawArticles),
       feedbackAggregate: feedbackAggregates.map.get(article.id) || {},
       reliabilityConfig

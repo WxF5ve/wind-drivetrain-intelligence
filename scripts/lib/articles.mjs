@@ -18,6 +18,35 @@ function containsKeyword(text, keyword) {
   return text.includes(normalizedKeyword);
 }
 
+export function isIndustryRelevant(article) {
+  if (article.queryTopic !== "industry") return false;
+  const text = cleanText(`${article.title || ""} ${article.snippet || ""}`).toLowerCase();
+  const hasNamedEntity = (article.matchTerms || []).some((term) => containsKeyword(text, term));
+  if (!hasNamedEntity) return false;
+
+  const contextTags = article.contextTags || [];
+  const isWindOem = contextTags.includes("整机厂商");
+  const windSignals = ["风电", "风机", "风力发电", "wind", "turbine", "offshore", "onshore"];
+  const hasWindContext = isWindOem || windSignals.some((signal) => containsKeyword(text, signal));
+  const developmentSignals = [
+    "订单", "中标", "签约", "交付", "发运", "项目", "基地", "投产", "扩产", "产能", "工厂",
+    "并购", "合作", "新品", "技术", "专利", "认证", "试验", "样机", "量产", "安装", "吊装",
+    "并网", "增资", "投资", "任命", "会见", "order", "contract", "project", "plant", "factory",
+    "capacity", "delivery", "shipment", "investment", "acquisition", "partnership", "technology",
+    "patent", "certification", "test", "prototype", "production", "manufacturing", "installation",
+    "commissioning", "repowering", "appoint", "outsource", "award", "mw", "gw", "兆瓦"
+  ];
+  const noiseSignals = [
+    "stock could", "stock price", "share price", "undervalued", "buy rating", "早盘涨", "股价",
+    "广告片", "威胁鸟类", "birds and bats", "project roi", "energy production assessment"
+  ];
+  const hasMarketMoveHeadline = /\bgains?\s+\d+(?:\.\d+)?%/i.test(text);
+  return hasWindContext &&
+    developmentSignals.some((signal) => containsKeyword(text, signal)) &&
+    !noiseSignals.some((signal) => text.includes(signal)) &&
+    !hasMarketMoveHeadline;
+}
+
 export function cleanText(value = "") {
   return String(value)
     .replace(/<[^>]*>/g, " ")
@@ -80,11 +109,38 @@ export function isDomainRelevant(article) {
     "轴承",
     "传动链",
     "主轴",
+    "行星轮",
+    "行星架",
+    "太阳轮",
+    "内齿圈",
+    "齿面修形",
+    "啮合刚度",
+    "传动误差",
+    "扭矩密度",
+    "载荷谱",
+    "微点蚀",
+    "胶合",
+    "断齿",
+    "电蚀",
+    "白色蚀刻裂纹",
     "gearbox",
     "gear",
     "bearing",
     "drivetrain",
     "main shaft",
+    "planetary gear",
+    "planet carrier",
+    "sun gear",
+    "ring gear",
+    "gear microgeometry",
+    "transmission error",
+    "mesh stiffness",
+    "torque density",
+    "load spectrum",
+    "micropitting",
+    "scuffing",
+    "white etching crack",
+    "electrical damage",
     "oil debris",
     "齿轮油",
     "磨粒"
@@ -100,6 +156,7 @@ export function isDomainRelevant(article) {
 
 export function inferCategory(article) {
   if (article.sourceType === "论文") return "学术论文";
+  if (article.queryTopic === "industry") return "厂商动态";
   const text = `${article.title} ${article.snippet}`.toLowerCase();
   const match = categoryRules.find(([, keywords]) =>
     keywords.some((keyword) => containsKeyword(text, keyword))
@@ -115,7 +172,8 @@ export function inferTags(article) {
   }
   if (article.region) tags.push(article.region);
   if (article.sourceType) tags.push(article.sourceType);
-  return [...new Set(tags)].slice(0, 5);
+  tags.push(...(article.contextTags || []));
+  return [...new Set(tags)].slice(0, 7);
 }
 
 function articleHostname(article) {
@@ -272,17 +330,99 @@ export function assessReliability(article, config = {}) {
 export function deduplicateArticles(articles) {
   const seenUrls = new Set();
   const seenTitles = new Set();
+  const accepted = [];
   return articles.filter((article) => {
     const normalizedUrl = normalizeUrl(article.url);
     const titleKey = cleanText(article.title).toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "");
-    if (!normalizedUrl || !titleKey || seenUrls.has(normalizedUrl) || seenTitles.has(titleKey)) {
+    const duplicateEvent = accepted.some((candidate) => isSameIndustryEvent(article, candidate));
+    if (!normalizedUrl || !titleKey || seenUrls.has(normalizedUrl) || seenTitles.has(titleKey) || duplicateEvent) {
       return false;
     }
     seenUrls.add(normalizedUrl);
     seenTitles.add(titleKey);
     article.url = normalizedUrl;
+    accepted.push(article);
     return true;
   });
+}
+
+const eventStopWords = new Set([
+  "wind", "turbine", "turbines", "power", "energy", "group", "systems", "new", "three",
+  "order", "orders", "secures", "secured", "wins", "lands", "bags", "receives", "received",
+  "announces", "announced", "totalling", "totaling", "megawatt", "project", "projects"
+]);
+
+function eventTitleTokens(value) {
+  const normalized = cleanText(value)
+    .toLowerCase()
+    .replace(/united states|u\.s\.|usa/g, "us")
+    .replace(/japanese/g, "japan")
+    .replace(/german/g, "germany")
+    .replace(/totalling/g, "totaling");
+  const tokens = new Set(
+    (normalized.match(/[a-z0-9.]{3,}/g) || []).filter((token) => !eventStopWords.has(token))
+  );
+  for (const sequence of normalized.match(/[\p{Script=Han}]{2,}/gu) || []) {
+    for (let index = 0; index < sequence.length - 1; index += 1) {
+      tokens.add(sequence.slice(index, index + 2));
+    }
+  }
+  return tokens;
+}
+
+function eventNumbers(value) {
+  const normalized = cleanText(value).toLowerCase().replace(/(\d)\s*-\s*(mw|gw)\b/g, "$1$2");
+  return new Set(
+    (normalized.match(/\d+(?:\.\d+)?\s*(?:mw|gw|兆瓦|亿元|亿|万|%)?/g) || [])
+      .map((item) => item.replace(/\s+/g, ""))
+  );
+}
+
+const knownIndustryEntities = [
+  "金风科技", "远景能源", "明阳智能", "运达股份", "电气风电", "东方风电", "中车株洲所",
+  "南高齿", "南京高速齿轮", "重庆齿轮箱", "宁波东力", "德力佳", "中车戚墅堰所", "杭齿前进",
+  "洛轴", "瓦轴", "新强联", "天马轴承", "轴研科技", "昆仑润滑", "长城润滑油",
+  "Vestas", "Siemens Gamesa", "GE Vernova", "Nordex", "Enercon", "Goldwind", "Envision",
+  "MingYang", "ZF Wind Power", "Winergy", "Flender", "Moventas", "Eickhoff", "RENK", "Wikov",
+  "SKF", "Schaeffler", "Timken", "NSK", "NTN", "Liebherr", "Castrol", "ExxonMobil", "Kluber", "FUCHS"
+];
+
+function matchedIndustryEntities(article) {
+  const title = cleanText(article.title).toLowerCase();
+  const candidates = [...new Set([...(article.matchTerms || []), ...knownIndustryEntities])];
+  return new Set(candidates.filter((term) => containsKeyword(title, term)));
+}
+
+function isSameIndustryEvent(left, right) {
+  const leftIsIndustry = left.queryTopic === "industry" || left.intelligenceType === "industry";
+  const rightIsIndustry = right.queryTopic === "industry" || right.intelligenceType === "industry";
+  if (!leftIsIndustry || !rightIsIndustry) return false;
+
+  const leftTime = new Date(left.publishedAt || 0).getTime();
+  const rightTime = new Date(right.publishedAt || 0).getTime();
+  if (Number.isFinite(leftTime) && Number.isFinite(rightTime) &&
+      Math.abs(leftTime - rightTime) > 3 * 86400000) return false;
+
+  const leftNumbers = eventNumbers(left.title);
+  const rightNumbers = eventNumbers(right.title);
+  const sharedNumbers = [...leftNumbers].filter((number) => rightNumbers.has(number));
+  if (leftNumbers.size && rightNumbers.size && !sharedNumbers.length) return false;
+
+  const leftEntities = matchedIndustryEntities(left);
+  const rightEntities = matchedIndustryEntities(right);
+  const sharesEntity = [...leftEntities].some((entity) => rightEntities.has(entity));
+  if (sharesEntity && sharedNumbers.some((number) => /(?:mw|gw|兆瓦|亿元|亿)$/.test(number))) {
+    return true;
+  }
+
+  const leftTokens = eventTitleTokens(left.title);
+  const rightTokens = eventTitleTokens(right.title);
+  if (Math.min(leftTokens.size, rightTokens.size) < 2) return false;
+  let overlap = 0;
+  leftTokens.forEach((token) => {
+    if (rightTokens.has(token)) overlap += 1;
+  });
+  return sharesEntity && overlap >= 2 && overlap / Math.min(leftTokens.size, rightTokens.size) >= 0.66;
 }
 
 export function createFallbackSummary(article) {
@@ -338,8 +478,12 @@ export function toPublicArticle(article, summaryData) {
     },
     corroboratingSources: [...new Set(article.corroboratingSources || [])].map(cleanText).filter(Boolean).slice(0, 6),
     feedbackAggregate: normalizedFeedback(article.feedbackAggregate),
-    category: summaryData.category || inferCategory(article),
-    tags: summaryData.tags?.length ? summaryData.tags : inferTags(article),
+    intelligenceType: article.queryTopic === "industry" ? "industry" : "technical",
+    category: article.queryTopic === "industry" ? "厂商动态" : summaryData.category || inferCategory(article),
+    tags: [...new Set([
+      ...(summaryData.tags?.length ? summaryData.tags : inferTags(article)),
+      ...(article.contextTags || [])
+    ])].map(cleanText).filter(Boolean).slice(0, 7),
     summary: cleanText(summaryData.summary),
     keyPoints: (summaryData.keyPoints || []).map(cleanText).filter(Boolean).slice(0, 4),
     engineeringImpact: cleanText(summaryData.engineeringImpact),

@@ -8,6 +8,7 @@ import {
   inferCategory,
   inferTags,
   isDomainRelevant,
+  isIndustryRelevant,
   normalizeUrl,
   relevanceScore,
   resolveNewsUrl
@@ -82,6 +83,52 @@ test("deduplicateArticles removes matching URLs and titles", () => {
   assert.equal(deduplicateArticles(articles).length, 1);
 });
 
+test("deduplicateArticles merges coverage of the same manufacturer event", () => {
+  const articles = [
+    {
+      title: "Nordex secures three wind turbine orders in the United States totaling 484 MW",
+      url: "https://example.com/one",
+      queryTopic: "industry",
+      publishedAt: "2026-07-01T00:00:00Z"
+    },
+    {
+      title: "Nordex Group secures new US orders totalling 484 MW",
+      url: "https://example.org/two",
+      queryTopic: "industry",
+      publishedAt: "2026-07-01T08:00:00Z"
+    }
+  ];
+  assert.equal(deduplicateArticles(articles).length, 1);
+});
+
+test("deduplicateArticles merges same-capacity coverage with different locations wording", () => {
+  const articles = [
+    {
+      title: "Vestas secures 40 MW wind turbine order for Reken Hulsterholt project in Germany",
+      url: "https://example.com/one",
+      queryTopic: "industry",
+      matchTerms: ["Vestas"],
+      publishedAt: "2026-07-01T00:00:00Z"
+    },
+    {
+      title: "Vestas wins 40-MW wind turbine order in North Rhine-Westphalia",
+      url: "https://example.org/two",
+      queryTopic: "industry",
+      matchTerms: ["Vestas"],
+      publishedAt: "2026-07-02T00:00:00Z"
+    }
+  ];
+  assert.equal(deduplicateArticles(articles).length, 1);
+});
+
+test("deduplicateArticles keeps distinct tenders with different capacities", () => {
+  const articles = [
+    { title: "中标：1261.5MW风电项目开标", url: "https://example.com/a", queryTopic: "industry" },
+    { title: "中标：643.25MW风电项目公示", url: "https://example.com/b", queryTopic: "industry" }
+  ];
+  assert.equal(deduplicateArticles(articles).length, 2);
+});
+
 test("relevance and category recognize drivetrain terms", () => {
   const article = { title: "Wind turbine gearbox bearing condition monitoring", snippet: "" };
   const score = relevanceScore(article, { "wind turbine": 2, gearbox: 4, bearing: 4 });
@@ -109,6 +156,57 @@ test("WECS is not mislabeled as a white etching crack acronym", () => {
   });
   assert.equal(tags.includes("白色蚀刻裂纹"), false);
   assert.equal(tags.includes("状态监测"), true);
+});
+
+test("manufacturer intelligence keeps its own category and context tags", async () => {
+  const { toPublicArticle } = await import("./articles.mjs");
+  const article = toPublicArticle({
+    title: "Vestas announces a new offshore wind order",
+    snippet: "Vestas announced a new offshore wind turbine order and manufacturing expansion.",
+    source: "Publisher",
+    sourceType: "行业资讯",
+    sourceChannel: "Google News RSS",
+    queryTopic: "industry",
+    contextTags: ["整机厂商", "海外"],
+    region: "海外",
+    url: "https://example.com/vestas",
+    linkType: "publisher"
+  }, createFallbackSummary({
+    title: "Vestas announces a new offshore wind order",
+    snippet: "Vestas announced a new offshore wind turbine order and manufacturing expansion.",
+    source: "Publisher",
+    sourceType: "行业资讯",
+    queryTopic: "industry",
+    contextTags: ["整机厂商"],
+    region: "海外"
+  }));
+  assert.equal(article.category, "厂商动态");
+  assert.equal(article.intelligenceType, "industry");
+  assert.equal(article.tags.includes("整机厂商"), true);
+});
+
+test("manufacturer intelligence requires exact entities, wind context, and progress", () => {
+  assert.equal(isIndustryRelevant({
+    title: "Vestas secures a 200 MW order",
+    snippet: "New turbine delivery for an offshore wind project.",
+    queryTopic: "industry",
+    matchTerms: ["Vestas"],
+    contextTags: ["整机厂商"]
+  }), true);
+  assert.equal(isIndustryRelevant({
+    title: "NTN satellite transmission milestone",
+    snippet: "A 3GPP communications test.",
+    queryTopic: "industry",
+    matchTerms: ["NTN"],
+    contextTags: ["轴承厂商"]
+  }), false);
+  assert.equal(isIndustryRelevant({
+    title: "Timken India secures bearing licenses",
+    snippet: "Industrial bearing certification update.",
+    queryTopic: "industry",
+    matchTerms: ["Timken"],
+    contextTags: ["轴承厂商"]
+  }), false);
 });
 
 test("public articles expose provenance without carrying source snippets", async () => {
