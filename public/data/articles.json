@@ -1,9 +1,9 @@
 {
   "app": "风传智研",
-  "generatedAt": "2026-07-20T02:51:20.193Z",
+  "generatedAt": "2026-07-20T02:59:44.101Z",
   "period": {
-    "from": "2026-06-20T02:51:20.193Z",
-    "to": "2026-07-20T02:51:20.193Z"
+    "from": "2026-06-20T02:59:44.101Z",
+    "to": "2026-07-20T02:59:44.101Z"
   },
   "collectionStatus": {
     "dataMode": "live",
@@ -11,14 +11,14 @@
     "channels": 33,
     "succeeded": 33,
     "failed": 0,
-    "rawFetched": 141,
+    "rawFetched": 143,
     "currentCount": 50,
     "archiveCount": 55,
     "ai": {
       "provider": "deepseek",
       "model": "deepseek-chat",
-      "requested": 17,
-      "summarized": 16,
+      "requested": 10,
+      "summarized": 9,
       "feedbackReviews": 0,
       "experienceReviews": 0
     },
@@ -60,7 +60,7 @@
         "label": "海外轴承与润滑资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 2,
+        "fetched": 0,
         "error": ""
       },
       {
@@ -68,7 +68,7 @@
         "label": "海外状态监测资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 0,
+        "fetched": 2,
         "error": ""
       },
       {
@@ -124,7 +124,7 @@
         "label": "国内整机厂商动态",
         "type": "news",
         "status": "ok",
-        "fetched": 18,
+        "fetched": 20,
         "error": ""
       },
       {
@@ -295,12 +295,12 @@
     "note": "可靠度评估来源质量、证据完整度和可追溯性，不等同于事实已经证实。"
   },
   "feedbackStatus": {
-    "aggregateGeneratedAt": "2026-07-20T02:51:20.838Z",
+    "aggregateGeneratedAt": "2026-07-20T02:59:44.885Z",
     "centralized": true
   },
   "weeklyBrief": {
     "title": "本周聚焦：厂商动态、学术论文、轴承",
-    "summary": "过去 30 天共筛选 50 条高相关资料，其中国内 18 条、论文 12 篇。资料库累计保留 55 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
+    "summary": "过去 30 天共筛选 50 条高相关资料，其中国内 19 条、论文 12 篇。资料库累计保留 55 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
     "signals": [
       "共建3GW海上风电项目！明阳智能、中海油拟增资6.25亿元",
       "赵冬徐进会见中国东方电气风电股份有限公司负责人一行",
@@ -308,8 +308,8 @@
     ],
     "metrics": {
       "total": 50,
-      "domestic": 18,
-      "overseas": 32,
+      "domestic": 19,
+      "overseas": 31,
       "papers": 12
     },
     "summaryMode": "AI 结构化摘要"
@@ -323,7 +323,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T13:01:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://finance.sina.com.cn/roll/2026-07-17/doc-iniicqkw1429181.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -360,6 +360,7 @@
       },
       "corroboratingSources": [
         "国际风力发电网",
+        "qq.co",
         "星岛环球"
       ],
       "feedbackAggregate": {
@@ -423,7 +424,7 @@
       "readingMinutes": 3,
       "relevanceScore": 5,
       "reliability": {
-        "score": 72,
+        "score": 74,
         "grade": "B",
         "label": "较高",
         "methodVersion": "1.0",
@@ -431,7 +432,7 @@
           "authority": 16,
           "evidence": 13,
           "traceability": 15,
-          "corroboration": 12,
+          "corroboration": 14,
           "recency": 8,
           "transparency": 8,
           "feedback": 0,
@@ -441,7 +442,7 @@
           "来源为可识别的新闻或财经发布平台",
           "发布方提供了可核查的内容简介",
           "原文直链已在采集时验证",
-          "发现 2 个独立来源报道相近信息",
+          "发现 3 个独立来源报道相近信息",
           "发布时间处于当前监测窗口"
         ],
         "limitations": [
@@ -472,7 +473,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T09:47:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://finance.sina.com.cn/wm/2026-07-17/doc-iniiccva1518446.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -614,7 +615,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T03:18:46.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://asian-power.com/news/envision-ships-first-turbines-fortescues-132-mw-australian-wind-project",
       "sourceUrl": "https://asian-power.com/",
       "sourceChannel": "Google News RSS",
@@ -761,7 +762,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.58286/33890",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -801,7 +802,7 @@
           "i10Index": 12,
           "worksCount": 2833,
           "citedByCount": 1338,
-          "updatedAt": "2026-07-20T02:51:20.193Z"
+          "updatedAt": "2026-07-20T02:59:44.101Z"
         }
       },
       "corroboratingSources": [],
@@ -915,7 +916,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.58286/33755",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -954,7 +955,7 @@
           "i10Index": 12,
           "worksCount": 2833,
           "citedByCount": 1338,
-          "updatedAt": "2026-07-20T02:51:20.193Z"
+          "updatedAt": "2026-07-20T02:59:44.101Z"
         }
       },
       "corroboratingSources": [],
@@ -1068,7 +1069,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.1088/1361-6501/ae8c72",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -1109,7 +1110,7 @@
           "i10Index": 8249,
           "worksCount": 19247,
           "citedByCount": 368540,
-          "updatedAt": "2026-07-20T02:51:20.193Z"
+          "updatedAt": "2026-07-20T02:59:44.101Z"
         }
       },
       "corroboratingSources": [],
@@ -1224,7 +1225,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.1088/1361-6501/ae8c64",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -1268,7 +1269,7 @@
           "i10Index": 8249,
           "worksCount": 19247,
           "citedByCount": 368540,
-          "updatedAt": "2026-07-20T02:51:20.193Z"
+          "updatedAt": "2026-07-20T02:59:44.101Z"
         }
       },
       "corroboratingSources": [],
@@ -1401,16 +1402,16 @@
       }
     },
     {
-      "id": "6840b263d1d6",
+      "id": "85953137b86a",
       "title": "明阳智能：拟向参股公司增资2.81亿元 推进海上风电示范项目",
-      "source": "星岛环球",
+      "source": "qq.co",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
-      "publishedAt": "2026-07-16T12:30:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
-      "url": "https://m.stnn.cc/detail/6a58cf454ee52f714405f24d.html",
-      "sourceUrl": "https://m.stnn.cc/",
+      "publishedAt": "2026-07-16T12:24:00.000Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "url": "https://news.qq.com/rain/a/20260716A0B7FI00",
+      "sourceUrl": "https://news.qq.com/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
       "linkVerified": true,
@@ -1444,7 +1445,8 @@
         }
       },
       "corroboratingSources": [
-        "新浪财经"
+        "新浪财经",
+        "星岛环球"
       ],
       "feedbackAggregate": {
         "useful": 0,
@@ -1464,20 +1466,23 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "titleZh": "明阳智能：拟向参股公司增资2.81亿元 推进海上风电示范项目",
+      "titleZh": "明阳智能拟向参股公司增资2.81亿元推进海南东方海上风电示范项目",
       "category": "厂商动态",
       "tags": [
-        "国内",
-        "行业资讯",
+        "明阳智能",
+        "海上风电",
+        "增资",
+        "海南",
         "整机厂商"
       ],
-      "summary": "原始索引未提供可用摘要。资料主题为“明阳智能：拟向参股公司增资2.81亿元 推进海上风电示范项目”，请打开原文核对研究方法、数据和结论边界。",
+      "summary": "明阳智能公告拟对联营公司中海油(东方)能源有限公司增资2.81亿元，增资后持股比例仍为45%，用于推进海南东方海上风电示范项目。该交易为同比例增资，构成关联交易但不构成重大资产重组。资料仅披露增资金额和持股比例，未涉及具体风机技术参数或项目容量。",
       "keyPoints": [
-        "来源：星岛环球",
-        "主题：厂商动态",
-        "发布时间：2026-07-16"
+        "明阳智能拟增资2.81亿元至联营公司中海油(东方)能源有限公司",
+        "增资后持股比例维持45%不变",
+        "资金用于推进海南东方海上风电示范项目",
+        "交易构成关联交易，不构成重大资产重组"
       ],
-      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "engineeringImpact": "该增资表明明阳智能持续投入海上风电示范项目，可能推动其海上风机在海南的部署与验证。但资料未披露机组型号、容量或技术细节，对齿轮箱或轴承设计的直接影响尚不明确。",
       "paperDetails": {
         "objective": "",
         "methods": "",
@@ -1487,42 +1492,48 @@
         "limitations": []
       },
       "industryDetails": {
-        "eventType": "",
-        "companies": [],
-        "location": "",
+        "eventType": "企业增资公告",
+        "companies": [
+          "明阳智能",
+          "中海油(东方)能源有限公司"
+        ],
+        "location": "海南东方",
         "capacity": "",
-        "investment": "",
-        "timeline": "",
-        "supplyChainImpact": "",
-        "verificationStatus": "",
-        "quantitativeFacts": []
+        "investment": "2.81亿元",
+        "timeline": "2026-07-16",
+        "supplyChainImpact": "可能带动海上风电项目相关设备采购，但具体影响未披露",
+        "verificationStatus": "已确认公告",
+        "quantitativeFacts": [
+          "增资金额2.81亿元",
+          "增资后持股比例45%"
+        ]
       },
-      "readingMinutes": 3,
+      "readingMinutes": 2,
       "relevanceScore": 5,
       "reliability": {
-        "score": 61,
-        "grade": "C",
-        "label": "待核验",
+        "score": 72,
+        "grade": "B",
+        "label": "较高",
         "methodVersion": "1.0",
         "dimensions": {
-          "authority": 11,
+          "authority": 16,
           "evidence": 13,
           "traceability": 15,
-          "corroboration": 6,
+          "corroboration": 12,
           "recency": 8,
           "transparency": 8,
           "feedback": 0,
           "riskPenalty": 0
         },
         "factors": [
+          "来源为可识别的新闻或财经发布平台",
           "发布方提供了可核查的内容简介",
           "原文直链已在采集时验证",
-          "发现 1 个独立来源报道相近信息",
-          "发布时间处于当前监测窗口",
-          "来源、日期和采集通道信息完整"
+          "发现 2 个独立来源报道相近信息",
+          "发布时间处于当前监测窗口"
         ],
         "limitations": [
-          "来源权威层级尚未纳入已知清单"
+          "媒体转载不能替代技术报告、试验数据或原始公告"
         ],
         "feedback": {
           "useful": 0,
@@ -1531,6 +1542,14 @@
           "broken": 0,
           "total": 0
         }
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-20T02:59:44.101Z",
+        "reason": "new",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
       }
     },
     {
@@ -1541,7 +1560,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-16T10:59:21.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://renewablesnow.com/news/envision-ships-first-7-8-mw-turbines-for-fortescue-project-in-australia-1298158/",
       "sourceUrl": "https://renewablesnow.com/",
       "sourceChannel": "Google News RSS",
@@ -1692,7 +1711,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-16T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.47481/jten.0052",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -1731,7 +1750,7 @@
           "i10Index": 194,
           "worksCount": 1146,
           "citedByCount": 6176,
-          "updatedAt": "2026-07-20T02:51:20.193Z"
+          "updatedAt": "2026-07-20T02:59:44.101Z"
         }
       },
       "corroboratingSources": [],
@@ -1855,7 +1874,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-14T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.1016/j.oceaneng.2026.127049",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -1897,7 +1916,7 @@
           "i10Index": 13645,
           "worksCount": 26704,
           "citedByCount": 531285,
-          "updatedAt": "2026-07-20T02:51:20.193Z"
+          "updatedAt": "2026-07-20T02:59:44.101Z"
         }
       },
       "corroboratingSources": [],
@@ -2037,7 +2056,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-13T07:12:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://finance.sina.com.cn/wm/2026-07-13/doc-inihtews5450532.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -2181,7 +2200,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-12T19:05:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://inspenet.com/en/news/marco-polo-marine-and-siemens-gamesa-agree-on-two-csovs/",
       "sourceUrl": "https://inspenet.com/",
       "sourceChannel": "Google News RSS",
@@ -2326,7 +2345,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-11T12:14:35.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://cj.sina.com.cn/articles/view/2442012107/918e25cb00101mm52",
       "sourceUrl": "https://cj.sina.cn/",
       "sourceChannel": "Google News RSS",
@@ -2494,17 +2513,17 @@
       "intelligenceType": "industry",
       "category": "厂商动态",
       "tags": [
-        "国内",
-        "行业资讯",
-        "整机厂商"
+        "金风科技",
+        "钢混塔架",
+        "204米"
       ],
-      "summary": "原始索引未提供可用摘要。资料主题为“金风科技完成全球最高204米钢混塔架吊装”，请打开原文核对研究方法、数据和结论边界。",
+      "summary": "金风科技完成了全球最高的204米钢混塔架吊装，该塔架采用钢混结构，高度达到204米。资料来源于手机网易网，属于行业资讯。由于原始索引未提供可用摘要，无法确认具体研究方法、数据及结论边界。",
       "keyPoints": [
-        "来源：手机网易网",
-        "主题：厂商动态",
-        "发布时间：2026-07-11"
+        "金风科技完成全球最高204米钢混塔架吊装",
+        "塔架采用钢混结构",
+        "资料来源于手机网易网"
       ],
-      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "engineeringImpact": "该塔架高度创全球纪录，可能提升风能捕获效率，但需验证结构稳定性、成本及运维可行性。",
       "readingMinutes": 2,
       "relevanceScore": 3,
       "reliability": {
@@ -2541,7 +2560,39 @@
           "total": 0
         }
       },
-      "engineeringExperience": {}
+      "engineeringExperience": {},
+      "titleZh": "金风科技完成全球最高204米钢混塔架吊装",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "产品/技术发布",
+        "companies": [
+          "金风科技"
+        ],
+        "location": "",
+        "capacity": "",
+        "investment": "",
+        "timeline": "2026-07-11",
+        "supplyChainImpact": "",
+        "verificationStatus": "媒体报道",
+        "quantitativeFacts": [
+          "塔架高度204米"
+        ]
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-20T02:59:44.101Z",
+        "reason": "historical-schema-upgrade",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
+      }
     },
     {
       "id": "ca919010957b",
@@ -2576,17 +2627,17 @@
       "intelligenceType": "industry",
       "category": "厂商动态",
       "tags": [
-        "国内",
-        "行业资讯",
-        "整机厂商"
+        "电气风电",
+        "标普全球能源",
+        "Tier 1"
       ],
-      "summary": "7月8日，标普全球能源（S&PGlobalEnergy）正式发布2026年度Tier1清洁能源技术企业权威榜单，电气风电（688660.",
+      "summary": "电气风电于2026年7月8日入选标普全球能源发布的2026年度Tier 1清洁能源技术企业榜单。资料来源于东方财富，属于行业资讯。原始摘录仅提及入选事实，未提供具体评价标准或数据。",
       "keyPoints": [
-        "来源：东方财富",
-        "主题：厂商动态",
-        "发布时间：2026-07-10"
+        "电气风电入选标普全球能源2026年Tier 1榜单",
+        "榜单发布时间为2026年7月8日",
+        "资料来源于东方财富"
       ],
-      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "engineeringImpact": "入选Tier 1榜单可能提升企业品牌信誉，但需关注具体技术指标和评选标准，以评估实际技术领先性。",
       "readingMinutes": 2,
       "relevanceScore": 6,
       "reliability": {
@@ -2622,19 +2673,49 @@
           "total": 0
         }
       },
-      "engineeringExperience": {}
+      "engineeringExperience": {},
+      "titleZh": "电气风电入选标普全球能源2026年Tier 1清洁能源技术企业榜单",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "企业荣誉/认证",
+        "companies": [
+          "电气风电"
+        ],
+        "location": "",
+        "capacity": "",
+        "investment": "",
+        "timeline": "2026-07-08",
+        "supplyChainImpact": "",
+        "verificationStatus": "媒体报道",
+        "quantitativeFacts": []
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-20T02:59:44.101Z",
+        "reason": "historical-schema-upgrade",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
+      }
     },
     {
-      "id": "3c274f3da866",
+      "id": "bef572ca271e",
       "title": "超21亿元 上海电气风电集团股份有限公司中标国家电投近百万千瓦集采大单",
-      "source": "东方财富",
+      "source": "搜狐网",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
-      "publishedAt": "2026-07-09T23:52:31.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
-      "url": "https://wap.eastmoney.com/a/202607103800522937.html",
-      "sourceUrl": "https://wap.eastmoney.com/",
+      "publishedAt": "2026-07-10T00:16:00.000Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "url": "https://m.sohu.com/a/1048293532_121157270?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
+      "sourceUrl": "https://m.sohu.com/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
       "linkVerified": true,
@@ -2686,21 +2767,22 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "titleZh": "超21亿元 上海电气风电集团股份有限公司中标国家电投近百万千瓦集采大单",
+      "titleZh": "上海电气风电中标国家电投近百万千瓦集采大单，金额超21亿元",
       "category": "厂商动态",
       "tags": [
-        "上海电气",
+        "上海电气风电",
         "国家电投",
-        "风电集采",
+        "集采",
+        "海上风电",
         "整机厂商"
       ],
-      "summary": "上海电气风电集团中标国家电投2026年度第31批集中招标，共7个标段，总装机容量993.3MW，中标金额约21.49亿元，中标容量与标段数量均位列第一。",
+      "summary": "国家电投2026年度第31批集中招标开标，上海电气风电中标7个标段，总装机容量993.3MW，中标金额约21.49亿元。资料仅披露中标容量和金额，未提供具体风机型号、技术方案或交付时间。",
       "keyPoints": [
-        "上海电气风电中标国家电投集采大单",
-        "总装机容量993.3MW，中标金额约21.49亿元",
-        "中标7个标段，容量和标段数均第一"
+        "上海电气风电中标国家电投集采大单，总容量993.3MW",
+        "中标金额约21.49亿元",
+        "共中标7个标段"
       ],
-      "engineeringImpact": "该订单显示大容量风电项目需求，可能推动齿轮箱和轴承的大批量生产，但无具体技术规格。",
+      "engineeringImpact": "该大单将推动上海电气风电的大规模生产与交付，可能对其风机齿轮箱和轴承的批量可靠性提出更高要求。但资料未涉及具体技术细节，对设计验证的直接影响需进一步信息。",
       "paperDetails": {
         "objective": "",
         "methods": "",
@@ -2712,22 +2794,22 @@
       "industryDetails": {
         "eventType": "中标公告",
         "companies": [
-          "上海电气风电集团",
-          "国家电力投资集团"
+          "上海电气风电",
+          "国家电投"
         ],
         "location": "",
         "capacity": "993.3 MW",
         "investment": "21.49亿元",
-        "timeline": "2026年",
-        "supplyChainImpact": "可能带动风电设备供应链需求",
-        "verificationStatus": "企业公告",
+        "timeline": "2026-07-10",
+        "supplyChainImpact": "大规模订单可能带动上游零部件供应链需求",
+        "verificationStatus": "已确认公告",
         "quantitativeFacts": [
           "总装机容量993.3MW",
           "中标金额约21.49亿元",
           "7个标段"
         ]
       },
-      "readingMinutes": 3,
+      "readingMinutes": 2,
       "relevanceScore": 5,
       "reliability": {
         "score": 55,
@@ -2765,7 +2847,7 @@
       "aiAnalysis": {
         "provider": "deepseek",
         "model": "deepseek-chat",
-        "generatedAt": "2026-07-20T02:41:56.976Z",
+        "generatedAt": "2026-07-20T02:59:44.101Z",
         "reason": "new",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
@@ -2779,7 +2861,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-09T12:30:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://energywatch.com/EnergyNews/wind/article19465272.ece",
       "sourceUrl": "https://energywatch.com/",
       "sourceChannel": "Google News RSS",
@@ -2922,7 +3004,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-09T09:41:31.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://megaproject.com/news/powerplant/nordex-secures-700-mw-wind-turbine-orders-from-uka-in-germany",
       "sourceUrl": "https://megaproject.com/",
       "sourceChannel": "Google News RSS",
@@ -2958,11 +3040,12 @@
         }
       },
       "corroboratingSources": [
-        "Energy Global",
         "energynews.pro",
-        "WindInsider",
+        "Energy Global",
+        "Renewables Now",
         "TradingView",
-        "Investing.com Nigeria"
+        "Investing.com Nigeria",
+        "WindInsider"
       ],
       "feedbackAggregate": {
         "useful": 0,
@@ -3043,7 +3126,7 @@
         "factors": [
           "发布方提供了较完整的公开摘要",
           "原文直链已在采集时验证",
-          "发现 5 个独立来源报道相近信息",
+          "发现 6 个独立来源报道相近信息",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
@@ -3075,7 +3158,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-09T05:22:56.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://www.globalbankingandfinance.com/nordex-q2-orders-rise-u-demand/",
       "sourceUrl": "https://www.globalbankingandfinance.com/",
       "sourceChannel": "Google News RSS",
@@ -3217,7 +3300,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-08T11:15:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://finance.sina.com.cn/roll/2026-07-08/doc-inihaxzw8068411.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -3389,17 +3472,17 @@
       "intelligenceType": "industry",
       "category": "厂商动态",
       "tags": [
-        "海外",
-        "行业资讯",
-        "整机厂商"
+        "CS Wind",
+        "维斯塔斯",
+        "风机供应合同"
       ],
-      "summary": "CSWind (KRX:112610) signed a contract worth 190.",
+      "summary": "CS Wind（KRX:112610）与维斯塔斯美国风电技术公司签署了一份价值190（原文未明确货币单位）的风机供应合同。资料来源于Moomoo，属于行业资讯。原始摘录不完整，无法确认合同具体金额、期限及供货内容。",
       "keyPoints": [
-        "来源：Moomoo",
-        "主题：厂商动态",
-        "发布时间：2026-07-07"
+        "CS Wind与维斯塔斯美国风电技术公司签订合同",
+        "合同价值190（货币单位未明确）",
+        "资料来源于Moomoo"
       ],
-      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "engineeringImpact": "该合同可能影响风电供应链格局，但需确认合同具体条款及对齿轮箱、轴承等部件的需求。",
       "readingMinutes": 3,
       "relevanceScore": 5,
       "reliability": {
@@ -3435,7 +3518,40 @@
           "total": 0
         }
       },
-      "engineeringExperience": {}
+      "engineeringExperience": {},
+      "titleZh": "CS Wind与维斯塔斯美国风电技术公司签订风机供应合同",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "商业合同/订单",
+        "companies": [
+          "CS Wind",
+          "维斯塔斯美国风电技术公司"
+        ],
+        "location": "",
+        "capacity": "",
+        "investment": "190（货币单位未明确）",
+        "timeline": "2026-07-07",
+        "supplyChainImpact": "",
+        "verificationStatus": "企业公告",
+        "quantitativeFacts": [
+          "合同价值190（货币单位未明确）"
+        ]
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-20T02:59:44.101Z",
+        "reason": "historical-schema-upgrade",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
+      }
     },
     {
       "id": "fbfc4f7cefcf",
@@ -3445,7 +3561,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-06T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://www.windpowermonthly.com/article/1963730/wind-power-patents-dongfang-siemens-gamesa-goldwind-nordex-zf",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -3591,7 +3707,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-06T03:04:09.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://wind.in-en.com/html/wind-2468519.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -3734,7 +3850,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-06T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.5194/wes-2026-83",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -3919,7 +4035,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-03T03:47:54.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://mwind.in-en.com/html/wind-2468499.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -4061,7 +4177,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T12:58:27.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://www.renews.biz/onshore-wind/rubber-hits-the-road-for-nordex-on-continental-order/",
       "sourceUrl": "https://www.renews.biz/",
       "sourceChannel": "Google News RSS",
@@ -4202,7 +4318,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T12:05:30.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://www.renewable-energy-industry.com/news/press-releases/pm-8862-nordex-group-to-deliver-20-mw-wind-farm-for-continental-tire-plant-in-korbach-germany",
       "sourceUrl": "https://www.renewable-energy-industry.com/",
       "sourceChannel": "Google News RSS",
@@ -4374,18 +4490,18 @@
       "intelligenceType": "industry",
       "category": "厂商动态",
       "tags": [
+        "宁波东力",
+        "海上风电",
         "齿轮箱",
-        "国内",
-        "行业资讯",
-        "齿轮箱厂商"
+        "传闻澄清"
       ],
-      "summary": "原始索引未提供可用摘要。资料主题为“人民鉴真137期丨宁波东力：海上大兆瓦风电齿轮箱扩产等传闻不实”，请打开原文核对研究方法、数据和结论边界。",
+      "summary": "该资料为东方财富发布的行业资讯，标题表明宁波东力针对海上大兆瓦风电齿轮箱扩产等传闻进行澄清，称传闻不实。由于原始摘录未提供具体内容，无法确认详细澄清内容、数据或结论。证据层级为媒体报道，结论边界限于标题所述传闻不实。",
       "keyPoints": [
-        "来源：东方财富",
-        "主题：厂商动态",
-        "发布时间：2026-07-02"
+        "宁波东力否认海上大兆瓦风电齿轮箱扩产传闻",
+        "资料来源于东方财富，属于媒体报道",
+        "原始摘录未提供具体澄清细节或数据"
       ],
-      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "engineeringImpact": "该澄清可能影响市场对宁波东力产能扩张的预期，但缺乏具体技术细节，对齿轮箱设计或验证的直接意义有限。需关注后续官方公告以确认实际产能规划。",
       "readingMinutes": 2,
       "relevanceScore": 11,
       "reliability": {
@@ -4421,7 +4537,37 @@
           "total": 0
         }
       },
-      "engineeringExperience": {}
+      "engineeringExperience": {},
+      "titleZh": "人民鉴真137期丨宁波东力：海上大兆瓦风电齿轮箱扩产等传闻不实",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "传闻澄清",
+        "companies": [
+          "宁波东力"
+        ],
+        "location": "",
+        "capacity": "",
+        "investment": "",
+        "timeline": "2026-07-02",
+        "supplyChainImpact": "可能影响市场对齿轮箱供应能力的预期",
+        "verificationStatus": "企业声明",
+        "quantitativeFacts": []
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-20T02:59:44.101Z",
+        "reason": "historical-schema-upgrade",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
+      }
     },
     {
       "id": "136f866e8c3a",
@@ -4431,7 +4577,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.3390/en19133153",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -4472,7 +4618,7 @@
           "i10Index": 30443,
           "worksCount": 63418,
           "citedByCount": 1110646,
-          "updatedAt": "2026-07-20T02:51:20.193Z"
+          "updatedAt": "2026-07-20T02:59:44.101Z"
         }
       },
       "corroboratingSources": [],
@@ -4603,7 +4749,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.3390/electronics15132907",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -4641,7 +4787,7 @@
           "i10Index": 8972,
           "worksCount": 30207,
           "citedByCount": 347295,
-          "updatedAt": "2026-07-20T02:51:20.193Z"
+          "updatedAt": "2026-07-20T02:59:44.101Z"
         }
       },
       "corroboratingSources": [],
@@ -4755,7 +4901,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T11:39:34.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://www.windpowermonthly.com/article/1963356/us-german-onshore-projects-dominate-vestas-q2-wind-turbine-order-intake",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -4897,7 +5043,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.1115/1.4072246",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -4941,7 +5087,7 @@
           "i10Index": 3201,
           "worksCount": 5905,
           "citedByCount": 142291,
-          "updatedAt": "2026-07-20T02:51:20.193Z"
+          "updatedAt": "2026-07-20T02:59:44.101Z"
         }
       },
       "corroboratingSources": [],
@@ -5053,7 +5199,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.58286/33501",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -5094,7 +5240,7 @@
           "i10Index": 12,
           "worksCount": 2833,
           "citedByCount": 1338,
-          "updatedAt": "2026-07-20T02:51:20.193Z"
+          "updatedAt": "2026-07-20T02:59:44.101Z"
         }
       },
       "corroboratingSources": [],
@@ -5223,7 +5369,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-29T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://www.windpowermonthly.com/article/1963085/wind-power-patents-sany-vestas-windey-siemens-gamesa-enercon",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -5368,7 +5514,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-27T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://finance.sina.com.cn/roll/2026-06-27/doc-inievrew1493303.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -5513,7 +5659,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-26T10:40:37.000Z",
-      "collectedAt": "2026-07-20T01:55:49.474Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://mwind.in-en.com/html/wind-2468354.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -5524,8 +5670,29 @@
         "hasPublisherDescription": false,
         "doi": "",
         "authorsCount": 0,
+        "authors": [],
         "citedByCount": 0,
-        "publicationType": ""
+        "publicationType": "",
+        "journal": "",
+        "issnL": "",
+        "issns": [],
+        "publisher": "",
+        "volume": "",
+        "issue": "",
+        "firstPage": "",
+        "lastPage": "",
+        "isOpenAccess": false,
+        "isInDoaj": false,
+        "sourceMetrics": {
+          "provider": "",
+          "metricName": "",
+          "twoYearMeanCitedness": 0,
+          "hIndex": 0,
+          "i10Index": 0,
+          "worksCount": 0,
+          "citedByCount": 0,
+          "updatedAt": ""
+        }
       },
       "corroboratingSources": [],
       "feedbackAggregate": {
@@ -5535,7 +5702,18 @@
         "broken": 0,
         "total": 0
       },
+      "engineeringExperience": {
+        "total": 0,
+        "supports": 0,
+        "conditional": 0,
+        "contradicts": 0,
+        "uncertain": 0,
+        "averageConfidence": 0,
+        "evidence": {},
+        "topContexts": []
+      },
       "intelligenceType": "industry",
+      "titleZh": "",
       "category": "厂商动态",
       "tags": [
         "海上风电",
@@ -5550,6 +5728,25 @@
         "属于海上风电项目"
       ],
       "engineeringImpact": "表明金风科技在海外海上风电交付能力，但齿轮箱与轴承配置需进一步核实。",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "",
+        "companies": [],
+        "location": "",
+        "capacity": "",
+        "investment": "",
+        "timeline": "",
+        "supplyChainImpact": "",
+        "verificationStatus": "",
+        "quantitativeFacts": []
+      },
       "readingMinutes": 2,
       "relevanceScore": 7,
       "reliability": {
@@ -5591,8 +5788,7 @@
         "generatedAt": "2026-07-20T01:55:49.474Z",
         "reason": "new",
         "feedbackTotalAtAnalysis": 0
-      },
-      "engineeringExperience": {}
+      }
     },
     {
       "id": "829dca08e09c",
@@ -5746,7 +5942,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-26T00:42:38.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://mwind.in-en.com/html/wind-2468318.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -5888,7 +6084,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-25T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://renewablesnow.com/news/vivant-unit-buys-200-mw-philippine-wind-project-from-envision-1297036/",
       "sourceUrl": "https://renewablesnow.com/",
       "sourceChannel": "Google News RSS",
@@ -6033,7 +6229,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-25T00:49:11.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://wind.in-en.com/html/wind-2468262.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -6182,7 +6378,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-25T00:00:00Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://doi.org/10.5194/wes-2026-105",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -6330,7 +6526,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-24T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://mwind.in-en.com/html/wind-2468214.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -6384,23 +6580,21 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "titleZh": "",
+      "titleZh": "中节能643.25MW风电项目中标候选公示：电气风电、运达、金风、中车山东风电预中标",
       "category": "厂商动态",
       "tags": [
         "风电项目",
         "中标",
-        "电气风电",
-        "运达",
-        "金风",
+        "中节能",
         "整机厂商"
       ],
-      "summary": "中节能643.25MW风电项目中标候选公示，电气风电、运达、金风、中车山东风电预中标。",
+      "summary": "国际风力发电网报道，中节能643.25MW风电项目发布中标候选公示，电气风电、运达、金风、中车山东风电四家企业预中标。该信息为行业资讯，未披露具体中标份额、价格或机型细节。",
       "keyPoints": [
-        "项目容量为643.25MW。",
-        "预中标企业包括电气风电、运达、金风、中车山东风电。",
-        "资料为中标候选公示，非最终结果。"
+        "中节能643.25MW风电项目发布中标候选公示",
+        "预中标企业包括电气风电、运达、金风、中车山东风电",
+        "信息来源为国际风力发电网，属于行业资讯"
       ],
-      "engineeringImpact": "反映国内风电整机商竞争格局，对供应链和项目分配有参考意义。需确认最终中标结果及具体机型配置。",
+      "engineeringImpact": "该中标信息反映了国内风电整机商的市场竞争格局，但未提供具体机型或技术细节，对齿轮箱或轴承设计选型的直接参考价值有限。",
       "paperDetails": {
         "objective": "",
         "methods": "",
@@ -6410,15 +6604,22 @@
         "limitations": []
       },
       "industryDetails": {
-        "eventType": "",
-        "companies": [],
-        "location": "",
-        "capacity": "",
+        "eventType": "中标公示",
+        "companies": [
+          "电气风电",
+          "运达",
+          "金风",
+          "中车山东风电"
+        ],
+        "location": "中国",
+        "capacity": "643.25 MW",
         "investment": "",
-        "timeline": "",
-        "supplyChainImpact": "",
-        "verificationStatus": "",
-        "quantitativeFacts": []
+        "timeline": "2026-06-24",
+        "supplyChainImpact": "可能影响相关风电整机商的订单份额，但具体影响未披露。",
+        "verificationStatus": "媒体报道",
+        "quantitativeFacts": [
+          "总容量643.25 MW"
+        ]
       },
       "readingMinutes": 2,
       "relevanceScore": 7,
@@ -6458,9 +6659,10 @@
       "aiAnalysis": {
         "provider": "deepseek",
         "model": "deepseek-chat",
-        "generatedAt": "2026-07-20T01:55:49.474Z",
-        "reason": "manual-refresh",
-        "feedbackTotalAtAnalysis": 0
+        "generatedAt": "2026-07-20T02:59:44.101Z",
+        "reason": "schema-upgrade",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
       }
     },
     {
@@ -6471,7 +6673,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-24T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://mwind.in-en.com/html/wind-2468213.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -6610,6 +6812,154 @@
       }
     },
     {
+      "id": "148924fed552",
+      "title": "Nordex wins 112-MW German wind turbine order from NeXtWind",
+      "source": "Renewables Now",
+      "sourceType": "行业资讯",
+      "region": "海外",
+      "language": "en",
+      "publishedAt": "2026-06-24T07:00:00.000Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "url": "https://renewablesnow.com/news/nordex-wins-112-mw-german-wind-turbine-order-from-nextwind-1296948/",
+      "sourceUrl": "https://renewablesnow.com/",
+      "sourceChannel": "Google News RSS",
+      "linkType": "publisher",
+      "linkVerified": true,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": true,
+        "doi": "",
+        "authorsCount": 0,
+        "authors": [],
+        "citedByCount": 0,
+        "publicationType": "",
+        "journal": "",
+        "issnL": "",
+        "issns": [],
+        "publisher": "",
+        "volume": "",
+        "issue": "",
+        "firstPage": "",
+        "lastPage": "",
+        "isOpenAccess": false,
+        "isInDoaj": false,
+        "sourceMetrics": {
+          "provider": "",
+          "metricName": "",
+          "twoYearMeanCitedness": 0,
+          "hIndex": 0,
+          "i10Index": 0,
+          "worksCount": 0,
+          "citedByCount": 0,
+          "updatedAt": ""
+        }
+      },
+      "corroboratingSources": [
+        "TradingView",
+        "megaproject.com"
+      ],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
+      "engineeringExperience": {
+        "total": 0,
+        "supports": 0,
+        "conditional": 0,
+        "contradicts": 0,
+        "uncertain": 0,
+        "averageConfidence": 0,
+        "evidence": {},
+        "topContexts": []
+      },
+      "intelligenceType": "industry",
+      "titleZh": "Nordex从NeXtWind获得德国112兆瓦风电涡轮机订单",
+      "category": "厂商动态",
+      "tags": [
+        "Nordex",
+        "德国",
+        "风电改造",
+        "整机厂商"
+      ],
+      "summary": "Renewables Now报道，德国风机制造商Nordex从NeXtWind Management GmbH获得112兆瓦订单，用于萨克森-安哈尔特州的一个风电改造项目。该信息为行业资讯，未披露具体机型、合同金额或交付时间。",
+      "keyPoints": [
+        "Nordex获得112兆瓦德国风电订单",
+        "订单来自NeXtWind Management GmbH",
+        "项目为萨克森-安哈尔特州的改造项目"
+      ],
+      "engineeringImpact": "该订单显示欧洲风电改造市场需求，但未提供技术细节，对齿轮箱或轴承的工程参考意义有限。",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "订单公告",
+        "companies": [
+          "Nordex",
+          "NeXtWind Management GmbH"
+        ],
+        "location": "德国萨克森-安哈尔特州",
+        "capacity": "112 MW",
+        "investment": "",
+        "timeline": "2026-06-24",
+        "supplyChainImpact": "可能带动Nordex供应链需求，但具体影响未披露。",
+        "verificationStatus": "媒体报道",
+        "quantitativeFacts": [
+          "容量112 MW"
+        ]
+      },
+      "readingMinutes": 3,
+      "relevanceScore": 5,
+      "reliability": {
+        "score": 67,
+        "grade": "B",
+        "label": "较高",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 11,
+          "evidence": 13,
+          "traceability": 15,
+          "corroboration": 12,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": 0
+        },
+        "factors": [
+          "发布方提供了可核查的内容简介",
+          "原文直链已在采集时验证",
+          "发现 2 个独立来源报道相近信息",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "来源权威层级尚未纳入已知清单"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-20T02:59:44.101Z",
+        "reason": "new",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
+      }
+    },
+    {
       "id": "9d36f523476e",
       "title": "Vestas secures 40MW order for German wind project",
       "source": "4C Offshore",
@@ -6617,7 +6967,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-24T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://www.tgs4c.com/news/vestas-secures-40mw-order-for-german-wind-project-nid32991.html",
       "sourceUrl": "https://www.tgs4c.com/",
       "sourceChannel": "Google News RSS",
@@ -6653,9 +7003,8 @@
         }
       },
       "corroboratingSources": [
-        "Windtech International",
         "Wind Power Monthly",
-        "WindInsider"
+        "Windtech International"
       ],
       "feedbackAggregate": {
         "useful": 0,
@@ -6718,7 +7067,7 @@
       "readingMinutes": 2,
       "relevanceScore": 3,
       "reliability": {
-        "score": 69,
+        "score": 67,
         "grade": "B",
         "label": "较高",
         "methodVersion": "1.0",
@@ -6726,7 +7075,7 @@
           "authority": 11,
           "evidence": 13,
           "traceability": 15,
-          "corroboration": 14,
+          "corroboration": 12,
           "recency": 8,
           "transparency": 8,
           "feedback": 0,
@@ -6735,7 +7084,7 @@
         "factors": [
           "发布方提供了可核查的内容简介",
           "原文直链已在采集时验证",
-          "发现 3 个独立来源报道相近信息",
+          "发现 2 个独立来源报道相近信息",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
@@ -6767,7 +7116,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-23T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://finance.sina.com.cn/wm/2026-06-23/doc-iniekknv6578371.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -6916,7 +7265,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-23T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://www.windpowermonthly.com/article/1962331/wind-power-patents-lm-wind-power-sinoma-vestas-technip-energies-nordex",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -7057,154 +7406,6 @@
       }
     },
     {
-      "id": "64b3a64e2181",
-      "title": "Nordex Gets 112 MW Order From NeXtWind For Wind Farm In Saxony-Anhalt In Germany",
-      "source": "TradingView",
-      "sourceType": "行业资讯",
-      "region": "海外",
-      "language": "en",
-      "publishedAt": "2026-06-23T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
-      "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_FWN42V16J:0-nordex-gets-112-mw-order-from-nextwind-for-wind-farm-in-saxony-anhalt-in-germany/",
-      "sourceUrl": "https://www.tradingview.com/",
-      "sourceChannel": "Google News RSS",
-      "linkType": "publisher",
-      "linkVerified": true,
-      "evidence": {
-        "hasAbstract": false,
-        "hasPublisherDescription": false,
-        "doi": "",
-        "authorsCount": 0,
-        "authors": [],
-        "citedByCount": 0,
-        "publicationType": "",
-        "journal": "",
-        "issnL": "",
-        "issns": [],
-        "publisher": "",
-        "volume": "",
-        "issue": "",
-        "firstPage": "",
-        "lastPage": "",
-        "isOpenAccess": false,
-        "isInDoaj": false,
-        "sourceMetrics": {
-          "provider": "",
-          "metricName": "",
-          "twoYearMeanCitedness": 0,
-          "hIndex": 0,
-          "i10Index": 0,
-          "worksCount": 0,
-          "citedByCount": 0,
-          "updatedAt": ""
-        }
-      },
-      "corroboratingSources": [
-        "megaproject.com"
-      ],
-      "feedbackAggregate": {
-        "useful": 0,
-        "questionable": 0,
-        "irrelevant": 0,
-        "broken": 0,
-        "total": 0
-      },
-      "engineeringExperience": {
-        "total": 0,
-        "supports": 0,
-        "conditional": 0,
-        "contradicts": 0,
-        "uncertain": 0,
-        "averageConfidence": 0,
-        "evidence": {},
-        "topContexts": []
-      },
-      "intelligenceType": "industry",
-      "titleZh": "Nordex获得NeXtWind在德国萨克森-安哈尔特州112兆瓦风电项目订单",
-      "category": "厂商动态",
-      "tags": [
-        "Nordex",
-        "德国",
-        "风电项目",
-        "订单",
-        "整机厂商"
-      ],
-      "summary": "Nordex获得NeXtWind在德国萨克森-安哈尔特州112兆瓦风电项目订单。资料为行业资讯，仅提及订单容量，未提供具体技术细节或数据。",
-      "keyPoints": [
-        "Nordex获得112 MW订单",
-        "项目位于德国萨克森-安哈尔特州",
-        "客户为NeXtWind"
-      ],
-      "engineeringImpact": "该订单表明Nordex在德国市场持续获得项目，但未涉及具体技术或性能信息。",
-      "paperDetails": {
-        "objective": "",
-        "methods": "",
-        "testObject": "",
-        "operatingConditions": "",
-        "quantitativeFindings": [],
-        "limitations": []
-      },
-      "industryDetails": {
-        "eventType": "订单获得",
-        "companies": [
-          "Nordex",
-          "NeXtWind"
-        ],
-        "location": "德国萨克森-安哈尔特州",
-        "capacity": "112 MW",
-        "investment": "",
-        "timeline": "2026-06-23",
-        "supplyChainImpact": "",
-        "verificationStatus": "媒体报道",
-        "quantitativeFacts": [
-          "112 MW"
-        ]
-      },
-      "readingMinutes": 2,
-      "relevanceScore": 3,
-      "reliability": {
-        "score": 61,
-        "grade": "C",
-        "label": "待核验",
-        "methodVersion": "1.0",
-        "dimensions": {
-          "authority": 11,
-          "evidence": 13,
-          "traceability": 15,
-          "corroboration": 6,
-          "recency": 8,
-          "transparency": 8,
-          "feedback": 0,
-          "riskPenalty": 0
-        },
-        "factors": [
-          "发布方提供了可核查的内容简介",
-          "原文直链已在采集时验证",
-          "发现 1 个独立来源报道相近信息",
-          "发布时间处于当前监测窗口",
-          "来源、日期和采集通道信息完整"
-        ],
-        "limitations": [
-          "来源权威层级尚未纳入已知清单"
-        ],
-        "feedback": {
-          "useful": 0,
-          "questionable": 0,
-          "irrelevant": 0,
-          "broken": 0,
-          "total": 0
-        }
-      },
-      "aiAnalysis": {
-        "provider": "deepseek",
-        "model": "deepseek-chat",
-        "generatedAt": "2026-07-20T02:51:20.193Z",
-        "reason": "new",
-        "feedbackTotalAtAnalysis": 0,
-        "experienceTotalAtAnalysis": 0
-      }
-    },
-    {
       "id": "c525d8e44f40",
       "title": "首台欧洲样机成功吊装，中车株洲所风电“出海”再进阶",
       "source": "国际风力发电网",
@@ -7212,7 +7413,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-23T02:25:45.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://mwind.in-en.com/html/wind-2468174.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -7354,7 +7555,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-23T00:48:36.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://mwind.in-en.com/html/wind-2468153.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -7498,7 +7699,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-22T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://mwind.in-en.com/html/wind-2468122.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -7638,6 +7839,154 @@
       }
     },
     {
+      "id": "8a47034a3853",
+      "title": "Nordex Secures Three Wind Turbine Orders in the United States Totaling 484 MW",
+      "source": "energynews.pro",
+      "sourceType": "行业资讯",
+      "region": "海外",
+      "language": "en",
+      "publishedAt": "2026-06-22T07:00:00.000Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "url": "https://energynews.pro/en/nordex-secures-three-wind-turbine-orders-in-the-united-states-totaling-484-mw",
+      "sourceUrl": "https://energynews.pro/",
+      "sourceChannel": "Google News RSS",
+      "linkType": "publisher",
+      "linkVerified": false,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": false,
+        "doi": "",
+        "authorsCount": 0,
+        "authors": [],
+        "citedByCount": 0,
+        "publicationType": "",
+        "journal": "",
+        "issnL": "",
+        "issns": [],
+        "publisher": "",
+        "volume": "",
+        "issue": "",
+        "firstPage": "",
+        "lastPage": "",
+        "isOpenAccess": false,
+        "isInDoaj": false,
+        "sourceMetrics": {
+          "provider": "",
+          "metricName": "",
+          "twoYearMeanCitedness": 0,
+          "hIndex": 0,
+          "i10Index": 0,
+          "worksCount": 0,
+          "citedByCount": 0,
+          "updatedAt": ""
+        }
+      },
+      "corroboratingSources": [
+        "Energy Global",
+        "Investing.com Nigeria",
+        "megaproject.com"
+      ],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
+      "engineeringExperience": {
+        "total": 0,
+        "supports": 0,
+        "conditional": 0,
+        "contradicts": 0,
+        "uncertain": 0,
+        "averageConfidence": 0,
+        "evidence": {},
+        "topContexts": []
+      },
+      "intelligenceType": "industry",
+      "titleZh": "Nordex在美国获得三份风电涡轮机订单，总计484兆瓦",
+      "category": "厂商动态",
+      "tags": [
+        "Nordex",
+        "美国",
+        "风电订单",
+        "整机厂商"
+      ],
+      "summary": "energynews.pro报道，Nordex在美国获得三份风电涡轮机订单，总容量484兆瓦。该信息为行业资讯，未披露具体客户、机型、合同金额或交付时间。",
+      "keyPoints": [
+        "Nordex在美国获得三份订单",
+        "订单总容量484兆瓦",
+        "信息来源为energynews.pro"
+      ],
+      "engineeringImpact": "该订单显示Nordex在美国市场的拓展，但缺乏技术细节，对齿轮箱或轴承设计的直接参考价值有限。",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "订单公告",
+        "companies": [
+          "Nordex"
+        ],
+        "location": "美国",
+        "capacity": "484 MW",
+        "investment": "",
+        "timeline": "2026-06-22",
+        "supplyChainImpact": "可能影响Nordex美国供应链布局，但具体影响未披露。",
+        "verificationStatus": "媒体报道",
+        "quantitativeFacts": [
+          "总容量484 MW"
+        ]
+      },
+      "readingMinutes": 2,
+      "relevanceScore": 5,
+      "reliability": {
+        "score": 65,
+        "grade": "B",
+        "label": "较高",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 11,
+          "evidence": 13,
+          "traceability": 11,
+          "corroboration": 14,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": 0
+        },
+        "factors": [
+          "发布方提供了可核查的内容简介",
+          "链接指向发布方或 DOI 页面",
+          "发现 3 个独立来源报道相近信息",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "来源权威层级尚未纳入已知清单"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-20T02:59:44.101Z",
+        "reason": "new",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
+      }
+    },
+    {
       "id": "a2fe7a65b408",
       "title": "Goldwind sends first shipment for 3-GW wind project in Saudi Arabia | Onshore Wind News",
       "source": "Renewables Now",
@@ -7645,7 +7994,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-22T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://renewablesnow.com/news/goldwind-sends-first-shipment-for-3-gw-wind-project-in-saudi-arabia-1296843/",
       "sourceUrl": "https://renewablesnow.com/",
       "sourceChannel": "Google News RSS",
@@ -7782,302 +8131,6 @@
       }
     },
     {
-      "id": "e6d80c6fd021",
-      "title": "Nordex Group secures new US orders totalling 484 MW",
-      "source": "Energy Global",
-      "sourceType": "行业资讯",
-      "region": "海外",
-      "language": "en",
-      "publishedAt": "2026-06-22T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
-      "url": "https://www.energyglobal.com/wind/22062026/nordex-group-secures-new-us-orders-totalling-484-mw/",
-      "sourceUrl": "https://www.energyglobal.com/",
-      "sourceChannel": "Google News RSS",
-      "linkType": "publisher",
-      "linkVerified": true,
-      "evidence": {
-        "hasAbstract": false,
-        "hasPublisherDescription": true,
-        "doi": "",
-        "authorsCount": 0,
-        "authors": [],
-        "citedByCount": 0,
-        "publicationType": "",
-        "journal": "",
-        "issnL": "",
-        "issns": [],
-        "publisher": "",
-        "volume": "",
-        "issue": "",
-        "firstPage": "",
-        "lastPage": "",
-        "isOpenAccess": false,
-        "isInDoaj": false,
-        "sourceMetrics": {
-          "provider": "",
-          "metricName": "",
-          "twoYearMeanCitedness": 0,
-          "hIndex": 0,
-          "i10Index": 0,
-          "worksCount": 0,
-          "citedByCount": 0,
-          "updatedAt": ""
-        }
-      },
-      "corroboratingSources": [
-        "energynews.pro",
-        "Investing.com Nigeria",
-        "megaproject.com",
-        "WindInsider"
-      ],
-      "feedbackAggregate": {
-        "useful": 0,
-        "questionable": 0,
-        "irrelevant": 0,
-        "broken": 0,
-        "total": 0
-      },
-      "engineeringExperience": {
-        "total": 0,
-        "supports": 0,
-        "conditional": 0,
-        "contradicts": 0,
-        "uncertain": 0,
-        "averageConfidence": 0,
-        "evidence": {},
-        "topContexts": []
-      },
-      "intelligenceType": "industry",
-      "titleZh": "Nordex集团在美国获得总计484MW新订单",
-      "category": "厂商动态",
-      "tags": [
-        "Nordex",
-        "美国",
-        "订单",
-        "整机厂商"
-      ],
-      "summary": "Nordex集团在美国获得三个新订单，总计484MW，但原始摘录未提供订单具体内容或技术细节。",
-      "keyPoints": [
-        "Nordex集团在美国获得三个新订单",
-        "订单总容量484MW",
-        "原始摘录未说明订单涉及的具体机型或部件"
-      ],
-      "engineeringImpact": "该资讯显示Nordex在美国市场持续获得订单，但缺乏技术细节，对齿轮箱或轴承设计无直接参考价值。",
-      "paperDetails": {
-        "objective": "",
-        "methods": "",
-        "testObject": "",
-        "operatingConditions": "",
-        "quantitativeFindings": [],
-        "limitations": []
-      },
-      "industryDetails": {
-        "eventType": "新订单",
-        "companies": [
-          "Nordex Group"
-        ],
-        "location": "美国",
-        "capacity": "484MW",
-        "investment": "",
-        "timeline": "2026-06-22",
-        "supplyChainImpact": "",
-        "verificationStatus": "媒体报道",
-        "quantitativeFacts": [
-          "总容量484MW"
-        ]
-      },
-      "readingMinutes": 2,
-      "relevanceScore": 3,
-      "reliability": {
-        "score": 69,
-        "grade": "B",
-        "label": "较高",
-        "methodVersion": "1.0",
-        "dimensions": {
-          "authority": 11,
-          "evidence": 13,
-          "traceability": 15,
-          "corroboration": 14,
-          "recency": 8,
-          "transparency": 8,
-          "feedback": 0,
-          "riskPenalty": 0
-        },
-        "factors": [
-          "发布方提供了可核查的内容简介",
-          "原文直链已在采集时验证",
-          "发现 4 个独立来源报道相近信息",
-          "发布时间处于当前监测窗口",
-          "来源、日期和采集通道信息完整"
-        ],
-        "limitations": [
-          "来源权威层级尚未纳入已知清单"
-        ],
-        "feedback": {
-          "useful": 0,
-          "questionable": 0,
-          "irrelevant": 0,
-          "broken": 0,
-          "total": 0
-        }
-      },
-      "aiAnalysis": {
-        "provider": "deepseek",
-        "model": "deepseek-chat",
-        "generatedAt": "2026-07-20T02:41:56.976Z",
-        "reason": "new",
-        "feedbackTotalAtAnalysis": 0,
-        "experienceTotalAtAnalysis": 0
-      }
-    },
-    {
-      "id": "9b9a2cd4a838",
-      "title": "Vestas secures repowering order in Japan",
-      "source": "Windtech International",
-      "sourceType": "行业资讯",
-      "region": "海外",
-      "language": "en",
-      "publishedAt": "2026-06-22T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
-      "url": "https://www.windtech-international.com/projects-and-contracts/vestas-secures-repowering-order-in-japan",
-      "sourceUrl": "https://www.windtech-international.com/",
-      "sourceChannel": "Google News RSS",
-      "linkType": "publisher",
-      "linkVerified": true,
-      "evidence": {
-        "hasAbstract": false,
-        "hasPublisherDescription": true,
-        "doi": "",
-        "authorsCount": 0,
-        "authors": [],
-        "citedByCount": 0,
-        "publicationType": "",
-        "journal": "",
-        "issnL": "",
-        "issns": [],
-        "publisher": "",
-        "volume": "",
-        "issue": "",
-        "firstPage": "",
-        "lastPage": "",
-        "isOpenAccess": false,
-        "isInDoaj": false,
-        "sourceMetrics": {
-          "provider": "",
-          "metricName": "",
-          "twoYearMeanCitedness": 0,
-          "hIndex": 0,
-          "i10Index": 0,
-          "worksCount": 0,
-          "citedByCount": 0,
-          "updatedAt": ""
-        }
-      },
-      "corroboratingSources": [
-        "4C Offshore",
-        "Energy Global",
-        "reNEWS",
-        "WindInsider"
-      ],
-      "feedbackAggregate": {
-        "useful": 0,
-        "questionable": 0,
-        "irrelevant": 0,
-        "broken": 0,
-        "total": 0
-      },
-      "engineeringExperience": {
-        "total": 0,
-        "supports": 0,
-        "conditional": 0,
-        "contradicts": 0,
-        "uncertain": 0,
-        "averageConfidence": 0,
-        "evidence": {},
-        "topContexts": []
-      },
-      "intelligenceType": "industry",
-      "titleZh": "维斯塔斯获得日本改造订单",
-      "category": "厂商动态",
-      "tags": [
-        "维斯塔斯",
-        "日本",
-        "改造订单",
-        "整机厂商"
-      ],
-      "summary": "根据行业资讯，维斯塔斯（Vestas）在日本获得了一项改造（repowering）订单。该信息来源于Windtech International，但原始摘录未提供订单的具体容量、金额、时间或改造内容等细节。证据层级为媒体报道，结论边界仅限于订单存在，无法确认具体规模或影响。",
-      "keyPoints": [
-        "维斯塔斯在日本获得改造订单",
-        "订单来源为Windtech International报道",
-        "原始摘录未提供订单容量、金额或时间"
-      ],
-      "engineeringImpact": "该订单表明维斯塔斯在日本风电改造市场有所布局，可能涉及齿轮箱或轴承的升级替换。但缺乏具体细节，无法评估对设计或运维的实际影响，需进一步确认改造范围和设备类型。",
-      "paperDetails": {
-        "objective": "",
-        "methods": "",
-        "testObject": "",
-        "operatingConditions": "",
-        "quantitativeFindings": [],
-        "limitations": []
-      },
-      "industryDetails": {
-        "eventType": "企业订单",
-        "companies": [
-          "Vestas"
-        ],
-        "location": "日本",
-        "capacity": "",
-        "investment": "",
-        "timeline": "",
-        "supplyChainImpact": "可能涉及风电设备供应",
-        "verificationStatus": "媒体报道",
-        "quantitativeFacts": []
-      },
-      "readingMinutes": 2,
-      "relevanceScore": 3,
-      "reliability": {
-        "score": 69,
-        "grade": "B",
-        "label": "较高",
-        "methodVersion": "1.0",
-        "dimensions": {
-          "authority": 11,
-          "evidence": 13,
-          "traceability": 15,
-          "corroboration": 14,
-          "recency": 8,
-          "transparency": 8,
-          "feedback": 0,
-          "riskPenalty": 0
-        },
-        "factors": [
-          "发布方提供了可核查的内容简介",
-          "原文直链已在采集时验证",
-          "发现 4 个独立来源报道相近信息",
-          "发布时间处于当前监测窗口",
-          "来源、日期和采集通道信息完整"
-        ],
-        "limitations": [
-          "来源权威层级尚未纳入已知清单"
-        ],
-        "feedback": {
-          "useful": 0,
-          "questionable": 0,
-          "irrelevant": 0,
-          "broken": 0,
-          "total": 0
-        }
-      },
-      "aiAnalysis": {
-        "provider": "deepseek",
-        "model": "deepseek-chat",
-        "generatedAt": "2026-07-20T02:41:56.976Z",
-        "reason": "manual-refresh",
-        "feedbackTotalAtAnalysis": 0,
-        "experienceTotalAtAnalysis": 0
-      }
-    },
-    {
       "id": "c078bd83b1af",
       "title": "Enercon outsources Turkish generator and tower production",
       "source": "Wind Power Monthly",
@@ -8085,7 +8138,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-22T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
       "url": "https://www.windpowermonthly.com/article/1962316/enercon-outsources-turkish-generator-tower-production",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -8201,6 +8254,152 @@
         ],
         "limitations": [
           "本轮采集未发现独立来源交叉印证"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-20T02:41:56.976Z",
+        "reason": "manual-refresh",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
+      }
+    },
+    {
+      "id": "9b9a2cd4a838",
+      "title": "Vestas secures repowering order in Japan",
+      "source": "Windtech International",
+      "sourceType": "行业资讯",
+      "region": "海外",
+      "language": "en",
+      "publishedAt": "2026-06-22T07:00:00.000Z",
+      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "url": "https://www.windtech-international.com/projects-and-contracts/vestas-secures-repowering-order-in-japan",
+      "sourceUrl": "https://www.windtech-international.com/",
+      "sourceChannel": "Google News RSS",
+      "linkType": "publisher",
+      "linkVerified": true,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": true,
+        "doi": "",
+        "authorsCount": 0,
+        "authors": [],
+        "citedByCount": 0,
+        "publicationType": "",
+        "journal": "",
+        "issnL": "",
+        "issns": [],
+        "publisher": "",
+        "volume": "",
+        "issue": "",
+        "firstPage": "",
+        "lastPage": "",
+        "isOpenAccess": false,
+        "isInDoaj": false,
+        "sourceMetrics": {
+          "provider": "",
+          "metricName": "",
+          "twoYearMeanCitedness": 0,
+          "hIndex": 0,
+          "i10Index": 0,
+          "worksCount": 0,
+          "citedByCount": 0,
+          "updatedAt": ""
+        }
+      },
+      "corroboratingSources": [
+        "4C Offshore",
+        "Energy Global",
+        "reNEWS"
+      ],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
+      "engineeringExperience": {
+        "total": 0,
+        "supports": 0,
+        "conditional": 0,
+        "contradicts": 0,
+        "uncertain": 0,
+        "averageConfidence": 0,
+        "evidence": {},
+        "topContexts": []
+      },
+      "intelligenceType": "industry",
+      "titleZh": "维斯塔斯获得日本改造订单",
+      "category": "厂商动态",
+      "tags": [
+        "维斯塔斯",
+        "日本",
+        "改造订单",
+        "整机厂商"
+      ],
+      "summary": "根据行业资讯，维斯塔斯（Vestas）在日本获得了一项改造（repowering）订单。该信息来源于Windtech International，但原始摘录未提供订单的具体容量、金额、时间或改造内容等细节。证据层级为媒体报道，结论边界仅限于订单存在，无法确认具体规模或影响。",
+      "keyPoints": [
+        "维斯塔斯在日本获得改造订单",
+        "订单来源为Windtech International报道",
+        "原始摘录未提供订单容量、金额或时间"
+      ],
+      "engineeringImpact": "该订单表明维斯塔斯在日本风电改造市场有所布局，可能涉及齿轮箱或轴承的升级替换。但缺乏具体细节，无法评估对设计或运维的实际影响，需进一步确认改造范围和设备类型。",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "企业订单",
+        "companies": [
+          "Vestas"
+        ],
+        "location": "日本",
+        "capacity": "",
+        "investment": "",
+        "timeline": "",
+        "supplyChainImpact": "可能涉及风电设备供应",
+        "verificationStatus": "媒体报道",
+        "quantitativeFacts": []
+      },
+      "readingMinutes": 2,
+      "relevanceScore": 3,
+      "reliability": {
+        "score": 69,
+        "grade": "B",
+        "label": "较高",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 11,
+          "evidence": 13,
+          "traceability": 15,
+          "corroboration": 14,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": 0
+        },
+        "factors": [
+          "发布方提供了可核查的内容简介",
+          "原文直链已在采集时验证",
+          "发现 3 个独立来源报道相近信息",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "来源权威层级尚未纳入已知清单"
         ],
         "feedback": {
           "useful": 0,
