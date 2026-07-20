@@ -693,6 +693,20 @@ async function main() {
       aiReviewReason: reason
     }];
   });
+  const candidateIds = new Set(candidates.map((article) => article.id));
+  for (const existing of previousArticles) {
+    if (candidateIds.has(existing.id) || !needsDetailedSummaryUpgrade(existing)) continue;
+    aiReasons.set(existing.id, "historical-schema-upgrade");
+    needsSummary.push({
+      ...existing,
+      queryTopic: existing.intelligenceType === "industry" ? "industry" : "technical",
+      snippet: cleanText(`${existing.summary || ""} ${(existing.keyPoints || []).join(" ")}`).slice(0, 1800),
+      previousSummary: existing.summary || "",
+      feedbackAggregate: existing.feedbackAggregate || {},
+      engineeringExperience: existing.engineeringExperience || {},
+      aiReviewReason: "historical-schema-upgrade"
+    });
+  }
   let aiSummaries = new Map();
 
   if (aiProvider && needsSummary.length) {
@@ -751,8 +765,36 @@ async function main() {
     return publicArticle;
   });
 
+  const updatedPreviousArticles = previousArticles.map((article) => {
+    const generatedSummary = aiSummaries.get(article.id);
+    if (!generatedSummary || candidateIds.has(article.id)) {
+      return !article.titleZh && /[\p{Script=Han}]/u.test(article.title || "")
+        ? { ...article, titleZh: article.title }
+        : article;
+    }
+    return {
+      ...article,
+      titleZh: generatedSummary.titleZh,
+      summary: generatedSummary.summary,
+      keyPoints: generatedSummary.keyPoints,
+      engineeringImpact: generatedSummary.engineeringImpact,
+      category: article.intelligenceType === "industry" ? "厂商动态" : generatedSummary.category,
+      tags: generatedSummary.tags,
+      paperDetails: generatedSummary.paperDetails,
+      industryDetails: generatedSummary.industryDetails,
+      aiAnalysis: {
+        provider: aiProvider.id,
+        model: aiProvider.model,
+        generatedAt: now.toISOString(),
+        reason: "historical-schema-upgrade",
+        feedbackTotalAtAnalysis: Number(article.feedbackAggregate?.total || 0),
+        experienceTotalAtAnalysis: Number(article.engineeringExperience?.total || 0)
+      }
+    };
+  });
+
   const historyCutoff = now.getTime() - historyRetentionDays * 86400000;
-  const articles = deduplicateArticles([...currentArticles, ...previousArticles])
+  const articles = deduplicateArticles([...currentArticles, ...updatedPreviousArticles])
     .filter((article) => new Date(article.publishedAt).getTime() >= historyCutoff)
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
     .slice(0, historyMaxArticles);
