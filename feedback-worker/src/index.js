@@ -1,4 +1,12 @@
 const VALID_VOTES = new Set(["useful", "questionable", "irrelevant", "broken"]);
+const EXPERIENCE_FIELDS = {
+  applicability: new Set(["supports", "conditional", "contradicts", "uncertain"]),
+  component: new Set(["gearbox", "planetary", "high_speed", "main_bearing", "gear_bearing", "lubrication", "monitoring", "drivetrain", "other"]),
+  failureMode: new Set(["micropitting", "wec", "scuffing", "tooth_failure", "bearing_damage", "electrical_damage", "lubrication", "monitoring", "loads", "manufacturing", "other", "not_applicable"]),
+  evidenceLevel: new Set(["test_report", "failure_analysis", "multiple_cases", "single_case", "engineering_judgment"]),
+  powerRange: new Set(["under_5mw", "5_10mw", "over_10mw", "unknown"]),
+  environment: new Set(["onshore", "offshore", "test_bench", "unknown"])
+};
 
 function allowedOrigin(request, env) {
   const origin = request.headers.get("Origin") || "";
@@ -50,8 +58,98 @@ async function saveFeedback(request, env, origin) {
   return json({ ok: true }, 200, origin);
 }
 
+function validExperience(payload) {
+  return payload &&
+    /^[a-f0-9]{12,64}$/i.test(String(payload.articleId || "")) &&
+    /^[a-z0-9-]{8,80}$/i.test(String(payload.clientId || "")) &&
+    (payload.action === "clear" || (
+      EXPERIENCE_FIELDS.applicability.has(payload.applicability) &&
+      EXPERIENCE_FIELDS.component.has(payload.component) &&
+      EXPERIENCE_FIELDS.failureMode.has(payload.failureMode) &&
+      EXPERIENCE_FIELDS.evidenceLevel.has(payload.evidenceLevel) &&
+      EXPERIENCE_FIELDS.powerRange.has(payload.powerRange) &&
+      EXPERIENCE_FIELDS.environment.has(payload.environment) &&
+      Number.isInteger(Number(payload.confidence)) &&
+      Number(payload.confidence) >= 1 && Number(payload.confidence) <= 5
+    ));
+}
+
+async function saveExperience(request, env, origin) {
+  const payload = await request.json().catch(() => null);
+  if (!validExperience(payload)) return json({ ok: false, error: "invalid_experience" }, 400, origin);
+  if (payload.action === "clear") {
+    await env.DB.prepare("DELETE FROM engineering_experience WHERE article_id = ?1 AND client_id = ?2")
+      .bind(payload.articleId, payload.clientId)
+      .run();
+    return json({ ok: true }, 200, origin);
+  }
+  await env.DB.prepare(`
+    INSERT INTO engineering_experience (
+      article_id, client_id, applicability, component, failure_mode, evidence_level,
+      power_range, environment, confidence, updated_at
+    ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, datetime('now'))
+    ON CONFLICT(article_id, client_id) DO UPDATE SET
+      applicability = excluded.applicability,
+      component = excluded.component,
+      failure_mode = excluded.failure_mode,
+      evidence_level = excluded.evidence_level,
+      power_range = excluded.power_range,
+      environment = excluded.environment,
+      confidence = excluded.confidence,
+      updated_at = datetime('now')
+  `).bind(
+    payload.articleId,
+    payload.clientId,
+    payload.applicability,
+    payload.component,
+    payload.failureMode,
+    payload.evidenceLevel,
+    payload.powerRange,
+    payload.environment,
+    Number(payload.confidence)
+  ).run();
+  return json({ ok: true }, 200, origin);
+}
+
+function experienceAggregates(rows = []) {
+  const articles = new Map();
+  for (const row of rows) {
+    const article = articles.get(row.article_id) || {
+      total: 0,
+      supports: 0,
+      conditional: 0,
+      contradicts: 0,
+      uncertain: 0,
+      confidenceTotal: 0,
+      evidence: {},
+      contexts: {}
+    };
+    article.total += 1;
+    article[row.applicability] = (article[row.applicability] || 0) + 1;
+    article.confidenceTotal += Number(row.confidence || 0);
+    article.evidence[row.evidence_level] = (article.evidence[row.evidence_level] || 0) + 1;
+    const contextKey = [row.component, row.failure_mode, row.power_range, row.environment].join("|");
+    article.contexts[contextKey] = (article.contexts[contextKey] || 0) + 1;
+    articles.set(row.article_id, article);
+  }
+  return new Map([...articles.entries()].map(([articleId, value]) => [articleId, {
+    total: value.total,
+    supports: value.supports,
+    conditional: value.conditional,
+    contradicts: value.contradicts,
+    uncertain: value.uncertain,
+    averageConfidence: value.total ? Number((value.confidenceTotal / value.total).toFixed(2)) : 0,
+    evidence: value.evidence,
+    topContexts: Object.entries(value.contexts)
+      .sort((left, right) => right[1] - left[1])
+      .slice(0, 5)
+      .map(([context, count]) => ({ context, count }))
+  }]));
+}
+
 async function aggregateFeedback(env, origin) {
-  const result = await env.DB.prepare(`
+  const [result, experienceResult] = await Promise.all([
+    env.DB.prepare(`
     SELECT
       article_id,
       SUM(CASE WHEN vote = 'useful' THEN 1 ELSE 0 END) AS useful,
@@ -61,16 +159,37 @@ async function aggregateFeedback(env, origin) {
       COUNT(*) AS total
     FROM feedback
     GROUP BY article_id
-  `).all();
-  const articles = (result.results || []).map((row) => ({
-    articleId: row.article_id,
-    useful: Number(row.useful || 0),
-    questionable: Number(row.questionable || 0),
-    irrelevant: Number(row.irrelevant || 0),
-    broken: Number(row.broken || 0),
-    total: Number(row.total || 0)
-  }));
-  return json({ generatedAt: new Date().toISOString(), articles }, 200, origin);
+  `).all(),
+    env.DB.prepare(`
+      SELECT article_id, applicability, component, failure_mode, evidence_level, power_range, environment, confidence
+      FROM engineering_experience
+    `).all()
+  ]);
+  const experiences = experienceAggregates(experienceResult.results || []);
+  const articles = new Map();
+  for (const row of result.results || []) {
+    articles.set(row.article_id, {
+      articleId: row.article_id,
+      useful: Number(row.useful || 0),
+      questionable: Number(row.questionable || 0),
+      irrelevant: Number(row.irrelevant || 0),
+      broken: Number(row.broken || 0),
+      total: Number(row.total || 0)
+    });
+  }
+  for (const [articleId, experience] of experiences) {
+    const current = articles.get(articleId) || {
+      articleId,
+      useful: 0,
+      questionable: 0,
+      irrelevant: 0,
+      broken: 0,
+      total: 0
+    };
+    current.experience = experience;
+    articles.set(articleId, current);
+  }
+  return json({ generatedAt: new Date().toISOString(), articles: [...articles.values()] }, 200, origin);
 }
 
 export default {
@@ -94,6 +213,7 @@ export default {
     if (url.pathname === "/aggregates" && request.method === "GET") return aggregateFeedback(env, origin);
     if (!origin) return json({ ok: false, error: "origin_not_allowed" }, 403);
     if (url.pathname === "/feedback" && request.method === "POST") return saveFeedback(request, env, origin);
+    if (url.pathname === "/experience" && request.method === "POST") return saveExperience(request, env, origin);
     return json({ ok: false, error: "not_found" }, 404, origin);
   }
 };

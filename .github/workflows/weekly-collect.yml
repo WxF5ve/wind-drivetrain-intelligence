@@ -14,7 +14,7 @@ on:
         description: "手动采集回看天数"
         required: false
         type: number
-        default: 8
+        default: 30
       max_articles:
         description: "手动采集最大资料数"
         required: false

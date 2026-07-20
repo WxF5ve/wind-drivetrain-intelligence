@@ -484,6 +484,7 @@ export function createFallbackSummary(article) {
   const firstSentence = snippet.split(/(?<=[。！？.!?])\s*/)[0] || snippet;
   const compact = firstSentence.slice(0, 150);
   return {
+    titleZh: /[\p{Script=Han}]/u.test(title) ? title : "",
     summary: hasDistinctExcerpt && compact.length >= 24
       ? compact
       : `原始索引未提供可用摘要。资料主题为“${title.slice(0, 80)}”，请打开原文核对研究方法、数据和结论边界。`,
@@ -494,7 +495,88 @@ export function createFallbackSummary(article) {
     ],
     engineeringImpact: "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
     category: inferCategory(article),
-    tags: inferTags(article)
+    tags: inferTags(article),
+    paperDetails: {
+      objective: "",
+      methods: "",
+      testObject: "",
+      operatingConditions: "",
+      quantitativeFindings: [],
+      limitations: []
+    },
+    industryDetails: {
+      eventType: "",
+      companies: [],
+      location: "",
+      capacity: "",
+      investment: "",
+      timeline: "",
+      supplyChainImpact: "",
+      verificationStatus: "",
+      quantitativeFacts: []
+    }
+  };
+}
+
+function normalizedPaperDetails(value = {}) {
+  return {
+    objective: cleanText(value.objective || ""),
+    methods: cleanText(value.methods || ""),
+    testObject: cleanText(value.testObject || ""),
+    operatingConditions: cleanText(value.operatingConditions || ""),
+    quantitativeFindings: (Array.isArray(value.quantitativeFindings) ? value.quantitativeFindings : [])
+      .map((item) => ({
+        metric: cleanText(item?.metric || ""),
+        value: cleanText(item?.value || ""),
+        unit: cleanText(item?.unit || ""),
+        comparison: cleanText(item?.comparison || ""),
+        conditions: cleanText(item?.conditions || ""),
+        evidence: cleanText(item?.evidence || "")
+      }))
+      .filter((item) => item.metric && item.value)
+      .slice(0, 6),
+    limitations: (Array.isArray(value.limitations) ? value.limitations : [])
+      .map(cleanText)
+      .filter(Boolean)
+      .slice(0, 5)
+  };
+}
+
+function normalizedIndustryDetails(value = {}) {
+  return {
+    eventType: cleanText(value.eventType || ""),
+    companies: (Array.isArray(value.companies) ? value.companies : []).map(cleanText).filter(Boolean).slice(0, 8),
+    location: cleanText(value.location || ""),
+    capacity: cleanText(value.capacity || ""),
+    investment: cleanText(value.investment || ""),
+    timeline: cleanText(value.timeline || ""),
+    supplyChainImpact: cleanText(value.supplyChainImpact || ""),
+    verificationStatus: cleanText(value.verificationStatus || ""),
+    quantitativeFacts: (Array.isArray(value.quantitativeFacts) ? value.quantitativeFacts : [])
+      .map(cleanText)
+      .filter(Boolean)
+      .slice(0, 6)
+  };
+}
+
+function normalizedEngineeringExperience(value = {}) {
+  const counts = {};
+  for (const key of ["total", "supports", "conditional", "contradicts", "uncertain"]) {
+    counts[key] = Math.max(0, Number(value[key] || 0));
+  }
+  return {
+    ...counts,
+    averageConfidence: Math.max(0, Math.min(5, Number(value.averageConfidence || 0))),
+    evidence: Object.fromEntries(
+      Object.entries(value.evidence || {})
+        .map(([key, count]) => [cleanText(key), Math.max(0, Number(count || 0))])
+        .filter(([key, count]) => key && count > 0)
+        .slice(0, 8)
+    ),
+    topContexts: (Array.isArray(value.topContexts) ? value.topContexts : [])
+      .map((item) => ({ context: cleanText(item?.context || ""), count: Math.max(0, Number(item?.count || 0)) }))
+      .filter((item) => item.context && item.count > 0)
+      .slice(0, 5)
   };
 }
 
@@ -518,20 +600,45 @@ export function toPublicArticle(article, summaryData) {
       hasPublisherDescription: Boolean(article.evidence?.hasPublisherDescription),
       doi: cleanText(article.evidence?.doi || ""),
       authorsCount: Number(article.evidence?.authorsCount || 0),
+      authors: (Array.isArray(article.evidence?.authors) ? article.evidence.authors : []).map(cleanText).filter(Boolean).slice(0, 8),
       citedByCount: Number(article.evidence?.citedByCount || 0),
-      publicationType: cleanText(article.evidence?.publicationType || "")
+      publicationType: cleanText(article.evidence?.publicationType || ""),
+      journal: cleanText(article.evidence?.journal || ""),
+      issnL: cleanText(article.evidence?.issnL || ""),
+      issns: (Array.isArray(article.evidence?.issns) ? article.evidence.issns : []).map(cleanText).filter(Boolean).slice(0, 4),
+      publisher: cleanText(article.evidence?.publisher || ""),
+      volume: cleanText(article.evidence?.volume || ""),
+      issue: cleanText(article.evidence?.issue || ""),
+      firstPage: cleanText(article.evidence?.firstPage || ""),
+      lastPage: cleanText(article.evidence?.lastPage || ""),
+      isOpenAccess: Boolean(article.evidence?.isOpenAccess),
+      isInDoaj: Boolean(article.evidence?.isInDoaj),
+      sourceMetrics: {
+        provider: cleanText(article.evidence?.sourceMetrics?.provider || ""),
+        metricName: cleanText(article.evidence?.sourceMetrics?.metricName || ""),
+        twoYearMeanCitedness: Number(article.evidence?.sourceMetrics?.twoYearMeanCitedness || 0),
+        hIndex: Number(article.evidence?.sourceMetrics?.hIndex || 0),
+        i10Index: Number(article.evidence?.sourceMetrics?.i10Index || 0),
+        worksCount: Number(article.evidence?.sourceMetrics?.worksCount || 0),
+        citedByCount: Number(article.evidence?.sourceMetrics?.citedByCount || 0),
+        updatedAt: cleanText(article.evidence?.sourceMetrics?.updatedAt || "")
+      }
     },
     corroboratingSources: [...new Set(article.corroboratingSources || [])].map(cleanText).filter(Boolean).slice(0, 6),
     feedbackAggregate: normalizedFeedback(article.feedbackAggregate),
+    engineeringExperience: normalizedEngineeringExperience(article.engineeringExperience),
     intelligenceType: article.queryTopic === "industry" ? "industry" : "technical",
+    titleZh: cleanText(summaryData.titleZh || ""),
     category: article.queryTopic === "industry" ? "厂商动态" : summaryData.category || inferCategory(article),
     tags: [...new Set([
       ...(summaryData.tags?.length ? summaryData.tags : inferTags(article)),
       ...(article.contextTags || [])
     ])].map(cleanText).filter(Boolean).slice(0, 7),
     summary: cleanText(summaryData.summary),
-    keyPoints: (summaryData.keyPoints || []).map(cleanText).filter(Boolean).slice(0, 4),
+    keyPoints: (summaryData.keyPoints || []).map(cleanText).filter(Boolean).slice(0, 5),
     engineeringImpact: cleanText(summaryData.engineeringImpact),
+    paperDetails: normalizedPaperDetails(summaryData.paperDetails),
+    industryDetails: normalizedIndustryDetails(summaryData.industryDetails),
     readingMinutes: Math.max(2, Math.min(12, Math.round(cleanText(article.snippet).length / 240) + 2)),
     relevanceScore: Number(article.relevanceScore || 0)
   };

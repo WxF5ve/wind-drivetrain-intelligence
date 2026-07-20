@@ -15,13 +15,59 @@ const SUMMARY_SCHEMA = {
         additionalProperties: false,
         properties: {
           id: { type: "string" },
+          titleZh: { type: "string" },
           summary: { type: "string" },
-          keyPoints: { type: "array", items: { type: "string" }, minItems: 3, maxItems: 3 },
+          keyPoints: { type: "array", items: { type: "string" }, minItems: 3, maxItems: 5 },
           engineeringImpact: { type: "string" },
           category: { type: "string", enum: [...SUMMARY_CATEGORIES] },
-          tags: { type: "array", items: { type: "string" }, minItems: 2, maxItems: 5 }
+          tags: { type: "array", items: { type: "string" }, minItems: 2, maxItems: 5 },
+          paperDetails: {
+            type: "object",
+            additionalProperties: false,
+            properties: {
+              objective: { type: "string" },
+              methods: { type: "string" },
+              testObject: { type: "string" },
+              operatingConditions: { type: "string" },
+              quantitativeFindings: {
+                type: "array",
+                maxItems: 6,
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  properties: {
+                    metric: { type: "string" },
+                    value: { type: "string" },
+                    unit: { type: "string" },
+                    comparison: { type: "string" },
+                    conditions: { type: "string" },
+                    evidence: { type: "string" }
+                  },
+                  required: ["metric", "value", "unit", "comparison", "conditions", "evidence"]
+                }
+              },
+              limitations: { type: "array", items: { type: "string" }, maxItems: 5 }
+            },
+            required: ["objective", "methods", "testObject", "operatingConditions", "quantitativeFindings", "limitations"]
+          },
+          industryDetails: {
+            type: "object",
+            additionalProperties: false,
+            properties: {
+              eventType: { type: "string" },
+              companies: { type: "array", items: { type: "string" }, maxItems: 8 },
+              location: { type: "string" },
+              capacity: { type: "string" },
+              investment: { type: "string" },
+              timeline: { type: "string" },
+              supplyChainImpact: { type: "string" },
+              verificationStatus: { type: "string" },
+              quantitativeFacts: { type: "array", items: { type: "string" }, maxItems: 6 }
+            },
+            required: ["eventType", "companies", "location", "capacity", "investment", "timeline", "supplyChainImpact", "verificationStatus", "quantitativeFacts"]
+          }
         },
-        required: ["id", "summary", "keyPoints", "engineeringImpact", "category", "tags"]
+        required: ["id", "titleZh", "summary", "keyPoints", "engineeringImpact", "category", "tags", "paperDetails", "industryDetails"]
       }
     }
   },
@@ -32,11 +78,16 @@ const SYSTEM_INSTRUCTIONS = [
   "你是风电齿轮箱与轴承研发情报分析助手。",
   "仅依据给定标题和原始摘录总结，不得补造试验数据、结论、来源或因果关系。",
   "用户反馈只是复核信号，不是事实证据；反馈为负时应重新检查摘录，并明确证据不足之处。",
+  "英文题目必须给出准确、自然的中文技术题名 titleZh；中文原题可原样写入 titleZh。",
   "所有输出使用简洁中文，保留必要的英文缩写、标准号、材料名和故障机理术语。",
-  "summary 用 60-110 个汉字说明资料做了什么、主要信息以及结论边界。",
-  "keyPoints 必须给出三条可从输入核查的信息，不得重复标题。",
-  "engineeringImpact 说明对设计、验证、运维或供应链的潜在意义，并明确需要进一步验证之处。",
-  "论文统一归入学术论文；queryTopic 为 industry 的资料归入厂商动态；其余按最相关技术主题分类。",
+  "summary 用 120-220 个汉字说明资料做了什么、主要结果、证据层级和结论边界。",
+  "keyPoints 给出三至五条可从输入核查的信息，不得重复标题。",
+  "engineeringImpact 用 80-180 个汉字说明对设计、验证、运维或供应链的意义及待验证问题。",
+  "论文必须填写 paperDetails；只有原始摘录明确给出数值时才写 quantitativeFindings，每项保留指标、值、单位、对照、工况和证据依据。没有数值时返回空数组，绝不估算。",
+  "publicationMetadata 中的 OpenAlex 2年平均被引率和 h-index 不是 JCR 影响因子，不得称为影响因子。",
+  "行业动态必须填写 industryDetails，区分已确认公告、媒体报道和企业声明；未披露的容量、金额、地点或时间字段使用空字符串，不得推测。",
+  "论文的 industryDetails 使用空值；行业动态的 paperDetails 使用空值。论文统一归入学术论文；queryTopic 为 industry 的资料归入厂商动态。",
+  "工程经验聚合只用于提示适用性或争议，不得当作论文原始证据，也不得补写输入中不存在的公司或机型信息。",
   "只输出有效 JSON，不要输出 Markdown 代码围栏或额外说明。"
 ].join("\n");
 
@@ -86,6 +137,16 @@ export function feedbackNeedsAiReview(feedbackValue, previousAnalysis, minimumFe
     feedback.total > alreadyReviewedAt;
 }
 
+export function experienceNeedsAiReview(value = {}, previousAnalysis, minimumExperience = 3) {
+  const total = Math.max(0, Number(value.total || 0));
+  const contradicts = Math.max(0, Number(value.contradicts || 0));
+  const alreadyReviewedAt = Number(previousAnalysis?.experienceTotalAtAnalysis || 0);
+  return total >= Number(minimumExperience || 3) &&
+    contradicts >= 2 &&
+    contradicts / total >= 0.4 &&
+    total > alreadyReviewedAt;
+}
+
 function inputArticles(articles) {
   return articles.map((article) => ({
     id: article.id,
@@ -96,7 +157,18 @@ function inputArticles(articles) {
     publishedAt: article.publishedAt,
     snippet: cleanText(article.snippet).slice(0, 1800),
     previousSummary: cleanText(article.previousSummary || "").slice(0, 600),
-    feedback: normalizedFeedback(article.feedbackAggregate)
+    feedback: normalizedFeedback(article.feedbackAggregate),
+    engineeringExperience: article.engineeringExperience || {},
+    publicationMetadata: article.sourceType === "论文" ? {
+      journal: cleanText(article.evidence?.journal || article.source || ""),
+      publisher: cleanText(article.evidence?.publisher || ""),
+      doi: cleanText(article.evidence?.doi || ""),
+      authors: Array.isArray(article.evidence?.authors) ? article.evidence.authors : [],
+      volume: cleanText(article.evidence?.volume || ""),
+      issue: cleanText(article.evidence?.issue || ""),
+      citedByCount: Number(article.evidence?.citedByCount || 0),
+      openAlexMetrics: article.evidence?.sourceMetrics || {}
+    } : {}
   }));
 }
 
@@ -108,25 +180,81 @@ function cleanJsonText(value) {
     .trim();
 }
 
+function numericEvidenceMatches(value, sourceText) {
+  const numericTokens = cleanText(value).match(/\d+(?:\.\d+)?/g) || [];
+  if (!numericTokens.length) return false;
+  const sourceTokens = new Set((cleanText(sourceText).match(/\d+(?:\.\d+)?/g) || []).map((item) => String(Number(item))));
+  return numericTokens.every((item) => sourceTokens.has(String(Number(item))));
+}
+
+function parsedPaperDetails(value = {}, sourceText = "") {
+  const quantitativeFindings = (Array.isArray(value.quantitativeFindings) ? value.quantitativeFindings : [])
+    .map((item) => ({
+      metric: cleanText(item?.metric || ""),
+      value: cleanText(item?.value || ""),
+      unit: cleanText(item?.unit || ""),
+      comparison: cleanText(item?.comparison || ""),
+      conditions: cleanText(item?.conditions || ""),
+      evidence: cleanText(item?.evidence || "")
+    }))
+    .filter((item) => item.metric && item.value && numericEvidenceMatches(`${item.value} ${item.unit}`, sourceText))
+    .slice(0, 6);
+  return {
+    objective: cleanText(value.objective || "").slice(0, 500),
+    methods: cleanText(value.methods || "").slice(0, 700),
+    testObject: cleanText(value.testObject || "").slice(0, 500),
+    operatingConditions: cleanText(value.operatingConditions || "").slice(0, 500),
+    quantitativeFindings,
+    limitations: (Array.isArray(value.limitations) ? value.limitations : [])
+      .map(cleanText)
+      .filter(Boolean)
+      .slice(0, 5)
+  };
+}
+
+function parsedIndustryDetails(value = {}, sourceText = "") {
+  return {
+    eventType: cleanText(value.eventType || "").slice(0, 120),
+    companies: (Array.isArray(value.companies) ? value.companies : []).map(cleanText).filter(Boolean).slice(0, 8),
+    location: cleanText(value.location || "").slice(0, 160),
+    capacity: cleanText(value.capacity || "").slice(0, 120),
+    investment: cleanText(value.investment || "").slice(0, 120),
+    timeline: cleanText(value.timeline || "").slice(0, 180),
+    supplyChainImpact: cleanText(value.supplyChainImpact || "").slice(0, 500),
+    verificationStatus: cleanText(value.verificationStatus || "").slice(0, 240),
+    quantitativeFacts: (Array.isArray(value.quantitativeFacts) ? value.quantitativeFacts : [])
+      .map(cleanText)
+      .filter((item) => item && numericEvidenceMatches(item, sourceText))
+      .slice(0, 6)
+  };
+}
+
 export function parseSummaryJson(value, expectedIds) {
-  const expected = new Set(expectedIds);
+  const expectedItems = expectedIds.map((item) => typeof item === "string" ? { id: item } : item);
+  const expected = new Map(expectedItems.map((item) => [item.id, item]));
   const parsed = JSON.parse(cleanJsonText(value));
   if (!Array.isArray(parsed?.articles)) throw new Error("AI 摘要缺少 articles 数组");
   const summaries = new Map();
   for (const item of parsed.articles) {
     if (!expected.has(item?.id) || summaries.has(item.id)) continue;
+    const sourceArticle = expected.get(item.id);
+    const sourceText = `${sourceArticle.title || ""} ${sourceArticle.snippet || ""}`;
     const summary = cleanText(item.summary);
-    const keyPoints = Array.isArray(item.keyPoints) ? item.keyPoints.map(cleanText).filter(Boolean).slice(0, 3) : [];
+    const titleZh = cleanText(item.titleZh);
+    const keyPoints = Array.isArray(item.keyPoints) ? item.keyPoints.map(cleanText).filter(Boolean).slice(0, 5) : [];
     const engineeringImpact = cleanText(item.engineeringImpact);
     const tags = Array.isArray(item.tags) ? [...new Set(item.tags.map(cleanText).filter(Boolean))].slice(0, 5) : [];
-    if (summary.length < 20 || keyPoints.length !== 3 || engineeringImpact.length < 10 ||
+    if (!/[\p{Script=Han}]/u.test(titleZh) || summary.length < 40 || keyPoints.length < 3 || engineeringImpact.length < 20 ||
         !SUMMARY_CATEGORIES.has(item.category) || tags.length < 2) continue;
     summaries.set(item.id, {
-      summary: summary.slice(0, 360),
+      titleZh: titleZh.slice(0, 240),
+      summary: summary.slice(0, 700),
       keyPoints,
-      engineeringImpact: engineeringImpact.slice(0, 360),
+      engineeringImpact: engineeringImpact.slice(0, 600),
       category: item.category,
-      tags
+      tags,
+      paperDetails: parsedPaperDetails(item.paperDetails, sourceText),
+      industryDetails: parsedIndustryDetails(item.industryDetails, sourceText)
     });
   }
   if (!summaries.size) throw new Error("AI 摘要未返回任何通过校验的资料");
@@ -187,7 +315,7 @@ export async function summarizeBatch(provider, articles, fetchImpl = fetch) {
         ],
         response_format: { type: "json_object" },
         temperature: 0.1,
-        max_tokens: 5000,
+        max_tokens: 8000,
         stream: false
       })
     }, fetchImpl);
@@ -219,11 +347,11 @@ export async function summarizeBatch(provider, articles, fetchImpl = fetch) {
   }
 
   if (!text) throw new Error(`${provider.label} 未返回摘要文本`);
-  return parseSummaryJson(text, articles.map((article) => article.id));
+  return parseSummaryJson(text, articles);
 }
 
 export async function summarizeInBatches(provider, articles, options = {}) {
-  const batchSize = Math.max(1, Number(options.batchSize || process.env.AI_BATCH_SIZE || 6));
+  const batchSize = Math.max(1, Number(options.batchSize || process.env.AI_BATCH_SIZE || 3));
   const summaries = new Map();
   const errors = [];
   for (let index = 0; index < articles.length; index += batchSize) {

@@ -16,6 +16,7 @@ import {
   toPublicArticle
 } from "./lib/articles.mjs";
 import {
+  experienceNeedsAiReview,
   feedbackNeedsAiReview,
   resolveAiProvider,
   summarizeInBatches
@@ -405,16 +406,17 @@ async function collectOpenAlex(source, lookbackDays) {
       const location = item.primary_location || {};
       const sourceName = location.source?.display_name || "OpenAlex";
       const urlValue = item.doi || location.landing_page_url || item.id;
-      const authors = (item.authorships || [])
-        .slice(0, 4)
+      const authorNames = (item.authorships || [])
+        .slice(0, 8)
         .map((authorship) => authorship.author?.display_name)
-        .filter(Boolean)
-        .join(", ");
+        .filter(Boolean);
       const abstract = abstractFromInvertedIndex(item.abstract_inverted_index);
+      const journal = location.source || {};
+      const biblio = item.biblio || {};
       return {
         id: makeArticleId(urlValue, item.title),
         title: cleanText(item.title),
-        snippet: cleanText([abstract, authors ? `Authors: ${authors}` : ""].filter(Boolean).join(" ")),
+        snippet: cleanText([abstract, authorNames.length ? `Authors: ${authorNames.join(", ")}` : ""].filter(Boolean).join(" ")),
         source: sourceName,
         sourceType: "论文",
         region: source.region,
@@ -430,13 +432,64 @@ async function collectOpenAlex(source, lookbackDays) {
           hasAbstract: Boolean(abstract),
           doi: item.doi || "",
           authorsCount: (item.authorships || []).length,
+          authors: authorNames,
           citedByCount: Number(item.cited_by_count || 0),
-          publicationType: item.type === "preprint" ? "preprint" : item.type || "article"
+          publicationType: item.type === "preprint" ? "preprint" : item.type || "article",
+          journal: sourceName,
+          sourceId: journal.id || "",
+          issnL: journal.issn_l || "",
+          issns: Array.isArray(journal.issn) ? journal.issn : [],
+          publisher: journal.host_organization_name || "",
+          volume: biblio.volume || "",
+          issue: biblio.issue || "",
+          firstPage: biblio.first_page || "",
+          lastPage: biblio.last_page || "",
+          isOpenAccess: Boolean(item.open_access?.is_oa),
+          isInDoaj: Boolean(journal.is_in_doaj)
         },
         ...sourceContext(source)
       };
     })
     .filter((item) => item.title && item.url);
+}
+
+async function enrichOpenAlexSourceMetrics(articles) {
+  const sourceCache = new Map();
+  for (const article of articles.filter((item) => item.sourceType === "论文")) {
+    const sourceId = cleanText(article.evidence?.sourceId || "");
+    const shortId = sourceId.match(/\/([A-Z]\d+)$/i)?.[1];
+    if (!shortId) continue;
+    if (!sourceCache.has(shortId)) {
+      try {
+        const metrics = await fetchJson(`https://api.openalex.org/sources/${shortId}`);
+        sourceCache.set(shortId, metrics);
+      } catch (error) {
+        console.warn(`  OpenAlex 期刊指标获取失败 ${shortId}: ${error.message}`);
+        sourceCache.set(shortId, null);
+      }
+      await delay(450);
+    }
+    const source = sourceCache.get(shortId);
+    if (!source) continue;
+    const stats = source.summary_stats || {};
+    article.evidence = {
+      ...article.evidence,
+      publisher: article.evidence.publisher || source.host_organization_name || "",
+      issnL: article.evidence.issnL || source.issn_l || "",
+      issns: article.evidence.issns?.length ? article.evidence.issns : source.issn || [],
+      isInDoaj: Boolean(article.evidence.isInDoaj || source.is_in_doaj),
+      sourceMetrics: {
+        provider: "OpenAlex",
+        metricName: "2年平均被引率",
+        twoYearMeanCitedness: Number(stats["2yr_mean_citedness"] || 0),
+        hIndex: Number(stats.h_index || 0),
+        i10Index: Number(stats.i10_index || 0),
+        worksCount: Number(source.works_count || 0),
+        citedByCount: Number(source.cited_by_count || 0),
+        updatedAt: now.toISOString()
+      }
+    };
+  }
 }
 
 function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
@@ -574,32 +627,43 @@ async function main() {
   const previousIsLive = process.env.COLLECT_RESET_HISTORY !== "1" &&
     previous.collectionStatus?.dataMode === "live" &&
     !previous.collectionStatus?.demo;
-  const previousArticles = (previousIsLive ? previous.articles || [] : []).map((article) =>
-    recalibratePublishedArticle(
+  const previousArticles = (previousIsLive ? previous.articles || [] : []).map((article) => {
+    const aggregate = feedbackAggregates.map.get(article.id);
+    const calibrated = recalibratePublishedArticle(
       article,
-      feedbackAggregates.map.get(article.id) ||
+      aggregate ||
         (feedbackAggregates.loadedFromEndpoint ? {} : article.feedbackAggregate || {}),
       minimumFeedback
-    )
-  );
+    );
+    return {
+      ...calibrated,
+      engineeringExperience: aggregate?.experience || article.engineeringExperience || {}
+    };
+  });
   const previousByUrl = new Map(previousArticles.map((article) => [article.url, article]));
   const candidates = deduplicateArticles([...relevantRawArticles].sort((left, right) =>
     Number(right.queryTopic === "industry") - Number(left.queryTopic === "industry")
   ))
-    .map((article) => ({
-      ...article,
-      relevanceScore: relevanceScore(article, keywordWeights) +
-        (article.queryTopic === "industry" ? Number(config.industryRelevanceBoost || 3) : 0),
-      corroboratingSources: findCorroboratingSources(article, relevantRawArticles),
-      feedbackAggregate: feedbackAggregates.map.get(article.id) || {},
-      reliabilityConfig
-    }))
+    .map((article) => {
+      const aggregate = feedbackAggregates.map.get(article.id) || {};
+      return {
+        ...article,
+        relevanceScore: relevanceScore(article, keywordWeights) +
+          (article.queryTopic === "industry" ? Number(config.industryRelevanceBoost || 3) : 0),
+        corroboratingSources: findCorroboratingSources(article, relevantRawArticles),
+        feedbackAggregate: aggregate,
+        engineeringExperience: aggregate.experience || {},
+        reliabilityConfig
+      };
+    })
     .filter((article) => article.relevanceScore >= Number(config.minimumRelevanceScore || 3))
     .sort((a, b) => {
       const dateDifference = new Date(b.publishedAt) - new Date(a.publishedAt);
       return dateDifference || b.relevanceScore - a.relevanceScore;
     })
     .slice(0, maxArticles);
+
+  await enrichOpenAlexSourceMetrics(candidates);
 
   const aiProvider = resolveAiProvider(process.env);
   const aiReasons = new Map();
@@ -610,6 +674,8 @@ async function main() {
     else if (forceAiSummary) reason = "manual-refresh";
     else if (feedbackNeedsAiReview(article.feedbackAggregate, existing.aiAnalysis, minimumFeedback)) {
       reason = "feedback-review";
+    } else if (experienceNeedsAiReview(article.engineeringExperience, existing.aiAnalysis, 3)) {
+      reason = "experience-review";
     }
     if (!reason) return [];
     aiReasons.set(article.id, reason);
@@ -624,7 +690,8 @@ async function main() {
   if (aiProvider && needsSummary.length) {
     try {
       const feedbackReviewCount = [...aiReasons.values()].filter((reason) => reason === "feedback-review").length;
-      console.log(`使用 ${aiProvider.label} ${aiProvider.model} 分析 ${needsSummary.length} 条资料，其中反馈复核 ${feedbackReviewCount} 条...`);
+      const experienceReviewCount = [...aiReasons.values()].filter((reason) => reason === "experience-review").length;
+      console.log(`使用 ${aiProvider.label} ${aiProvider.model} 分析 ${needsSummary.length} 条资料，其中反馈复核 ${feedbackReviewCount} 条、工程经验复核 ${experienceReviewCount} 条...`);
       aiSummaries = await summarizeInBatches(aiProvider, needsSummary, {
         onBatchError: (error, batchNumber) => {
           console.warn(`AI 摘要第 ${batchNumber} 批失败，保留该批公开摘要: ${error.message}`);
@@ -647,11 +714,14 @@ async function main() {
       ? generatedSummary
       : existing
       ? {
+          titleZh: existing.titleZh,
           summary: existing.summary,
           keyPoints: existing.keyPoints,
           engineeringImpact: existing.engineeringImpact,
           category: existing.category,
-          tags: existing.tags
+          tags: existing.tags,
+          paperDetails: existing.paperDetails,
+          industryDetails: existing.industryDetails
         }
       : createFallbackSummary(article);
     const publicArticle = toPublicArticle(
@@ -664,7 +734,8 @@ async function main() {
         model: aiProvider.model,
         generatedAt: now.toISOString(),
         reason: aiReasons.get(article.id) || "new",
-        feedbackTotalAtAnalysis: Number(article.feedbackAggregate?.total || 0)
+        feedbackTotalAtAnalysis: Number(article.feedbackAggregate?.total || 0),
+        experienceTotalAtAnalysis: Number(article.engineeringExperience?.total || 0)
       };
     } else if (existing?.aiAnalysis) {
       publicArticle.aiAnalysis = existing.aiAnalysis;
@@ -708,7 +779,8 @@ async function main() {
         model: aiProvider?.model || "",
         requested: needsSummary.length,
         summarized: aiSummaries.size,
-        feedbackReviews: [...aiReasons.values()].filter((reason) => reason === "feedback-review").length
+        feedbackReviews: [...aiReasons.values()].filter((reason) => reason === "feedback-review").length,
+        experienceReviews: [...aiReasons.values()].filter((reason) => reason === "experience-review").length
       },
       sources: channelResults
     },

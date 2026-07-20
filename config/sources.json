@@ -1,5 +1,5 @@
 {
-  "lookbackDays": 8,
+  "lookbackDays": 30,
   "maxArticles": 80,
   "historyMaxArticles": 400,
   "historyRetentionDays": 730,

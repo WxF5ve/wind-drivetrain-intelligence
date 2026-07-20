@@ -87,6 +87,17 @@ async function inspectLayout(page, label) {
     if (await desktop.locator('[data-feedback="useful"]').getAttribute("aria-pressed") !== "true") {
       throw new Error("Feedback selection was not persisted");
     }
+    await desktop.locator(".experience-panel summary").click();
+    const experienceControls = await desktop.locator("[data-experience-form] select").count();
+    if (experienceControls !== 7) throw new Error(`Expected 7 structured experience controls, found ${experienceControls}`);
+    await desktop.locator('[name="applicability"]').selectOption("supports");
+    await desktop.locator('[data-experience-form] button[type="submit"]').click();
+    await desktop.waitForTimeout(100);
+    const experienceStored = await desktop.evaluate(() => {
+      const stored = JSON.parse(localStorage.getItem("wind-intel-experiences") || "{}");
+      return Object.values(stored)[0]?.applicability || "";
+    });
+    if (experienceStored !== "supports") throw new Error("Structured experience was not persisted locally");
     await desktop.screenshot({ path: path.join(outputDir, "detail-dialog.png") });
     await desktop.locator("#close-dialog").click();
     await desktop.locator('[data-sort="personal"]').click();
@@ -112,7 +123,7 @@ async function inspectLayout(page, label) {
       throw new Error(`Browser console errors:\n${consoleErrors.join("\n")}`);
     }
 
-    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults, reliabilityScore }, null, 2));
+    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults, reliabilityScore, experienceControls, experienceStored }, null, 2));
   } finally {
     if (browser) await browser.close();
     server.kill();

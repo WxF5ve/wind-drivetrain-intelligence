@@ -240,6 +240,39 @@ test("public articles expose provenance without carrying source snippets", async
   assert.equal(typeof article.reliability.score, "number");
 });
 
+test("paper metadata and quantitative findings are normalized for public display", async () => {
+  const { toPublicArticle } = await import("./articles.mjs");
+  const article = toPublicArticle({
+    title: "Wind turbine bearing study",
+    snippet: "A detailed public abstract for a wind turbine bearing study.",
+    source: "Journal of Testing",
+    sourceType: "论文",
+    region: "海外",
+    url: "https://doi.org/10.1000/test",
+    evidence: {
+      journal: "Journal of Testing",
+      authors: ["A. Engineer", "B. Researcher"],
+      issnL: "1234-5678",
+      sourceMetrics: { provider: "OpenAlex", twoYearMeanCitedness: 3.2, hIndex: 45 }
+    }
+  }, {
+    titleZh: "风电轴承研究",
+    summary: "公开摘要总结",
+    keyPoints: ["要点一", "要点二", "要点三"],
+    engineeringImpact: "需要结合现场工况验证工程适用性。",
+    category: "学术论文",
+    tags: ["轴承", "论文"],
+    paperDetails: {
+      objective: "研究轴承故障",
+      quantitativeFindings: [{ metric: "准确率", value: "95", unit: "%", evidence: "摘要" }]
+    }
+  });
+  assert.equal(article.titleZh, "风电轴承研究");
+  assert.equal(article.evidence.authors.length, 2);
+  assert.equal(article.evidence.sourceMetrics.twoYearMeanCitedness, 3.2);
+  assert.equal(article.paperDetails.quantitativeFindings[0].unit, "%");
+});
+
 test("peer-reviewed DOI records score above unsupported company claims", () => {
   const paper = assessReliability({
     title: "Wind turbine gearbox vibration study",

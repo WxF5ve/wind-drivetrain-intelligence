@@ -10,6 +10,7 @@ const state = {
   saved: new Set(readStorage("wind-intel-saved", [])),
   watchlist: readStorage("wind-intel-watchlist", ["白色蚀刻裂纹", "行星架轴承", "油液监测"]),
   feedback: readObjectStorage("wind-intel-feedback", {}),
+  experiences: readObjectStorage("wind-intel-experiences", {}),
   clientId: readClientId()
 };
 
@@ -150,12 +151,18 @@ function articleSearchScore(article) {
 
   const fields = {
     title: article.title.toLowerCase(),
+    titleZh: (article.titleZh || "").toLowerCase(),
     tags: article.tags.join(" ").toLowerCase(),
     summary: article.summary.toLowerCase(),
     points: article.keyPoints.join(" ").toLowerCase(),
     impact: (article.engineeringImpact || "").toLowerCase(),
     source: article.source.toLowerCase(),
-    classification: `${article.category} ${article.region} ${article.sourceType}`.toLowerCase()
+    classification: `${article.category} ${article.region} ${article.sourceType}`.toLowerCase(),
+    structured: JSON.stringify({
+      evidence: article.evidence || {},
+      paper: article.paperDetails || {},
+      industry: article.industryDetails || {}
+    }).toLowerCase()
   };
 
   return tokens.reduce((score, token) => {
@@ -163,12 +170,14 @@ function articleSearchScore(article) {
     return (
       score +
       (fields.title.includes(token) ? 8 : 0) +
+      (fields.titleZh.includes(token) ? 8 : 0) +
       (fields.tags.includes(token) ? 5 : 0) +
       (fields.summary.includes(token) ? 3 : 0) +
       (fields.points.includes(token) ? 2 : 0) +
       (fields.impact.includes(token) ? 2 : 0) +
       (fields.source.includes(token) ? 1 : 0) +
       (fields.classification.includes(token) ? 1 : 0)
+      + (fields.structured.includes(token) ? 2 : 0)
     );
   }, (article.relevanceScore || 0) + (article.reliability?.score || 0) / 10);
 }
@@ -266,6 +275,7 @@ function renderWeeklyBrief() {
 function articleCard(article) {
   const saved = state.saved.has(article.id);
   const reliability = article.reliability || { score: 0, grade: "D", label: "待评估" };
+  const displayTitle = article.titleZh || article.title;
   return `
     <article class="article-card" data-id="${escapeHtml(article.id)}">
       <div class="article-media">
@@ -286,7 +296,7 @@ function articleCard(article) {
           <span class="reading-time">${article.readingMinutes || 4} 分钟</span>
         </div>
         <h3 class="article-title">
-          <button type="button" data-action="details">${highlight(article.title)}</button>
+          <button type="button" data-action="details">${highlight(displayTitle)}</button>
         </h3>
         <p class="article-summary">${highlight(article.summary)}</p>
         <div class="article-footer">
@@ -429,9 +439,177 @@ function findArticle(id) {
   return state.articles.find((article) => article.id === id);
 }
 
+function definitionRows(rows) {
+  const visible = rows.filter(([, value]) => value !== "" && value !== null && value !== undefined);
+  if (!visible.length) return "";
+  return `<dl class="detail-grid">${visible.map(([label, value]) => `
+    <div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>
+  `).join("")}</dl>`;
+}
+
+function renderPaperMetadata(article) {
+  if (article.sourceType !== "论文") return "";
+  const evidence = article.evidence || {};
+  const metrics = evidence.sourceMetrics || {};
+  const pages = [evidence.firstPage, evidence.lastPage].filter(Boolean).join("-");
+  const metricValue = Number(metrics.twoYearMeanCitedness || 0);
+  return `
+    <section class="detail-section paper-metadata">
+      <h3>论文与期刊</h3>
+      ${definitionRows([
+        ["期刊", evidence.journal || article.source],
+        ["作者", (evidence.authors || []).join("、")],
+        ["DOI", evidence.doi],
+        ["ISSN-L", evidence.issnL],
+        ["出版社", evidence.publisher],
+        ["卷期", [evidence.volume && `Vol. ${evidence.volume}`, evidence.issue && `No. ${evidence.issue}`].filter(Boolean).join(" / ")],
+        ["页码", pages],
+        ["论文被引", Number(evidence.citedByCount || 0) ? `${evidence.citedByCount} 次（OpenAlex）` : ""],
+        ["2年平均被引率", metricValue ? `${metricValue}（OpenAlex，非 JCR 影响因子）` : ""],
+        ["期刊 h-index", Number(metrics.hIndex || 0) ? `${metrics.hIndex}（OpenAlex）` : ""],
+        ["开放获取", evidence.isOpenAccess ? "是" : ""]
+      ])}
+    </section>
+  `;
+}
+
+function renderPaperDetails(article) {
+  if (article.sourceType !== "论文") return "";
+  const details = article.paperDetails || {};
+  const findings = details.quantitativeFindings || [];
+  return `
+    <section class="detail-section">
+      <h3>研究设计</h3>
+      ${definitionRows([
+        ["研究目标", details.objective],
+        ["方法", details.methods],
+        ["试验对象", details.testObject],
+        ["工况与边界", details.operatingConditions]
+      ]) || '<p class="detail-empty">公开摘要未披露完整研究设计。</p>'}
+      <h3>量化结论</h3>
+      ${findings.length ? `<div class="quantitative-list">${findings.map((item) => `
+        <div class="quantitative-row">
+          <div class="quantitative-value"><strong>${escapeHtml(item.value)}${item.unit ? ` ${escapeHtml(item.unit)}` : ""}</strong><span>${escapeHtml(item.metric)}</span></div>
+          <div>${item.comparison ? `<p>${escapeHtml(item.comparison)}</p>` : ""}${item.conditions ? `<p>条件：${escapeHtml(item.conditions)}</p>` : ""}${item.evidence ? `<p>依据：${escapeHtml(item.evidence)}</p>` : ""}</div>
+        </div>
+      `).join("")}</div>` : '<p class="detail-empty">公开摘要未披露可核查的量化结果。</p>'}
+      ${(details.limitations || []).length ? `<h3>研究局限</h3><ul class="limitations-list">${details.limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
+    </section>
+  `;
+}
+
+function renderIndustryDetails(article) {
+  if (article.intelligenceType !== "industry") return "";
+  const details = article.industryDetails || {};
+  return `
+    <section class="detail-section">
+      <h3>行业事件</h3>
+      ${definitionRows([
+        ["事件", details.eventType],
+        ["企业", (details.companies || []).join("、")],
+        ["地点", details.location],
+        ["容量", details.capacity],
+        ["金额", details.investment],
+        ["时间线", details.timeline],
+        ["供应链影响", details.supplyChainImpact],
+        ["核验状态", details.verificationStatus]
+      ])}
+      ${(details.quantitativeFacts || []).length ? `<h3>量化事实</h3><ul class="fact-list">${details.quantitativeFacts.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
+    </section>
+  `;
+}
+
+const experienceOptions = {
+  applicability: {
+    supports: "符合工程经验",
+    conditional: "有条件适用",
+    contradicts: "与工程经验冲突",
+    uncertain: "暂不确定"
+  },
+  component: {
+    gearbox: "齿轮箱总成",
+    planetary: "行星级",
+    high_speed: "高速级",
+    main_bearing: "主轴承",
+    gear_bearing: "齿轮箱轴承",
+    lubrication: "润滑系统",
+    monitoring: "状态监测",
+    drivetrain: "传动链",
+    other: "其他"
+  },
+  failureMode: {
+    micropitting: "微点蚀",
+    wec: "白色蚀刻裂纹",
+    scuffing: "胶合",
+    tooth_failure: "断齿/齿根裂纹",
+    bearing_damage: "轴承损伤",
+    electrical_damage: "电蚀",
+    lubrication: "润滑问题",
+    monitoring: "监测诊断",
+    loads: "载荷与均载",
+    manufacturing: "材料与制造",
+    other: "其他",
+    not_applicable: "不涉及失效"
+  },
+  evidenceLevel: {
+    test_report: "试验报告",
+    failure_analysis: "失效分析",
+    multiple_cases: "多个案例",
+    single_case: "单个案例",
+    engineering_judgment: "工程判断"
+  },
+  powerRange: {
+    under_5mw: "5 MW 以下",
+    "5_10mw": "5-10 MW",
+    over_10mw: "10 MW 以上",
+    unknown: "未限定"
+  },
+  environment: {
+    onshore: "陆上风场",
+    offshore: "海上风场",
+    test_bench: "试验台",
+    unknown: "未限定"
+  }
+};
+
+function selectOptions(group, selected, fallback) {
+  return Object.entries(experienceOptions[group]).map(([value, label]) =>
+    `<option value="${escapeHtml(value)}" ${value === (selected || fallback) ? "selected" : ""}>${escapeHtml(label)}</option>`
+  ).join("");
+}
+
+function renderExperiencePanel(article) {
+  const selected = state.experiences[article.id] || {};
+  const aggregate = article.engineeringExperience || {};
+  const aggregateLabel = aggregate.total
+    ? `${aggregate.total} 份 · 支持 ${aggregate.supports || 0} · 有条件 ${aggregate.conditional || 0} · 冲突 ${aggregate.contradicts || 0}`
+    : "暂无聚合经验";
+  return `
+    <details class="experience-panel">
+      <summary><span><i data-lucide="wrench"></i>工程经验</span><small>${escapeHtml(aggregateLabel)}</small></summary>
+      <form class="experience-form" data-experience-form data-id="${escapeHtml(article.id)}">
+        <div class="experience-grid">
+          <label>适用判断<select name="applicability" required>${selectOptions("applicability", selected.applicability, "uncertain")}</select></label>
+          <label>相关部件<select name="component" required>${selectOptions("component", selected.component, "gearbox")}</select></label>
+          <label>失效/主题<select name="failureMode" required>${selectOptions("failureMode", selected.failureMode, "not_applicable")}</select></label>
+          <label>证据等级<select name="evidenceLevel" required>${selectOptions("evidenceLevel", selected.evidenceLevel, "engineering_judgment")}</select></label>
+          <label>功率区间<select name="powerRange" required>${selectOptions("powerRange", selected.powerRange, "unknown")}</select></label>
+          <label>应用场景<select name="environment" required>${selectOptions("environment", selected.environment, "unknown")}</select></label>
+          <label>置信度<select name="confidence" required>${[1, 2, 3, 4, 5].map((value) => `<option value="${value}" ${Number(selected.confidence || 3) === value ? "selected" : ""}>${value}</option>`).join("")}</select></label>
+        </div>
+        <div class="experience-actions">
+          <button class="primary-button" type="submit"><i data-lucide="send"></i>提交经验</button>
+          ${selected.applicability ? `<button class="quiet-button" type="button" data-experience-clear data-id="${escapeHtml(article.id)}"><i data-lucide="trash-2"></i>撤销</button>` : ""}
+        </div>
+      </form>
+    </details>
+  `;
+}
+
 function openArticle(article) {
   if (!article) return;
-  updateShareMetadata(`${article.title}｜风传智研`, article.summary);
+  const displayTitle = article.titleZh || article.title;
+  updateShareMetadata(`${displayTitle}｜风传智研`, article.summary);
   elements.dialogSource.textContent = `${article.source} · ${article.sourceType}`;
   const linkLabel = article.linkType === "aggregator" ? "聚合跳转" : "发布方原文";
   const reliability = article.reliability || { score: 0, grade: "D", label: "待评估", factors: [], limitations: [], feedback: {} };
@@ -439,7 +617,8 @@ function openArticle(article) {
   const aggregateTotal = reliability.feedback?.total || 0;
   elements.dialogContent.innerHTML = `
     <article class="dialog-article">
-      <h2>${escapeHtml(article.title)}</h2>
+      <h2>${escapeHtml(displayTitle)}</h2>
+      ${article.titleZh && article.titleZh !== article.title ? `<p class="original-title">${escapeHtml(article.title)}</p>` : ""}
       <div class="dialog-meta">
         <span>${escapeHtml(article.region)}</span>
         <span>·</span>
@@ -451,8 +630,12 @@ function openArticle(article) {
         <span><i data-lucide="shield-check"></i> 来源可追溯</span>
         <span>${escapeHtml(article.sourceChannel || "网络公开来源")}</span>
         <span>${linkLabel}</span>
+        ${article.aiAnalysis?.provider ? `<span>${escapeHtml(article.aiAnalysis.provider)} AI 摘要</span>` : ""}
       </div>
+      ${renderPaperMetadata(article)}
       <p class="dialog-summary">${escapeHtml(article.summary)}</p>
+      ${renderPaperDetails(article)}
+      ${renderIndustryDetails(article)}
       <section class="reliability-section" aria-labelledby="reliability-title">
         <div class="reliability-heading">
           <div>
@@ -480,6 +663,7 @@ function openArticle(article) {
       <div class="tag-list" style="margin-top: 18px">
         ${(article.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
       </div>
+      ${renderExperiencePanel(article)}
       <section class="feedback-section" aria-labelledby="feedback-title">
         <div>
           <h3 id="feedback-title">你的判断</h3>
@@ -543,6 +727,88 @@ async function sendCentralFeedback(article, vote) {
   const pending = readObjectStorage("wind-intel-feedback-pending", {});
   delete pending[article.id];
   writeStorage("wind-intel-feedback-pending", pending);
+}
+
+async function sendCentralExperience(article, experience) {
+  if (!runtimeConfig.feedbackEndpoint) return;
+  const endpoint = new URL("experience", runtimeConfig.feedbackEndpoint.endsWith("/")
+    ? runtimeConfig.feedbackEndpoint
+    : `${runtimeConfig.feedbackEndpoint}/`);
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      articleId: article.id,
+      clientId: state.clientId,
+      ...experience,
+      submittedAt: new Date().toISOString()
+    })
+  });
+  if (!response.ok) throw new Error(`Experience API ${response.status}`);
+  const pending = readObjectStorage("wind-intel-experience-pending", {});
+  delete pending[article.id];
+  writeStorage("wind-intel-experience-pending", pending);
+}
+
+function queuePendingExperience(article, experience) {
+  const pending = readObjectStorage("wind-intel-experience-pending", {});
+  pending[article.id] = { ...experience, updatedAt: new Date().toISOString() };
+  writeStorage("wind-intel-experience-pending", pending);
+}
+
+async function flushPendingExperience() {
+  if (!runtimeConfig.feedbackEndpoint) return;
+  const pending = readObjectStorage("wind-intel-experience-pending", {});
+  for (const [articleId, experience] of Object.entries(pending)) {
+    const article = findArticle(articleId);
+    if (!article) continue;
+    try {
+      await sendCentralExperience(article, experience);
+    } catch {
+      return;
+    }
+  }
+}
+
+async function submitExperience(article, form) {
+  if (!article || !form) return;
+  const data = new FormData(form);
+  const experience = {
+    applicability: data.get("applicability"),
+    component: data.get("component"),
+    failureMode: data.get("failureMode"),
+    evidenceLevel: data.get("evidenceLevel"),
+    powerRange: data.get("powerRange"),
+    environment: data.get("environment"),
+    confidence: Number(data.get("confidence") || 3)
+  };
+  state.experiences[article.id] = experience;
+  writeStorage("wind-intel-experiences", state.experiences);
+  openArticle(article);
+  try {
+    await sendCentralExperience(article, experience);
+    showToast(runtimeConfig.feedbackEndpoint ? "工程经验已匿名汇总" : "工程经验已保存在本机");
+  } catch (error) {
+    console.warn(error);
+    queuePendingExperience(article, experience);
+    showToast("工程经验已保存在本机，下次打开自动重试");
+  }
+}
+
+async function clearExperience(article) {
+  if (!article) return;
+  delete state.experiences[article.id];
+  writeStorage("wind-intel-experiences", state.experiences);
+  openArticle(article);
+  const clearPayload = { action: "clear" };
+  try {
+    await sendCentralExperience(article, clearPayload);
+    showToast("已撤销工程经验");
+  } catch (error) {
+    console.warn(error);
+    queuePendingExperience(article, clearPayload);
+    showToast("撤销请求已保存在本机");
+  }
 }
 
 function queuePendingFeedback(article, vote) {
@@ -779,6 +1045,11 @@ function wireEvents() {
     if (event.target === elements.articleDialog) closeArticle();
     const button = event.target.closest("[data-dialog-action]");
     const feedbackButton = event.target.closest("[data-feedback]");
+    const experienceClear = event.target.closest("[data-experience-clear]");
+    if (experienceClear) {
+      clearExperience(findArticle(experienceClear.dataset.id));
+      return;
+    }
     if (feedbackButton) {
       submitFeedback(findArticle(feedbackButton.dataset.id), feedbackButton.dataset.feedback);
       return;
@@ -788,6 +1059,12 @@ function wireEvents() {
       if (button.dataset.dialogAction === "save") toggleSaved(article);
       if (button.dataset.dialogAction === "share") shareArticle(article);
     }
+  });
+  elements.articleDialog.addEventListener("submit", (event) => {
+    const form = event.target.closest("[data-experience-form]");
+    if (!form) return;
+    event.preventDefault();
+    submitExperience(findArticle(form.dataset.id), form);
   });
   elements.articleDialog.addEventListener("close", () => {
     const url = new URL(window.location.href);
@@ -819,6 +1096,7 @@ async function loadData() {
     renderFeed();
     renderIcons();
     flushPendingFeedback();
+    flushPendingExperience();
 
     const articleId = new URL(window.location.href).searchParams.get("article");
     if (articleId) openArticle(findArticle(articleId));
