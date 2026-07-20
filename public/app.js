@@ -465,7 +465,7 @@ function renderPaperMetadata(article) {
         ["卷期", [evidence.volume && `Vol. ${evidence.volume}`, evidence.issue && `No. ${evidence.issue}`].filter(Boolean).join(" / ")],
         ["页码", pages],
         ["论文被引", Number(evidence.citedByCount || 0) ? `${evidence.citedByCount} 次（OpenAlex）` : ""],
-        ["2年平均被引率", metricValue ? `${metricValue}（OpenAlex，非 JCR 影响因子）` : ""],
+        ["2年平均被引率", metricValue ? `${Number(metricValue.toFixed(2))}（OpenAlex，非 JCR 影响因子）` : ""],
         ["期刊 h-index", Number(metrics.hIndex || 0) ? `${metrics.hIndex}（OpenAlex）` : ""],
         ["开放获取", evidence.isOpenAccess ? "是" : ""]
       ])}
