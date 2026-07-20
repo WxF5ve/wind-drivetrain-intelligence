@@ -79,25 +79,35 @@ async function inspectLayout(page, label) {
     await desktop.waitForTimeout(150);
     const searchResults = await desktop.locator(".article-card").count();
     if (searchResults < 1) throw new Error("Search for 轴承 returned no results");
-    await desktop.locator(".article-card").first().locator('[data-action="details"]').click();
+    await desktop.locator(".article-card").first().locator('[data-action="experience"]').click();
     await desktop.waitForSelector("#article-dialog[open]");
+    if (!(await desktop.locator(".experience-panel").evaluate((element) => element.open))) {
+      throw new Error("Experience entry did not expand the structured form");
+    }
     const reliabilityScore = Number(await desktop.locator(".reliability-score strong").textContent());
     if (!Number.isFinite(reliabilityScore) || reliabilityScore <= 0) throw new Error("Reliability score did not render");
     await desktop.locator('[data-feedback="useful"]').click();
     if (await desktop.locator('[data-feedback="useful"]').getAttribute("aria-pressed") !== "true") {
       throw new Error("Feedback selection was not persisted");
     }
-    await desktop.locator(".experience-panel summary").click();
     const experienceControls = await desktop.locator("[data-experience-form] select").count();
-    if (experienceControls !== 7) throw new Error(`Expected 7 structured experience controls, found ${experienceControls}`);
+    if (experienceControls !== 6) throw new Error(`Expected 6 structured experience controls, found ${experienceControls}`);
+    const insight = "现场连续监测中，建议先排除转速波动和传感器安装差异，再判断该结论是否适用于当前传动链。";
+    await desktop.locator('[name="insight"]').fill(insight);
     await desktop.locator('[name="applicability"]').selectOption("supports");
+    await desktop.locator('[name="privacyConfirmed"]').check();
     await desktop.locator('[data-experience-form] button[type="submit"]').click();
     await desktop.waitForTimeout(100);
+    if (!(await desktop.locator(".experience-panel").evaluate((element) => element.open))) {
+      throw new Error("Experience form collapsed after submission");
+    }
     const experienceStored = await desktop.evaluate(() => {
       const stored = JSON.parse(localStorage.getItem("wind-intel-experiences") || "{}");
-      return Object.values(stored)[0]?.applicability || "";
+      return Object.values(stored)[0] || {};
     });
-    if (experienceStored !== "supports") throw new Error("Structured experience was not persisted locally");
+    if (experienceStored.applicability !== "supports" || experienceStored.insight !== insight) {
+      throw new Error("Written engineering experience was not persisted locally");
+    }
     await desktop.screenshot({ path: path.join(outputDir, "detail-dialog.png") });
     await desktop.locator("#close-dialog").click();
     await desktop.locator('[data-sort="personal"]').click();
@@ -118,6 +128,19 @@ async function inspectLayout(page, label) {
     await mobile.locator("#open-filters-mobile").click();
     await mobile.waitForSelector("#filter-dialog[open]");
     await mobile.screenshot({ path: path.join(outputDir, "mobile-filters.png") });
+    await mobile.locator('#filter-dialog button[value="cancel"]').click();
+    await mobile.locator(".article-card").first().locator('[data-action="experience"]').click();
+    await mobile.waitForSelector('#article-dialog[open] textarea[name="insight"]', { state: "visible" });
+    await mobile.waitForTimeout(700);
+    const mobileDialogOverflow = await mobile.locator(".article-dialog").evaluate((element) =>
+      element.scrollWidth > element.clientWidth + 1
+    );
+    if (mobileDialogOverflow) throw new Error("Mobile experience form has horizontal overflow");
+    const mobileExperienceTop = await mobile.locator(".experience-insight-field").evaluate((element) =>
+      element.getBoundingClientRect().top
+    );
+    if (mobileExperienceTop > 420) throw new Error("Mobile experience entry did not scroll to the form");
+    await mobile.screenshot({ path: path.join(outputDir, "mobile-experience.png") });
 
     if (consoleErrors.length) {
       throw new Error(`Browser console errors:\n${consoleErrors.join("\n")}`);

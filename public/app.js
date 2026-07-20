@@ -299,6 +299,11 @@ function articleCard(article) {
           <button type="button" data-action="details">${highlight(displayTitle)}</button>
         </h3>
         <p class="article-summary">${highlight(article.summary)}</p>
+        <button class="experience-link" type="button" data-action="experience">
+          <i data-lucide="wrench"></i>
+          <span>工程经验</span>
+          <i data-lucide="chevron-right"></i>
+        </button>
         <div class="article-footer">
           <div class="tag-list">
             ${(article.tags || []).slice(0, 3).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
@@ -581,13 +586,20 @@ function selectOptions(group, selected, fallback) {
 function renderExperiencePanel(article) {
   const selected = state.experiences[article.id] || {};
   const aggregate = article.engineeringExperience || {};
-  const aggregateLabel = aggregate.total
-    ? `${aggregate.total} 份 · 支持 ${aggregate.supports || 0} · 有条件 ${aggregate.conditional || 0} · 冲突 ${aggregate.contradicts || 0}`
-    : "暂无聚合经验";
+  const aggregateLabel = aggregate.writtenTotal
+    ? `已收录 ${aggregate.writtenTotal} 条工程心得`
+    : "欢迎补充工程心得";
+  const insight = String(selected.insight || "");
   return `
     <details class="experience-panel">
-      <summary><span><i data-lucide="wrench"></i>工程经验</span><small>${escapeHtml(aggregateLabel)}</small></summary>
+      <summary><span><i data-lucide="wrench"></i>工程经验交流</span><small>${escapeHtml(aggregateLabel)}</small></summary>
       <form class="experience-form" data-experience-form data-id="${escapeHtml(article.id)}">
+        <label class="experience-insight-field">
+          <span><strong>工程心得</strong><small data-insight-count>${insight.length}/1200</small></span>
+          <textarea name="insight" rows="6" minlength="20" maxlength="1200" required autocomplete="off" placeholder="请写下你观察到的现象、适用边界、判断依据、反例或建议的验证方法">${escapeHtml(insight)}</textarea>
+          <small>请勿填写公司、项目、机组编号、人员姓名及其他保密信息。</small>
+        </label>
+        <div class="experience-context-heading">适用背景</div>
         <div class="experience-grid">
           <label>适用判断<select name="applicability" required>${selectOptions("applicability", selected.applicability, "uncertain")}</select></label>
           <label>相关部件<select name="component" required>${selectOptions("component", selected.component, "gearbox")}</select></label>
@@ -595,10 +607,10 @@ function renderExperiencePanel(article) {
           <label>证据等级<select name="evidenceLevel" required>${selectOptions("evidenceLevel", selected.evidenceLevel, "engineering_judgment")}</select></label>
           <label>功率区间<select name="powerRange" required>${selectOptions("powerRange", selected.powerRange, "unknown")}</select></label>
           <label>应用场景<select name="environment" required>${selectOptions("environment", selected.environment, "unknown")}</select></label>
-          <label>置信度<select name="confidence" required>${[1, 2, 3, 4, 5].map((value) => `<option value="${value}" ${Number(selected.confidence || 3) === value ? "selected" : ""}>${value}</option>`).join("")}</select></label>
         </div>
+        <label class="privacy-confirmation"><input type="checkbox" name="privacyConfirmed" required><span>我确认这段心得不含单位或项目保密信息</span></label>
         <div class="experience-actions">
-          <button class="primary-button" type="submit"><i data-lucide="send"></i>提交经验</button>
+          <button class="primary-button" type="submit"><i data-lucide="send"></i>提交工程心得</button>
           ${selected.applicability ? `<button class="quiet-button" type="button" data-experience-clear data-id="${escapeHtml(article.id)}"><i data-lucide="trash-2"></i>撤销</button>` : ""}
         </div>
       </form>
@@ -606,7 +618,27 @@ function renderExperiencePanel(article) {
   `;
 }
 
-function openArticle(article) {
+function renderExperienceReview(article) {
+  const review = article.experienceReview || {};
+  if (!review.synthesis) return "";
+  return `
+    <section class="experience-review" aria-labelledby="experience-review-title">
+      <div class="experience-review-heading">
+        <div>
+          <span>ENGINEER REVIEW</span>
+          <h3 id="experience-review-title">工程经验复核</h3>
+        </div>
+        <strong>${escapeHtml(review.status || "待核验")}</strong>
+      </div>
+      <p>${escapeHtml(review.synthesis)}</p>
+      ${review.applicableBoundary ? `<div><b>适用边界</b><span>${escapeHtml(review.applicableBoundary)}</span></div>` : ""}
+      ${review.verificationNeeded ? `<div><b>待验证</b><span>${escapeHtml(review.verificationNeeded)}</span></div>` : ""}
+      <small>基于匿名工程师心得归纳，不替代论文、试验报告或失效分析原始证据。</small>
+    </section>
+  `;
+}
+
+function openArticle(article, { focusExperience = false } = {}) {
   if (!article) return;
   const displayTitle = article.titleZh || article.title;
   updateShareMetadata(`${displayTitle}｜风传智研`, article.summary);
@@ -660,6 +692,7 @@ function openArticle(article) {
       </ol>
       <h3>工程启示</h3>
       <div class="impact-box">${escapeHtml(article.engineeringImpact)}</div>
+      ${renderExperienceReview(article)}
       <div class="tag-list" style="margin-top: 18px">
         ${(article.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
       </div>
@@ -705,6 +738,16 @@ function openArticle(article) {
   shareUrl.searchParams.set("article", article.id);
   history.replaceState(null, "", shareUrl);
   renderIcons();
+  if (focusExperience) {
+    const panel = elements.dialogContent.querySelector(".experience-panel");
+    if (panel) {
+      panel.open = true;
+      requestAnimationFrame(() => {
+        panel.scrollIntoView({ behavior: "smooth", block: "start" });
+        panel.querySelector("textarea")?.focus({ preventScroll: true });
+      });
+    }
+  }
 }
 
 async function sendCentralFeedback(article, vote) {
@@ -774,17 +817,17 @@ async function submitExperience(article, form) {
   if (!article || !form) return;
   const data = new FormData(form);
   const experience = {
+    insight: String(data.get("insight") || "").replace(/\r\n?/g, "\n").trim().slice(0, 1200),
     applicability: data.get("applicability"),
     component: data.get("component"),
     failureMode: data.get("failureMode"),
     evidenceLevel: data.get("evidenceLevel"),
     powerRange: data.get("powerRange"),
-    environment: data.get("environment"),
-    confidence: Number(data.get("confidence") || 3)
+    environment: data.get("environment")
   };
   state.experiences[article.id] = experience;
   writeStorage("wind-intel-experiences", state.experiences);
-  openArticle(article);
+  openArticle(article, { focusExperience: true });
   try {
     await sendCentralExperience(article, experience);
     showToast(runtimeConfig.feedbackEndpoint ? "工程经验已匿名汇总" : "工程经验已保存在本机");
@@ -799,7 +842,7 @@ async function clearExperience(article) {
   if (!article) return;
   delete state.experiences[article.id];
   writeStorage("wind-intel-experiences", state.experiences);
-  openArticle(article);
+  openArticle(article, { focusExperience: true });
   const clearPayload = { action: "clear" };
   try {
     await sendCentralExperience(article, clearPayload);
@@ -833,6 +876,7 @@ async function flushPendingFeedback() {
 
 async function submitFeedback(article, vote) {
   if (!article || !["useful", "questionable", "irrelevant", "broken"].includes(vote)) return;
+  const keepExperienceOpen = Boolean(elements.dialogContent.querySelector(".experience-panel")?.open);
   if (state.feedback[article.id] === vote) {
     delete state.feedback[article.id];
   } else {
@@ -841,7 +885,7 @@ async function submitFeedback(article, vote) {
   writeStorage("wind-intel-feedback", state.feedback);
   const selected = state.feedback[article.id] || "";
   renderFeed();
-  openArticle(article);
+  openArticle(article, { focusExperience: keepExperienceOpen });
   try {
     await sendCentralFeedback(article, selected || "clear");
     showToast(!selected
@@ -976,6 +1020,7 @@ function wireEvents() {
     if (!card || !action) return;
     const article = findArticle(card.dataset.id);
     if (action === "details") openArticle(article);
+    if (action === "experience") openArticle(article, { focusExperience: true });
     if (action === "save") toggleSaved(article);
     if (action === "share") shareArticle(article);
   });
@@ -1065,6 +1110,12 @@ function wireEvents() {
     if (!form) return;
     event.preventDefault();
     submitExperience(findArticle(form.dataset.id), form);
+  });
+  elements.articleDialog.addEventListener("input", (event) => {
+    const input = event.target.closest('textarea[name="insight"]');
+    if (!input) return;
+    const counter = input.closest(".experience-insight-field")?.querySelector("[data-insight-count]");
+    if (counter) counter.textContent = `${input.value.length}/1200`;
   });
   elements.articleDialog.addEventListener("close", () => {
     const url = new URL(window.location.href);

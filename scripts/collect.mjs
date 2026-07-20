@@ -10,6 +10,7 @@ import {
   isDomainRelevant,
   isIndustryRelevant,
   makeArticleId,
+  publicEngineeringExperience,
   recalibratePublishedArticle,
   relevanceScore,
   resolveNewsUrl,
@@ -58,7 +59,7 @@ function abstractFromInvertedIndex(index) {
   return words.filter(Boolean).join(" ");
 }
 
-async function fetchJson(url, retries = 2) {
+async function fetchJson(url, retries = 2, extraHeaders = {}) {
   for (let attempt = 0; attempt <= retries; attempt += 1) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 25000);
@@ -66,7 +67,8 @@ async function fetchJson(url, retries = 2) {
       const response = await fetch(url, {
         headers: {
           Accept: "application/json",
-          "User-Agent": "wind-drivetrain-intelligence/0.1 (weekly engineering research digest)"
+          "User-Agent": "wind-drivetrain-intelligence/0.1 (weekly engineering research digest)",
+          ...extraHeaders
         },
         signal: controller.signal
       });
@@ -564,7 +566,8 @@ async function loadFeedbackAggregates() {
   let loadedFromEndpoint = false;
   if (endpoint) {
     try {
-      payload = await fetchJson(endpoint);
+      const token = String(process.env.FEEDBACK_AGGREGATE_TOKEN || "");
+      payload = await fetchJson(endpoint, 2, token ? { Authorization: `Bearer ${token}` } : {});
       loadedFromEndpoint = true;
       console.log("已载入集中用户反馈汇总。");
     } catch (error) {
@@ -682,7 +685,7 @@ async function main() {
     else if (forceAiSummary) reason = "manual-refresh";
     else if (feedbackNeedsAiReview(article.feedbackAggregate, existing.aiAnalysis, minimumFeedback)) {
       reason = "feedback-review";
-    } else if (experienceNeedsAiReview(article.engineeringExperience, existing.aiAnalysis, 3)) {
+    } else if (experienceNeedsAiReview(article.engineeringExperience, existing.aiAnalysis, 2)) {
       reason = "experience-review";
     }
     if (!reason) return [];
@@ -695,8 +698,16 @@ async function main() {
   });
   const candidateIds = new Set(candidates.map((article) => article.id));
   for (const existing of previousArticles) {
-    if (candidateIds.has(existing.id) || !needsDetailedSummaryUpgrade(existing)) continue;
-    aiReasons.set(existing.id, "historical-schema-upgrade");
+    if (candidateIds.has(existing.id)) continue;
+    let reason = "";
+    if (needsDetailedSummaryUpgrade(existing)) reason = "historical-schema-upgrade";
+    else if (feedbackNeedsAiReview(existing.feedbackAggregate, existing.aiAnalysis, minimumFeedback)) {
+      reason = "feedback-review";
+    } else if (experienceNeedsAiReview(existing.engineeringExperience, existing.aiAnalysis, 2)) {
+      reason = "experience-review";
+    }
+    if (!reason) continue;
+    aiReasons.set(existing.id, reason);
     needsSummary.push({
       ...existing,
       queryTopic: existing.intelligenceType === "industry" ? "industry" : "technical",
@@ -704,7 +715,7 @@ async function main() {
       previousSummary: existing.summary || "",
       feedbackAggregate: existing.feedbackAggregate || {},
       engineeringExperience: existing.engineeringExperience || {},
-      aiReviewReason: "historical-schema-upgrade"
+      aiReviewReason: reason
     });
   }
   let aiSummaries = new Map();
@@ -743,7 +754,8 @@ async function main() {
           category: existing.category,
           tags: existing.tags,
           paperDetails: existing.paperDetails,
-          industryDetails: existing.industryDetails
+          industryDetails: existing.industryDetails,
+          experienceReview: existing.experienceReview
         }
       : createFallbackSummary(article);
     const publicArticle = toPublicArticle(
@@ -757,7 +769,9 @@ async function main() {
         generatedAt: now.toISOString(),
         reason: aiReasons.get(article.id) || "new",
         feedbackTotalAtAnalysis: Number(article.feedbackAggregate?.total || 0),
-        experienceTotalAtAnalysis: Number(article.engineeringExperience?.total || 0)
+        experienceTotalAtAnalysis: Number(article.engineeringExperience?.total || 0),
+        experienceWrittenTotalAtAnalysis: Number(article.engineeringExperience?.writtenTotal || 0),
+        experienceLatestAtAnalysis: String(article.engineeringExperience?.latestInsightAt || "")
       };
     } else if (existing?.aiAnalysis) {
       publicArticle.aiAnalysis = existing.aiAnalysis;
@@ -782,13 +796,16 @@ async function main() {
       tags: generatedSummary.tags,
       paperDetails: generatedSummary.paperDetails,
       industryDetails: generatedSummary.industryDetails,
+      experienceReview: generatedSummary.experienceReview,
       aiAnalysis: {
         provider: aiProvider.id,
         model: aiProvider.model,
         generatedAt: now.toISOString(),
-        reason: "historical-schema-upgrade",
+        reason: aiReasons.get(article.id) || "historical-schema-upgrade",
         feedbackTotalAtAnalysis: Number(article.feedbackAggregate?.total || 0),
-        experienceTotalAtAnalysis: Number(article.engineeringExperience?.total || 0)
+        experienceTotalAtAnalysis: Number(article.engineeringExperience?.total || 0),
+        experienceWrittenTotalAtAnalysis: Number(article.engineeringExperience?.writtenTotal || 0),
+        experienceLatestAtAnalysis: String(article.engineeringExperience?.latestInsightAt || "")
       }
     };
   });
@@ -797,7 +814,11 @@ async function main() {
   const articles = deduplicateArticles([...currentArticles, ...updatedPreviousArticles])
     .filter((article) => new Date(article.publishedAt).getTime() >= historyCutoff)
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-    .slice(0, historyMaxArticles);
+    .slice(0, historyMaxArticles)
+    .map((article) => ({
+      ...article,
+      engineeringExperience: publicEngineeringExperience(article.engineeringExperience)
+    }));
 
   const channelResults = results.map((result, index) => ({
     id: jobs[index].id,

@@ -705,6 +705,35 @@ mark {
   -webkit-line-clamp: 2;
 }
 
+.experience-link {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  padding: 0;
+  color: var(--green);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.experience-link:hover {
+  color: var(--green-dark);
+}
+
+.experience-link svg {
+  width: 13px;
+  height: 13px;
+}
+
+.experience-link svg:last-child {
+  width: 12px;
+  height: 12px;
+}
+
 .article-footer {
   display: flex;
   align-items: center;
@@ -1419,6 +1448,51 @@ dialog::backdrop {
   padding: 4px 0 18px;
 }
 
+.experience-insight-field {
+  display: grid;
+  gap: 7px;
+}
+
+.experience-insight-field > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.experience-insight-field > span small,
+.experience-insight-field > small {
+  color: var(--ink-soft);
+  font-size: 10px;
+}
+
+.experience-insight-field textarea {
+  width: 100%;
+  min-height: 132px;
+  resize: vertical;
+  padding: 11px 12px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line-dark);
+  border-radius: 5px;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.experience-insight-field textarea:focus {
+  border-color: var(--green);
+  outline: 2px solid var(--green-soft);
+}
+
+.experience-context-heading {
+  margin: 17px 0 8px;
+  color: var(--ink-soft);
+  font-size: 10px;
+  font-weight: 750;
+}
+
 .experience-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1449,6 +1523,82 @@ dialog::backdrop {
   display: flex;
   gap: 8px;
   margin-top: 14px;
+}
+
+.privacy-confirmation {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 14px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.privacy-confirmation input {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  margin: 2px 0 0;
+  accent-color: var(--green);
+}
+
+.experience-review {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 17px 18px;
+  background: #eef5f2;
+  border-left: 3px solid var(--cyan);
+}
+
+.experience-review-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.experience-review-heading span {
+  color: var(--cyan);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.dialog-article .experience-review-heading h3 {
+  margin: 1px 0 0;
+}
+
+.experience-review-heading > strong {
+  color: var(--cyan);
+  font-size: 11px;
+}
+
+.experience-review p,
+.experience-review div,
+.experience-review small {
+  margin: 0;
+}
+
+.experience-review p {
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.experience-review > div:not(.experience-review-heading) {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 10px;
+  font-size: 12px;
+}
+
+.experience-review > div b {
+  color: var(--ink-soft);
+}
+
+.experience-review > small {
+  color: var(--ink-soft);
+  font-size: 10px;
 }
 
 .experience-actions button {
@@ -1743,6 +1893,12 @@ dialog::backdrop {
     font-size: 12px;
     line-height: 1.65;
     -webkit-line-clamp: 3;
+  }
+
+  .experience-link {
+    min-height: 25px;
+    margin-top: 4px;
+    font-size: 10px;
   }
 
   .article-footer {

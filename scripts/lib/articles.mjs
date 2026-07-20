@@ -514,6 +514,12 @@ export function createFallbackSummary(article) {
       supplyChainImpact: "",
       verificationStatus: "",
       quantitativeFacts: []
+    },
+    experienceReview: {
+      status: "无经验",
+      synthesis: "",
+      applicableBoundary: "",
+      verificationNeeded: ""
     }
   };
 }
@@ -561,13 +567,14 @@ function normalizedIndustryDetails(value = {}) {
   };
 }
 
-function normalizedEngineeringExperience(value = {}) {
+export function publicEngineeringExperience(value = {}) {
   const counts = {};
   for (const key of ["total", "supports", "conditional", "contradicts", "uncertain"]) {
     counts[key] = Math.max(0, Number(value[key] || 0));
   }
   return {
     ...counts,
+    writtenTotal: Math.max(0, Number(value.writtenTotal || 0)),
     averageConfidence: Math.max(0, Math.min(5, Number(value.averageConfidence || 0))),
     evidence: Object.fromEntries(
       Object.entries(value.evidence || {})
@@ -579,6 +586,17 @@ function normalizedEngineeringExperience(value = {}) {
       .map((item) => ({ context: cleanText(item?.context || ""), count: Math.max(0, Number(item?.count || 0)) }))
       .filter((item) => item.context && item.count > 0)
       .slice(0, 5)
+  };
+}
+
+function normalizedExperienceReview(value = {}) {
+  value = value && typeof value === "object" ? value : {};
+  const statuses = new Set(["无经验", "待核验", "部分支持", "有条件适用", "存在冲突"]);
+  return {
+    status: statuses.has(value.status) ? value.status : "无经验",
+    synthesis: cleanText(value.synthesis || ""),
+    applicableBoundary: cleanText(value.applicableBoundary || ""),
+    verificationNeeded: cleanText(value.verificationNeeded || "")
   };
 }
 
@@ -628,7 +646,7 @@ export function toPublicArticle(article, summaryData) {
     },
     corroboratingSources: [...new Set(article.corroboratingSources || [])].map(cleanText).filter(Boolean).slice(0, 6),
     feedbackAggregate: normalizedFeedback(article.feedbackAggregate),
-    engineeringExperience: normalizedEngineeringExperience(article.engineeringExperience),
+    engineeringExperience: publicEngineeringExperience(article.engineeringExperience),
     intelligenceType: article.queryTopic === "industry" ? "industry" : "technical",
     titleZh: cleanText(summaryData.titleZh || (/[\p{Script=Han}]/u.test(article.title || "") ? article.title : "")),
     category: article.queryTopic === "industry" ? "厂商动态" : summaryData.category || inferCategory(article),
@@ -641,6 +659,7 @@ export function toPublicArticle(article, summaryData) {
     engineeringImpact: cleanText(summaryData.engineeringImpact),
     paperDetails: normalizedPaperDetails(summaryData.paperDetails),
     industryDetails: normalizedIndustryDetails(summaryData.industryDetails),
+    experienceReview: normalizedExperienceReview(summaryData.experienceReview),
     readingMinutes: Math.max(2, Math.min(12, Math.round(cleanText(article.snippet).length / 240) + 2)),
     relevanceScore: Number(article.relevanceScore || 0)
   };

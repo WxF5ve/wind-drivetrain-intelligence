@@ -223,7 +223,13 @@ test("public articles expose provenance without carrying source snippets", async
       url: "https://example.com/article?utm_source=rss",
       sourceUrl: "https://example.com/",
       sourceChannel: "Google News RSS",
-      linkType: "publisher"
+      linkType: "publisher",
+      engineeringExperience: {
+        total: 2,
+        writtenTotal: 2,
+        latestInsightAt: "2026-07-20T09:00:00Z",
+        insights: [{ text: "这段工程心得只能提供给受保护的模型复核流程。" }]
+      }
     },
     {
       summary: "可核查摘要",
@@ -237,6 +243,9 @@ test("public articles expose provenance without carrying source snippets", async
   assert.equal(article.sourceChannel, "Google News RSS");
   assert.equal(article.linkType, "publisher");
   assert.equal("snippet" in article, false);
+  assert.equal(article.engineeringExperience.writtenTotal, 2);
+  assert.equal("insights" in article.engineeringExperience, false);
+  assert.equal("latestInsightAt" in article.engineeringExperience, false);
   assert.equal(typeof article.reliability.score, "number");
 });
 

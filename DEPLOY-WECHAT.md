@@ -46,4 +46,6 @@ git push -u origin main
 
 ## 可靠度与反馈
 
-页面会显示可解释可靠度，不将自动评分等同于事实确认。反馈服务当前部署在 `https://wind-intel-feedback.wxf5ve-wind-intel.workers.dev`，仅保存文章 ID、匿名浏览器 ID、四类反馈和更新时间。同一浏览器对同一文章只保留最新选择。
+页面会显示可解释可靠度，不将自动评分等同于事实确认。反馈服务当前部署在 `https://wind-intel-feedback.wxf5ve-wind-intel.workers.dev`，保存文章 ID、匿名浏览器 ID、四类反馈、工程心得、适用背景和更新时间。同一浏览器对同一文章只保留最新一份心得。
+
+心得正文不会进入公开网页数据。Cloudflare Worker secret `AGGREGATE_TOKEN` 必须与 GitHub Repository secret `FEEDBACK_AGGREGATE_TOKEN` 使用同一随机值；只有每周采集任务可读取去标识化的心得正文。公开 `/aggregates` 请求只能看到数量和结构化统计。

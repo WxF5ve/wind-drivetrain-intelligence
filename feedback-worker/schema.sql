@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS engineering_experience (
   evidence_level TEXT NOT NULL CHECK (evidence_level IN ('test_report', 'failure_analysis', 'multiple_cases', 'single_case', 'engineering_judgment')),
   power_range TEXT NOT NULL CHECK (power_range IN ('under_5mw', '5_10mw', 'over_10mw', 'unknown')),
   environment TEXT NOT NULL CHECK (environment IN ('onshore', 'offshore', 'test_bench', 'unknown')),
+  insight_text TEXT NOT NULL DEFAULT '' CHECK (length(insight_text) <= 1200),
   confidence INTEGER NOT NULL CHECK (confidence BETWEEN 1 AND 5),
   updated_at TEXT NOT NULL DEFAULT (datetime('now')),
   PRIMARY KEY (article_id, client_id)

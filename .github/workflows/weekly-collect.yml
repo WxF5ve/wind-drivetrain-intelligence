@@ -66,6 +66,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5-mini' }}
           FEEDBACK_AGGREGATE_URL: ${{ vars.FEEDBACK_AGGREGATE_URL }}
+          FEEDBACK_AGGREGATE_TOKEN: ${{ secrets.FEEDBACK_AGGREGATE_TOKEN }}
 
       - name: Commit refreshed intelligence
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'

@@ -1,4 +1,6 @@
 const VALID_VOTES = new Set(["useful", "questionable", "irrelevant", "broken"]);
+const MIN_INSIGHT_LENGTH = 20;
+const MAX_INSIGHT_LENGTH = 1200;
 const EXPERIENCE_FIELDS = {
   applicability: new Set(["supports", "conditional", "contradicts", "uncertain"]),
   component: new Set(["gearbox", "planetary", "high_speed", "main_bearing", "gear_bearing", "lubrication", "monitoring", "drivetrain", "other"]),
@@ -37,6 +39,14 @@ function validFeedback(payload) {
     (VALID_VOTES.has(payload.vote) || payload.vote === "clear");
 }
 
+function normalizeInsight(value) {
+  return String(value || "")
+    .replace(/\r\n?/g, "\n")
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
+    .trim()
+    .slice(0, MAX_INSIGHT_LENGTH);
+}
+
 async function saveFeedback(request, env, origin) {
   const payload = await request.json().catch(() => null);
   if (!validFeedback(payload)) return json({ ok: false, error: "invalid_feedback" }, 400, origin);
@@ -69,8 +79,7 @@ function validExperience(payload) {
       EXPERIENCE_FIELDS.evidenceLevel.has(payload.evidenceLevel) &&
       EXPERIENCE_FIELDS.powerRange.has(payload.powerRange) &&
       EXPERIENCE_FIELDS.environment.has(payload.environment) &&
-      Number.isInteger(Number(payload.confidence)) &&
-      Number(payload.confidence) >= 1 && Number(payload.confidence) <= 5
+      normalizeInsight(payload.insight).length >= MIN_INSIGHT_LENGTH
     ));
 }
 
@@ -83,11 +92,12 @@ async function saveExperience(request, env, origin) {
       .run();
     return json({ ok: true }, 200, origin);
   }
+  const insight = normalizeInsight(payload.insight);
   await env.DB.prepare(`
     INSERT INTO engineering_experience (
       article_id, client_id, applicability, component, failure_mode, evidence_level,
-      power_range, environment, confidence, updated_at
-    ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, datetime('now'))
+      power_range, environment, insight_text, confidence, updated_at
+    ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, 3, datetime('now'))
     ON CONFLICT(article_id, client_id) DO UPDATE SET
       applicability = excluded.applicability,
       component = excluded.component,
@@ -95,7 +105,7 @@ async function saveExperience(request, env, origin) {
       evidence_level = excluded.evidence_level,
       power_range = excluded.power_range,
       environment = excluded.environment,
-      confidence = excluded.confidence,
+      insight_text = excluded.insight_text,
       updated_at = datetime('now')
   `).bind(
     payload.articleId,
@@ -106,12 +116,12 @@ async function saveExperience(request, env, origin) {
     payload.evidenceLevel,
     payload.powerRange,
     payload.environment,
-    Number(payload.confidence)
+    insight
   ).run();
   return json({ ok: true }, 200, origin);
 }
 
-function experienceAggregates(rows = []) {
+function experienceAggregates(rows = [], { includeInsights = false } = {}) {
   const articles = new Map();
   for (const row of rows) {
     const article = articles.get(row.article_id) || {
@@ -122,7 +132,10 @@ function experienceAggregates(rows = []) {
       uncertain: 0,
       confidenceTotal: 0,
       evidence: {},
-      contexts: {}
+      contexts: {},
+      writtenTotal: 0,
+      latestInsightAt: "",
+      insights: []
     };
     article.total += 1;
     article[row.applicability] = (article[row.applicability] || 0) + 1;
@@ -130,6 +143,23 @@ function experienceAggregates(rows = []) {
     article.evidence[row.evidence_level] = (article.evidence[row.evidence_level] || 0) + 1;
     const contextKey = [row.component, row.failure_mode, row.power_range, row.environment].join("|");
     article.contexts[contextKey] = (article.contexts[contextKey] || 0) + 1;
+    const insight = normalizeInsight(row.insight_text);
+    if (insight.length >= MIN_INSIGHT_LENGTH) {
+      article.writtenTotal += 1;
+      if (String(row.updated_at || "") > article.latestInsightAt) article.latestInsightAt = String(row.updated_at || "");
+      if (includeInsights) {
+        article.insights.push({
+          text: insight,
+          applicability: row.applicability,
+          component: row.component,
+          failureMode: row.failure_mode,
+          evidenceLevel: row.evidence_level,
+          powerRange: row.power_range,
+          environment: row.environment,
+          updatedAt: String(row.updated_at || "")
+        });
+      }
+    }
     articles.set(row.article_id, article);
   }
   return new Map([...articles.entries()].map(([articleId, value]) => [articleId, {
@@ -139,15 +169,28 @@ function experienceAggregates(rows = []) {
     contradicts: value.contradicts,
     uncertain: value.uncertain,
     averageConfidence: value.total ? Number((value.confidenceTotal / value.total).toFixed(2)) : 0,
+    writtenTotal: value.writtenTotal,
     evidence: value.evidence,
     topContexts: Object.entries(value.contexts)
       .sort((left, right) => right[1] - left[1])
       .slice(0, 5)
-      .map(([context, count]) => ({ context, count }))
+      .map(([context, count]) => ({ context, count })),
+    ...(includeInsights ? {
+      latestInsightAt: value.latestInsightAt,
+      insights: value.insights
+        .sort((left, right) => right.updatedAt.localeCompare(left.updatedAt))
+        .slice(0, 25)
+    } : {})
   }]));
 }
 
-async function aggregateFeedback(env, origin) {
+function canReadInsights(request, env) {
+  const token = String(env.AGGREGATE_TOKEN || "");
+  return token.length >= 32 && request.headers.get("Authorization") === `Bearer ${token}`;
+}
+
+async function aggregateFeedback(request, env, origin) {
+  const includeInsights = canReadInsights(request, env);
   const [result, experienceResult] = await Promise.all([
     env.DB.prepare(`
     SELECT
@@ -161,11 +204,12 @@ async function aggregateFeedback(env, origin) {
     GROUP BY article_id
   `).all(),
     env.DB.prepare(`
-      SELECT article_id, applicability, component, failure_mode, evidence_level, power_range, environment, confidence
+      SELECT article_id, applicability, component, failure_mode, evidence_level, power_range, environment,
+        confidence, insight_text, updated_at
       FROM engineering_experience
     `).all()
   ]);
-  const experiences = experienceAggregates(experienceResult.results || []);
+  const experiences = experienceAggregates(experienceResult.results || [], { includeInsights });
   const articles = new Map();
   for (const row of result.results || []) {
     articles.set(row.article_id, {
@@ -210,7 +254,7 @@ export default {
       });
     }
     if (url.pathname === "/health" && request.method === "GET") return json({ ok: true }, 200, origin);
-    if (url.pathname === "/aggregates" && request.method === "GET") return aggregateFeedback(env, origin);
+    if (url.pathname === "/aggregates" && request.method === "GET") return aggregateFeedback(request, env, origin);
     if (!origin) return json({ ok: false, error: "origin_not_allowed" }, 403);
     if (url.pathname === "/feedback" && request.method === "POST") return saveFeedback(request, env, origin);
     if (url.pathname === "/experience" && request.method === "POST") return saveExperience(request, env, origin);

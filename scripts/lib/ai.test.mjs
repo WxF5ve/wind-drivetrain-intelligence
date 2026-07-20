@@ -44,6 +44,12 @@ function validSummary(id = "article-1") {
         supplyChainImpact: "",
         verificationStatus: "",
         quantitativeFacts: []
+      },
+      experienceReview: {
+        status: "无经验",
+        synthesis: "",
+        applicableBoundary: "",
+        verificationNeeded: ""
       }
     }]
   };
@@ -77,6 +83,20 @@ test("contradictory engineering experience triggers a bounded AI review", () => 
   assert.equal(experienceNeedsAiReview(experience, null, 3), true);
   assert.equal(experienceNeedsAiReview(experience, { experienceTotalAtAnalysis: 5 }, 3), false);
   assert.equal(experienceNeedsAiReview({ total: 5, contradicts: 1 }, null, 3), false);
+});
+
+test("new written engineering insights trigger review without treating one comment as consensus", () => {
+  const insights = [
+    { text: "现场多次观察到该现象与润滑状态相关，仍需结合油样结果交叉确认。", updatedAt: "2026-07-20T08:00:00Z" },
+    { text: "试验台结果只覆盖稳定转速，变速工况下的适用性仍需要进一步验证。", updatedAt: "2026-07-20T09:00:00Z" }
+  ];
+  const experience = { total: 2, writtenTotal: 2, insights };
+  assert.equal(experienceNeedsAiReview(experience, null, 2), true);
+  assert.equal(experienceNeedsAiReview({ total: 1, writtenTotal: 1, insights: insights.slice(0, 1) }, null, 2), false);
+  assert.equal(experienceNeedsAiReview(experience, {
+    experienceWrittenTotalAtAnalysis: 2,
+    experienceLatestAtAnalysis: "2026-07-20T09:00:00Z"
+  }, 2), false);
 });
 
 test("AI JSON parser accepts fenced JSON and rejects unsupported records", () => {
@@ -138,6 +158,45 @@ test("DeepSeek adapter uses chat completions and validates its response", async 
   assert.equal(request.body.response_format.type, "json_object");
   assert.equal(request.options.headers.Authorization, "Bearer secret-value");
   assert.equal(summaries.size, 1);
+});
+
+test("DeepSeek receives written experience as untrusted review context", async () => {
+  let requestBody;
+  const fetchImpl = async (_url, options) => {
+    requestBody = JSON.parse(options.body);
+    const response = validSummary();
+    response.articles[0].experienceReview = {
+      status: "有条件适用",
+      synthesis: "工程师反馈认为该结论需要限定在稳定转速和已排除传感器安装差异的场景。",
+      applicableBoundary: "稳定转速工况",
+      verificationNeeded: "变速工况复测"
+    };
+    return new Response(JSON.stringify({
+      choices: [{ message: { content: JSON.stringify(response) } }]
+    }), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  const summaries = await summarizeBatch({
+    id: "deepseek",
+    label: "DeepSeek",
+    apiKey: "secret-value",
+    baseUrl: "https://api.deepseek.com",
+    model: "deepseek-chat"
+  }, [{
+    id: "article-1",
+    title: "Wind turbine gearbox monitoring",
+    source: "Journal",
+    sourceType: "论文",
+    snippet: "A public abstract about wind turbine gearbox condition monitoring.",
+    engineeringExperience: {
+      writtenTotal: 2,
+      insights: [
+        { text: "现场连续监测中应先排除传感器安装差异，再判断该结论是否适用于当前传动链。" },
+        { text: "试验台只覆盖稳定转速，变速工况下仍需要进一步验证算法稳健性。" }
+      ]
+    }
+  }], fetchImpl);
+  assert.match(requestBody.messages[1].content, /现场连续监测/);
+  assert.equal(summaries.get("article-1").experienceReview.status, "有条件适用");
 });
 
 test("batch summarization preserves successful batches when one batch fails", async () => {

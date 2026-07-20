@@ -1,4 +1,4 @@
-const CACHE_NAME = "wind-intel-v3";
+const CACHE_NAME = "wind-intel-v4";
 const scopedUrl = (path) => new URL(path, self.registration.scope).toString();
 const APP_SHELL = [
   "./",
