@@ -630,7 +630,7 @@ export function toPublicArticle(article, summaryData) {
     feedbackAggregate: normalizedFeedback(article.feedbackAggregate),
     engineeringExperience: normalizedEngineeringExperience(article.engineeringExperience),
     intelligenceType: article.queryTopic === "industry" ? "industry" : "technical",
-    titleZh: cleanText(summaryData.titleZh || ""),
+    titleZh: cleanText(summaryData.titleZh || (/[\p{Script=Han}]/u.test(article.title || "") ? article.title : "")),
     category: article.queryTopic === "industry" ? "厂商动态" : summaryData.category || inferCategory(article),
     tags: [...new Set([
       ...(summaryData.tags?.length ? summaryData.tags : inferTags(article)),

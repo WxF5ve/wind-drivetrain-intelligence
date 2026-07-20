@@ -168,3 +168,30 @@ test("batch summarization preserves successful batches when one batch fails", as
   assert.equal(summaries.has("article-2"), true);
   assert.equal(errors.length, 1);
 });
+
+test("missing records in a valid batch are retried individually", async () => {
+  let call = 0;
+  const fetchImpl = async () => {
+    call += 1;
+    const id = call === 1 ? "article-1" : "article-2";
+    return new Response(JSON.stringify({
+      choices: [{ message: { content: JSON.stringify(validSummary(id)) } }]
+    }), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  const articles = ["article-1", "article-2"].map((id) => ({
+    id,
+    title: "Wind turbine gearbox monitoring",
+    source: "Journal",
+    sourceType: "论文",
+    snippet: "The reported identification accuracy was 95%."
+  }));
+  const summaries = await summarizeInBatches({
+    id: "deepseek",
+    label: "DeepSeek",
+    apiKey: "secret-value",
+    baseUrl: "https://api.deepseek.com",
+    model: "deepseek-chat"
+  }, articles, { batchSize: 2, fetchImpl });
+  assert.equal(summaries.size, 2);
+  assert.equal(call, 2);
+});

@@ -361,6 +361,16 @@ export async function summarizeInBatches(provider, articles, options = {}) {
     try {
       const batchSummaries = await summarizeBatch(provider, batch, options.fetchImpl || fetch);
       batchSummaries.forEach((value, key) => summaries.set(key, value));
+      const missing = batch.filter((article) => !batchSummaries.has(article.id));
+      for (const article of missing) {
+        try {
+          const retrySummary = await summarizeBatch(provider, [article], options.fetchImpl || fetch);
+          retrySummary.forEach((value, key) => summaries.set(key, value));
+        } catch (error) {
+          errors.push(error);
+          options.onBatchError?.(error, `${index / batchSize + 1}.${article.id}`, [article]);
+        }
+      }
     } catch (error) {
       errors.push(error);
       options.onBatchError?.(error, index / batchSize + 1, batch);
