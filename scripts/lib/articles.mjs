@@ -204,6 +204,56 @@ function normalizedFeedback(value = {}) {
   return result;
 }
 
+export function feedbackCalibration(value, minimumFeedback = 5) {
+  const feedback = normalizedFeedback(value);
+  if (feedback.total < Number(minimumFeedback || 5)) {
+    return { feedback, adjustment: 0, explanation: "" };
+  }
+  const sentiment = (feedback.useful - feedback.questionable - 1.25 * feedback.irrelevant - 1.5 * feedback.broken) /
+    feedback.total;
+  const adjustment = Math.max(-6, Math.min(6, Math.round(sentiment * 6)));
+  const direction = adjustment >= 0 ? `+${adjustment}` : String(adjustment);
+  return {
+    feedback,
+    adjustment,
+    explanation: `${feedback.total} 份用户反馈带来 ${direction} 分有限修正`
+  };
+}
+
+export function recalibratePublishedArticle(article, feedbackValue, minimumFeedback = 5) {
+  const calibration = feedbackCalibration(feedbackValue, minimumFeedback);
+  const reliability = article.reliability;
+  if (!reliability?.dimensions) {
+    return { ...article, feedbackAggregate: calibration.feedback };
+  }
+  const previousAdjustment = Number(reliability.dimensions.feedback || 0);
+  const score = Math.max(0, Math.min(100,
+    Number(reliability.score || 0) - previousAdjustment + calibration.adjustment
+  ));
+  const level = reliabilityLevel(score);
+  const factors = (reliability.factors || []).filter((item) => !String(item).includes("用户反馈带来"));
+  if (calibration.explanation) factors.push(calibration.explanation);
+  const limitations = (reliability.limitations || [])
+    .filter((item) => !String(item).includes("用户集中标记"));
+  if (calibration.feedback.total >= Number(minimumFeedback || 5) && calibration.adjustment < 0) {
+    limitations.push("用户集中标记需核验或不相关，已进入后续复核队列");
+  }
+  return {
+    ...article,
+    feedbackAggregate: calibration.feedback,
+    reliability: {
+      ...reliability,
+      score,
+      grade: level.grade,
+      label: level.label,
+      dimensions: { ...reliability.dimensions, feedback: calibration.adjustment },
+      factors: factors.slice(-5),
+      limitations: limitations.slice(-5),
+      feedback: calibration.feedback
+    }
+  };
+}
+
 export function assessReliability(article, config = {}) {
   const hostname = articleHostname(article);
   const evidence = article.evidence || {};
@@ -302,15 +352,10 @@ export function assessReliability(article, config = {}) {
     limitations.push("资料为预印本，尚未确认同行评审状态");
   }
 
-  const feedback = normalizedFeedback(article.feedbackAggregate);
-  const minimumFeedback = Number(config.minimumFeedback || 5);
-  if (feedback.total >= minimumFeedback) {
-    const sentiment = (feedback.useful - feedback.questionable - 1.25 * feedback.irrelevant - 1.5 * feedback.broken) /
-      feedback.total;
-    dimensions.feedback = Math.max(-6, Math.min(6, Math.round(sentiment * 6)));
-    const direction = dimensions.feedback >= 0 ? `+${dimensions.feedback}` : String(dimensions.feedback);
-    factors.push(`${feedback.total} 份用户反馈带来 ${direction} 分有限修正`);
-  }
+  const calibration = feedbackCalibration(article.feedbackAggregate, config.minimumFeedback);
+  const feedback = calibration.feedback;
+  dimensions.feedback = calibration.adjustment;
+  if (calibration.explanation) factors.push(calibration.explanation);
 
   const rawScore = Object.values(dimensions).reduce((sum, value) => sum + value, 0);
   const score = Math.max(0, Math.min(100, Math.round(rawScore)));

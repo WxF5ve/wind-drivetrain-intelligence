@@ -24,15 +24,15 @@ git push -u origin main
 
 当前项目已经发布到：`https://wxf5ve.github.io/wind-drivetrain-intelligence/`
 
-## AI 中文摘要
+## DeepSeek AI 中文摘要
 
-没有 API 密钥时，系统使用发布方公开摘要或明确提示“原始索引未提供可用摘要”，不会补造结论。需要结构化中文工程摘要时：
+没有 API 密钥时，系统使用发布方公开摘要或明确提示“原始索引未提供可用摘要”，不会补造结论。需要 DeepSeek 结构化中文工程摘要时：
 
 1. 在 GitHub 仓库打开 `Settings > Secrets and variables > Actions`。
-2. 新建 Repository secret：`OPENAI_API_KEY`。
-3. 可选新建 Repository variable：`OPENAI_MODEL`。
+2. 新建 Repository secret：`DEEPSEEK_API_KEY`。
+3. 可选新建 Repository variable：`DEEPSEEK_MODEL`，默认值为 `deepseek-chat`。
 
-密钥只放在 GitHub Secret 中，不要写进网页、数据文件或聊天消息。
+密钥只放在 GitHub Secret 中，不要写进网页、数据文件或聊天消息。每周任务只总结新增资料；达到反馈阈值的争议资料会触发 AI 复核，并保留复核原因和反馈快照。
 
 ## 临时发布
 

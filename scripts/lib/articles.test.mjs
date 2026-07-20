@@ -5,11 +5,13 @@ import {
   cleanText,
   createFallbackSummary,
   deduplicateArticles,
+  feedbackCalibration,
   inferCategory,
   inferTags,
   isDomainRelevant,
   isIndustryRelevant,
   normalizeUrl,
+  recalibratePublishedArticle,
   relevanceScore,
   resolveNewsUrl
 } from "./articles.mjs";
@@ -282,4 +284,25 @@ test("small feedback samples do not change reliability", () => {
   const withoutFeedback = assessReliability(base, reliabilityConfig);
   const withSmallSample = assessReliability({ ...base, feedbackAggregate: { useful: 4 } }, reliabilityConfig);
   assert.equal(withSmallSample.score, withoutFeedback.score);
+});
+
+test("published history is recalibrated when aggregate feedback changes", () => {
+  const article = {
+    id: "article-1",
+    reliability: {
+      score: 70,
+      grade: "B",
+      label: "较高",
+      dimensions: { feedback: 2 },
+      factors: ["5 份用户反馈带来 +2 分有限修正"],
+      limitations: []
+    }
+  };
+  const feedback = { useful: 0, questionable: 4, irrelevant: 2, broken: 0 };
+  const calibration = feedbackCalibration(feedback, 5);
+  const updated = recalibratePublishedArticle(article, feedback, 5);
+  assert.equal(calibration.adjustment, -6);
+  assert.equal(updated.reliability.score, 62);
+  assert.equal(updated.reliability.grade, "C");
+  assert.match(updated.reliability.limitations[0], /复核队列/);
 });

@@ -10,15 +10,23 @@ import {
   isDomainRelevant,
   isIndustryRelevant,
   makeArticleId,
+  recalibratePublishedArticle,
   relevanceScore,
   resolveNewsUrl,
   toPublicArticle
 } from "./lib/articles.mjs";
+import {
+  feedbackNeedsAiReview,
+  resolveAiProvider,
+  summarizeInBatches
+} from "./lib/ai.mjs";
 
 const projectRoot = fileURLToPath(new URL("../", import.meta.url));
 const configPath = new URL("../config/sources.json", import.meta.url);
 const outputPath = new URL("../public/data/articles.json", import.meta.url);
 const dryRun = process.argv.includes("--dry-run");
+const forceAiSummary = process.argv.includes("--resummarize") ||
+  /^(?:1|true|yes)$/i.test(String(process.env.AI_RESUMMARIZE_EXISTING || ""));
 const now = new Date();
 const xmlParser = new XMLParser({
   ignoreAttributes: false,
@@ -431,118 +439,6 @@ async function collectOpenAlex(source, lookbackDays) {
     .filter((item) => item.title && item.url);
 }
 
-function extractOutputText(responseData) {
-  if (typeof responseData.output_text === "string") return responseData.output_text;
-  for (const output of responseData.output || []) {
-    for (const content of output.content || []) {
-      if (content.type === "output_text" && content.text) return content.text;
-    }
-  }
-  return "";
-}
-
-async function summarizeWithOpenAI(articles) {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey || !articles.length) return new Map();
-
-  const model = process.env.OPENAI_MODEL || "gpt-5.6-mini";
-  const schema = {
-    type: "object",
-    additionalProperties: false,
-    properties: {
-      articles: {
-        type: "array",
-        items: {
-          type: "object",
-          additionalProperties: false,
-          properties: {
-            id: { type: "string" },
-            summary: { type: "string" },
-            keyPoints: {
-              type: "array",
-              items: { type: "string" },
-              minItems: 3,
-              maxItems: 3
-            },
-            engineeringImpact: { type: "string" },
-            category: {
-              type: "string",
-              enum: ["齿轮箱", "轴承", "润滑", "状态监测", "白色蚀刻裂纹", "标准政策", "学术论文", "行业资讯", "厂商动态"]
-            },
-            tags: {
-              type: "array",
-              items: { type: "string" },
-              minItems: 2,
-              maxItems: 5
-            }
-          },
-          required: ["id", "summary", "keyPoints", "engineeringImpact", "category", "tags"]
-        }
-      }
-    },
-    required: ["articles"]
-  };
-
-  const inputArticles = articles.map((article) => ({
-    id: article.id,
-    title: article.title,
-    source: article.source,
-    sourceType: article.sourceType,
-    publishedAt: article.publishedAt,
-    snippet: cleanText(article.snippet).slice(0, 1800)
-  }));
-
-  const response = await fetch("https://api.openai.com/v1/responses", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model,
-      reasoning: { effort: "low" },
-      instructions: [
-        "你是风电齿轮箱与轴承研发情报分析助手。",
-        "仅依据给定标题和原始摘录总结，不得补造试验数据、结论或来源。",
-        "所有输出使用简洁中文，保留必要的英文缩写、标准号、材料名和故障机理术语。",
-        "summary 用 60-110 个汉字说明研究或资讯做了什么以及结论边界。",
-        "keyPoints 给出三条可核查的信息；engineeringImpact 说明对设计、验证、运维或供应链的潜在意义，并明确需要进一步验证之处。",
-        "论文统一归入“学术论文”；queryTopic 为 industry 的资料归入“厂商动态”；其余按最相关技术主题分类。"
-      ].join("\n"),
-      input: JSON.stringify(inputArticles),
-      text: {
-        format: {
-          type: "json_schema",
-          name: "wind_drivetrain_weekly_summary",
-          strict: true,
-          schema
-        }
-      }
-    })
-  });
-
-  if (!response.ok) {
-    const detail = await response.text();
-    throw new Error(`OpenAI summary failed: ${response.status} ${detail.slice(0, 300)}`);
-  }
-
-  const data = await response.json();
-  const text = extractOutputText(data);
-  if (!text) throw new Error("OpenAI summary returned no output text");
-  const parsed = JSON.parse(text);
-  return new Map((parsed.articles || []).map((item) => [item.id, item]));
-}
-
-async function summarizeInBatches(articles, batchSize = 8) {
-  const summaries = new Map();
-  for (let index = 0; index < articles.length; index += batchSize) {
-    const batch = articles.slice(index, index + batchSize);
-    const batchSummaries = await summarizeWithOpenAI(batch);
-    batchSummaries.forEach((value, key) => summaries.set(key, value));
-  }
-  return summaries;
-}
-
 function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
   const counts = new Map();
   for (const article of articles) {
@@ -605,15 +501,17 @@ async function loadFeedbackAggregates() {
   const localPath = new URL("../public/data/feedback-aggregates.json", import.meta.url);
   let payload = await readJson(localPath, { generatedAt: null, articles: {} });
   const endpoint = process.env.FEEDBACK_AGGREGATE_URL;
+  let loadedFromEndpoint = false;
   if (endpoint) {
     try {
       payload = await fetchJson(endpoint);
+      loadedFromEndpoint = true;
       console.log("已载入集中用户反馈汇总。");
     } catch (error) {
       console.warn(`集中反馈暂时不可用，继续使用本地汇总: ${error.message}`);
     }
   }
-  return { payload, map: feedbackArticleMap(payload) };
+  return { payload, map: feedbackArticleMap(payload), loadedFromEndpoint };
 }
 
 async function main() {
@@ -672,6 +570,19 @@ async function main() {
   });
 
   const relevantRawArticles = rawArticles.filter(isCandidateRelevant);
+  const minimumFeedback = Number(reliabilityConfig.minimumFeedback || 5);
+  const previousIsLive = process.env.COLLECT_RESET_HISTORY !== "1" &&
+    previous.collectionStatus?.dataMode === "live" &&
+    !previous.collectionStatus?.demo;
+  const previousArticles = (previousIsLive ? previous.articles || [] : []).map((article) =>
+    recalibratePublishedArticle(
+      article,
+      feedbackAggregates.map.get(article.id) ||
+        (feedbackAggregates.loadedFromEndpoint ? {} : article.feedbackAggregate || {}),
+      minimumFeedback
+    )
+  );
+  const previousByUrl = new Map(previousArticles.map((article) => [article.url, article]));
   const candidates = deduplicateArticles([...relevantRawArticles].sort((left, right) =>
     Number(right.queryTopic === "industry") - Number(left.queryTopic === "industry")
   ))
@@ -690,29 +601,51 @@ async function main() {
     })
     .slice(0, maxArticles);
 
-  const previousIsLive = process.env.COLLECT_RESET_HISTORY !== "1" &&
-    previous.collectionStatus?.dataMode === "live" &&
-    !previous.collectionStatus?.demo;
-  const previousArticles = previousIsLive ? previous.articles || [] : [];
-  const previousByUrl = new Map(previousArticles.map((article) => [article.url, article]));
-  const needsSummary = candidates.filter((article) => !previousByUrl.has(article.url));
+  const aiProvider = resolveAiProvider(process.env);
+  const aiReasons = new Map();
+  const needsSummary = candidates.flatMap((article) => {
+    const existing = previousByUrl.get(article.url);
+    let reason = "";
+    if (!existing) reason = "new";
+    else if (forceAiSummary) reason = "manual-refresh";
+    else if (feedbackNeedsAiReview(article.feedbackAggregate, existing.aiAnalysis, minimumFeedback)) {
+      reason = "feedback-review";
+    }
+    if (!reason) return [];
+    aiReasons.set(article.id, reason);
+    return [{
+      ...article,
+      previousSummary: existing?.summary || "",
+      aiReviewReason: reason
+    }];
+  });
   let aiSummaries = new Map();
 
-  if (process.env.OPENAI_API_KEY && needsSummary.length) {
+  if (aiProvider && needsSummary.length) {
     try {
-      console.log(`使用 ${process.env.OPENAI_MODEL || "gpt-5.6-mini"} 总结 ${needsSummary.length} 条新增资料...`);
-      aiSummaries = await summarizeInBatches(needsSummary);
+      const feedbackReviewCount = [...aiReasons.values()].filter((reason) => reason === "feedback-review").length;
+      console.log(`使用 ${aiProvider.label} ${aiProvider.model} 分析 ${needsSummary.length} 条资料，其中反馈复核 ${feedbackReviewCount} 条...`);
+      aiSummaries = await summarizeInBatches(aiProvider, needsSummary, {
+        onBatchError: (error, batchNumber) => {
+          console.warn(`AI 摘要第 ${batchNumber} 批失败，保留该批公开摘要: ${error.message}`);
+        }
+      });
     } catch (error) {
       console.warn(error.message);
       console.warn("本次改用规则摘要，采集结果仍会保存。");
     }
+  } else if (needsSummary.length) {
+    console.log("未配置可用 AI API Key，本次使用发布方公开摘要或明确的缺失提示。");
   } else {
-    console.log("未配置 OPENAI_API_KEY，本次使用规则摘要。");
+    console.log("本轮没有需要新增或复核的 AI 摘要。");
   }
 
   const currentArticles = candidates.map((article) => {
     const existing = previousByUrl.get(article.url);
-    const summaryData = existing
+    const generatedSummary = aiSummaries.get(article.id);
+    const summaryData = generatedSummary
+      ? generatedSummary
+      : existing
       ? {
           summary: existing.summary,
           keyPoints: existing.keyPoints,
@@ -720,11 +653,23 @@ async function main() {
           category: existing.category,
           tags: existing.tags
         }
-      : aiSummaries.get(article.id) || createFallbackSummary(article);
-    return toPublicArticle(
+      : createFallbackSummary(article);
+    const publicArticle = toPublicArticle(
       article,
       summaryData
     );
+    if (generatedSummary) {
+      publicArticle.aiAnalysis = {
+        provider: aiProvider.id,
+        model: aiProvider.model,
+        generatedAt: now.toISOString(),
+        reason: aiReasons.get(article.id) || "new",
+        feedbackTotalAtAnalysis: Number(article.feedbackAggregate?.total || 0)
+      };
+    } else if (existing?.aiAnalysis) {
+      publicArticle.aiAnalysis = existing.aiAnalysis;
+    }
+    return publicArticle;
   });
 
   const historyCutoff = now.getTime() - historyRetentionDays * 86400000;
@@ -758,6 +703,13 @@ async function main() {
       rawFetched: rawArticles.length,
       currentCount: currentArticles.length,
       archiveCount: articles.length,
+      ai: {
+        provider: aiProvider?.id || "none",
+        model: aiProvider?.model || "",
+        requested: needsSummary.length,
+        summarized: aiSummaries.size,
+        feedbackReviews: [...aiReasons.values()].filter((reason) => reason === "feedback-review").length
+      },
       sources: channelResults
     },
     reliabilityMethod: {
@@ -767,7 +719,7 @@ async function main() {
     },
     feedbackStatus: {
       aggregateGeneratedAt: feedbackAggregates.payload?.generatedAt || null,
-      centralized: Boolean(process.env.FEEDBACK_AGGREGATE_URL)
+      centralized: feedbackAggregates.loadedFromEndpoint
     },
     weeklyBrief: buildWeeklyBrief(currentArticles, lookbackDays, aiSummaries.size > 0, articles.length),
     articles

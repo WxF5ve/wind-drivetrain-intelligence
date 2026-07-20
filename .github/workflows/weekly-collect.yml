@@ -4,6 +4,22 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      resummarize:
+        description: "重新生成采集窗口内已有资料的 AI 摘要"
+        required: false
+        type: boolean
+        default: false
+      lookback_days:
+        description: "手动采集回看天数"
+        required: false
+        type: number
+        default: 8
+      max_articles:
+        description: "手动采集最大资料数"
+        required: false
+        type: number
+        default: 80
   schedule:
     # 每周一 08:30（北京时间）
     - cron: "30 0 * * 1"
@@ -40,8 +56,15 @@ jobs:
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: npm run collect
         env:
+          AI_PROVIDER: deepseek
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek-chat' }}
+          DEEPSEEK_BASE_URL: ${{ vars.DEEPSEEK_BASE_URL || 'https://api.deepseek.com' }}
+          AI_RESUMMARIZE_EXISTING: ${{ inputs.resummarize || 'false' }}
+          COLLECT_LOOKBACK_DAYS: ${{ inputs.lookback_days || '' }}
+          COLLECT_MAX_ARTICLES: ${{ inputs.max_articles || '' }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.6-mini' }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5-mini' }}
           FEEDBACK_AGGREGATE_URL: ${{ vars.FEEDBACK_AGGREGATE_URL }}
 
       - name: Commit refreshed intelligence

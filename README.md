@@ -15,7 +15,7 @@
 - 发布方原文 URL 解析、页面标题一致性校验和公开摘要元数据提取
 - 可解释可靠度评分：来源、证据、原文、交叉印证、声明风险和有限用户反馈修正
 - 用户反馈与个性化推荐：有价值、需核验、不相关、链接失效
-- 可选 OpenAI 结构化中文摘要，未配置密钥时使用规则摘要
+- DeepSeek 结构化中文摘要与反馈触发复核，未配置密钥时使用公开摘要
 - GitHub Actions 每周一 08:30（北京时间）自动刷新并发布
 
 `public/data/articles.json` 已由真实网络采集生成。生产数据会明确标记 `dataMode: live`、采集通道、采集时间和原文链接类型；演示数据不会进入正式资料库。
@@ -67,15 +67,18 @@ npm run build
 
 部署目录为 `dist`。设置 `PUBLIC_BASE_URL` 后构建，会自动写入微信分享卡片所需的绝对封面地址。
 
-如需中文 AI 结构化摘要，在本机或部署平台配置：
+推荐使用 DeepSeek 官方 API。Key 只放在本机环境变量或 GitHub Repository secret `DEEPSEEK_API_KEY`，不会进入网页和资料文件。
 
 ```powershell
-$env:OPENAI_API_KEY="..."
-$env:OPENAI_MODEL="gpt-5.6-mini"
+$env:AI_PROVIDER="deepseek"
+$env:DEEPSEEK_API_KEY="..."
+$env:DEEPSEEK_MODEL="deepseek-chat"
 node scripts/collect.mjs
 ```
 
-不要把密钥写入前端或提交到仓库。GitHub Actions 使用仓库 Secret `OPENAI_API_KEY`；模型可通过仓库变量 `OPENAI_MODEL` 调整。
+首次需要重新生成采集窗口内已有资料的摘要时运行 `npm run collect:resummarize`。后续每周只分析新增资料；达到最小反馈量且“需核验/不相关”占比达到阈值的资料会进入 AI 复核。模型输出必须通过 JSON 结构校验，调用失败时继续使用发布方公开摘要。
+
+OpenAI 仍可作为备用供应商：设置 `AI_PROVIDER=openai`、`OPENAI_API_KEY` 和 `OPENAI_MODEL`。不要把任何 API Key 写入前端或提交到仓库。
 
 ## 数据流程
 
@@ -87,7 +90,7 @@ flowchart LR
     D --> E["风电语境与传动链双重过滤"]
     C --> E
     E --> F["URL/标题去重与相关性排序"]
-    F --> G{"已配置 AI 密钥?"}
+    F --> G{"已配置 DeepSeek / AI 密钥?"}
     G -- "是" --> H["结构化中文工程摘要"]
     G -- "否" --> I["公开摘要元数据或明确缺失"]
     H --> J["真实历史资料库"]
