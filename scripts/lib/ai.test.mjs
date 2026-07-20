@@ -100,6 +100,18 @@ test("quantitative findings are removed when the source excerpt does not contain
   assert.equal(parsed.get("article-1").paperDetails.quantitativeFindings.length, 0);
 });
 
+test("not-applicable detail objects may be null without dropping the batch", () => {
+  const payload = validSummary();
+  payload.articles[0].industryDetails = null;
+  const parsed = parseSummaryJson(JSON.stringify(payload), [{
+    id: "article-1",
+    title: "Wind turbine gearbox monitoring",
+    snippet: "The reported identification accuracy was 95%."
+  }]);
+  assert.equal(parsed.size, 1);
+  assert.equal(parsed.get("article-1").industryDetails.eventType, "");
+});
+
 test("DeepSeek adapter uses chat completions and validates its response", async () => {
   let request;
   const fetchImpl = async (url, options) => {

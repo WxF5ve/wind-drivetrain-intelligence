@@ -188,6 +188,7 @@ function numericEvidenceMatches(value, sourceText) {
 }
 
 function parsedPaperDetails(value = {}, sourceText = "") {
+  value = value && typeof value === "object" ? value : {};
   const quantitativeFindings = (Array.isArray(value.quantitativeFindings) ? value.quantitativeFindings : [])
     .map((item) => ({
       metric: cleanText(item?.metric || ""),
@@ -213,6 +214,7 @@ function parsedPaperDetails(value = {}, sourceText = "") {
 }
 
 function parsedIndustryDetails(value = {}, sourceText = "") {
+  value = value && typeof value === "object" ? value : {};
   return {
     eventType: cleanText(value.eventType || "").slice(0, 120),
     companies: (Array.isArray(value.companies) ? value.companies : []).map(cleanText).filter(Boolean).slice(0, 8),

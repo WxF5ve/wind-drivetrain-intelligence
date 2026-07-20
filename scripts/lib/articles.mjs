@@ -519,6 +519,7 @@ export function createFallbackSummary(article) {
 }
 
 function normalizedPaperDetails(value = {}) {
+  value = value && typeof value === "object" ? value : {};
   return {
     objective: cleanText(value.objective || ""),
     methods: cleanText(value.methods || ""),
@@ -543,6 +544,7 @@ function normalizedPaperDetails(value = {}) {
 }
 
 function normalizedIndustryDetails(value = {}) {
+  value = value && typeof value === "object" ? value : {};
   return {
     eventType: cleanText(value.eventType || ""),
     companies: (Array.isArray(value.companies) ? value.companies : []).map(cleanText).filter(Boolean).slice(0, 8),
