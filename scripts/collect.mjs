@@ -550,6 +550,13 @@ function feedbackArticleMap(payload) {
   return new Map(Object.entries(payload?.articles || payload || {}));
 }
 
+function needsDetailedSummaryUpgrade(article) {
+  if (!cleanText(article?.titleZh || "")) return true;
+  if (article?.sourceType === "论文" && !article.paperDetails) return true;
+  if (article?.intelligenceType === "industry" && !article.industryDetails) return true;
+  return false;
+}
+
 async function loadFeedbackAggregates() {
   const localPath = new URL("../public/data/feedback-aggregates.json", import.meta.url);
   let payload = await readJson(localPath, { generatedAt: null, articles: {} });
@@ -671,6 +678,7 @@ async function main() {
     const existing = previousByUrl.get(article.url);
     let reason = "";
     if (!existing) reason = "new";
+    else if (needsDetailedSummaryUpgrade(existing)) reason = "schema-upgrade";
     else if (forceAiSummary) reason = "manual-refresh";
     else if (feedbackNeedsAiReview(article.feedbackAggregate, existing.aiAnalysis, minimumFeedback)) {
       reason = "feedback-review";
