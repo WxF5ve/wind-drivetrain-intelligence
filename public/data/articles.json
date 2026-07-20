@@ -1,9 +1,9 @@
 {
   "app": "风传智研",
-  "generatedAt": "2026-07-20T02:59:44.101Z",
+  "generatedAt": "2026-07-20T03:06:37.206Z",
   "period": {
-    "from": "2026-06-20T02:59:44.101Z",
-    "to": "2026-07-20T02:59:44.101Z"
+    "from": "2026-06-20T03:06:37.206Z",
+    "to": "2026-07-20T03:06:37.206Z"
   },
   "collectionStatus": {
     "dataMode": "live",
@@ -11,14 +11,14 @@
     "channels": 33,
     "succeeded": 33,
     "failed": 0,
-    "rawFetched": 143,
-    "currentCount": 50,
+    "rawFetched": 151,
+    "currentCount": 51,
     "archiveCount": 55,
     "ai": {
       "provider": "deepseek",
       "model": "deepseek-chat",
-      "requested": 10,
-      "summarized": 9,
+      "requested": 2,
+      "summarized": 2,
       "feedbackReviews": 0,
       "experienceReviews": 0
     },
@@ -60,7 +60,7 @@
         "label": "海外轴承与润滑资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 0,
+        "fetched": 2,
         "error": ""
       },
       {
@@ -100,7 +100,7 @@
         "label": "海外齿轮设计与载荷资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 0,
+        "fetched": 2,
         "error": ""
       },
       {
@@ -108,7 +108,7 @@
         "label": "海外失效与材料资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 0,
+        "fetched": 2,
         "error": ""
       },
       {
@@ -180,7 +180,7 @@
         "label": "海外润滑供应商动态",
         "type": "news",
         "status": "ok",
-        "fetched": 0,
+        "fetched": 2,
         "error": ""
       },
       {
@@ -295,21 +295,21 @@
     "note": "可靠度评估来源质量、证据完整度和可追溯性，不等同于事实已经证实。"
   },
   "feedbackStatus": {
-    "aggregateGeneratedAt": "2026-07-20T02:59:44.885Z",
+    "aggregateGeneratedAt": "2026-07-20T03:06:37.961Z",
     "centralized": true
   },
   "weeklyBrief": {
     "title": "本周聚焦：厂商动态、学术论文、轴承",
-    "summary": "过去 30 天共筛选 50 条高相关资料，其中国内 19 条、论文 12 篇。资料库累计保留 55 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
+    "summary": "过去 30 天共筛选 51 条高相关资料，其中国内 19 条、论文 12 篇。资料库累计保留 55 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
     "signals": [
       "共建3GW海上风电项目！明阳智能、中海油拟增资6.25亿元",
       "赵冬徐进会见中国东方电气风电股份有限公司负责人一行",
       "Envision ships first turbines for Fortescue's 132 MW Australian wind project"
     ],
     "metrics": {
-      "total": 50,
+      "total": 51,
       "domestic": 19,
-      "overseas": 31,
+      "overseas": 32,
       "papers": 12
     },
     "summaryMode": "AI 结构化摘要"
@@ -318,12 +318,12 @@
     {
       "id": "ebbd06f33fdd",
       "title": "共建3GW海上风电项目！明阳智能、中海油拟增资6.25亿元",
-      "source": "新浪财经",
+      "source": "新浪网",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T13:01:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://finance.sina.com.cn/roll/2026-07-17/doc-iniicqkw1429181.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -468,12 +468,12 @@
     {
       "id": "03d82fa231ae",
       "title": "赵冬徐进会见中国东方电气风电股份有限公司负责人一行",
-      "source": "新浪财经",
+      "source": "新浪网",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T09:47:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://finance.sina.com.cn/wm/2026-07-17/doc-iniiccva1518446.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -615,7 +615,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T03:18:46.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://asian-power.com/news/envision-ships-first-turbines-fortescues-132-mw-australian-wind-project",
       "sourceUrl": "https://asian-power.com/",
       "sourceChannel": "Google News RSS",
@@ -762,7 +762,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.58286/33890",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -802,7 +802,7 @@
           "i10Index": 12,
           "worksCount": 2833,
           "citedByCount": 1338,
-          "updatedAt": "2026-07-20T02:59:44.101Z"
+          "updatedAt": "2026-07-20T03:06:37.206Z"
         }
       },
       "corroboratingSources": [],
@@ -916,7 +916,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.58286/33755",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -955,7 +955,7 @@
           "i10Index": 12,
           "worksCount": 2833,
           "citedByCount": 1338,
-          "updatedAt": "2026-07-20T02:59:44.101Z"
+          "updatedAt": "2026-07-20T03:06:37.206Z"
         }
       },
       "corroboratingSources": [],
@@ -1069,7 +1069,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.1088/1361-6501/ae8c72",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -1110,7 +1110,7 @@
           "i10Index": 8249,
           "worksCount": 19247,
           "citedByCount": 368540,
-          "updatedAt": "2026-07-20T02:59:44.101Z"
+          "updatedAt": "2026-07-20T03:06:37.206Z"
         }
       },
       "corroboratingSources": [],
@@ -1225,7 +1225,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.1088/1361-6501/ae8c64",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -1269,7 +1269,7 @@
           "i10Index": 8249,
           "worksCount": 19247,
           "citedByCount": 368540,
-          "updatedAt": "2026-07-20T02:59:44.101Z"
+          "updatedAt": "2026-07-20T03:06:37.206Z"
         }
       },
       "corroboratingSources": [],
@@ -1409,7 +1409,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-16T12:24:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://news.qq.com/rain/a/20260716A0B7FI00",
       "sourceUrl": "https://news.qq.com/",
       "sourceChannel": "Google News RSS",
@@ -1445,7 +1445,7 @@
         }
       },
       "corroboratingSources": [
-        "新浪财经",
+        "新浪网",
         "星岛环球"
       ],
       "feedbackAggregate": {
@@ -1560,7 +1560,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-16T10:59:21.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://renewablesnow.com/news/envision-ships-first-7-8-mw-turbines-for-fortescue-project-in-australia-1298158/",
       "sourceUrl": "https://renewablesnow.com/",
       "sourceChannel": "Google News RSS",
@@ -1711,7 +1711,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-16T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.47481/jten.0052",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -1750,7 +1750,7 @@
           "i10Index": 194,
           "worksCount": 1146,
           "citedByCount": 6176,
-          "updatedAt": "2026-07-20T02:59:44.101Z"
+          "updatedAt": "2026-07-20T03:06:37.206Z"
         }
       },
       "corroboratingSources": [],
@@ -1874,7 +1874,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-14T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.1016/j.oceaneng.2026.127049",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -1916,7 +1916,7 @@
           "i10Index": 13645,
           "worksCount": 26704,
           "citedByCount": 531285,
-          "updatedAt": "2026-07-20T02:59:44.101Z"
+          "updatedAt": "2026-07-20T03:06:37.206Z"
         }
       },
       "corroboratingSources": [],
@@ -2051,12 +2051,12 @@
     {
       "id": "d42ef9a79e31",
       "title": "电气风电入选Tier1清洁能源技术风机企业榜单",
-      "source": "新浪财经",
+      "source": "新浪网",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-13T07:12:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://finance.sina.com.cn/wm/2026-07-13/doc-inihtews5450532.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -2200,7 +2200,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-12T19:05:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://inspenet.com/en/news/marco-polo-marine-and-siemens-gamesa-agree-on-two-csovs/",
       "sourceUrl": "https://inspenet.com/",
       "sourceChannel": "Google News RSS",
@@ -2345,7 +2345,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-11T12:14:35.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://cj.sina.com.cn/articles/view/2442012107/918e25cb00101mm52",
       "sourceUrl": "https://cj.sina.cn/",
       "sourceChannel": "Google News RSS",
@@ -2713,7 +2713,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-10T00:16:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://m.sohu.com/a/1048293532_121157270?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
       "sourceUrl": "https://m.sohu.com/",
       "sourceChannel": "Google News RSS",
@@ -2861,7 +2861,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-09T12:30:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://energywatch.com/EnergyNews/wind/article19465272.ece",
       "sourceUrl": "https://energywatch.com/",
       "sourceChannel": "Google News RSS",
@@ -3004,7 +3004,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-09T09:41:31.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://megaproject.com/news/powerplant/nordex-secures-700-mw-wind-turbine-orders-from-uka-in-germany",
       "sourceUrl": "https://megaproject.com/",
       "sourceChannel": "Google News RSS",
@@ -3042,10 +3042,8 @@
       "corroboratingSources": [
         "energynews.pro",
         "Energy Global",
-        "Renewables Now",
-        "TradingView",
-        "Investing.com Nigeria",
-        "WindInsider"
+        "WindInsider",
+        "TradingView"
       ],
       "feedbackAggregate": {
         "useful": 0,
@@ -3126,7 +3124,7 @@
         "factors": [
           "发布方提供了较完整的公开摘要",
           "原文直链已在采集时验证",
-          "发现 6 个独立来源报道相近信息",
+          "发现 4 个独立来源报道相近信息",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
@@ -3158,7 +3156,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-09T05:22:56.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://www.globalbankingandfinance.com/nordex-q2-orders-rise-u-demand/",
       "sourceUrl": "https://www.globalbankingandfinance.com/",
       "sourceChannel": "Google News RSS",
@@ -3295,12 +3293,12 @@
     {
       "id": "ab8c5d0edec8",
       "title": "89.31GW！运达、东方风电、电气风电前三！2026年1-6月风电整机商中标统计！（央国企项目）",
-      "source": "新浪财经",
+      "source": "新浪网",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-08T11:15:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://finance.sina.com.cn/roll/2026-07-08/doc-inihaxzw8068411.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -3561,7 +3559,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-06T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://www.windpowermonthly.com/article/1963730/wind-power-patents-dongfang-siemens-gamesa-goldwind-nordex-zf",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -3707,7 +3705,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-06T03:04:09.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://wind.in-en.com/html/wind-2468519.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -3850,7 +3848,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-06T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.5194/wes-2026-83",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -4035,7 +4033,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-03T03:47:54.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://mwind.in-en.com/html/wind-2468499.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -4177,7 +4175,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T12:58:27.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://www.renews.biz/onshore-wind/rubber-hits-the-road-for-nordex-on-continental-order/",
       "sourceUrl": "https://www.renews.biz/",
       "sourceChannel": "Google News RSS",
@@ -4318,7 +4316,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T12:05:30.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://www.renewable-energy-industry.com/news/press-releases/pm-8862-nordex-group-to-deliver-20-mw-wind-farm-for-continental-tire-plant-in-korbach-germany",
       "sourceUrl": "https://www.renewable-energy-industry.com/",
       "sourceChannel": "Google News RSS",
@@ -4577,7 +4575,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.3390/en19133153",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -4618,7 +4616,7 @@
           "i10Index": 30443,
           "worksCount": 63418,
           "citedByCount": 1110646,
-          "updatedAt": "2026-07-20T02:59:44.101Z"
+          "updatedAt": "2026-07-20T03:06:37.206Z"
         }
       },
       "corroboratingSources": [],
@@ -4749,7 +4747,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.3390/electronics15132907",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -4787,7 +4785,7 @@
           "i10Index": 8972,
           "worksCount": 30207,
           "citedByCount": 347295,
-          "updatedAt": "2026-07-20T02:59:44.101Z"
+          "updatedAt": "2026-07-20T03:06:37.206Z"
         }
       },
       "corroboratingSources": [],
@@ -4901,7 +4899,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T11:39:34.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://www.windpowermonthly.com/article/1963356/us-german-onshore-projects-dominate-vestas-q2-wind-turbine-order-intake",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -5043,7 +5041,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.1115/1.4072246",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -5087,7 +5085,7 @@
           "i10Index": 3201,
           "worksCount": 5905,
           "citedByCount": 142291,
-          "updatedAt": "2026-07-20T02:59:44.101Z"
+          "updatedAt": "2026-07-20T03:06:37.206Z"
         }
       },
       "corroboratingSources": [],
@@ -5199,7 +5197,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.58286/33501",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -5240,7 +5238,7 @@
           "i10Index": 12,
           "worksCount": 2833,
           "citedByCount": 1338,
-          "updatedAt": "2026-07-20T02:59:44.101Z"
+          "updatedAt": "2026-07-20T03:06:37.206Z"
         }
       },
       "corroboratingSources": [],
@@ -5369,7 +5367,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-29T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://www.windpowermonthly.com/article/1963085/wind-power-patents-sany-vestas-windey-siemens-gamesa-enercon",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -5509,12 +5507,12 @@
     {
       "id": "41d61531f6d1",
       "title": "明阳智能预中标！7.90亿元海上风电大单",
-      "source": "新浪财经",
+      "source": "新浪网",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-27T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://finance.sina.com.cn/roll/2026-06-27/doc-inievrew1493303.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -5659,7 +5657,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-26T10:40:37.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://mwind.in-en.com/html/wind-2468354.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -5713,21 +5711,21 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "titleZh": "",
+      "titleZh": "金风科技完成越南朔庄海上风电项目首批机组交付",
       "category": "厂商动态",
       "tags": [
-        "海上风电",
-        "交付",
         "金风科技",
+        "海上风电",
+        "越南",
         "整机厂商"
       ],
-      "summary": "金风科技完成越南朔庄海上风电项目首批机组交付。资料仅提及交付事件，未提供机组型号、容量或技术细节。",
+      "summary": "金风科技完成了越南朔庄海上风电项目的首批机组交付。资料仅提及交付事件，未提供机组型号、容量或技术细节。",
       "keyPoints": [
-        "金风科技完成首批机组交付",
-        "项目位于越南朔庄",
-        "属于海上风电项目"
+        "金风科技交付了越南朔庄海上风电项目首批机组",
+        "交付事件已发生，但具体机组型号未披露",
+        "项目容量、技术参数等细节未在资料中说明"
       ],
-      "engineeringImpact": "表明金风科技在海外海上风电交付能力，但齿轮箱与轴承配置需进一步核实。",
+      "engineeringImpact": "该交付表明金风科技在东南亚海上风电市场取得进展，但缺乏技术细节，无法评估对齿轮箱或轴承设计的具体影响。",
       "paperDetails": {
         "objective": "",
         "methods": "",
@@ -5737,14 +5735,16 @@
         "limitations": []
       },
       "industryDetails": {
-        "eventType": "",
-        "companies": [],
-        "location": "",
+        "eventType": "机组交付",
+        "companies": [
+          "金风科技"
+        ],
+        "location": "越南朔庄",
         "capacity": "",
         "investment": "",
-        "timeline": "",
-        "supplyChainImpact": "",
-        "verificationStatus": "",
+        "timeline": "2026-06-26",
+        "supplyChainImpact": "可能涉及风电齿轮箱和轴承的出口与安装",
+        "verificationStatus": "已确认公告",
         "quantitativeFacts": []
       },
       "readingMinutes": 2,
@@ -5785,9 +5785,10 @@
       "aiAnalysis": {
         "provider": "deepseek",
         "model": "deepseek-chat",
-        "generatedAt": "2026-07-20T01:55:49.474Z",
-        "reason": "new",
-        "feedbackTotalAtAnalysis": 0
+        "generatedAt": "2026-07-20T03:06:37.206Z",
+        "reason": "schema-upgrade",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
       }
     },
     {
@@ -5798,7 +5799,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-26T09:43:14.000Z",
-      "collectedAt": "2026-07-20T02:51:20.193Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://renewablesnow.com/news/nordex-prepares-for-construction-of-cips-392-mw-wind-farm-in-romania-1297138/",
       "sourceUrl": "https://renewablesnow.com/",
       "sourceChannel": "Google News RSS",
@@ -5942,7 +5943,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-26T00:42:38.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://mwind.in-en.com/html/wind-2468318.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -6084,7 +6085,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-25T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://renewablesnow.com/news/vivant-unit-buys-200-mw-philippine-wind-project-from-envision-1297036/",
       "sourceUrl": "https://renewablesnow.com/",
       "sourceChannel": "Google News RSS",
@@ -6229,7 +6230,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-25T00:49:11.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://wind.in-en.com/html/wind-2468262.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -6378,7 +6379,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-25T00:00:00Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://doi.org/10.5194/wes-2026-105",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -6526,7 +6527,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-24T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://mwind.in-en.com/html/wind-2468214.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -6673,7 +6674,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-24T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://mwind.in-en.com/html/wind-2468213.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -6812,154 +6813,6 @@
       }
     },
     {
-      "id": "148924fed552",
-      "title": "Nordex wins 112-MW German wind turbine order from NeXtWind",
-      "source": "Renewables Now",
-      "sourceType": "行业资讯",
-      "region": "海外",
-      "language": "en",
-      "publishedAt": "2026-06-24T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
-      "url": "https://renewablesnow.com/news/nordex-wins-112-mw-german-wind-turbine-order-from-nextwind-1296948/",
-      "sourceUrl": "https://renewablesnow.com/",
-      "sourceChannel": "Google News RSS",
-      "linkType": "publisher",
-      "linkVerified": true,
-      "evidence": {
-        "hasAbstract": false,
-        "hasPublisherDescription": true,
-        "doi": "",
-        "authorsCount": 0,
-        "authors": [],
-        "citedByCount": 0,
-        "publicationType": "",
-        "journal": "",
-        "issnL": "",
-        "issns": [],
-        "publisher": "",
-        "volume": "",
-        "issue": "",
-        "firstPage": "",
-        "lastPage": "",
-        "isOpenAccess": false,
-        "isInDoaj": false,
-        "sourceMetrics": {
-          "provider": "",
-          "metricName": "",
-          "twoYearMeanCitedness": 0,
-          "hIndex": 0,
-          "i10Index": 0,
-          "worksCount": 0,
-          "citedByCount": 0,
-          "updatedAt": ""
-        }
-      },
-      "corroboratingSources": [
-        "TradingView",
-        "megaproject.com"
-      ],
-      "feedbackAggregate": {
-        "useful": 0,
-        "questionable": 0,
-        "irrelevant": 0,
-        "broken": 0,
-        "total": 0
-      },
-      "engineeringExperience": {
-        "total": 0,
-        "supports": 0,
-        "conditional": 0,
-        "contradicts": 0,
-        "uncertain": 0,
-        "averageConfidence": 0,
-        "evidence": {},
-        "topContexts": []
-      },
-      "intelligenceType": "industry",
-      "titleZh": "Nordex从NeXtWind获得德国112兆瓦风电涡轮机订单",
-      "category": "厂商动态",
-      "tags": [
-        "Nordex",
-        "德国",
-        "风电改造",
-        "整机厂商"
-      ],
-      "summary": "Renewables Now报道，德国风机制造商Nordex从NeXtWind Management GmbH获得112兆瓦订单，用于萨克森-安哈尔特州的一个风电改造项目。该信息为行业资讯，未披露具体机型、合同金额或交付时间。",
-      "keyPoints": [
-        "Nordex获得112兆瓦德国风电订单",
-        "订单来自NeXtWind Management GmbH",
-        "项目为萨克森-安哈尔特州的改造项目"
-      ],
-      "engineeringImpact": "该订单显示欧洲风电改造市场需求，但未提供技术细节，对齿轮箱或轴承的工程参考意义有限。",
-      "paperDetails": {
-        "objective": "",
-        "methods": "",
-        "testObject": "",
-        "operatingConditions": "",
-        "quantitativeFindings": [],
-        "limitations": []
-      },
-      "industryDetails": {
-        "eventType": "订单公告",
-        "companies": [
-          "Nordex",
-          "NeXtWind Management GmbH"
-        ],
-        "location": "德国萨克森-安哈尔特州",
-        "capacity": "112 MW",
-        "investment": "",
-        "timeline": "2026-06-24",
-        "supplyChainImpact": "可能带动Nordex供应链需求，但具体影响未披露。",
-        "verificationStatus": "媒体报道",
-        "quantitativeFacts": [
-          "容量112 MW"
-        ]
-      },
-      "readingMinutes": 3,
-      "relevanceScore": 5,
-      "reliability": {
-        "score": 67,
-        "grade": "B",
-        "label": "较高",
-        "methodVersion": "1.0",
-        "dimensions": {
-          "authority": 11,
-          "evidence": 13,
-          "traceability": 15,
-          "corroboration": 12,
-          "recency": 8,
-          "transparency": 8,
-          "feedback": 0,
-          "riskPenalty": 0
-        },
-        "factors": [
-          "发布方提供了可核查的内容简介",
-          "原文直链已在采集时验证",
-          "发现 2 个独立来源报道相近信息",
-          "发布时间处于当前监测窗口",
-          "来源、日期和采集通道信息完整"
-        ],
-        "limitations": [
-          "来源权威层级尚未纳入已知清单"
-        ],
-        "feedback": {
-          "useful": 0,
-          "questionable": 0,
-          "irrelevant": 0,
-          "broken": 0,
-          "total": 0
-        }
-      },
-      "aiAnalysis": {
-        "provider": "deepseek",
-        "model": "deepseek-chat",
-        "generatedAt": "2026-07-20T02:59:44.101Z",
-        "reason": "new",
-        "feedbackTotalAtAnalysis": 0,
-        "experienceTotalAtAnalysis": 0
-      }
-    },
-    {
       "id": "9d36f523476e",
       "title": "Vestas secures 40MW order for German wind project",
       "source": "4C Offshore",
@@ -6967,7 +6820,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-24T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://www.tgs4c.com/news/vestas-secures-40mw-order-for-german-wind-project-nid32991.html",
       "sourceUrl": "https://www.tgs4c.com/",
       "sourceChannel": "Google News RSS",
@@ -7004,7 +6857,8 @@
       },
       "corroboratingSources": [
         "Wind Power Monthly",
-        "Windtech International"
+        "Windtech International",
+        "WindInsider"
       ],
       "feedbackAggregate": {
         "useful": 0,
@@ -7067,7 +6921,7 @@
       "readingMinutes": 2,
       "relevanceScore": 3,
       "reliability": {
-        "score": 67,
+        "score": 69,
         "grade": "B",
         "label": "较高",
         "methodVersion": "1.0",
@@ -7075,7 +6929,7 @@
           "authority": 11,
           "evidence": 13,
           "traceability": 15,
-          "corroboration": 12,
+          "corroboration": 14,
           "recency": 8,
           "transparency": 8,
           "feedback": 0,
@@ -7084,7 +6938,7 @@
         "factors": [
           "发布方提供了可核查的内容简介",
           "原文直链已在采集时验证",
-          "发现 2 个独立来源报道相近信息",
+          "发现 3 个独立来源报道相近信息",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
@@ -7111,12 +6965,12 @@
     {
       "id": "b24698321fac",
       "title": "金风科技为沙特PIF5项目发运首批风电设备",
-      "source": "新浪财经",
+      "source": "新浪网",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-23T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://finance.sina.com.cn/wm/2026-06-23/doc-iniekknv6578371.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -7265,7 +7119,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-23T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://www.windpowermonthly.com/article/1962331/wind-power-patents-lm-wind-power-sinoma-vestas-technip-energies-nordex",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -7406,6 +7260,153 @@
       }
     },
     {
+      "id": "64b3a64e2181",
+      "title": "Nordex Gets 112 MW Order From NeXtWind For Wind Farm In Saxony-Anhalt In Germany",
+      "source": "TradingView",
+      "sourceType": "行业资讯",
+      "region": "海外",
+      "language": "en",
+      "publishedAt": "2026-06-23T07:00:00.000Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
+      "url": "https://www.tradingview.com/news/reuters.com,2026:newsml_FWN42V16J:0-nordex-gets-112-mw-order-from-nextwind-for-wind-farm-in-saxony-anhalt-in-germany/",
+      "sourceUrl": "https://www.tradingview.com/",
+      "sourceChannel": "Google News RSS",
+      "linkType": "publisher",
+      "linkVerified": true,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": false,
+        "doi": "",
+        "authorsCount": 0,
+        "authors": [],
+        "citedByCount": 0,
+        "publicationType": "",
+        "journal": "",
+        "issnL": "",
+        "issns": [],
+        "publisher": "",
+        "volume": "",
+        "issue": "",
+        "firstPage": "",
+        "lastPage": "",
+        "isOpenAccess": false,
+        "isInDoaj": false,
+        "sourceMetrics": {
+          "provider": "",
+          "metricName": "",
+          "twoYearMeanCitedness": 0,
+          "hIndex": 0,
+          "i10Index": 0,
+          "worksCount": 0,
+          "citedByCount": 0,
+          "updatedAt": ""
+        }
+      },
+      "corroboratingSources": [
+        "megaproject.com"
+      ],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
+      "engineeringExperience": {
+        "total": 0,
+        "supports": 0,
+        "conditional": 0,
+        "contradicts": 0,
+        "uncertain": 0,
+        "averageConfidence": 0,
+        "evidence": {},
+        "topContexts": []
+      },
+      "intelligenceType": "industry",
+      "titleZh": "Nordex获得NeXtWind在德国萨克森-安哈尔特州112兆瓦风电项目订单",
+      "category": "厂商动态",
+      "tags": [
+        "Nordex",
+        "德国",
+        "风电订单",
+        "整机厂商"
+      ],
+      "summary": "Nordex从NeXtWind获得一份112兆瓦订单，用于德国萨克森-安哈尔特州的风电场。资料仅提及订单容量，未提供风机型号、交付时间或技术细节。",
+      "keyPoints": [
+        "Nordex获得112兆瓦风电项目订单",
+        "项目位于德国萨克森-安哈尔特州",
+        "订单来自NeXtWind，但具体风机型号未披露"
+      ],
+      "engineeringImpact": "该订单显示Nordex在德国市场持续获得项目，但缺乏技术细节，无法评估对齿轮箱或轴承设计的具体影响。",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "订单获得",
+        "companies": [
+          "Nordex",
+          "NeXtWind"
+        ],
+        "location": "德国萨克森-安哈尔特州",
+        "capacity": "112 MW",
+        "investment": "",
+        "timeline": "2026-06-23",
+        "supplyChainImpact": "可能涉及风机供应及相关齿轮箱、轴承需求",
+        "verificationStatus": "已确认公告",
+        "quantitativeFacts": [
+          "订单容量112 MW"
+        ]
+      },
+      "readingMinutes": 2,
+      "relevanceScore": 3,
+      "reliability": {
+        "score": 61,
+        "grade": "C",
+        "label": "待核验",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 11,
+          "evidence": 13,
+          "traceability": 15,
+          "corroboration": 6,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": 0
+        },
+        "factors": [
+          "发布方提供了可核查的内容简介",
+          "原文直链已在采集时验证",
+          "发现 1 个独立来源报道相近信息",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "来源权威层级尚未纳入已知清单"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-20T03:06:37.206Z",
+        "reason": "new",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0
+      }
+    },
+    {
       "id": "c525d8e44f40",
       "title": "首台欧洲样机成功吊装，中车株洲所风电“出海”再进阶",
       "source": "国际风力发电网",
@@ -7413,7 +7414,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-23T02:25:45.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://mwind.in-en.com/html/wind-2468174.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -7555,7 +7556,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-23T00:48:36.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://mwind.in-en.com/html/wind-2468153.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -7699,7 +7700,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-22T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://mwind.in-en.com/html/wind-2468122.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -7846,15 +7847,15 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-22T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://energynews.pro/en/nordex-secures-three-wind-turbine-orders-in-the-united-states-totaling-484-mw",
       "sourceUrl": "https://energynews.pro/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
-        "hasPublisherDescription": false,
+        "hasPublisherDescription": true,
         "doi": "",
         "authorsCount": 0,
         "authors": [],
@@ -7883,7 +7884,6 @@
       },
       "corroboratingSources": [
         "Energy Global",
-        "Investing.com Nigeria",
         "megaproject.com"
       ],
       "feedbackAggregate": {
@@ -7942,18 +7942,18 @@
           "总容量484 MW"
         ]
       },
-      "readingMinutes": 2,
+      "readingMinutes": 3,
       "relevanceScore": 5,
       "reliability": {
-        "score": 65,
+        "score": 67,
         "grade": "B",
         "label": "较高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 11,
           "evidence": 13,
-          "traceability": 11,
-          "corroboration": 14,
+          "traceability": 15,
+          "corroboration": 12,
           "recency": 8,
           "transparency": 8,
           "feedback": 0,
@@ -7961,8 +7961,8 @@
         },
         "factors": [
           "发布方提供了可核查的内容简介",
-          "链接指向发布方或 DOI 页面",
-          "发现 3 个独立来源报道相近信息",
+          "原文直链已在采集时验证",
+          "发现 2 个独立来源报道相近信息",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
@@ -7994,7 +7994,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-22T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://renewablesnow.com/news/goldwind-sends-first-shipment-for-3-gw-wind-project-in-saudi-arabia-1296843/",
       "sourceUrl": "https://renewablesnow.com/",
       "sourceChannel": "Google News RSS",
@@ -8138,7 +8138,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-22T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://www.windpowermonthly.com/article/1962316/enercon-outsources-turkish-generator-tower-production",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -8280,7 +8280,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-22T07:00:00.000Z",
-      "collectedAt": "2026-07-20T02:59:44.101Z",
+      "collectedAt": "2026-07-20T03:06:37.206Z",
       "url": "https://www.windtech-international.com/projects-and-contracts/vestas-secures-repowering-order-in-japan",
       "sourceUrl": "https://www.windtech-international.com/",
       "sourceChannel": "Google News RSS",
@@ -8318,7 +8318,8 @@
       "corroboratingSources": [
         "4C Offshore",
         "Energy Global",
-        "reNEWS"
+        "reNEWS",
+        "WindInsider"
       ],
       "feedbackAggregate": {
         "useful": 0,
@@ -8394,7 +8395,7 @@
         "factors": [
           "发布方提供了可核查的内容简介",
           "原文直链已在采集时验证",
-          "发现 3 个独立来源报道相近信息",
+          "发现 4 个独立来源报道相近信息",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
