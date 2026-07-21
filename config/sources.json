@@ -5,6 +5,7 @@
   "historyRetentionDays": 730,
   "minimumRelevanceScore": 3,
   "industryRelevanceBoost": 3,
+  "officialRelevanceBoost": 4,
   "reliability": {
     "minimumFeedback": 5,
     "authorityDomains": {
@@ -13,7 +14,12 @@
         "energy.gov",
         "iea.org",
         "iec.ch",
-        "iso.org"
+        "iso.org",
+        "gov.cn",
+        "ndrc.gov.cn",
+        "nea.gov.cn",
+        "miit.gov.cn",
+        "sasac.gov.cn"
       ],
       "industry": [
         "cwea.org.cn",
@@ -55,7 +61,13 @@
         "cls.cn",
         "ne21.com",
         "windpowermonthly.com",
-        "rechargenews.com"
+        "rechargenews.com",
+        "news.cn",
+        "xinhuanet.com",
+        "people.com.cn",
+        "cctv.com",
+        "cnr.cn",
+        "chinanews.com.cn"
       ]
     },
     "commercialSignals": [
@@ -158,6 +170,96 @@
       "query": "\"wind turbine gearbox\" (\"test rig\" OR validation OR NVH OR \"digital twin\" OR reliability OR endoscopy)",
       "language": "English",
       "region": "海外"
+    },
+    {
+      "id": "official-cn-xinhua-wind",
+      "label": "新华社风电与能源装备",
+      "query": "site:news.cn (风电 OR 风力发电) (项目 OR 装机 OR 海上风电 OR 装备 OR 技术 OR 齿轮箱 OR 轴承 OR 传动链)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["news.cn", "xinhuanet.com"],
+      "contextTags": ["权威发布", "新华社"]
+    },
+    {
+      "id": "official-cn-gov-wind",
+      "label": "中国政府网风电政策与项目",
+      "query": "site:gov.cn (风电 OR 风力发电) (政策 OR 规划 OR 项目 OR 装机 OR 海上风电 OR 装备)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["gov.cn"],
+      "contextTags": ["权威发布", "中国政府网"]
+    },
+    {
+      "id": "official-cn-nea-wind",
+      "label": "国家能源局风电动态",
+      "query": "site:nea.gov.cn (风电 OR 风力发电) (政策 OR 装机 OR 项目 OR 海上风电 OR 技术 OR 并网)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["nea.gov.cn"],
+      "contextTags": ["权威发布", "国家能源局"]
+    },
+    {
+      "id": "official-cn-ndrc-wind",
+      "label": "国家发展改革委风电政策",
+      "query": "site:ndrc.gov.cn (风电 OR 风力发电 OR 海上风电) (政策 OR 规划 OR 项目 OR 装机 OR 价格)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["ndrc.gov.cn"],
+      "contextTags": ["权威发布", "国家发展改革委"]
+    },
+    {
+      "id": "official-cn-miit-wind",
+      "label": "工信部风电装备与制造",
+      "query": "site:miit.gov.cn (风电 OR 风力发电) (装备 OR 制造 OR 技术 OR 产业 OR 齿轮箱 OR 轴承)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["miit.gov.cn"],
+      "contextTags": ["权威发布", "工信部"]
+    },
+    {
+      "id": "official-cn-sasac-wind",
+      "label": "国资委风电央企动态",
+      "query": "site:sasac.gov.cn (风电 OR 风力发电) (项目 OR 装备 OR 技术 OR 海上风电 OR 并网)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["sasac.gov.cn"],
+      "contextTags": ["权威发布", "国资委"]
+    },
+    {
+      "id": "official-cn-people-wind",
+      "label": "人民日报风电与新能源",
+      "query": "site:people.com.cn (风电 OR 风力发电 OR 海上风电) (项目 OR 装机 OR 技术 OR 装备)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["people.com.cn"],
+      "contextTags": ["权威发布", "人民日报"]
+    },
+    {
+      "id": "official-cn-cctv-wind",
+      "label": "央视风电与能源装备",
+      "query": "site:cctv.com (风电 OR 风力发电 OR 海上风电) (项目 OR 装机 OR 技术 OR 装备 OR 并网)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["cctv.com"],
+      "contextTags": ["权威发布", "央视"]
+    },
+    {
+      "id": "official-cn-cwea-wind",
+      "label": "中国风能协会行业动态",
+      "query": "site:cwea.org.cn (风电 OR 风力发电) (项目 OR 装机 OR 海上风电 OR 装备 OR 技术 OR 政策)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["cwea.org.cn"],
+      "contextTags": ["行业权威", "中国风能协会"]
     },
     {
       "id": "industry-cn-oem",

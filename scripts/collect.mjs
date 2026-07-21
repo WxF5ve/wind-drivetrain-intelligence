@@ -8,6 +8,7 @@ import {
   createFallbackSummary,
   deduplicateArticles,
   isDomainRelevant,
+  isOfficialRelevant,
   isIndustryRelevant,
   makeArticleId,
   publicEngineeringExperience,
@@ -234,14 +235,15 @@ function usefulPublisherDescription(description, title) {
 
 function sourceContext(source) {
   return {
-    queryTopic: source.topic === "industry" ? "industry" : "technical",
+    queryTopic: source.topic === "industry" || source.topic === "official" ? source.topic : "technical",
     matchTerms: Array.isArray(source.matchTerms) ? source.matchTerms : [],
-    contextTags: Array.isArray(source.contextTags) ? source.contextTags : []
+    contextTags: Array.isArray(source.contextTags) ? source.contextTags : [],
+    allowedDomains: Array.isArray(source.allowedDomains) ? source.allowedDomains : []
   };
 }
 
 function isCandidateRelevant(article) {
-  return isDomainRelevant(article) || isIndustryRelevant(article);
+  return isDomainRelevant(article) || isIndustryRelevant(article) || isOfficialRelevant(article);
 }
 
 async function collectGoogleNews(source, lookbackDays) {
@@ -652,14 +654,19 @@ async function main() {
   });
   const previousByUrl = new Map(previousArticles.map((article) => [article.url, article]));
   const candidates = deduplicateArticles([...relevantRawArticles].sort((left, right) =>
-    Number(right.queryTopic === "industry") - Number(left.queryTopic === "industry")
+    Number(right.queryTopic === "industry" || right.queryTopic === "official") -
+    Number(left.queryTopic === "industry" || left.queryTopic === "official")
   ))
     .map((article) => {
       const aggregate = feedbackAggregates.map.get(article.id) || {};
       return {
         ...article,
         relevanceScore: relevanceScore(article, keywordWeights) +
-          (article.queryTopic === "industry" ? Number(config.industryRelevanceBoost || 3) : 0),
+          (article.queryTopic === "industry"
+            ? Number(config.industryRelevanceBoost || 3)
+            : article.queryTopic === "official"
+              ? Number(config.officialRelevanceBoost || 4)
+              : 0),
         corroboratingSources: findCorroboratingSources(article, relevantRawArticles),
         feedbackAggregate: aggregate,
         engineeringExperience: aggregate.experience || {},
@@ -710,7 +717,9 @@ async function main() {
     aiReasons.set(existing.id, reason);
     needsSummary.push({
       ...existing,
-      queryTopic: existing.intelligenceType === "industry" ? "industry" : "technical",
+      queryTopic: existing.intelligenceType === "industry" || existing.intelligenceType === "official"
+        ? existing.intelligenceType
+        : "technical",
       snippet: cleanText(`${existing.summary || ""} ${(existing.keyPoints || []).join(" ")}`).slice(0, 1800),
       previousSummary: existing.summary || "",
       feedbackAggregate: existing.feedbackAggregate || {},

@@ -115,6 +115,25 @@ async function inspectLayout(page, label) {
       throw new Error("Personalized sorting did not activate");
     }
 
+    const reportDownloadPromise = desktop.waitForEvent("download");
+    await desktop.locator("#open-weekly-report").click();
+    const reportDownload = await reportDownloadPromise;
+    await desktop.waitForSelector("#weekly-report-dialog[open]");
+    const reportItems = await desktop.locator(".report-item").count();
+    const reportFactRows = await desktop.locator(".report-facts > div").count();
+    if (reportItems < 1 || reportFactRows !== reportItems * 5) {
+      throw new Error(`Weekly report rendered incomplete structured items: ${reportItems} items, ${reportFactRows} fact rows`);
+    }
+    await reportDownload.saveAs(path.join(outputDir, "weekly-report.pdf"));
+    const pdfBytes = fs.readFileSync(path.join(outputDir, "weekly-report.pdf"));
+    const pdfHeader = pdfBytes.subarray(0, 8).toString("ascii");
+    const pdfPages = (pdfBytes.toString("latin1").match(/\/Type \/Page /g) || []).length;
+    if (pdfHeader !== "%PDF-1.4" || pdfBytes.length < 30000 || pdfPages < 1) {
+      throw new Error(`Weekly report PDF failed validation: ${pdfHeader}, ${pdfBytes.length} bytes, ${pdfPages} pages`);
+    }
+    await desktop.screenshot({ path: path.join(outputDir, "weekly-report.png") });
+    await desktop.locator("#close-weekly-report").click();
+
     const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
     mobile.on("console", (message) => {
       if (message.type() === "error") consoleErrors.push(message.text());
@@ -142,11 +161,17 @@ async function inspectLayout(page, label) {
     if (mobileExperienceTop > 420) throw new Error("Mobile experience entry did not scroll to the form");
     await mobile.screenshot({ path: path.join(outputDir, "mobile-experience.png") });
 
+    await mobile.goto("http://127.0.0.1:4173/?report=weekly", { waitUntil: "networkidle" });
+    await mobile.waitForSelector("#weekly-report-dialog[open] .report-item");
+    const mobileReportOverflow = await mobile.evaluate(() => document.body.scrollWidth > window.innerWidth + 1);
+    if (mobileReportOverflow) throw new Error("Mobile weekly report has horizontal overflow");
+    await mobile.screenshot({ path: path.join(outputDir, "mobile-weekly-report.png") });
+
     if (consoleErrors.length) {
       throw new Error(`Browser console errors:\n${consoleErrors.join("\n")}`);
     }
 
-    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults, reliabilityScore, experienceControls, experienceStored }, null, 2));
+    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportFactRows, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
   } finally {
     if (browser) await browser.close();
     server.kill();

@@ -47,6 +47,31 @@ export function isIndustryRelevant(article) {
     !hasMarketMoveHeadline;
 }
 
+export function isOfficialRelevant(article) {
+  if (article.queryTopic !== "official") return false;
+  const text = cleanText(`${article.title || ""} ${article.snippet || ""}`).toLowerCase();
+  const windSignals = ["风电", "风力发电", "风机", "wind turbine", "wind power", "wind energy"];
+  const officialSignals = [
+    "政策", "规划", "通知", "意见", "方案", "标准", "项目", "开工", "并网", "核准", "审批",
+    "装机", "基地", "海上风电", "装备", "技术", "创新", "示范", "招标", "中标", "交付", "投产",
+    "capacity", "project", "offshore", "onshore", "mw", "gw", "policy", "standard", "technology"
+  ];
+  const noiseSignals = ["招聘", "股票", "股价", "广告", "stock price", "job opening"];
+  let allowedDomain = true;
+  if (article.url && Array.isArray(article.allowedDomains) && article.allowedDomains.length) {
+    try {
+      const hostname = new URL(article.url).hostname.toLowerCase().replace(/^www\./, "");
+      allowedDomain = article.allowedDomains.some((domain) => hostname === domain || hostname.endsWith(`.${domain}`));
+    } catch {
+      allowedDomain = false;
+    }
+  }
+  return allowedDomain &&
+    windSignals.some((signal) => containsKeyword(text, signal)) &&
+    officialSignals.some((signal) => containsKeyword(text, signal)) &&
+    !noiseSignals.some((signal) => text.includes(signal));
+}
+
 export function cleanText(value = "") {
   return String(value)
     .replace(/<[^>]*>/g, " ")
@@ -157,6 +182,12 @@ export function isDomainRelevant(article) {
 export function inferCategory(article) {
   if (article.sourceType === "论文") return "学术论文";
   if (article.queryTopic === "industry") return "厂商动态";
+  if (article.queryTopic === "official") {
+    const text = `${article.title || ""} ${article.snippet || ""}`.toLowerCase();
+    return ["政策", "规划", "通知", "意见", "方案", "标准", "policy", "standard"].some((keyword) => text.includes(keyword))
+      ? "标准政策"
+      : "行业资讯";
+  }
   const text = `${article.title} ${article.snippet}`.toLowerCase();
   const match = categoryRules.find(([, keywords]) =>
     keywords.some((keyword) => containsKeyword(text, keyword))
@@ -647,9 +678,17 @@ export function toPublicArticle(article, summaryData) {
     corroboratingSources: [...new Set(article.corroboratingSources || [])].map(cleanText).filter(Boolean).slice(0, 6),
     feedbackAggregate: normalizedFeedback(article.feedbackAggregate),
     engineeringExperience: publicEngineeringExperience(article.engineeringExperience),
-    intelligenceType: article.queryTopic === "industry" ? "industry" : "technical",
+    intelligenceType: article.queryTopic === "industry"
+      ? "industry"
+      : article.queryTopic === "official"
+        ? "official"
+        : "technical",
     titleZh: cleanText(summaryData.titleZh || (/[\p{Script=Han}]/u.test(article.title || "") ? article.title : "")),
-    category: article.queryTopic === "industry" ? "厂商动态" : summaryData.category || inferCategory(article),
+    category: article.queryTopic === "industry"
+      ? "厂商动态"
+      : article.queryTopic === "official"
+        ? summaryData.category || inferCategory(article)
+        : summaryData.category || inferCategory(article),
     tags: [...new Set([
       ...(summaryData.tags?.length ? summaryData.tags : inferTags(article)),
       ...(article.contextTags || [])

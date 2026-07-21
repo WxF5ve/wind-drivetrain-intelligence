@@ -9,6 +9,7 @@ import {
   inferCategory,
   inferTags,
   isDomainRelevant,
+  isOfficialRelevant,
   isIndustryRelevant,
   normalizeUrl,
   recalibratePublishedArticle,
@@ -208,6 +209,30 @@ test("manufacturer intelligence requires exact entities, wind context, and progr
     queryTopic: "industry",
     matchTerms: ["Timken"],
     contextTags: ["轴承厂商"]
+  }), false);
+});
+
+test("official domestic channels require wind context and keep the publisher domain constrained", () => {
+  assert.equal(isOfficialRelevant({
+    title: "国家能源局发布海上风电并网项目进展",
+    snippet: "项目容量达到 500MW，相关风电装备建设持续推进。",
+    queryTopic: "official",
+    url: "https://www.nea.gov.cn/example",
+    allowedDomains: ["nea.gov.cn"]
+  }), true);
+  assert.equal(isOfficialRelevant({
+    title: "风电项目最新规划",
+    snippet: "公开消息来自非指定域名。",
+    queryTopic: "official",
+    url: "https://example.com/wind",
+    allowedDomains: ["nea.gov.cn"]
+  }), false);
+  assert.equal(isOfficialRelevant({
+    title: "国家能源局发布能源政策",
+    snippet: "内容仅涉及水电和光伏。",
+    queryTopic: "official",
+    url: "https://www.nea.gov.cn/example",
+    allowedDomains: ["nea.gov.cn"]
   }), false);
 });
 
