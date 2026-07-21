@@ -120,10 +120,16 @@ async function inspectLayout(page, label) {
     const reportDownload = await reportDownloadPromise;
     await desktop.waitForSelector("#weekly-report-dialog[open]");
     const reportItems = await desktop.locator(".report-item").count();
-    const reportFactRows = await desktop.locator(".report-facts > div").count();
-    if (reportItems < 1 || reportFactRows !== reportItems * 5) {
-      throw new Error(`Weekly report rendered incomplete structured items: ${reportItems} items, ${reportFactRows} fact rows`);
+    const reportEventParagraphs = await desktop.locator(".report-event").count();
+    const reportInsightParagraphs = await desktop.locator(".report-insight").count();
+    const reportEntities = await desktop.locator(".report-entity").count();
+    const reportDataHighlights = await desktop.locator(".report-key-data").count();
+    const legacyFactRows = await desktop.locator(".report-facts > div").count();
+    if (reportItems < 1 || reportEventParagraphs !== reportItems || reportInsightParagraphs !== reportItems || reportEntities !== reportItems || legacyFactRows) {
+      throw new Error(`Weekly report narrative is incomplete: ${reportItems} items, ${reportEventParagraphs} event paragraphs, ${reportInsightParagraphs} insight paragraphs`);
     }
+    if (!reportDataHighlights) throw new Error("Weekly report did not highlight any quantitative data");
+    await desktop.locator(".report-item").first().screenshot({ path: path.join(outputDir, "weekly-report-item.png") });
     await reportDownload.saveAs(path.join(outputDir, "weekly-report.pdf"));
     const pdfBytes = fs.readFileSync(path.join(outputDir, "weekly-report.pdf"));
     const pdfHeader = pdfBytes.subarray(0, 8).toString("ascii");
@@ -171,7 +177,7 @@ async function inspectLayout(page, label) {
       throw new Error(`Browser console errors:\n${consoleErrors.join("\n")}`);
     }
 
-    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportFactRows, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
+    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportEventParagraphs, reportInsightParagraphs, reportDataHighlights, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
   } finally {
     if (browser) await browser.close();
     server.kill();

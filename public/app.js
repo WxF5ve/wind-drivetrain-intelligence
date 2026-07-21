@@ -365,6 +365,33 @@ function reportEffect(article, dataPoints) {
   return `${article.keyPoints?.[0] || "公开摘录未给出明确效果"}；公开摘录未披露可核验量化效果。`;
 }
 
+function reportSentence(value) {
+  const text = String(value || "").trim();
+  if (!text) return "";
+  return /[。！？!?；;.]$/.test(text) ? text : `${text}。`;
+}
+
+function reportEventLead(item) {
+  return item.article.sourceType === "论文" ? "开展了相关研究。" : "披露了相关进展。";
+}
+
+function reportInsightBody(item) {
+  return String(item.significance || "")
+    .trim()
+    .replace(/^从(?:工程应用|工程实践|工程)角度看[，,:：]?\s*/, "");
+}
+
+function reportEventParagraph(item) {
+  const result = item.dataPoints.length
+    ? reportSentence(`公开资料披露的关键数据包括${item.dataPoints.join("；")}`)
+    : reportSentence(item.effect);
+  return `${item.subject}${reportEventLead(item)}${reportSentence(item.action)}${result}`;
+}
+
+function reportInsightParagraph(item) {
+  return `从工程应用角度看，${reportSentence(reportInsightBody(item))}`;
+}
+
 function reportItem(article) {
   const dataPoints = reportDataPoints(article);
   return {
@@ -420,6 +447,9 @@ function weeklyReportPeriod(model) {
 function renderReportItem(item, index) {
   const article = item.article;
   const reliability = article.reliability || { grade: "D", label: "谨慎", score: 0 };
+  const resultHtml = item.dataPoints.length
+    ? `公开资料披露的关键数据包括${item.dataPoints.map((point) => `<mark class="report-key-data">${escapeHtml(point)}</mark>`).join("、")}。`
+    : escapeHtml(reportSentence(item.effect));
   return `
     <article class="report-item">
       <div class="report-item-number">${String(index + 1).padStart(2, "0")}</div>
@@ -431,13 +461,10 @@ function renderReportItem(item, index) {
           <span class="report-reliability grade-${escapeHtml(String(reliability.grade).toLowerCase())}">${escapeHtml(reliability.grade)} · ${escapeHtml(reliability.label)} ${reliability.score}</span>
         </div>
         <h3>${escapeHtml(article.titleZh || article.title)}</h3>
-        <dl class="report-facts">
-          <div><dt>主体</dt><dd>${escapeHtml(item.subject)}</dd></div>
-          <div><dt>做了什么</dt><dd>${escapeHtml(item.action)}</dd></div>
-          <div><dt>效果/进展</dt><dd>${escapeHtml(item.effect)}</dd></div>
-          <div><dt>必要数据</dt><dd>${escapeHtml(item.dataPoints.length ? item.dataPoints.join("；") : "公开摘录未披露可核验量化数据")}</dd></div>
-          <div><dt>工程意义</dt><dd>${escapeHtml(item.significance)}</dd></div>
-        </dl>
+        <div class="report-narrative">
+          <p class="report-event"><mark class="report-entity">${escapeHtml(item.subject)}</mark>${escapeHtml(reportEventLead(item))}${escapeHtml(reportSentence(item.action))}${resultHtml}</p>
+          <p class="report-insight"><strong>从工程应用角度看，</strong>${escapeHtml(reportSentence(reportInsightBody(item)))}</p>
+        </div>
         <a class="report-source-link" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link"></i>阅读原文</a>
       </div>
     </article>
@@ -493,12 +520,9 @@ function weeklyReportPlainText(model = activeWeeklyReport || buildWeeklyReport()
     lines.push(`【${group.title}】`);
     group.items.forEach((item, index) => {
       lines.push(`${index + 1}. ${item.article.titleZh || item.article.title}`);
-      lines.push(`主体：${item.subject}`);
-      lines.push(`做了什么：${item.action}`);
-      lines.push(`效果/进展：${item.effect}`);
-      lines.push(`必要数据：${item.dataPoints.length ? item.dataPoints.join("；") : "公开摘录未披露可核验量化数据"}`);
-      lines.push(`工程意义：${item.significance}`);
-      lines.push(`原文：${item.article.url}`);
+      lines.push(reportEventParagraph(item));
+      lines.push(reportInsightParagraph(item));
+      lines.push(`原文链接：${item.article.url}`);
       lines.push("");
     });
   });
@@ -582,6 +606,73 @@ function pdfText(context, value, x, y, maxWidth, options = {}) {
   return y + lines.length * lineHeight;
 }
 
+function pdfSetFont(context, options = {}) {
+  context.font = `${options.weight || 400} ${options.size || 22}px ${options.family || '"Microsoft YaHei", "PingFang SC", sans-serif'}`;
+}
+
+function pdfRichLines(context, segments, maxWidth, options = {}) {
+  const baseStyle = {
+    size: options.size || 20,
+    weight: options.weight || 400,
+    family: options.family || '"Microsoft YaHei", "PingFang SC", sans-serif',
+    color: options.color || "#34463f"
+  };
+  const lines = [[]];
+  let lineWidth = 0;
+  for (const segment of segments) {
+    const style = { ...baseStyle, ...segment };
+    delete style.text;
+    const styleKey = `${style.size}|${style.weight}|${style.family}|${style.color}`;
+    for (const character of Array.from(String(segment.text || ""))) {
+      if (character === "\n") {
+        lines.push([]);
+        lineWidth = 0;
+        continue;
+      }
+      pdfSetFont(context, style);
+      const width = context.measureText(character).width;
+      if (lineWidth && lineWidth + width > maxWidth) {
+        lines.push([]);
+        lineWidth = 0;
+      }
+      const line = lines[lines.length - 1];
+      const previous = line[line.length - 1];
+      if (previous?.styleKey === styleKey) {
+        previous.text += character;
+        previous.width += width;
+      } else {
+        line.push({ text: character, width, style, styleKey });
+      }
+      lineWidth += width;
+    }
+  }
+  return lines.filter((line) => line.length);
+}
+
+function pdfRichText(context, segments, x, y, maxWidth, options = {}) {
+  const lineHeight = options.lineHeight || 31;
+  const lines = pdfRichLines(context, segments, maxWidth, options);
+  lines.forEach((line, lineIndex) => {
+    let cursorX = x;
+    line.forEach((run) => {
+      pdfSetFont(context, run.style);
+      context.fillStyle = run.style.color;
+      context.fillText(run.text, cursorX, y + lineIndex * lineHeight);
+      cursorX += run.width;
+    });
+  });
+  return y + Math.max(lines.length, 1) * lineHeight;
+}
+
+function pdfRichHeight(context, segments, maxWidth, options = {}) {
+  return Math.max(pdfRichLines(context, segments, maxWidth, options).length, 1) * (options.lineHeight || 31);
+}
+
+function pdfPlainHeight(context, value, maxWidth, options = {}) {
+  pdfSetFont(context, options);
+  return pdfWrapText(context, value, maxWidth).length * (options.lineHeight || Math.round((options.size || 22) * 1.55));
+}
+
 function pdfOverviewText(model) {
   return model.metrics.total
     ? `最近一周收录 ${model.metrics.total} 条资料，其中国内 ${model.metrics.domestic} 条、海外 ${model.metrics.overseas} 条；包含 ${model.metrics.papers} 篇论文和 ${model.metrics.industry} 条行业/权威动态，其中 ${model.metrics.quantified} 条包含可核验的必要数据。`
@@ -603,21 +694,40 @@ function pdfNewPage(model, pages, pageNumber) {
   return { canvas, context, y: 142 };
 }
 
-function pdfDrawField(context, label, value, y) {
-  const x = pdfPageSize.margin;
-  const valueX = x + 126;
-  const width = pdfPageSize.width - pdfPageSize.margin * 2 - 126;
-  const nextY = pdfText(context, value, valueX, y, width, { size: 19, lineHeight: 29, color: "#34463f" });
-  pdfText(context, label, x, y, 108, { size: 18, weight: 700, color: "#176c55" });
-  return Math.max(nextY, y + 29) + 9;
+function pdfEventSegments(item) {
+  const segments = [
+    { text: item.subject, color: "#176c55", weight: 700 },
+    { text: `${reportEventLead(item)}${reportSentence(item.action)}`, color: "#34463f" }
+  ];
+  if (!item.dataPoints.length) {
+    segments.push({ text: reportSentence(item.effect), color: "#34463f" });
+    return segments;
+  }
+  segments.push({ text: "公开资料披露的关键数据包括", color: "#34463f" });
+  item.dataPoints.forEach((point, index) => {
+    if (index) segments.push({ text: "、", color: "#34463f" });
+    segments.push({ text: point, color: "#a96712", weight: 700 });
+  });
+  segments.push({ text: "。", color: "#34463f" });
+  return segments;
+}
+
+function pdfInsightSegments(item) {
+  return [
+    { text: "从工程应用角度看，", color: "#2e7680", weight: 700 },
+    { text: reportSentence(reportInsightBody(item)), color: "#34463f" }
+  ];
 }
 
 function pdfItemHeight(context, item) {
-  const width = pdfPageSize.width - pdfPageSize.margin * 2 - 126;
-  const values = [item.subject, item.action, item.effect, item.dataPoints.length ? item.dataPoints.join("；") : "公开摘录未披露可核验量化数据", item.significance, item.article.url];
-  context.font = '400 19px "Microsoft YaHei", "PingFang SC", sans-serif';
-  const lines = values.reduce((total, value) => total + pdfWrapText(context, value, width).length, 0);
-  return 80 + lines * 29 + values.length * 9 + 28;
+  const contentWidth = pdfPageSize.width - pdfPageSize.margin * 2;
+  const textWidth = contentWidth - 76;
+  return pdfPlainHeight(context, item.article.titleZh || item.article.title, textWidth, { size: 27, lineHeight: 37 })
+    + pdfPlainHeight(context, `${item.article.source || "来源待确认"}  ·  ${item.article.region || "地区待确认"}  ·  ${formatDate(item.article.publishedAt)}`, textWidth, { size: 15, lineHeight: 23 })
+    + pdfRichHeight(context, pdfEventSegments(item), textWidth, { size: 19, lineHeight: 31 })
+    + pdfRichHeight(context, pdfInsightSegments(item), textWidth, { size: 19, lineHeight: 31 })
+    + pdfPlainHeight(context, `原文链接  ${item.article.url}`, textWidth, { size: 14, lineHeight: 22 })
+    + 104;
 }
 
 function pdfDrawItem(context, item, index, y) {
@@ -630,12 +740,14 @@ function pdfDrawItem(context, item, index, y) {
   y = pdfText(context, item.article.titleZh || item.article.title, titleX, y, titleWidth, { size: 27, weight: 700, lineHeight: 37, color: "#17231f" }) + 5;
   const reliability = item.article.reliability || { grade: "D", label: "谨慎", score: 0 };
   y = pdfText(context, `${item.article.source || "来源待确认"}  ·  ${item.article.region || "地区待确认"}  ·  ${formatDate(item.article.publishedAt)}  ·  可靠度 ${reliability.grade} ${reliability.score}`, titleX, y, titleWidth, { size: 15, color: "#53635d" }) + 14;
-  y = pdfDrawField(context, "主体", item.subject, y);
-  y = pdfDrawField(context, "做了什么", item.action, y);
-  y = pdfDrawField(context, "效果/进展", item.effect, y);
-  y = pdfDrawField(context, "必要数据", item.dataPoints.length ? item.dataPoints.join("；") : "公开摘录未披露可核验量化数据", y);
-  y = pdfDrawField(context, "工程意义", item.significance, y);
-  y = pdfDrawField(context, "原文", item.article.url, y);
+  y = pdfRichText(context, pdfEventSegments(item), titleX, y, titleWidth, { size: 19, lineHeight: 31 }) + 14;
+  const insightHeight = pdfRichHeight(context, pdfInsightSegments(item), titleWidth - 20, { size: 19, lineHeight: 31 });
+  context.fillStyle = "#eef6f6";
+  context.fillRect(titleX - 12, y - 23, titleWidth + 12, insightHeight + 18);
+  context.fillStyle = "#3b8792";
+  context.fillRect(titleX - 12, y - 23, 4, insightHeight + 18);
+  y = pdfRichText(context, pdfInsightSegments(item), titleX, y, titleWidth - 20, { size: 19, lineHeight: 31 }) + 18;
+  y = pdfText(context, `原文链接  ${item.article.url}`, titleX, y, titleWidth, { size: 14, lineHeight: 22, color: "#2e7680" }) + 7;
   context.strokeStyle = "#d5ded9";
   context.lineWidth = 1;
   context.beginPath();
@@ -672,8 +784,9 @@ function createWeeklyReportCanvases(model) {
   y += 18;
   for (const group of model.groups) {
     const groupHeight = 72;
-    if (y + groupHeight > pdfPageSize.height - 90) {
-      pdfText(context, String(pages.length), pdfPageSize.width - 130, pdfPageSize.height - 38, 60, { size: 14, color: "#83948d" });
+    const firstItemHeight = group.items.length ? pdfItemHeight(page.context, group.items[0]) : 0;
+    if (y + groupHeight + firstItemHeight > pdfPageSize.height - 90) {
+      pdfText(page.context, String(pages.length), pdfPageSize.width - 130, pdfPageSize.height - 38, 60, { size: 14, color: "#83948d" });
       page = pdfNewPage(model, pages, pages.length + 1);
       y = page.y;
     }

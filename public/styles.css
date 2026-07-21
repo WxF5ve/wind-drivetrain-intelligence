@@ -1321,30 +1321,47 @@ dialog::backdrop {
   line-height: 1.45;
 }
 
-.report-facts {
-  display: grid;
-  gap: 8px;
-  margin: 0;
-}
-
-.report-facts > div {
-  display: grid;
-  grid-template-columns: 60px minmax(0, 1fr);
-  gap: 12px;
-}
-
-.report-facts dt {
-  color: var(--green);
-  font-size: 11px;
-  font-weight: 750;
-}
-
-.report-facts dd {
-  min-width: 0;
-  margin: 0;
+.report-narrative {
   color: var(--ink-soft);
-  font-size: 12px;
-  line-height: 1.7;
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+.report-narrative p {
+  margin: 0;
+}
+
+.report-narrative p + p {
+  margin-top: 10px;
+}
+
+.report-entity,
+.report-key-data {
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: 750;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.report-entity {
+  background: linear-gradient(transparent 58%, var(--green-soft) 58%);
+  color: var(--green-dark);
+}
+
+.report-key-data {
+  background: #fff1d6;
+  color: #915e12;
+}
+
+.report-insight {
+  padding-left: 11px;
+  border-left: 2px solid var(--cyan);
+}
+
+.report-insight strong {
+  color: var(--cyan);
+  font-weight: 750;
 }
 
 .report-source-link {
@@ -2447,17 +2464,13 @@ dialog::backdrop {
     gap: 8px;
   }
 
-  .report-facts > div {
-    grid-template-columns: 55px minmax(0, 1fr);
-    gap: 8px;
-  }
-
   .report-item h3 {
     font-size: 15px;
   }
 
-  .report-facts dd {
-    font-size: 11px;
+  .report-narrative {
+    font-size: 12px;
+    line-height: 1.8;
   }
 
   .feedback-section {
