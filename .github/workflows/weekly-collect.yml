@@ -56,10 +56,11 @@ jobs:
 
       - name: Check whether collection is due
         id: collection
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[collect]')
         run: node scripts/check-collection-freshness.mjs
         env:
           COLLECTION_TIME_ZONE: Asia/Shanghai
+          FORCE_COLLECTION: ${{ contains(github.event.head_commit.message, '[collect]') }}
 
       - name: Install collector dependencies
         run: npm ci

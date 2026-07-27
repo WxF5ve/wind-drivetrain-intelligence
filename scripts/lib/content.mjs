@@ -41,6 +41,13 @@ export function extractHtmlContent(html, maxCharacters = 14000) {
       break;
     }
   }
+  const publishedAt = cleanText(
+    root.querySelector('meta[property="article:published_time"]')?.getAttribute("content") ||
+    root.querySelector('meta[name="citation_publication_date"]')?.getAttribute("content") ||
+    root.querySelector('meta[name="citation_date"]')?.getAttribute("content") ||
+    root.querySelector('meta[name="date"]')?.getAttribute("content") ||
+    ""
+  );
   const selectors = [
     '[itemprop="articleBody"]', "article", ".article-content", ".article-body", ".articleText",
     ".post-content", ".entry-content", ".news-content", ".content-detail", ".TRS_Editor", "main"
@@ -60,7 +67,7 @@ export function extractHtmlContent(html, maxCharacters = 14000) {
     if (text.length >= 240) candidates.push({ text, score: text.length });
   }
   const fullText = candidates.sort((left, right) => right.score - left.score)[0]?.text.slice(0, maxCharacters) || "";
-  return { title, description, fullText };
+  return { title, description, fullText, publishedAt };
 }
 
 export async function extractPdfText(data, options = {}) {

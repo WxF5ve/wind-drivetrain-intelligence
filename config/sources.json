@@ -1,7 +1,7 @@
 {
   "lookbackDays": 30,
-  "maxArticles": 120,
-  "historyMaxArticles": 500,
+  "maxArticles": 180,
+  "historyMaxArticles": 700,
   "historyRetentionDays": 730,
   "minimumRelevanceScore": 3,
   "industryRelevanceBoost": 3,
@@ -67,7 +67,18 @@
         "people.com.cn",
         "cctv.com",
         "cnr.cn",
-        "chinanews.com.cn"
+        "chinanews.com.cn",
+        "bjx.com.cn",
+        "china5e.com",
+        "in-en.com",
+        "chinapower.com.cn",
+        "toutiao.com",
+        "chinatransmissions.com",
+        "advancedmanufacturing.org.cn",
+        "mmsonline.com.cn",
+        "vogel.com.cn",
+        "gongkong.com",
+        "e-works.net.cn"
       ]
     },
     "commercialSignals": [
@@ -234,6 +245,74 @@
       "language": "English",
       "region": "海外",
       "contextTags": ["仿真与数字工程"]
+    },
+    {
+      "id": "portal-cn-bjx-wind",
+      "label": "北极星风电与电力行业",
+      "query": "site:bjx.com.cn (风电 OR 海上风电 OR 风力发电) (项目 OR 政策 OR 装机 OR 技术 OR 齿轮箱 OR 轴承)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["bjx.com.cn"],
+      "contextTags": ["行业媒体", "北极星"]
+    },
+    {
+      "id": "portal-cn-china5e-wind",
+      "label": "中国能源网风电动态",
+      "query": "site:china5e.com (风电 OR 海上风电 OR 风力发电) (项目 OR 政策 OR 装机 OR 装备 OR 技术)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["china5e.com"],
+      "contextTags": ["行业媒体", "中国能源网"]
+    },
+    {
+      "id": "portal-cn-in-en-wind",
+      "label": "国际能源网风电动态",
+      "query": "site:in-en.com (风电 OR 海上风电 OR 风力发电) (项目 OR 政策 OR 装机 OR 装备 OR 技术)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["in-en.com"],
+      "contextTags": ["行业媒体", "国际能源网"]
+    },
+    {
+      "id": "portal-cn-power-wind",
+      "label": "中国电力网风电动态",
+      "query": "site:chinapower.com.cn (风电 OR 海上风电 OR 风力发电) (项目 OR 政策 OR 装机 OR 并网 OR 装备)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["chinapower.com.cn"],
+      "contextTags": ["行业媒体", "中国电力网"]
+    },
+    {
+      "id": "portal-cn-transmission",
+      "label": "中国传动网风电传动技术",
+      "query": "site:chinatransmissions.com 风电 (齿轮箱 OR 传动链 OR 轴承 OR 联轴器 OR 齿轮 OR 润滑 OR 状态监测)",
+      "language": "Chinese",
+      "region": "国内",
+      "allowedDomains": ["chinatransmissions.com"],
+      "contextTags": ["传动技术媒体", "中国传动网"]
+    },
+    {
+      "id": "portal-cn-advanced-manufacturing",
+      "label": "国内先进制造技术门户",
+      "query": "(site:advancedmanufacturing.org.cn OR site:mmsonline.com.cn OR site:vogel.com.cn OR site:gongkong.com OR site:e-works.net.cn) 风电 (齿轮箱 OR 齿轮 OR 轴承 OR 热处理 OR 喷丸 OR 仿真 OR 质量)",
+      "language": "Chinese",
+      "region": "国内",
+      "allowedDomains": ["advancedmanufacturing.org.cn", "mmsonline.com.cn", "vogel.com.cn", "gongkong.com", "e-works.net.cn"],
+      "contextTags": ["先进制造", "工业技术媒体"]
+    },
+    {
+      "id": "portal-cn-toutiao-wind",
+      "label": "今日头条公开风电资讯",
+      "query": "site:toutiao.com (风电 OR 海上风电) (项目 OR 装机 OR 技术 OR 齿轮箱 OR 轴承 OR 传动链)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "allowedDomains": ["toutiao.com"],
+      "contextTags": ["聚合媒体", "今日头条"]
     },
     {
       "id": "official-cn-xinhua-wind",
@@ -435,7 +514,8 @@
       "id": "research-cn",
       "label": "国内风电传动论文",
       "query": "风电 齿轮箱 轴承 故障诊断",
-      "region": "国内"
+      "region": "国内",
+      "providers": ["openalex", "crossref"]
     },
     {
       "id": "research-planetary-loads",
@@ -477,13 +557,15 @@
       "id": "research-cn-design",
       "label": "国内齿轮设计论文",
       "query": "风电 齿轮箱 行星架 齿轮修形 载荷谱 均载",
-      "region": "国内"
+      "region": "国内",
+      "providers": ["openalex", "crossref"]
     },
     {
       "id": "research-cn-bearing-failure",
       "label": "国内轴承失效论文",
       "query": "风电 轴承 白色蚀刻裂纹 润滑 电蚀 失效",
-      "region": "国内"
+      "region": "国内",
+      "providers": ["openalex", "crossref"]
     },
     {
       "id": "research-surface-manufacturing",
@@ -531,7 +613,68 @@
       "id": "research-cn-process-quality",
       "label": "国内传动链工艺与质量论文",
       "query": "风电 齿轮箱 感应淬火 喷丸 轴承跑圈 振动 行星架强度 滑动轴承 AVL仿真",
-      "region": "国内"
+      "region": "国内",
+      "providers": ["openalex", "crossref"]
+    },
+    {
+      "id": "research-cn-cnki-index",
+      "label": "中国知网公开题录",
+      "query": "site:cnki.net 风电 (齿轮箱 OR 传动链 OR 轴承 OR 行星架 OR 齿轮)",
+      "region": "国内",
+      "providers": ["academic-web"],
+      "allowedDomains": ["cnki.net"],
+      "maxRecords": 8,
+      "contextTags": ["国内学术题录", "中国知网"]
+    },
+    {
+      "id": "research-cn-wanfang-index",
+      "label": "万方数据公开题录",
+      "query": "site:wanfangdata.com.cn 风电 (齿轮箱 OR 传动链 OR 轴承 OR 行星架 OR 齿轮)",
+      "region": "国内",
+      "providers": ["academic-web"],
+      "allowedDomains": ["wanfangdata.com.cn"],
+      "maxRecords": 8,
+      "contextTags": ["国内学术题录", "万方数据"]
+    },
+    {
+      "id": "research-cn-cqvip-index",
+      "label": "维普公开题录",
+      "query": "site:cqvip.com 风电 (齿轮箱 OR 传动链 OR 轴承 OR 行星架 OR 齿轮)",
+      "region": "国内",
+      "providers": ["academic-web"],
+      "allowedDomains": ["cqvip.com"],
+      "maxRecords": 8,
+      "contextTags": ["国内学术题录", "维普"]
+    },
+    {
+      "id": "research-cn-pubscholar-index",
+      "label": "PubScholar 公益学术题录",
+      "query": "site:pubscholar.cn 风电 (齿轮箱 OR 传动链 OR 轴承 OR 行星架 OR 齿轮)",
+      "region": "国内",
+      "providers": ["academic-web"],
+      "allowedDomains": ["pubscholar.cn"],
+      "maxRecords": 8,
+      "contextTags": ["国内学术题录", "PubScholar"]
+    },
+    {
+      "id": "research-cn-nstl-index",
+      "label": "NSTL 国家科技文献题录",
+      "query": "site:nstl.gov.cn 风电 (齿轮箱 OR 传动链 OR 轴承 OR 行星架 OR 齿轮)",
+      "region": "国内",
+      "providers": ["academic-web"],
+      "allowedDomains": ["nstl.gov.cn"],
+      "maxRecords": 8,
+      "contextTags": ["国内学术题录", "NSTL"]
+    },
+    {
+      "id": "research-cn-paper-edu-index",
+      "label": "中国科技论文在线公开题录",
+      "query": "site:paper.edu.cn 风电 (齿轮箱 OR 传动链 OR 轴承 OR 行星架 OR 齿轮)",
+      "region": "国内",
+      "providers": ["academic-web"],
+      "allowedDomains": ["paper.edu.cn"],
+      "maxRecords": 8,
+      "contextTags": ["国内学术题录", "中国科技论文在线"]
     }
   ],
   "relevanceKeywords": {

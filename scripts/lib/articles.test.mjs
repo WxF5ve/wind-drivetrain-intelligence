@@ -169,6 +169,30 @@ test("drivetrain taxonomy recognizes manufacturing, quality, bearing, simulation
   }
 });
 
+test("every intelligence item receives a primary component classification", () => {
+  const cases = [
+    ["风电行星架与内齿圈均载分析", "行星级"],
+    ["10 MW 风机主轴承载荷与跑圈研究", "主轴与主轴承"],
+    ["风电齿轮箱高速轴与平行轴级振动", "平行轴级"],
+    ["风电联轴器、锁紧盘和花键连接设计", "轴系连接"],
+    ["齿轮箱润滑冷却系统与密封漏油治理", "润滑冷却与密封"],
+    ["Wind turbine gearbox housing and torque arm deformation", "箱体与扭力臂"]
+  ];
+  for (const [title, expected] of cases) {
+    assert.equal(classifyArticle({ title, sourceType: "论文" }).componentCategory, expected);
+  }
+  assert.equal(classifyArticle({
+    title: "国家发布年度风电装机统计",
+    queryTopic: "official",
+    sourceType: "行业资讯"
+  }).componentCategory, "行业政策与市场");
+  assert.equal(classifyArticle({
+    title: "某整机企业发布海外项目进展",
+    queryTopic: "industry",
+    sourceType: "行业资讯"
+  }).componentCategory, "企业与项目综合");
+});
+
 test("section classification separates source type from content topic and allows multiple sections", () => {
   const supplierProgress = classifyArticle({
     title: "某风电齿轮箱企业完成感应淬火与喷丸工艺验证",

@@ -172,7 +172,10 @@ function articleSearchScore(article) {
       article.sourceType,
       ...(article.sections || []),
       ...(article.technicalDomains || []),
-      ...(article.technicalTags || [])
+      ...(article.technicalTags || []),
+      article.componentCategory,
+      article.drivetrainComponent,
+      ...(article.drivetrainComponents || [])
     ].join(" ").toLowerCase(),
     structured: JSON.stringify({
       evidence: article.evidence || {},
@@ -218,13 +221,22 @@ function personalScore(article) {
 }
 
 function matchesCategory(article) {
+  const clue = isTitleClue(article);
+  if (state.category === "标题线索") return clue;
+  if (clue) return false;
   if (state.category === "全部") return true;
   const sections = articleSections(article);
   return sections.includes(state.category) ||
     article.category === state.category ||
+    componentCategory(article) === state.category ||
+    drivetrainComponents(article).includes(state.category) ||
     (article.tags || []).includes(state.category) ||
     (article.technicalDomains || []).includes(state.category) ||
     (article.technicalTags || []).includes(state.category);
+}
+
+function isTitleClue(article) {
+  return (article.evidence?.contentAccess || "metadata") === "metadata";
 }
 
 function articleSections(article) {
@@ -263,6 +275,26 @@ function technicalTags(article) {
   return (article.tags || []).filter((tag) => ![
     "论文", "海外", "国内", "权威发布", "行业权威", "整机厂商", "齿轮箱厂商", "轴承厂商", "润滑供应商"
   ].includes(tag));
+}
+
+function componentCategory(article) {
+  if (article.componentCategory || article.drivetrainComponent) {
+    return article.componentCategory || article.drivetrainComponent;
+  }
+  const tags = technicalTags(article);
+  if (tags.some((tag) => ["行星传动", "行星架强度"].includes(tag))) return "行星级";
+  if (tags.some((tag) => ["滚动轴承", "轴承跑圈与配合", "游隙与预紧", "保持架与滚动体"].includes(tag))) return "齿轮箱轴承";
+  if (tags.some((tag) => ["润滑油与添加剂", "油液污染与磨粒", "热平衡与润滑系统"].includes(tag))) return "润滑冷却与密封";
+  if (primarySection(article) === "企业与项目追踪") return "企业与项目综合";
+  if (primarySection(article) === "风电行业全景") return "行业政策与市场";
+  return "传动链系统与整机接口";
+}
+
+function drivetrainComponents(article) {
+  if (Array.isArray(article.drivetrainComponents) && article.drivetrainComponents.length) {
+    return article.drivetrainComponents;
+  }
+  return primarySection(article) === "风电传动链专栏" ? [componentCategory(article)] : [];
 }
 
 function contentAccessMeta(article) {
@@ -476,7 +508,7 @@ function buildWeeklyReport() {
   const articles = state.articles
     .filter((article) => {
       const publishedAt = new Date(article.publishedAt).getTime();
-      return Number.isFinite(publishedAt) && publishedAt >= start.getTime() && publishedAt <= end.getTime();
+      return !isTitleClue(article) && Number.isFinite(publishedAt) && publishedAt >= start.getTime() && publishedAt <= end.getTime();
     })
     .sort((left, right) => new Date(right.publishedAt) - new Date(left.publishedAt))
     .map(reportItem);
@@ -519,6 +551,7 @@ function renderReportItem(item, index) {
       <div class="report-item-number">${String(index + 1).padStart(2, "0")}</div>
       <div class="report-item-main">
         <div class="report-item-meta">
+          <span>${escapeHtml(componentCategory(article))}</span>
           <span>${escapeHtml(article.source || "来源待确认")}</span>
           <span>${escapeHtml(article.region || "地区待确认")}</span>
           <time datetime="${escapeHtml(article.publishedAt)}">${formatDate(article.publishedAt)}</time>
@@ -949,6 +982,25 @@ async function downloadWeeklyReportPdf() {
   }
 }
 
+function titleClueCard(article) {
+  const displayTitle = article.titleZh || article.title;
+  return `
+    <article class="clue-card" data-id="${escapeHtml(article.id)}">
+      <div class="clue-marker"><i data-lucide="list-tree"></i></div>
+      <div class="clue-main">
+        <div class="clue-meta">
+          <span>${escapeHtml(article.source || "公开题录")}</span>
+          <span>${escapeHtml(article.sourceType || "公开资讯")}</span>
+          <time datetime="${escapeHtml(article.publishedAt)}">${formatDate(article.publishedAt)}</time>
+          <span class="component-chip">${escapeHtml(componentCategory(article))}</span>
+        </div>
+        <h3><a href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer">${highlight(displayTitle)}</a></h3>
+      </div>
+      <a class="icon-button" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer" title="查看题录或原文" aria-label="查看题录或原文"><i data-lucide="external-link"></i></a>
+    </article>
+  `;
+}
+
 function articleCard(article) {
   const saved = state.saved.has(article.id);
   const reliability = article.reliability || { score: 0, grade: "D", label: "待评估" };
@@ -956,6 +1008,7 @@ function articleCard(article) {
   const access = contentAccessMeta(article);
   const domains = technicalDomains(article).slice(0, 2);
   const detailTags = technicalTags(article).slice(0, 5);
+  const components = drivetrainComponents(article).slice(1, 3);
   return `
     <article class="article-card" data-id="${escapeHtml(article.id)}">
       <div class="article-media">
@@ -980,10 +1033,12 @@ function articleCard(article) {
           <button type="button" data-action="details">${highlight(displayTitle)}</button>
         </h3>
         <p class="article-summary">${highlight(article.summary)}</p>
-        ${(domains.length || detailTags.length) ? `<div class="technical-labels" aria-label="传动链技术标签">
+        <div class="technical-labels" aria-label="部件与技术标签">
+          <span class="component-chip">${escapeHtml(componentCategory(article))}</span>
+          ${components.map((component) => `<span class="component-related">${escapeHtml(component)}</span>`).join("")}
           ${domains.map((domain) => `<span class="technical-domain">${escapeHtml(domain)}</span>`).join("")}
           ${detailTags.map((tag) => `<span class="technical-tag">${escapeHtml(tag)}</span>`).join("")}
-        </div>` : ""}
+        </div>
         <button class="experience-link" type="button" data-action="experience">
           <i data-lucide="wrench"></i>
           <span>工程经验</span>
@@ -1020,7 +1075,13 @@ function renderFeed() {
     state.sourceType !== "全部" ||
     state.view === "saved";
 
-  elements.feedTitle.textContent = state.view === "saved" ? "我的收藏" : state.query ? "搜索结果" : "最新情报";
+  elements.feedTitle.textContent = state.view === "saved"
+    ? "我的收藏"
+    : state.query
+      ? "搜索结果"
+      : state.category === "标题线索"
+        ? "标题线索"
+        : "最新情报";
   elements.resultCount.textContent = `找到 ${articles.length} 条资料${hasFilters ? "，已按当前条件筛选" : ""}`;
   elements.clearSearch.hidden = !state.query;
 
@@ -1036,7 +1097,7 @@ function renderFeed() {
       </div>
     `;
   } else {
-    elements.articleFeed.innerHTML = articles.map(articleCard).join("");
+    elements.articleFeed.innerHTML = articles.map((article) => isTitleClue(article) ? titleClueCard(article) : articleCard(article)).join("");
   }
 
   elements.savedCount.textContent = state.saved.size;
@@ -1070,12 +1131,8 @@ function renderActiveFilters() {
 
 function renderTrends() {
   const counts = new Map();
-  for (const article of state.articles) {
-    const labels = technicalDomains(article).length
-      ? technicalDomains(article)
-      : technicalTags(article).length
-        ? technicalTags(article).slice(0, 2)
-        : [article.category || primarySection(article)];
+  for (const article of state.articles.filter((item) => !isTitleClue(item))) {
+    const labels = [componentCategory(article)];
     for (const label of new Set(labels)) counts.set(label, (counts.get(label) || 0) + 1);
   }
   const trends = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5);
@@ -1147,6 +1204,7 @@ function renderTechnicalClassification(article) {
   const sections = articleSections(article);
   const domains = technicalDomains(article);
   const tags = technicalTags(article);
+  const components = drivetrainComponents(article);
   if (!sections.length && !domains.length && !tags.length) return "";
   return `
     <section class="classification-panel" aria-labelledby="classification-title">
@@ -1155,7 +1213,9 @@ function renderTechnicalClassification(article) {
         <h3 id="classification-title">栏目与技术标签</h3>
       </div>
       <div class="classification-row"><strong>所属栏目</strong><div>${sections.map((section) => `<span class="section-chip">${escapeHtml(section)}</span>`).join("")}</div></div>
-      ${domains.length ? `<div class="classification-row"><strong>技术主体</strong><div>${domains.map((domain) => `<span class="technical-domain">${escapeHtml(domain)}</span>`).join("")}</div></div>` : ""}
+      <div class="classification-row"><strong>主部件</strong><div><span class="component-chip">${escapeHtml(componentCategory(article))}</span></div></div>
+      ${components.length > 1 ? `<div class="classification-row"><strong>关联部件</strong><div>${components.slice(1).map((component) => `<span class="component-related">${escapeHtml(component)}</span>`).join("")}</div></div>` : ""}
+      ${domains.length ? `<div class="classification-row"><strong>技术主题</strong><div>${domains.map((domain) => `<span class="technical-domain">${escapeHtml(domain)}</span>`).join("")}</div></div>` : ""}
       ${tags.length ? `<div class="classification-row"><strong>细分标签</strong><div>${tags.map((tag) => `<span class="technical-tag">${escapeHtml(tag)}</span>`).join("")}</div></div>` : ""}
     </section>
   `;

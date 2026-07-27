@@ -82,6 +82,61 @@ export const DRIVETRAIN_TAXONOMY = [
   }
 ];
 
+export const DRIVETRAIN_COMPONENT_TAXONOMY = [
+  {
+    component: "主轴与主轴承",
+    keywords: ["主轴承", "主轴轴承", "主轴系", "主轴", "main bearing", "main shaft bearing", "main shaft"]
+  },
+  {
+    component: "行星级",
+    keywords: ["行星架", "行星轮", "太阳轮", "内齿圈", "行星销", "行星级", "均载", "planet carrier", "planet gear", "sun gear", "ring gear", "planet pin", "planetary stage", "load sharing"]
+  },
+  {
+    component: "平行轴级",
+    keywords: ["平行轴", "中间轴", "高速轴", "中速轴", "高速级", "中间级", "parallel shaft", "intermediate shaft", "high-speed shaft", "high speed shaft", "parallel stage"]
+  },
+  {
+    component: "齿轮件",
+    keywords: ["齿轮", "轮齿", "齿面", "齿根", "齿形", "齿向", "啮合", "gear tooth", "gear flank", "gear mesh", "gear microgeometry", "tooth profile"]
+  },
+  {
+    component: "滑动轴承系统",
+    keywords: ["滑动轴承", "轴瓦", "可倾瓦", "journal bearing", "plain bearing", "sliding bearing", "tilting pad bearing", "hydrodynamic bearing"]
+  },
+  {
+    component: "齿轮箱轴承",
+    keywords: ["齿轮箱轴承", "行星轮轴承", "高速轴轴承", "中间轴轴承", "滚动轴承", "轴承跑圈", "套圈蠕动", "bearing creep", "ring creep", "gearbox bearing", "planet bearing", "rolling bearing", "roller bearing"]
+  },
+  {
+    component: "箱体与扭力臂",
+    keywords: ["齿轮箱箱体", "箱体变形", "扭力臂", "弹性支撑", "机架接口", "gearbox housing", "housing deformation", "torque arm", "elastic support", "bedplate interface"]
+  },
+  {
+    component: "轴系连接",
+    keywords: ["联轴器", "锁紧盘", "胀紧套", "胀套", "花键", "收缩盘", "空心轴", "传动轴", "coupling", "shrink disc", "locking assembly", "spline", "hollow shaft", "drive shaft"]
+  },
+  {
+    component: "润滑冷却与密封",
+    keywords: ["润滑系统", "齿轮油", "润滑油", "润滑脂", "油液", "油温", "冷却系统", "过滤器", "密封", "漏油", "gear oil", "lubrication system", "lubricant", "oil debris", "cooling system", "filter", "seal", "oil leakage"]
+  },
+  {
+    component: "发电机与高速端接口",
+    keywords: ["发电机轴承", "发电机接口", "高速端", "高速联轴器", "generator bearing", "generator interface", "high-speed coupling", "high speed coupling", "high-speed end"]
+  },
+  {
+    component: "监测与传感系统",
+    keywords: ["状态监测", "振动监测", "油液监测", "扭矩传感", "温度传感", "scada", "cms", "condition monitoring", "vibration monitoring", "oil monitoring", "torque sensor", "temperature sensor"]
+  },
+  {
+    component: "齿轮箱总成与架构",
+    keywords: ["齿轮箱", "主齿轮箱", "功率分流", "扭矩密度", "gearbox", "gear box", "split torque", "torque density"]
+  },
+  {
+    component: "传动链系统与整机接口",
+    keywords: ["传动链", "主传动链", "轴系", "扭振", "载荷谱", "drivetrain", "drive train", "shaft line", "torsional vibration", "load spectrum"]
+  }
+];
+
 const categoryRules = [
   ["白色蚀刻裂纹", ["白色蚀刻", "white etching", "wec"]],
   ["润滑", ["润滑", "lubric", "oil debris", "磨粒"]],
@@ -129,8 +184,30 @@ function inferDrivetrainClassificationFromText(text) {
   };
 }
 
+function inferComponentClassificationFromText(text) {
+  const matches = DRIVETRAIN_COMPONENT_TAXONOMY
+    .map((entry, index) => {
+      const matchedKeywords = entry.keywords.filter((keyword) => containsKeyword(text, keyword));
+      return {
+        index,
+      component: entry.component,
+        score: matchedKeywords.reduce((total, keyword) => total + keyword.replace(/\s+/g, "").length, 0)
+      };
+    })
+    .filter((entry) => entry.score > 0)
+    .sort((left, right) => right.score - left.score || left.index - right.index);
+  return {
+    drivetrainComponent: matches[0]?.component || "",
+    drivetrainComponents: matches.map((entry) => entry.component).slice(0, 5)
+  };
+}
+
 export function inferDrivetrainClassification(article) {
-  return inferDrivetrainClassificationFromText(classificationText(article));
+  const text = classificationText(article);
+  return {
+    ...inferDrivetrainClassificationFromText(text),
+    ...inferComponentClassificationFromText(text)
+  };
 }
 
 function inferDirectDrivetrainClassification(article) {
@@ -140,7 +217,10 @@ function inferDirectDrivetrainClassification(article) {
     article.snippet,
     ...(article.contextTags || [])
   ].filter(Boolean).join(" ")).toLowerCase();
-  return inferDrivetrainClassificationFromText(text);
+  return {
+    ...inferDrivetrainClassificationFromText(text),
+    ...inferComponentClassificationFromText(text)
+  };
 }
 
 export function classifyArticle(article) {
@@ -163,7 +243,24 @@ export function classifyArticle(article) {
       : uniqueSections.includes("风电传动链专栏")
         ? "风电传动链专栏"
         : "风电行业全景";
-  return { ...classification, sections: uniqueSections, primarySection };
+  const componentCategory = uniqueSections.includes("风电传动链专栏")
+    ? classification.drivetrainComponent || "传动链系统与整机接口"
+    : topic === "industry"
+      ? "企业与项目综合"
+      : "行业政策与市场";
+  const drivetrainComponents = uniqueSections.includes("风电传动链专栏")
+    ? classification.drivetrainComponents.length
+      ? classification.drivetrainComponents
+      : [componentCategory]
+    : [];
+  return {
+    ...classification,
+    drivetrainComponent: componentCategory,
+    drivetrainComponents,
+    componentCategory,
+    sections: uniqueSections,
+    primarySection
+  };
 }
 
 export function isIndustryRelevant(article) {
@@ -857,6 +954,9 @@ export function toPublicArticle(article, summaryData) {
     sections: classification.sections,
     technicalDomains: classification.technicalDomains,
     technicalTags: classification.technicalTags,
+    drivetrainComponent: classification.drivetrainComponent,
+    drivetrainComponents: classification.drivetrainComponents,
+    componentCategory: classification.componentCategory,
     titleZh: cleanText(summaryData.titleZh || (/[\p{Script=Han}]/u.test(article.title || "") ? article.title : "")),
     category: article.queryTopic === "industry"
       ? "厂商动态"

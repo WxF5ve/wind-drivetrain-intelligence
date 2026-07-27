@@ -106,7 +106,9 @@ async function fetchText(url) {
 }
 
 async function fetchPublisherMetadata(url) {
-  if (!/^https?:\/\//i.test(url) || new URL(url).hostname === "news.google.com") return {};
+  if (!/^https?:\/\//i.test(url) || new URL(url).hostname === "news.google.com") {
+    return { contentFailureReason: "没有可直接访问的发布方地址" };
+  }
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15000);
   try {
@@ -118,10 +120,10 @@ async function fetchPublisherMetadata(url) {
       redirect: "follow",
       signal: controller.signal
     });
-    if (!response.ok) return {};
+    if (!response.ok) return { contentFailureReason: `发布方返回 HTTP ${response.status}` };
     const contentType = response.headers.get("content-type") || "";
     const contentLength = Number(response.headers.get("content-length") || 0);
-    if (contentLength > 15_000_000) return {};
+    if (contentLength > 15_000_000) return { contentFailureReason: "公开文件超过采集大小限制" };
     if (contentType.includes("application/pdf") || /\.pdf(?:$|\?)/i.test(response.url)) {
       const fullText = await extractPdfText(await response.arrayBuffer());
       return {
@@ -131,10 +133,13 @@ async function fetchPublisherMetadata(url) {
         finalUrl: response.url,
         contentAccess: fullText.length >= 600 ? "fulltext" : "metadata",
         contentSource: fullText.length >= 600 ? "open-access-pdf" : "metadata",
-        extractedCharacters: fullText.length
+        extractedCharacters: fullText.length,
+        contentFailureReason: fullText.length >= 600 ? "" : "PDF 没有足够可提取文本"
       };
     }
-    if (!contentType.includes("text/html") && !contentType.includes("application/xhtml+xml")) return {};
+    if (!contentType.includes("text/html") && !contentType.includes("application/xhtml+xml")) {
+      return { contentFailureReason: "发布方返回了暂不支持的内容格式" };
+    }
     const content = extractHtmlContent(await response.text());
     const contentAccess = content.fullText.length >= 600
       ? "fulltext"
@@ -146,10 +151,13 @@ async function fetchPublisherMetadata(url) {
       finalUrl: response.url,
       contentAccess,
       contentSource: contentAccess === "fulltext" ? "publisher-html" : contentAccess === "abstract" ? "publisher-description" : "metadata",
-      extractedCharacters: content.fullText.length
+      extractedCharacters: content.fullText.length,
+      contentFailureReason: contentAccess === "fulltext" ? "" : "公开页面没有足够正文"
     };
-  } catch {
-    return {};
+  } catch (error) {
+    return {
+      contentFailureReason: error?.name === "AbortError" ? "公开页面请求超时" : "公开页面读取失败"
+    };
   } finally {
     clearTimeout(timeout);
   }
@@ -333,6 +341,8 @@ async function collectGoogleNews(source, lookbackDays) {
         linkType: "aggregator",
         linkVerified: false,
         contentAccess: "metadata",
+        contentFailureReason: "原文标题与聚合题录不一致",
+        contentAttempts: 1,
         contentFetched: true,
         evidence: { hasPublisherDescription: false }
       };
@@ -346,6 +356,8 @@ async function collectGoogleNews(source, lookbackDays) {
       contentAccess: metadata.contentAccess || (description ? "abstract" : "metadata"),
       contentSource: metadata.contentSource || "",
       extractedCharacters: Number(metadata.extractedCharacters || 0),
+      contentFailureReason: metadata.contentFailureReason || "",
+      contentAttempts: 1,
       contentFetched: true,
       evidence: { hasPublisherDescription: Boolean(description) }
     };
@@ -398,17 +410,18 @@ async function collectNews(source, lookbackDays) {
   ];
   if (process.env.ENABLE_GDELT === "1") attempts.push(["GDELT", collectGdelt]);
   const errors = [];
+  const collected = [];
   for (const [provider, collector] of attempts) {
     try {
       const articles = await collector(source, lookbackDays);
-      if (articles.length) return articles;
-      errors.push(`${provider}: 最近 ${lookbackDays} 天无结果`);
+      if (articles.length) collected.push(...articles);
+      else errors.push(`${provider}: 最近 ${lookbackDays} 天无结果`);
     } catch (error) {
       errors.push(`${provider}: ${error.message}`);
     }
   }
-  console.warn(`  ${source.label} 未获得新闻结果（${errors.join("；")}）`);
-  return [];
+  if (!collected.length) console.warn(`  ${source.label} 未获得新闻结果（${errors.join("；")}）`);
+  return deduplicateArticles(collected);
 }
 
 async function collectOpenAlex(source, lookbackDays) {
@@ -435,6 +448,15 @@ async function collectOpenAlex(source, lookbackDays) {
       const journal = location.source || {};
       const biblio = item.biblio || {};
       const openAccessLocation = item.best_oa_location || (item.locations || []).find((candidate) => candidate?.is_oa) || {};
+      const fullTextUrls = [...new Set([
+        openAccessLocation.pdf_url,
+        openAccessLocation.landing_page_url,
+        ...(item.locations || [])
+          .filter((candidate) => candidate?.is_oa)
+          .flatMap((candidate) => [candidate.pdf_url, candidate.landing_page_url]),
+        location.landing_page_url,
+        item.doi
+      ].filter((candidate) => /^https?:\/\//i.test(candidate || "")))];
       return {
         id: makeArticleId(urlValue, item.title),
         title: cleanText(item.title),
@@ -453,7 +475,9 @@ async function collectOpenAlex(source, lookbackDays) {
         contentAccess: abstract ? "abstract" : "metadata",
         contentSource: abstract ? "openalex-abstract" : "metadata",
         extractedCharacters: abstract.length,
-        fullTextUrl: openAccessLocation.pdf_url || openAccessLocation.landing_page_url || "",
+        fullTextUrl: fullTextUrls[0] || "",
+        fullTextUrls,
+        contentFailureReason: fullTextUrls.length ? "" : "未发现合法公开全文地址",
         evidence: {
           hasAbstract: Boolean(abstract),
           doi: item.doi || "",
@@ -479,45 +503,268 @@ async function collectOpenAlex(source, lookbackDays) {
     .filter((item) => item.title && item.url);
 }
 
+function publishedDateFromParts(...values) {
+  for (const value of values) {
+    const parts = value?.["date-parts"]?.[0];
+    if (!Array.isArray(parts) || !parts[0]) continue;
+    const [year, month = 1, day = 1] = parts.map(Number);
+    const date = new Date(Date.UTC(year, Math.max(0, month - 1), Math.max(1, day)));
+    if (!Number.isNaN(date.getTime())) return date.toISOString();
+  }
+  return now.toISOString();
+}
+
+async function collectCrossref(source, lookbackDays) {
+  const fromDate = new Date(now);
+  fromDate.setUTCDate(fromDate.getUTCDate() - lookbackDays);
+  const url = new URL("https://api.crossref.org/works");
+  url.searchParams.set("query.bibliographic", source.query);
+  url.searchParams.set("filter", `from-pub-date:${fromDate.toISOString().slice(0, 10)}`);
+  url.searchParams.set("sort", "published");
+  url.searchParams.set("order", "desc");
+  url.searchParams.set("rows", String(source.maxRecords || 20));
+
+  const data = await fetchJson(url, 2, { Accept: "application/json" });
+  return (data.message?.items || []).map((item) => {
+    const title = cleanText(item.title?.[0] || "");
+    const abstract = cleanText(item.abstract || "");
+    const doi = cleanText(item.DOI || "");
+    const articleUrl = cleanText(item.URL || (doi ? `https://doi.org/${doi}` : ""));
+    const fullTextUrls = [...new Set([
+      ...(item.link || []).map((link) => link.URL),
+      articleUrl
+    ].filter((candidate) => /^https?:\/\//i.test(candidate || "")))];
+    const authors = (item.author || [])
+      .slice(0, 8)
+      .map((author) => cleanText([author.given, author.family].filter(Boolean).join(" ")))
+      .filter(Boolean);
+    const pages = cleanText(item.page || "").split("-");
+    return {
+      id: makeArticleId(articleUrl, title),
+      title,
+      snippet: abstract,
+      source: cleanText(item["container-title"]?.[0] || item.publisher || "Crossref"),
+      sourceType: "论文",
+      region: source.region,
+      language: item.language || (source.region === "国内" ? "zh" : "en"),
+      publishedAt: publishedDateFromParts(item.published, item["published-print"], item["published-online"], item.issued),
+      collectedAt: now.toISOString(),
+      url: articleUrl,
+      sourceChannel: "Crossref",
+      linkType: "publisher",
+      linkVerified: Boolean(doi),
+      contentAccess: abstract ? "abstract" : "metadata",
+      contentSource: abstract ? "crossref-abstract" : "metadata",
+      extractedCharacters: abstract.length,
+      fullTextUrl: fullTextUrls[0] || "",
+      fullTextUrls,
+      contentFailureReason: fullTextUrls.length ? "" : "未发现合法公开全文地址",
+      evidence: {
+        hasAbstract: Boolean(abstract),
+        doi,
+        authorsCount: (item.author || []).length,
+        authors,
+        citedByCount: Number(item["is-referenced-by-count"] || 0),
+        publicationType: cleanText(item.type || "article"),
+        journal: cleanText(item["container-title"]?.[0] || ""),
+        issnL: cleanText(item.ISSN?.[0] || ""),
+        issns: (item.ISSN || []).slice(0, 4),
+        publisher: cleanText(item.publisher || ""),
+        volume: cleanText(item.volume || ""),
+        issue: cleanText(item.issue || ""),
+        firstPage: pages[0] || "",
+        lastPage: pages[1] || "",
+        isOpenAccess: (item.link || []).some((link) => /pdf|unspecified/i.test(link["content-type"] || "")),
+        isInDoaj: false
+      },
+      ...sourceContext(source)
+    };
+  }).filter((item) => item.title && item.url);
+}
+
+async function collectSemanticScholar(source, lookbackDays) {
+  const fromYear = new Date(now.getTime() - lookbackDays * 86400000).getUTCFullYear();
+  const url = new URL("https://api.semanticscholar.org/graph/v1/paper/search");
+  url.searchParams.set("query", source.query);
+  url.searchParams.set("limit", String(source.maxRecords || 20));
+  url.searchParams.set("year", `${fromYear}-`);
+  url.searchParams.set("fields", "title,abstract,authors,publicationDate,venue,journal,externalIds,url,openAccessPdf,citationCount,publicationTypes");
+  const data = await fetchJson(url);
+  const cutoff = now.getTime() - lookbackDays * 86400000;
+  return (data.data || []).map((item) => {
+    const doi = cleanText(item.externalIds?.DOI || "");
+    const articleUrl = doi ? `https://doi.org/${doi}` : cleanText(item.url || "");
+    const openPdf = cleanText(item.openAccessPdf?.url || "");
+    const fullTextUrls = [...new Set([openPdf, articleUrl].filter((candidate) => /^https?:\/\//i.test(candidate || "")))];
+    const abstract = cleanText(item.abstract || "");
+    const publishedAt = item.publicationDate ? `${item.publicationDate}T00:00:00Z` : now.toISOString();
+    const authors = (item.authors || []).slice(0, 8).map((author) => cleanText(author.name || "")).filter(Boolean);
+    return {
+      id: makeArticleId(articleUrl, item.title),
+      title: cleanText(item.title || ""),
+      snippet: abstract,
+      source: cleanText(item.journal?.name || item.venue || "Semantic Scholar"),
+      sourceType: "论文",
+      region: source.region,
+      language: source.region === "国内" ? "zh" : "en",
+      publishedAt,
+      collectedAt: now.toISOString(),
+      url: articleUrl,
+      sourceChannel: "Semantic Scholar",
+      linkType: "publisher",
+      linkVerified: Boolean(doi),
+      contentAccess: abstract ? "abstract" : "metadata",
+      contentSource: abstract ? "semantic-scholar-abstract" : "metadata",
+      extractedCharacters: abstract.length,
+      fullTextUrl: fullTextUrls[0] || "",
+      fullTextUrls,
+      contentFailureReason: openPdf ? "" : "未发现合法公开全文地址",
+      evidence: {
+        hasAbstract: Boolean(abstract),
+        doi,
+        authorsCount: (item.authors || []).length,
+        authors,
+        citedByCount: Number(item.citationCount || 0),
+        publicationType: cleanText(item.publicationTypes?.[0] || "article"),
+        journal: cleanText(item.journal?.name || item.venue || ""),
+        issnL: "",
+        issns: [],
+        publisher: "",
+        volume: cleanText(item.journal?.volume || ""),
+        issue: cleanText(item.journal?.pages || ""),
+        firstPage: "",
+        lastPage: "",
+        isOpenAccess: Boolean(openPdf),
+        isInDoaj: false
+      },
+      ...sourceContext(source)
+    };
+  }).filter((item) => {
+    const published = new Date(item.publishedAt).getTime();
+    return item.title && item.url && Number.isFinite(published) && published >= cutoff;
+  });
+}
+
+async function collectAcademicWebIndex(source, lookbackDays) {
+  const cutoff = now.getTime() - lookbackDays * 86400000;
+  const fromDate = new Date(cutoff).toISOString().slice(0, 10);
+  const url = new URL("https://www.bing.com/search");
+  url.searchParams.set("q", `${source.query} after:${fromDate}`);
+  url.searchParams.set("format", "rss");
+  url.searchParams.set("setlang", "zh-Hans");
+  const parsed = xmlParser.parse(await fetchText(url));
+  const rawItems = parsed?.rss?.channel?.item || [];
+  const items = (Array.isArray(rawItems) ? rawItems : [rawItems]).slice(0, Number(source.maxRecords || 8));
+  const articles = [];
+  for (const item of items) {
+    const articleUrl = cleanText(item.link || "");
+    if (source.allowedDomains?.length) {
+      try {
+        const hostname = new URL(articleUrl).hostname.toLowerCase().replace(/^www\./, "");
+        if (!source.allowedDomains.some((domain) => hostname === domain || hostname.endsWith(`.${domain}`))) continue;
+      } catch {
+        continue;
+      }
+    }
+    const metadata = await fetchPublisherMetadata(articleUrl);
+    const published = new Date(metadata.publishedAt || "");
+    const publishedAt = Number.isNaN(published.getTime()) ? now.toISOString() : published.toISOString();
+    const description = usefulPublisherDescription(metadata.description || item.description, item.title);
+    let sourceName = source.label;
+    try {
+      sourceName = new URL(metadata.finalUrl || articleUrl).hostname.replace(/^www\./, "");
+    } catch {}
+    articles.push({
+      id: makeArticleId(articleUrl, item.title),
+      title: cleanText(item.title || metadata.title || ""),
+      snippet: metadata.fullText || description || "",
+      source: sourceName,
+      sourceType: "论文",
+      region: "国内",
+      language: "zh",
+      publishedAt,
+      collectedAt: now.toISOString(),
+      url: metadata.finalUrl || articleUrl,
+      sourceChannel: "Bing Web 学术题录",
+      linkType: "publisher",
+      linkVerified: Boolean(metadata.finalUrl),
+      contentAccess: metadata.contentAccess || (description ? "abstract" : "metadata"),
+      contentSource: metadata.contentSource || (description ? "publisher-description" : "metadata"),
+      extractedCharacters: Number(metadata.extractedCharacters || 0),
+      contentFailureReason: metadata.contentFailureReason || "",
+      contentAttempts: 1,
+      contentFetched: true,
+      evidence: {
+        hasAbstract: Boolean(description),
+        hasPublisherDescription: Boolean(description),
+        publishedDateEstimated: Number.isNaN(published.getTime()),
+        doi: "",
+        authorsCount: 0,
+        authors: [],
+        journal: sourceName,
+        isOpenAccess: metadata.contentAccess === "fulltext"
+      },
+      ...sourceContext(source)
+    });
+    await delay(250);
+  }
+  return articles.filter((item) => item.title && item.url && isCandidateRelevant(item));
+}
+
 async function enrichPublicFullText(articles) {
-  const limit = Math.max(0, Number(process.env.FULLTEXT_MAX_ARTICLES || 45));
+  const limit = Math.max(0, Number(process.env.FULLTEXT_MAX_ARTICLES || 75));
   const concurrency = Math.max(1, Math.min(5, Number(process.env.FULLTEXT_CONCURRENCY || 3)));
   const targets = articles
     .map((article) => ({
       article,
-      targetUrl: article.sourceType === "论文" ? article.fullTextUrl : article.url
+      targetUrls: [...new Set(
+        (article.sourceType === "论文"
+          ? [...(article.fullTextUrls || []), article.fullTextUrl, article.url]
+          : [article.url]
+        ).filter((url) => /^https?:\/\//i.test(url || ""))
+      )].slice(0, 4)
     }))
-    .filter(({ article, targetUrl }) =>
+    .filter(({ article, targetUrls }) =>
       !article.contentFetched &&
       article.contentAccess !== "fulltext" &&
-      /^https?:\/\//i.test(targetUrl || "")
+      targetUrls.length
     )
     .slice(0, limit);
   let cursor = 0;
   async function worker() {
     while (cursor < targets.length) {
-      const { article, targetUrl } = targets[cursor++];
-      const content = await fetchPublisherMetadata(targetUrl);
-      article.contentFetched = true;
-      if (content.title && titleSimilarity(article.title, content.title) < 0.18) {
+      const { article, targetUrls } = targets[cursor++];
+      let lastFailure = article.contentFailureReason || "";
+      for (const targetUrl of targetUrls) {
+        const content = await fetchPublisherMetadata(targetUrl);
+        article.contentAttempts = Number(article.contentAttempts || 0) + 1;
+        if (content.title && titleSimilarity(article.title, content.title) < 0.18) {
+          lastFailure = "公开页面标题与题录不一致";
+          await delay(180);
+          continue;
+        }
+        const description = usefulPublisherDescription(content.description, article.title);
+        if (content.fullText?.length >= 600) {
+          article.snippet = content.fullText;
+          article.contentAccess = "fulltext";
+          article.contentSource = content.contentSource;
+          article.extractedCharacters = content.extractedCharacters;
+          article.contentFailureReason = "";
+          if (article.sourceType !== "论文" && content.finalUrl) article.url = content.finalUrl;
+          article.linkVerified = true;
+          break;
+        }
+        if (description && cleanText(article.snippet).length < description.length) {
+          article.snippet = description;
+          article.contentAccess = "abstract";
+          article.contentSource = content.contentSource || "publisher-description";
+          article.evidence = { ...article.evidence, hasPublisherDescription: true };
+        }
+        lastFailure = content.contentFailureReason || lastFailure;
         await delay(180);
-        continue;
       }
-      const description = usefulPublisherDescription(content.description, article.title);
-      if (content.fullText?.length >= 600) {
-        article.snippet = content.fullText;
-        article.contentAccess = "fulltext";
-        article.contentSource = content.contentSource;
-        article.extractedCharacters = content.extractedCharacters;
-        if (article.sourceType !== "论文" && content.finalUrl) article.url = content.finalUrl;
-        article.linkVerified = true;
-      } else if (description && cleanText(article.snippet).length < description.length) {
-        article.snippet = description;
-        article.contentAccess = "abstract";
-        article.contentSource = content.contentSource || "publisher-description";
-        article.evidence = { ...article.evidence, hasPublisherDescription: true };
-      }
-      await delay(180);
+      article.contentFetched = true;
+      if (article.contentAccess !== "fulltext") article.contentFailureReason = lastFailure || "未获得合法公开全文";
     }
   }
   await Promise.all(Array.from({ length: Math.min(concurrency, targets.length) }, () => worker()));
@@ -565,36 +812,37 @@ async function enrichOpenAlexSourceMetrics(articles) {
 }
 
 function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
+  const readableArticles = articles.filter((article) => article.evidence?.contentAccess !== "metadata");
+  const clueCount = articles.length - readableArticles.length;
   const counts = new Map();
-  for (const article of articles) {
-    const topics = article.technicalDomains?.length
-      ? article.technicalDomains
-      : [article.primarySection || article.category];
+  for (const article of readableArticles) {
+    const topics = [article.componentCategory || article.drivetrainComponent || article.primarySection || article.category];
     for (const topic of new Set(topics.filter(Boolean))) counts.set(topic, (counts.get(topic) || 0) + 1);
   }
   const leadingTopics = [...counts.entries()]
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
     .map(([topic]) => topic);
-  const domesticCount = articles.filter((article) => article.region === "国内").length;
-  const paperCount = articles.filter((article) => article.sourceType === "论文").length;
-  const fullTextCount = articles.filter((article) => article.evidence?.contentAccess === "fulltext").length;
+  const domesticCount = readableArticles.filter((article) => article.region === "国内").length;
+  const paperCount = readableArticles.filter((article) => article.sourceType === "论文").length;
+  const fullTextCount = readableArticles.filter((article) => article.evidence?.contentAccess === "fulltext").length;
 
   return {
     title: leadingTopics.length
       ? `本周聚焦：${leadingTopics.join("、")}`
       : "本周暂无新增高相关资料",
-    summary: articles.length
-      ? `过去 ${lookbackDays} 天共筛选 ${articles.length} 条高相关资料，其中国内 ${domesticCount} 条、论文 ${paperCount} 篇，${fullTextCount} 条已提取公开全文。资料库累计保留 ${archiveCount} 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。`
+    summary: readableArticles.length
+      ? `过去 ${lookbackDays} 天共筛选 ${readableArticles.length} 条可读情报，其中国内 ${domesticCount} 条、论文 ${paperCount} 篇，${fullTextCount} 条已提取公开全文${clueCount ? `；另有 ${clueCount} 条仅保留标题的线索` : ""}。资料库累计保留 ${archiveCount} 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。`
       : `过去 ${lookbackDays} 天未发现满足相关性阈值的新资料；资料库仍保留 ${archiveCount} 条历史记录供检索。`,
-    signals: articles.slice(0, 3).map((article) => article.title),
+    signals: readableArticles.slice(0, 3).map((article) => article.title),
     metrics: {
-      total: articles.length,
+      total: readableArticles.length,
       domestic: domesticCount,
-      overseas: articles.length - domesticCount,
-      papers: paperCount
+      overseas: readableArticles.length - domesticCount,
+      papers: paperCount,
+      clues: clueCount
     },
-    summaryMode: usedAi ? "全文优先 · AI 结构化" : articles.length ? "全文优先 · 规则摘要" : "本周无新增"
+    summaryMode: usedAi ? "全文优先 · AI 结构化" : readableArticles.length ? "全文优先 · 规则摘要" : "本周无新增"
   };
 }
 
@@ -668,12 +916,24 @@ async function main() {
       type: "news",
       run: () => collectNews(source, lookbackDays)
     }));
-  const researchJobs = (config.researchQueries || []).map((source) => ({
-      id: source.id,
-      label: source.label,
-      type: "research",
-      run: () => collectOpenAlex(source, lookbackDays)
-    }));
+  const researchCollectors = {
+    openalex: { label: "OpenAlex", run: collectOpenAlex },
+    crossref: { label: "Crossref", run: collectCrossref },
+    "semantic-scholar": { label: "Semantic Scholar", run: collectSemanticScholar },
+    "academic-web": { label: "国内公开题录", run: collectAcademicWebIndex }
+  };
+  const researchJobs = (config.researchQueries || []).flatMap((source) =>
+    (source.providers || ["openalex", "crossref"]).flatMap((provider) => {
+      const collector = researchCollectors[provider];
+      if (!collector) return [];
+      return [{
+        id: `${source.id}-${provider}`,
+        label: `${source.label} · ${collector.label}`,
+        type: "research",
+        run: () => collector.run(source, lookbackDays)
+      }];
+    })
+  );
   const jobs = [...newsJobs, ...researchJobs];
 
   console.log(`开始采集 ${jobs.length} 个数据通道，回看 ${lookbackDays} 天...`);
@@ -759,6 +1019,7 @@ async function main() {
   const aiProvider = resolveAiProvider(process.env);
   const aiReasons = new Map();
   const needsSummary = candidates.flatMap((article) => {
+    if (article.contentAccess === "metadata") return [];
     const existing = previousByUrl.get(article.url);
     let reason = "";
     if (!existing) reason = "new";
@@ -780,6 +1041,7 @@ async function main() {
   const candidateIds = new Set(candidates.map((article) => article.id));
   for (const existing of previousArticles) {
     if (candidateIds.has(existing.id)) continue;
+    if (existing.evidence?.contentAccess === "metadata") continue;
     let reason = "";
     if (needsDetailedSummaryUpgrade(existing)) reason = "historical-schema-upgrade";
     else if (feedbackNeedsAiReview(existing.feedbackAggregate, existing.aiAnalysis, minimumFeedback)) {
@@ -927,6 +1189,10 @@ async function main() {
       failed: results.filter((result) => result.status === "rejected").length,
       rawFetched: rawArticles.length,
       currentCount: currentArticles.length,
+      readableCount: currentArticles.filter((article) => article.evidence?.contentAccess !== "metadata").length,
+      clueCount: currentArticles.filter((article) => article.evidence?.contentAccess === "metadata").length,
+      fullTextCount: currentArticles.filter((article) => article.evidence?.contentAccess === "fulltext").length,
+      abstractCount: currentArticles.filter((article) => article.evidence?.contentAccess === "abstract").length,
       archiveCount: articles.length,
       ai: {
         provider: aiProvider?.id || "none",

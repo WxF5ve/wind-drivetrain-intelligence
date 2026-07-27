@@ -28,3 +28,12 @@ test("manual dispatch always collects and ordinary pushes never collect", () => 
   assert.equal(shouldCollect({ ...input, eventName: "workflow_dispatch" }), true);
   assert.equal(shouldCollect({ ...input, eventName: "push" }), false);
 });
+
+test("an explicitly marked source update may force one push collection", () => {
+  assert.equal(shouldCollect({
+    eventName: "push",
+    generatedAt: "2026-07-27T07:27:32.480Z",
+    now: new Date("2026-07-27T09:00:00.000Z"),
+    force: true
+  }), true);
+});

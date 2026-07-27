@@ -16,7 +16,8 @@ export function collectionDateKey(value, timeZone = "Asia/Shanghai") {
   return `${parts.year}-${parts.month}-${parts.day}`;
 }
 
-export function shouldCollect({ eventName, generatedAt, now = new Date(), timeZone = "Asia/Shanghai" }) {
+export function shouldCollect({ eventName, generatedAt, now = new Date(), timeZone = "Asia/Shanghai", force = false }) {
+  if (force) return true;
   if (eventName === "workflow_dispatch") return true;
   if (eventName !== "schedule") return false;
   const generatedDate = collectionDateKey(generatedAt, timeZone);
@@ -35,13 +36,14 @@ function readGeneratedAt(dataPath) {
 
 function main() {
   const eventName = process.env.GITHUB_EVENT_NAME || "workflow_dispatch";
+  const force = /^(?:1|true|yes)$/i.test(String(process.env.FORCE_COLLECTION || ""));
   const timeZone = process.env.COLLECTION_TIME_ZONE || "Asia/Shanghai";
   const dataPath = path.resolve(process.env.COLLECTION_DATA_PATH || "public/data/articles.json");
   const generatedAt = readGeneratedAt(dataPath);
-  const collect = shouldCollect({ eventName, generatedAt, timeZone });
+  const collect = shouldCollect({ eventName, generatedAt, timeZone, force });
   const output = `should_collect=${collect}\n`;
   if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, output);
-  console.log(JSON.stringify({ eventName, timeZone, generatedAt, today: collectionDateKey(new Date(), timeZone), shouldCollect: collect }));
+  console.log(JSON.stringify({ eventName, force, timeZone, generatedAt, today: collectionDateKey(new Date(), timeZone), shouldCollect: collect }));
 }
 
 const isDirectRun = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);

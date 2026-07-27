@@ -49,6 +49,7 @@ async function inspectLayout(page, label) {
     reliabilityBadges: document.querySelectorAll(".reliability-badge").length,
     accessBadges: document.querySelectorAll(".content-access").length,
     technicalLabels: document.querySelectorAll(".technical-labels").length,
+    componentChips: document.querySelectorAll(".article-card .component-chip").length,
     activeCategory: document.querySelector(".category-tab.active")?.textContent?.trim(),
     brand: document.querySelector(".brand strong")?.textContent?.trim()
   }));
@@ -59,6 +60,7 @@ async function inspectLayout(page, label) {
   if (result.reliabilityBadges !== result.cards) throw new Error(`${label} is missing reliability badges`);
   if (result.accessBadges < result.cards) throw new Error(`${label} is missing content access badges`);
   if (!result.technicalLabels) throw new Error(`${label} rendered no drivetrain technical labels`);
+  if (result.componentChips !== result.cards) throw new Error(`${label} is missing primary component labels`);
   if (result.activeCategory !== "风电传动链专栏") throw new Error(`${label} did not default to the drivetrain section`);
   if (result.brand !== "机械中心-传动技术部在线平台") throw new Error(`${label} rendered the wrong platform name`);
   return result;
@@ -82,6 +84,17 @@ async function inspectLayout(page, label) {
     await desktop.waitForSelector(".article-card");
     const desktopLayout = await inspectLayout(desktop, "desktop");
     await desktop.screenshot({ path: path.join(outputDir, "desktop.png") });
+
+    await desktop.locator('[data-category="标题线索"]').click();
+    await desktop.waitForTimeout(150);
+    const clueCards = await desktop.locator(".clue-card").count();
+    const verboseClueCards = await desktop.locator(".clue-card .article-summary").count();
+    if (!clueCards || verboseClueCards) {
+      throw new Error(`Title clue pool did not render compact entries: ${clueCards} clues, ${verboseClueCards} summaries`);
+    }
+    await desktop.screenshot({ path: path.join(outputDir, "title-clues.png") });
+    await desktop.locator('[data-category="风电传动链专栏"]').click();
+    await desktop.waitForTimeout(100);
 
     await desktop.locator("#search-input").fill("轴承");
     await desktop.waitForTimeout(150);
@@ -186,7 +199,7 @@ async function inspectLayout(page, label) {
       throw new Error(`Browser console errors:\n${consoleErrors.join("\n")}`);
     }
 
-    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportParagraphs, reportDataHighlights, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
+    console.log(JSON.stringify({ desktopLayout, mobileLayout, clueCards, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportParagraphs, reportDataHighlights, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
   } finally {
     if (browser) await browser.close();
     server.kill();
