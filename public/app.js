@@ -409,10 +409,12 @@ function renderWeeklyBrief() {
 
   const generatedLabel = formatDate(generatedAt);
   const failedLabel = collectionStatus?.failed ? ` · ${collectionStatus.failed} 个通道异常` : "";
+  const lowYieldCount = Number(collectionStatus?.empty || 0) + Number(collectionStatus?.lowYield || 0);
+  const coverageLabel = lowYieldCount ? ` · ${lowYieldCount} 个通道本期无有效结果` : "";
   const liveLabel = collectionStatus?.dataMode === "live" ? " · 真实来源" : "";
   elements.freshness.innerHTML = `
     <span class="status-dot" aria-hidden="true"></span>
-    更新于 ${generatedLabel}${liveLabel}${failedLabel}
+    更新于 ${generatedLabel}${liveLabel}${failedLabel}${coverageLabel}
   `;
 }
 

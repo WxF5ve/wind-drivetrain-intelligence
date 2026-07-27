@@ -24,11 +24,23 @@ import {
   resolveAiProvider,
   summarizeInBatches
 } from "./lib/ai.mjs";
+import {
+  buildDomainNewsQueries,
+  classifyChannelResult,
+  isAllowedPublisherUrl
+} from "./lib/sources.mjs";
 
 const projectRoot = fileURLToPath(new URL("../", import.meta.url));
 const configPath = new URL("../config/sources.json", import.meta.url);
 const outputPath = new URL("../public/data/articles.json", import.meta.url);
 const dryRun = process.argv.includes("--dry-run");
+const probeArgument = process.argv.find((argument) => argument.startsWith("--probe-sources="));
+const probeSourceIds = new Set(
+  String(probeArgument?.split("=").slice(1).join("=") || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean)
+);
 const forceAiSummary = process.argv.includes("--resummarize") ||
   /^(?:1|true|yes)$/i.test(String(process.env.AI_RESUMMARIZE_EXISTING || ""));
 const now = new Date();
@@ -366,6 +378,53 @@ async function collectGoogleNews(source, lookbackDays) {
   }));
 }
 
+async function collectDomainNews(source, lookbackDays) {
+  const domainQueries = buildDomainNewsQueries(source);
+  if (!domainQueries.length) throw new Error("官网通道缺少 searchTerms 或 allowedDomains");
+
+  const maxRecords = Math.max(1, Number(source.maxRecords || 12));
+  const perDomainLimit = Math.max(2, Math.ceil(maxRecords / domainQueries.length));
+  const collected = [];
+  const errors = [];
+
+  for (const { domain, query } of domainQueries) {
+    try {
+      const articles = await collectGoogleNews({
+        ...source,
+        googleQuery: query,
+        maxRecords: perDomainLimit
+      }, lookbackDays);
+      collected.push(...articles
+        .filter((article) => article.linkType === "publisher")
+        .filter((article) => isAllowedPublisherUrl(article.url, [domain]))
+        .map((article) => ({
+          ...article,
+          sourceChannel: "Google News 官网单域定向",
+          directSource: true
+        })));
+    } catch (error) {
+      errors.push(`${domain}: ${error.message}`);
+    }
+    await delay(250);
+  }
+
+  if (source.bingSupplement !== false) {
+    try {
+      collected.push(...await collectWebIndex(source, lookbackDays));
+    } catch (error) {
+      errors.push(`Bing Web 补充: ${error.message}`);
+    }
+  }
+
+  const articles = deduplicateArticles(collected)
+    .filter((article) => isAllowedPublisherUrl(article.url, source.allowedDomains))
+    .slice(0, maxRecords);
+  if (!articles.length && errors.length === domainQueries.length + 1) {
+    throw new Error(errors.join("；"));
+  }
+  return articles;
+}
+
 async function collectBingNews(source, lookbackDays) {
   const url = new URL("https://www.bing.com/news/search");
   url.searchParams.set("q", source.query);
@@ -660,14 +719,7 @@ async function collectWebIndex(source, lookbackDays) {
   const articles = [];
   for (const item of items) {
     const articleUrl = cleanText(item.link || "");
-    if (source.allowedDomains?.length) {
-      try {
-        const hostname = new URL(articleUrl).hostname.toLowerCase().replace(/^www\./, "");
-        if (!source.allowedDomains.some((domain) => hostname === domain || hostname.endsWith(`.${domain}`))) continue;
-      } catch {
-        continue;
-      }
-    }
+    if (source.allowedDomains?.length && !isAllowedPublisherUrl(articleUrl, source.allowedDomains)) continue;
     const metadata = await fetchPublisherMetadata(articleUrl);
     const published = new Date(metadata.publishedAt || "");
     const publishedAt = Number.isNaN(published.getTime()) ? now.toISOString() : published.toISOString();
@@ -711,6 +763,111 @@ async function collectWebIndex(source, lookbackDays) {
     await delay(250);
   }
   return articles.filter((item) => item.title && item.url && isCandidateRelevant(item));
+}
+
+async function collectGooglePatents(source, lookbackDays) {
+  const cutoff = now.getTime() - lookbackDays * 86400000;
+  const publicationDate = new Date(cutoff).toISOString().slice(0, 10).replaceAll("-", "");
+  const patentQueries = (Array.isArray(source.patentQueries) ? source.patentQueries : [source.patentQuery])
+    .map(cleanText)
+    .filter(Boolean);
+  if (!patentQueries.length) throw new Error("专利通道缺少 patentQueries");
+
+  const collectedRecords = [];
+  const errors = [];
+  for (const patentQuery of patentQueries) {
+    const nestedQuery = new URLSearchParams();
+    nestedQuery.set("q", patentQuery);
+    nestedQuery.set("after", `publication:${publicationDate}`);
+    if (source.patentCountry) nestedQuery.set("country", source.patentCountry);
+
+    const url = new URL("https://patents.google.com/xhr/query");
+    url.searchParams.set("url", nestedQuery.toString());
+    url.searchParams.set("exp", "");
+    try {
+      const data = await fetchJson(url, 1, {
+        Accept: "application/json",
+        Referer: "https://patents.google.com/",
+        "User-Agent": "Mozilla/5.0 (compatible; MechanicalCenterDrivetrainBot/1.0; public patent index)"
+      });
+      const clusters = Array.isArray(data?.results?.cluster) ? data.results.cluster : [];
+      collectedRecords.push(...clusters
+        .flatMap((cluster) => Array.isArray(cluster?.result) ? cluster.result : cluster?.result ? [cluster.result] : []));
+    } catch (error) {
+      errors.push(`${patentQuery}: ${error.message}`);
+    }
+    await delay(600);
+  }
+  if (!collectedRecords.length && errors.length === patentQueries.length) {
+    throw new Error(errors.join("；"));
+  }
+
+  const seenPatents = new Set();
+  const records = collectedRecords
+    .map((result) => ({ result, patent: result?.patent || {} }))
+    .filter(({ patent }) => patent.title && patent.publication_date)
+    .filter(({ result }) => {
+      const key = cleanText(result.id || "");
+      if (!key || seenPatents.has(key)) return false;
+      seenPatents.add(key);
+      return true;
+    })
+    .filter(({ patent }) => {
+      const published = new Date(`${patent.publication_date}T00:00:00Z`).getTime();
+      return Number.isFinite(published) && published >= cutoff;
+    })
+    .slice(0, Math.max(1, Number(source.maxRecords || 12)));
+
+  const articles = [];
+  for (const { result, patent } of records) {
+    const patentPath = String(result.id || "").replace(/^\/+/, "");
+    const articleUrl = new URL(patentPath, "https://patents.google.com/").toString();
+    if (!isAllowedPublisherUrl(articleUrl, source.allowedDomains)) continue;
+    const metadata = await fetchPublisherMetadata(articleUrl);
+    const indexSnippet = cleanText(patent.snippet || "");
+    const description = usefulPublisherDescription(metadata.description || indexSnippet, patent.title);
+    const snippet = metadata.fullText || description || indexSnippet;
+    const assignee = cleanText(patent.assignee || "");
+    const inventor = cleanText(patent.inventor || "");
+    articles.push({
+      id: makeArticleId(articleUrl, patent.title),
+      title: cleanText(patent.title),
+      snippet,
+      source: assignee || "Google Patents",
+      sourceType: "专利",
+      region: source.region || "海外",
+      language: source.language === "Chinese" ? "zh" : cleanText(patent.language || "en"),
+      publishedAt: new Date(`${patent.publication_date}T00:00:00Z`).toISOString(),
+      collectedAt: now.toISOString(),
+      url: metadata.finalUrl || articleUrl,
+      sourceUrl: "https://patents.google.com/",
+      imageUrl: "",
+      sourceChannel: "Google Patents 公开检索",
+      linkType: "publisher",
+      linkVerified: Boolean(metadata.finalUrl),
+      contentAccess: metadata.contentAccess || (description.length >= 70 ? "abstract" : "metadata"),
+      contentSource: metadata.contentSource || (description ? "patent-index" : "metadata"),
+      extractedCharacters: Number(metadata.extractedCharacters || 0),
+      contentFailureReason: metadata.contentFailureReason || "",
+      contentAttempts: 1,
+      contentFetched: true,
+      evidence: {
+        hasAbstract: Boolean(metadata.fullText || description.length >= 70),
+        hasPublisherDescription: Boolean(description),
+        publicationType: "patent",
+        journal: cleanText(patent.publication_number || ""),
+        publisher: assignee,
+        authors: inventor ? [inventor] : [],
+        authorsCount: inventor ? 1 : 0,
+        isOpenAccess: metadata.contentAccess === "fulltext",
+        priorityDate: cleanText(patent.priority_date || ""),
+        filingDate: cleanText(patent.filing_date || "")
+      },
+      ...sourceContext(source)
+    });
+    await delay(200);
+  }
+  return articles.filter((article) => isCandidateRelevant(article));
 }
 
 async function enrichPublicFullText(articles) {
@@ -911,8 +1068,9 @@ async function main() {
   const keywordWeights = config.relevanceKeywords || {};
   const reliabilityConfig = config.reliability || {};
   const feedbackAggregates = await loadFeedbackAggregates();
+  const sourceSelected = (id) => !probeSourceIds.size || probeSourceIds.has(id);
 
-  const newsJobs = (config.newsQueries || []).map((source) => ({
+  const newsJobs = (config.newsQueries || []).filter((source) => sourceSelected(source.id)).map((source) => ({
       id: source.id,
       label: source.label,
       type: "news",
@@ -924,18 +1082,30 @@ async function main() {
     "semantic-scholar": { label: "Semantic Scholar", run: collectSemanticScholar },
     "academic-web": { label: "国内公开题录", run: collectWebIndex }
   };
-  const webJobs = (config.webQueries || []).map((source) => ({
-    id: source.id,
-    label: source.label,
-    type: "web",
-    run: () => collectWebIndex(source, lookbackDays)
-  }));
+  const webCollectors = {
+    "domain-news": collectDomainNews,
+    "google-patents": collectGooglePatents,
+    "bing-web": collectWebIndex
+  };
+  const webJobs = (config.webQueries || []).filter((source) => sourceSelected(source.id)).map((source) => {
+    const collector = webCollectors[source.collector || "bing-web"];
+    return {
+      id: source.id,
+      label: source.label,
+      type: "web",
+      run: () => {
+        if (!collector) throw new Error(`未知网页采集器: ${source.collector}`);
+        return collector(source, lookbackDays);
+      }
+    };
+  });
   const researchJobs = (config.researchQueries || []).flatMap((source) =>
     (source.providers || ["openalex", "crossref"]).flatMap((provider) => {
       const collector = researchCollectors[provider];
-      if (!collector) return [];
+      const jobId = `${source.id}-${provider}`;
+      if (!collector || (!sourceSelected(source.id) && !sourceSelected(jobId))) return [];
       return [{
-        id: `${source.id}-${provider}`,
+        id: jobId,
         label: `${source.label} · ${collector.label}`,
         type: "research",
         run: () => collector.run(source, lookbackDays)
@@ -982,6 +1152,32 @@ async function main() {
       console.warn(`× ${jobs[index].label}: ${result.reason?.message || result.reason}`);
     }
   });
+
+  if (probeSourceIds.size) {
+    console.log(JSON.stringify({
+      generatedAt: now.toISOString(),
+      lookbackDays,
+      channels: results.map((result, index) => {
+        const health = classifyChannelResult(result);
+        return {
+          id: jobs[index].id,
+          label: jobs[index].label,
+          ...health,
+          fetched: result.status === "fulfilled" ? result.value.length : 0,
+          error: result.status === "rejected" ? cleanText(result.reason?.message || result.reason) : ""
+        };
+      }),
+      samples: rawArticles.slice(0, 20).map((article) => ({
+        title: article.title,
+        source: article.source,
+        sourceType: article.sourceType,
+        publishedAt: article.publishedAt,
+        url: article.url,
+        contentAccess: article.contentAccess
+      }))
+    }, null, 2));
+    return;
+  }
 
   const relevantRawArticles = rawArticles.filter(isCandidateRelevant);
   const minimumFeedback = Number(reliabilityConfig.minimumFeedback || 5);
@@ -1182,17 +1378,24 @@ async function main() {
       engineeringExperience: publicEngineeringExperience(article.engineeringExperience)
     }));
 
-  const channelResults = results.map((result, index) => ({
-    id: jobs[index].id,
-    label: jobs[index].label,
-    type: jobs[index].type,
-    status: result.status === "fulfilled" ? "ok" : "failed",
-    fetched: result.status === "fulfilled" ? result.value.length : 0,
-    error: result.status === "rejected" ? cleanText(result.reason?.message || result.reason).slice(0, 180) : ""
-  }));
+  const previousChannels = new Map(
+    (previous.collectionStatus?.sources || []).map((channel) => [channel.id, channel])
+  );
+  const channelResults = results.map((result, index) => {
+    const health = classifyChannelResult(result, previousChannels.get(jobs[index].id));
+    return {
+      id: jobs[index].id,
+      label: jobs[index].label,
+      type: jobs[index].type,
+      ...health,
+      fetched: result.status === "fulfilled" ? result.value.length : 0,
+      error: result.status === "rejected" ? cleanText(result.reason?.message || result.reason).slice(0, 180) : ""
+    };
+  });
 
   const payload = {
     app: "机械中心-传动技术部在线平台",
+    taxonomyVersion: 2,
     generatedAt: now.toISOString(),
     period: {
       from: new Date(now.getTime() - lookbackDays * 86400000).toISOString(),
@@ -1202,8 +1405,11 @@ async function main() {
       dataMode: "live",
       demo: false,
       channels: jobs.length,
-      succeeded: results.filter((result) => result.status === "fulfilled").length,
-      failed: results.filter((result) => result.status === "rejected").length,
+      succeeded: channelResults.filter((channel) => channel.requestStatus === "ok").length,
+      productive: channelResults.filter((channel) => channel.status === "ok").length,
+      empty: channelResults.filter((channel) => channel.status === "empty").length,
+      lowYield: channelResults.filter((channel) => channel.status === "low-yield").length,
+      failed: channelResults.filter((channel) => channel.status === "failed").length,
       rawFetched: rawArticles.length,
       currentCount: currentArticles.length,
       readableCount: currentArticles.filter((article) => article.evidence?.contentAccess !== "metadata").length,

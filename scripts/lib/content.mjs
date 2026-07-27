@@ -25,13 +25,15 @@ export function extractHtmlContent(html, maxCharacters = 14000) {
   const title = cleanText(
     root.querySelector('meta[property="og:title"]')?.getAttribute("content") ||
     root.querySelector('meta[name="twitter:title"]')?.getAttribute("content") ||
+    root.querySelector('meta[name="DC.title"]')?.getAttribute("content") ||
     root.querySelector("title")?.text ||
     ""
   );
   const descriptionSelectors = [
     'meta[property="og:description"]',
     'meta[name="description"]',
-    'meta[name="twitter:description"]'
+    'meta[name="twitter:description"]',
+    'meta[name="DC.description"]'
   ];
   let description = "";
   for (const selector of descriptionSelectors) {
@@ -46,9 +48,11 @@ export function extractHtmlContent(html, maxCharacters = 14000) {
     root.querySelector('meta[name="citation_publication_date"]')?.getAttribute("content") ||
     root.querySelector('meta[name="citation_date"]')?.getAttribute("content") ||
     root.querySelector('meta[name="date"]')?.getAttribute("content") ||
+    root.querySelector('meta[name="DC.date"]')?.getAttribute("content") ||
     ""
   );
   const selectors = [
+    '[itemprop="abstract"]',
     '[itemprop="articleBody"]', "article", ".article-content", ".article-body", ".articleText",
     ".post-content", ".entry-content", ".news-content", ".content-detail", ".TRS_Editor", "main"
   ];

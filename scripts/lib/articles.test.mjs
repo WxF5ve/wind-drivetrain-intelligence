@@ -295,6 +295,13 @@ test("manufacturer intelligence requires exact entities, wind context, and progr
     matchTerms: ["Timken"],
     contextTags: ["轴承厂商"]
   }), false);
+  assert.equal(isIndustryRelevant({
+    title: "Hawaiian Electric orders aeroderivative turbine packages",
+    snippet: "The project will support a conventional power plant.",
+    queryTopic: "industry",
+    directSource: true,
+    contextTags: ["整机厂商"]
+  }), false);
 });
 
 test("official domestic channels require wind context and keep the publisher domain constrained", () => {

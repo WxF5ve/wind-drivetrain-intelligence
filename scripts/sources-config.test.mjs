@@ -48,6 +48,13 @@ test("direct web channels constrain results to declared publisher domains", () =
     assert.equal(source.directSource, true, `${source.id} should be a direct source`);
     assert.equal(Array.isArray(source.allowedDomains) && source.allowedDomains.length > 0, true, `${source.id} should constrain domains`);
     assert.equal(["行业资讯", "技术资料", "专利", "标准"].includes(source.sourceType), true, `${source.id} should declare sourceType`);
+    assert.equal(["domain-news", "google-patents"].includes(source.collector), true, `${source.id} should declare a supported collector`);
+    if (source.collector === "domain-news") {
+      assert.equal(typeof source.searchTerms === "string" && source.searchTerms.length > 0, true, `${source.id} should declare searchTerms`);
+    }
+    if (source.collector === "google-patents") {
+      assert.equal(Array.isArray(source.patentQueries) && source.patentQueries.length > 0, true, `${source.id} should declare patentQueries`);
+    }
   }
 });
 

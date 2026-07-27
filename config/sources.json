@@ -492,7 +492,9 @@
     {
       "id": "web-cn-drivetrain-suppliers",
       "label": "国内传动链企业官网",
+      "collector": "domain-news",
       "query": "(site:ngc.com.cn OR site:zwz-bearing.com OR site:lyc.cn OR site:xinql.com OR site:zys.com.cn) 风电 (齿轮箱 OR 轴承 OR 传动链 OR 主轴承 OR 行星级) (新品 OR 技术 OR 试验 OR 认证 OR 量产 OR 交付 OR 项目)",
+      "searchTerms": "风电 (齿轮箱 OR 轴承 OR 传动链 OR 主轴承 OR 行星级 OR 技术 OR 试验 OR 量产 OR 交付 OR 项目)",
       "language": "Chinese",
       "region": "国内",
       "topic": "industry",
@@ -506,7 +508,9 @@
     {
       "id": "web-global-gearbox-suppliers",
       "label": "海外齿轮箱企业官网",
+      "collector": "domain-news",
       "query": "(site:flender.com OR site:zf.com OR site:moventas.com OR site:eickhoff-bochum.de) wind (gearbox OR drivetrain OR gear OR bearing) (technology OR test OR prototype OR certification OR production OR service)",
+      "searchTerms": "wind (gearbox OR drivetrain OR gear OR bearing) (technology OR test OR prototype OR certification OR production OR service)",
       "language": "English",
       "region": "海外",
       "topic": "industry",
@@ -520,7 +524,9 @@
     {
       "id": "web-global-bearing-suppliers",
       "label": "海外轴承企业官网",
+      "collector": "domain-news",
       "query": "(site:skf.com OR site:schaeffler.com OR site:timken.com OR site:nsk.com OR site:ntn.com) wind (bearing OR main shaft OR gearbox OR lubrication) (technology OR test OR case OR damage OR monitoring)",
+      "searchTerms": "wind (bearing OR main shaft OR gearbox OR lubrication) (technology OR test OR case OR damage OR monitoring)",
       "language": "English",
       "region": "海外",
       "topic": "industry",
@@ -534,7 +540,9 @@
     {
       "id": "web-cn-wind-oems",
       "label": "国内整机厂官网",
+      "collector": "domain-news",
       "query": "(site:goldwind.com OR site:envision-group.com OR site:myse.com.cn OR site:windeyenergy.com OR site:shanghai-electric.com) 风电 (新机型 OR 样机 OR 下线 OR 订单 OR 交付 OR 吊装 OR 并网 OR 传动链)",
+      "searchTerms": "风电 (新机型 OR 样机 OR 下线 OR 订单 OR 交付 OR 吊装 OR 并网 OR 传动链)",
       "language": "Chinese",
       "region": "国内",
       "topic": "industry",
@@ -548,7 +556,9 @@
     {
       "id": "web-global-wind-oems",
       "label": "海外整机厂官网",
+      "collector": "domain-news",
       "query": "(site:vestas.com OR site:siemensgamesa.com OR site:gevernova.com OR site:nordex-online.com OR site:enercon.de) wind (turbine OR order OR prototype OR installation OR drivetrain OR gearbox)",
+      "searchTerms": "wind (turbine OR order OR prototype OR installation OR drivetrain OR gearbox)",
       "language": "English",
       "region": "海外",
       "topic": "industry",
@@ -562,7 +572,9 @@
     {
       "id": "web-drivetrain-failure-cases",
       "label": "公开故障与可靠性案例",
+      "collector": "domain-news",
       "query": "(site:nrel.gov OR site:osti.gov OR site:sandia.gov OR site:dnv.com) \"wind turbine\" (gearbox OR bearing OR drivetrain) (failure OR damage OR reliability OR maintenance OR case)",
+      "searchTerms": "\"wind turbine\" (gearbox OR bearing OR drivetrain) (failure OR damage OR reliability OR maintenance OR case)",
       "language": "English",
       "region": "海外",
       "topic": "technical",
@@ -575,7 +587,9 @@
     {
       "id": "web-cwea-drivetrain",
       "label": "中国风能协会传动链资料",
+      "collector": "domain-news",
       "query": "site:cwea.org.cn 风电 (传动链 OR 齿轮箱 OR 轴承 OR 主轴 OR 故障 OR 运维 OR 技术)",
+      "searchTerms": "风电 (传动链 OR 齿轮箱 OR 轴承 OR 主轴 OR 故障 OR 运维 OR 技术)",
       "language": "Chinese",
       "region": "国内",
       "topic": "technical",
@@ -588,7 +602,10 @@
     {
       "id": "web-cn-drivetrain-patents",
       "label": "中国风电传动链专利",
+      "collector": "google-patents",
       "query": "site:patents.google.com/patent/CN (风电 OR 风力发电) (齿轮箱 OR 传动链 OR 主轴承 OR 行星架 OR 齿轮 OR 轴承)",
+      "patentQueries": ["风电 齿轮箱", "风力发电 主轴承", "风电 行星架"],
+      "patentCountry": "CN",
       "language": "Chinese",
       "region": "国内",
       "topic": "technical",
@@ -601,7 +618,9 @@
     {
       "id": "web-global-drivetrain-patents",
       "label": "海外风电传动链专利",
+      "collector": "google-patents",
       "query": "site:patents.google.com/patent \"wind turbine\" (gearbox OR drivetrain OR main bearing OR planet carrier OR gear bearing)",
+      "patentQueries": ["\"wind turbine\" gearbox", "\"wind turbine\" main bearing", "\"wind turbine\" planet carrier"],
       "language": "English",
       "region": "海外",
       "topic": "technical",
@@ -614,7 +633,9 @@
     {
       "id": "web-drivetrain-standards",
       "label": "风电传动链标准与指南",
+      "collector": "domain-news",
       "query": "(site:iec.ch OR site:dnv.com) wind turbine (gearbox OR drivetrain OR bearing) (standard OR recommended practice OR certification)",
+      "searchTerms": "wind turbine (gearbox OR drivetrain OR bearing) (standard OR recommended practice OR certification)",
       "language": "English",
       "region": "海外",
       "topic": "technical",

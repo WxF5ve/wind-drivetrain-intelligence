@@ -23,7 +23,8 @@
 - 匿名工程心得：正文、适用性、部件、失效模式、证据等级、功率区间和场景
 - AI 工程经验复核：归纳心得中的共识、适用边界、冲突与待验证问题
 - DeepSeek 结构化中文摘要与反馈触发复核，未配置密钥时使用公开摘要
-- 102 个新闻、官网、官方、企业、论文、专利、标准和国内公开题录通道；官网定向覆盖 CWEA、国内外齿轮箱/轴承企业、整机厂、NREL/OSTI/Sandia/DNV 故障资料和 Google Patents
+- 102 个新闻、官网、官方、企业、论文、专利、标准和国内公开题录通道；企业官网按单域名检索并再次校验最终原文域名，覆盖 CWEA、国内外齿轮箱/轴承企业、整机厂和 NREL/OSTI/Sandia/DNV
+- 渠道健康状态区分请求成功、有效产出、本期空结果、连续低产和请求失败；不再把 `ok + 0 条`计作有效覆盖
 - GitHub Actions 每周一 08:30（北京时间）自动刷新并发布，11:15 执行同日去重的兜底检查
 
 `public/data/articles.json` 已由真实网络采集生成。生产数据会明确标记 `dataMode: live`、采集通道、采集时间和原文链接类型；演示数据不会进入正式资料库。
@@ -63,6 +64,12 @@ npm run test:visual
 node scripts/collect.mjs --dry-run
 ```
 
+只探测指定渠道并打印少量样例、不写入数据文件：
+
+```powershell
+node scripts/collect.mjs --probe-sources=web-global-bearing-suppliers,web-global-wind-oems
+```
+
 正式刷新：
 
 ```powershell
@@ -96,7 +103,7 @@ OpenAI 仍可作为备用供应商：设置 `AI_PROVIDER=openai`、`OPENAI_API_K
 flowchart LR
     A["每周一定时任务"] --> B["Google News / Bing News 双索引"]
     A --> C["OpenAlex / Crossref 学术索引"]
-    A --> W["企业官网 / 研究机构 / 专利标准定向网页"]
+    A --> W["企业官网逐域检索 / 研究机构 / 专利标准公开索引"]
     B --> D["发布方 HTML/PDF 全文解析与标题校验"]
     D --> E["风电语境与传动链双重过滤"]
     C --> E

@@ -15,3 +15,24 @@ test("HTML content extraction prefers article paragraphs over navigation and foo
   assert.match(result.fullText, /行星架强度/);
   assert.doesNotMatch(result.fullText, /联系方式/);
 });
+
+test("Google Patents metadata and public abstract are extracted", () => {
+  const html = `
+    <html><head>
+      <meta name="DC.title" content="Wind turbine gearbox bearing arrangement">
+      <meta name="DC.description" content="A public patent abstract describing a wind turbine gearbox bearing arrangement and its load path.">
+      <meta name="DC.date" content="2026-07-01">
+    </head><body>
+      <section itemprop="abstract"><h2>Abstract</h2>
+        <p>The disclosed bearing arrangement supports a wind turbine gearbox planet carrier under combined radial and axial loads.</p>
+        <p>The arrangement changes the load path and describes its application boundary for a multi-megawatt drivetrain.</p>
+        <p>The patent text provides enough public detail for an engineering reader to understand the proposed configuration.</p>
+      </section>
+    </body></html>
+  `;
+  const result = extractHtmlContent(html);
+  assert.equal(result.title, "Wind turbine gearbox bearing arrangement");
+  assert.equal(result.publishedAt, "2026-07-01");
+  assert.match(result.description, /public patent abstract/);
+  assert.match(result.fullText, /planet carrier/);
+});

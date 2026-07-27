@@ -436,11 +436,8 @@ export function isIndustryRelevant(article) {
   const hasNamedEntity = article.directSource || (article.matchTerms || []).some((term) => containsKeyword(text, term));
   if (!hasNamedEntity) return false;
 
-  const contextTags = article.contextTags || [];
-  const isWindOem = contextTags.includes("整机厂商");
-  const isDrivetrainSupplier = contextTags.some((tag) => ["齿轮箱厂商", "轴承厂商", "润滑供应商", "传动链企业"].includes(tag));
-  const windSignals = ["风电", "风机", "风力发电", "wind", "turbine", "offshore", "onshore"];
-  const hasWindContext = (article.directSource && (isWindOem || isDrivetrainSupplier)) || windSignals.some((signal) => containsKeyword(text, signal));
+  const windSignals = ["风电", "风机", "风力发电", "wind", "wind turbine", "offshore wind", "onshore wind"];
+  const hasWindContext = windSignals.some((signal) => containsKeyword(text, signal));
   const developmentSignals = [
     "订单", "中标", "签约", "交付", "发运", "项目", "基地", "投产", "扩产", "产能", "工厂",
     "并购", "合作", "新品", "技术", "专利", "认证", "试验", "样机", "量产", "安装", "吊装",
