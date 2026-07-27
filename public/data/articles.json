@@ -1,32 +1,35 @@
 {
   "app": "机械中心-传动技术部在线平台",
-  "taxonomyVersion": 2,
-  "generatedAt": "2026-07-27T17:13:29.491Z",
+  "taxonomyVersion": 3,
+  "generatedAt": "2026-07-27T18:15:08.283Z",
   "period": {
-    "from": "2026-06-27T17:13:29.491Z",
-    "to": "2026-07-27T17:13:29.491Z"
+    "from": "2026-06-27T18:15:08.283Z",
+    "to": "2026-07-27T18:15:08.283Z"
   },
   "collectionStatus": {
     "dataMode": "live",
     "demo": false,
     "channels": 102,
     "succeeded": 100,
-    "productive": 51,
-    "empty": 1,
-    "lowYield": 48,
+    "productive": 55,
+    "empty": 0,
+    "lowYield": 45,
     "failed": 2,
-    "rawFetched": 636,
-    "currentCount": 140,
-    "readableCount": 64,
-    "clueCount": 76,
-    "fullTextCount": 40,
+    "rawFetched": 652,
+    "currentCount": 143,
+    "readableCount": 69,
+    "metadataCount": 74,
+    "briefCount": 53,
+    "clueCount": 20,
+    "ignoredCount": 1,
+    "fullTextCount": 45,
     "abstractCount": 24,
-    "archiveCount": 223,
+    "archiveCount": 224,
     "ai": {
       "provider": "deepseek",
       "model": "deepseek-chat",
-      "requested": 5,
-      "summarized": 5,
+      "requested": 0,
+      "summarized": 0,
       "feedbackReviews": 0,
       "experienceReviews": 0
     },
@@ -47,7 +50,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -68,27 +71,27 @@
         "status": "ok",
         "requestStatus": "ok",
         "zeroFetchStreak": 0,
-        "fetched": 3,
+        "fetched": 4,
         "error": ""
       },
       {
         "id": "news-global-bearing",
         "label": "海外轴承与润滑资讯",
         "type": "news",
-        "status": "low-yield",
+        "status": "ok",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
-        "fetched": 0,
+        "zeroFetchStreak": 0,
+        "fetched": 3,
         "error": ""
       },
       {
         "id": "news-global-monitoring",
         "label": "海外状态监测资讯",
         "type": "news",
-        "status": "low-yield",
+        "status": "ok",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
-        "fetched": 0,
+        "zeroFetchStreak": 0,
+        "fetched": 3,
         "error": ""
       },
       {
@@ -97,7 +100,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -107,7 +110,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -117,7 +120,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -125,10 +128,10 @@
         "id": "news-global-design-loads",
         "label": "海外齿轮设计与载荷资讯",
         "type": "news",
-        "status": "empty",
+        "status": "ok",
         "requestStatus": "ok",
-        "zeroFetchStreak": 1,
-        "fetched": 0,
+        "zeroFetchStreak": 0,
+        "fetched": 2,
         "error": ""
       },
       {
@@ -138,7 +141,7 @@
         "status": "ok",
         "requestStatus": "ok",
         "zeroFetchStreak": 0,
-        "fetched": 1,
+        "fetched": 2,
         "error": ""
       },
       {
@@ -147,7 +150,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -157,7 +160,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -167,7 +170,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -177,7 +180,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -197,7 +200,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -207,7 +210,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -217,7 +220,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -227,7 +230,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -245,10 +248,10 @@
         "id": "portal-cn-china5e-wind",
         "label": "中国能源网风电动态",
         "type": "news",
-        "status": "low-yield",
+        "status": "ok",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
-        "fetched": 0,
+        "zeroFetchStreak": 0,
+        "fetched": 1,
         "error": ""
       },
       {
@@ -277,7 +280,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -287,7 +290,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -328,7 +331,7 @@
         "status": "ok",
         "requestStatus": "ok",
         "zeroFetchStreak": 0,
-        "fetched": 2,
+        "fetched": 1,
         "error": ""
       },
       {
@@ -337,7 +340,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -347,7 +350,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -368,7 +371,7 @@
         "status": "ok",
         "requestStatus": "ok",
         "zeroFetchStreak": 0,
-        "fetched": 1,
+        "fetched": 2,
         "error": ""
       },
       {
@@ -378,7 +381,7 @@
         "status": "ok",
         "requestStatus": "ok",
         "zeroFetchStreak": 0,
-        "fetched": 3,
+        "fetched": 5,
         "error": ""
       },
       {
@@ -387,7 +390,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -408,7 +411,7 @@
         "status": "ok",
         "requestStatus": "ok",
         "zeroFetchStreak": 0,
-        "fetched": 18,
+        "fetched": 20,
         "error": ""
       },
       {
@@ -437,7 +440,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -447,7 +450,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -457,7 +460,7 @@
         "type": "news",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -468,7 +471,7 @@
         "status": "ok",
         "requestStatus": "ok",
         "zeroFetchStreak": 0,
-        "fetched": 1,
+        "fetched": 2,
         "error": ""
       },
       {
@@ -477,7 +480,7 @@
         "type": "web",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -527,7 +530,7 @@
         "type": "web",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -537,7 +540,7 @@
         "type": "web",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -567,7 +570,7 @@
         "type": "web",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -657,7 +660,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -677,7 +680,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -697,7 +700,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -717,7 +720,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -757,7 +760,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -797,7 +800,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -817,7 +820,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -837,7 +840,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -857,7 +860,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -877,7 +880,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -897,7 +900,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -917,7 +920,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -937,7 +940,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -957,7 +960,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -977,7 +980,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -997,7 +1000,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -1007,7 +1010,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -1017,7 +1020,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -1027,7 +1030,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -1037,7 +1040,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       },
@@ -1047,7 +1050,7 @@
         "type": "research",
         "status": "low-yield",
         "requestStatus": "ok",
-        "zeroFetchStreak": 2,
+        "zeroFetchStreak": 3,
         "fetched": 0,
         "error": ""
       }
@@ -1059,25 +1062,26 @@
     "note": "可靠度评估来源质量、证据完整度和可追溯性，不等同于事实已经证实。"
   },
   "feedbackStatus": {
-    "aggregateGeneratedAt": "2026-07-27T17:13:30.210Z",
+    "aggregateGeneratedAt": "2026-07-27T18:15:08.926Z",
     "centralized": true
   },
   "weeklyBrief": {
     "title": "本周聚焦：厂商与项目动态、论文、标准与专利、政策、市场与产业环境",
-    "summary": "过去 30 天共筛选 64 条可读情报，其中国内 31 条、论文 20 篇，40 条已提取公开全文；另有 76 条仅保留标题的线索。资料库累计保留 223 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
+    "summary": "过去 30 天共筛选 69 条可读情报，其中国内 36 条、论文 20 篇，45 条已提取公开全文；另有 53 条题名简讯或论文题录已归入对应主栏目，20 条综合资讯等待深读。资料库累计保留 224 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
     "signals": [
       "基于边缘计算的风电机组关键部件实时状态监测系统设计与工程应用",
       "Vestas breaks UK wind sector record at Scottish project",
       "电气风电中标中广核江西200MW风电项目"
     ],
     "metrics": {
-      "total": 64,
-      "domestic": 31,
+      "total": 69,
+      "domestic": 36,
       "overseas": 33,
       "papers": 20,
-      "clues": 76
+      "briefs": 53,
+      "clues": 20
     },
-    "summaryMode": "全文优先 · AI 结构化"
+    "summaryMode": "全文优先 · 规则摘要"
   },
   "articles": [
     {
@@ -1088,7 +1092,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2027-01-01T00:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.1016/j.ress.2026.113150",
       "sourceUrl": "",
       "sourceChannel": "Crossref",
@@ -1155,6 +1159,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "catalog",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -1256,7 +1261,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-31T00:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.32629/ems.v8i7.21183",
       "sourceUrl": "",
       "sourceChannel": "Crossref",
@@ -1319,6 +1324,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -1438,8 +1444,8 @@
       "sourceType": "行业资讯",
       "region": "海外",
       "language": "en",
-      "publishedAt": "2026-07-27T15:55:42.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "publishedAt": "2026-07-27T16:01:33.000Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.rechargenews.com/technology/vestas-breaks-uk-wind-sector-record-at-scottish-project/2-1-2021386",
       "sourceUrl": "https://www.rechargenews.com/",
       "sourceChannel": "Google News RSS",
@@ -1497,6 +1503,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -1613,7 +1620,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-27T10:49:47.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2469116.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -1671,6 +1678,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -1774,7 +1782,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-27T10:49:28.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2469118.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -1832,6 +1840,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -1933,7 +1942,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-27T09:07:11.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://finance.eastmoney.com/a/202607273822169331.html",
       "sourceUrl": "https://finance.eastmoney.com/",
       "sourceChannel": "Google News RSS",
@@ -1991,6 +2000,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -2108,7 +2118,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-27T07:46:21.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2469109.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -2166,6 +2176,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -2269,7 +2280,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-27T05:54:19.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.windtech-international.com/product-news/siemens-gamesa-and-partners-test-c1-wedge-connection-for-wind-turbine-towers",
       "sourceUrl": "https://www.windtech-international.com/",
       "sourceChannel": "Google News RSS",
@@ -2329,6 +2340,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -2454,7 +2466,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-27T03:07:31.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://newenergy.in-en.com/html/newenergy-2455036.shtml",
       "sourceUrl": "https://newenergy.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -2514,6 +2526,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -2616,8 +2629,8 @@
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
-      "publishedAt": "2026-07-27T02:07:00.000Z",
-      "collectedAt": "2026-07-27T09:06:29.266Z",
+      "publishedAt": "2026-07-27T02:11:00.000Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.china5e.com/news/news-1206935-1.html",
       "sourceUrl": "",
       "sourceChannel": "Bing News RSS",
@@ -2677,12 +2690,28 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "政策、市场与产业环境",
+      "informationLevel": "readable",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "政策、市场与产业环境"
+        "厂商与项目动态"
       ],
-      "technicalDomains": [],
-      "technicalTags": [],
+      "technicalDomains": [
+        "监测诊断"
+      ],
+      "technicalTags": [
+        "故障诊断与PHM"
+      ],
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装",
+        "并网运行",
+        "运维与技改"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": "整机与开发商",
       "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
       "componentCategory": "行业综合",
@@ -2793,14 +2822,7 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      },
-      "componentTags": [],
-      "failureModes": [],
-      "developmentStages": [],
-      "evidenceTypes": [
-        "官方发布"
-      ],
-      "industryCategory": ""
+      }
     },
     {
       "id": "5d955f56a731",
@@ -2810,7 +2832,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-27T02:05:25.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2469101.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -2868,6 +2890,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -2969,7 +2992,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-27T01:39:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://tv.cctv.com/2026/07/27/VIDEsll9qqXajg1LRyUPKTbb260727.shtml",
       "sourceUrl": "https://tv.cctv.com/",
       "sourceChannel": "Google News RSS",
@@ -3027,6 +3050,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -3131,6 +3155,168 @@
       }
     },
     {
+      "id": "aa3b98b668ee",
+      "title": "[今日环球]启源海上风电场首批机组并网 预计年发电量1.5亿度",
+      "source": "央视影音",
+      "sourceType": "行业资讯",
+      "region": "国内",
+      "language": "zh",
+      "publishedAt": "2026-07-27T01:25:32.000Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
+      "url": "http://m.app.cctv.com/video/detail/4ff3f82f595c47c3a446c85f4e619797/index.shtml",
+      "sourceUrl": "http://m.app.cctv.com/",
+      "sourceChannel": "Google News RSS",
+      "linkType": "publisher",
+      "linkVerified": true,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": false,
+        "doi": "",
+        "authorsCount": 0,
+        "authors": [],
+        "citedByCount": 0,
+        "publicationType": "",
+        "journal": "",
+        "issnL": "",
+        "issns": [],
+        "publisher": "",
+        "volume": "",
+        "issue": "",
+        "firstPage": "",
+        "lastPage": "",
+        "isOpenAccess": false,
+        "isInDoaj": false,
+        "contentAccess": "metadata",
+        "contentSource": "metadata",
+        "extractedCharacters": 0,
+        "sourceMetrics": {
+          "provider": "",
+          "metricName": "",
+          "twoYearMeanCitedness": 0,
+          "hIndex": 0,
+          "i10Index": 0,
+          "worksCount": 0,
+          "citedByCount": 0,
+          "updatedAt": ""
+        }
+      },
+      "corroboratingSources": [],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
+      "engineeringExperience": {
+        "total": 0,
+        "supports": 0,
+        "conditional": 0,
+        "contradicts": 0,
+        "uncertain": 0,
+        "writtenTotal": 0,
+        "averageConfidence": 0,
+        "evidence": {},
+        "topContexts": []
+      },
+      "intelligenceType": "official",
+      "informationLevel": "brief",
+      "primarySection": "政策、市场与产业环境",
+      "sections": [
+        "政策、市场与产业环境"
+      ],
+      "technicalDomains": [],
+      "technicalTags": [],
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": "",
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
+      "titleZh": "[今日环球]启源海上风电场首批机组并网 预计年发电量1.5亿度",
+      "category": "行业资讯",
+      "tags": [
+        "国内",
+        "行业资讯",
+        "权威发布",
+        "央视"
+      ],
+      "summary": "原始索引未提供可用摘要。资料主题为“[今日环球]启源海上风电场首批机组并网 预计年发电量1.5亿度”，请打开原文核对研究方法、数据和结论边界。",
+      "keyPoints": [
+        "来源：央视影音",
+        "主题：行业资讯",
+        "发布时间：2026-07-27"
+      ],
+      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "",
+        "companies": [],
+        "location": "",
+        "capacity": "",
+        "investment": "",
+        "timeline": "",
+        "supplyChainImpact": "",
+        "verificationStatus": "",
+        "quantitativeFacts": []
+      },
+      "experienceReview": {
+        "status": "无经验",
+        "synthesis": "",
+        "applicableBoundary": "",
+        "verificationNeeded": ""
+      },
+      "readingMinutes": 2,
+      "relevanceScore": 6,
+      "reliability": {
+        "score": 51,
+        "grade": "C",
+        "label": "待核验",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 16,
+          "evidence": 4,
+          "traceability": 15,
+          "corroboration": 0,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": 0
+        },
+        "factors": [
+          "来源为可识别的新闻或财经发布平台",
+          "原文直链已在采集时验证",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "媒体转载不能替代技术报告、试验数据或原始公告",
+          "公开索引缺少足够摘要，无法仅凭标题判断结论",
+          "本轮采集未发现独立来源交叉印证"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      }
+    },
+    {
       "id": "19b78363b413",
       "title": "大唐儋州120万千瓦海上风电项目二场址两回路定向钻管道施工顺利竣工",
       "source": "国际风力发电网",
@@ -3138,7 +3324,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-27T00:52:18.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2469077.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -3198,6 +3384,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -3299,7 +3486,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-27T00:52:18.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2469080.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -3357,6 +3544,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -3451,6 +3639,168 @@
       }
     },
     {
+      "id": "dcb23d9f98a6",
+      "title": "[正点财经]聚焦海上风电产业 向深远海纵深拓展 全国多地海上风电项目接连取得重要进展",
+      "source": "央视影音",
+      "sourceType": "行业资讯",
+      "region": "国内",
+      "language": "zh",
+      "publishedAt": "2026-07-26T11:35:09.000Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
+      "url": "http://m.app.cctv.com/vsetv/detail/VSET100258670037/dd935b50786c4e4bb93916a6ed04e8d6/index.shtml",
+      "sourceUrl": "http://m.app.cctv.com/",
+      "sourceChannel": "Google News RSS",
+      "linkType": "publisher",
+      "linkVerified": true,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": false,
+        "doi": "",
+        "authorsCount": 0,
+        "authors": [],
+        "citedByCount": 0,
+        "publicationType": "",
+        "journal": "",
+        "issnL": "",
+        "issns": [],
+        "publisher": "",
+        "volume": "",
+        "issue": "",
+        "firstPage": "",
+        "lastPage": "",
+        "isOpenAccess": false,
+        "isInDoaj": false,
+        "contentAccess": "metadata",
+        "contentSource": "metadata",
+        "extractedCharacters": 0,
+        "sourceMetrics": {
+          "provider": "",
+          "metricName": "",
+          "twoYearMeanCitedness": 0,
+          "hIndex": 0,
+          "i10Index": 0,
+          "worksCount": 0,
+          "citedByCount": 0,
+          "updatedAt": ""
+        }
+      },
+      "corroboratingSources": [
+        "fdjob.bjx.com.cn"
+      ],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
+      "engineeringExperience": {
+        "total": 0,
+        "supports": 0,
+        "conditional": 0,
+        "contradicts": 0,
+        "uncertain": 0,
+        "writtenTotal": 0,
+        "averageConfidence": 0,
+        "evidence": {},
+        "topContexts": []
+      },
+      "intelligenceType": "official",
+      "informationLevel": "lead",
+      "primarySection": "政策、市场与产业环境",
+      "sections": [
+        "政策、市场与产业环境"
+      ],
+      "technicalDomains": [],
+      "technicalTags": [],
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": "",
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
+      "titleZh": "[正点财经]聚焦海上风电产业 向深远海纵深拓展 全国多地海上风电项目接连取得重要进展",
+      "category": "行业资讯",
+      "tags": [
+        "国内",
+        "行业资讯",
+        "权威发布",
+        "央视"
+      ],
+      "summary": "原始索引未提供可用摘要。资料主题为“[正点财经]聚焦海上风电产业 向深远海纵深拓展 全国多地海上风电项目接连取得重要进展”，请打开原文核对研究方法、数据和结论边界。",
+      "keyPoints": [
+        "来源：央视影音",
+        "主题：行业资讯",
+        "发布时间：2026-07-26"
+      ],
+      "engineeringImpact": "建议结合具体机型、载荷谱和失效样本评估其工程适用性。",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "",
+        "companies": [],
+        "location": "",
+        "capacity": "",
+        "investment": "",
+        "timeline": "",
+        "supplyChainImpact": "",
+        "verificationStatus": "",
+        "quantitativeFacts": []
+      },
+      "experienceReview": {
+        "status": "无经验",
+        "synthesis": "",
+        "applicableBoundary": "",
+        "verificationNeeded": ""
+      },
+      "readingMinutes": 2,
+      "relevanceScore": 6,
+      "reliability": {
+        "score": 57,
+        "grade": "C",
+        "label": "待核验",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 16,
+          "evidence": 4,
+          "traceability": 15,
+          "corroboration": 6,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": 0
+        },
+        "factors": [
+          "来源为可识别的新闻或财经发布平台",
+          "原文直链已在采集时验证",
+          "发现 1 个独立来源报道相近信息",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "媒体转载不能替代技术报告、试验数据或原始公告",
+          "公开索引缺少足够摘要，无法仅凭标题判断结论"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      }
+    },
+    {
       "id": "17e0b54ee963",
       "title": "陆上风电项目经理 1.8-5.5万·13薪",
       "source": "fdjob.bjx.com.cn",
@@ -3458,7 +3808,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-25T18:40:14.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://fdjob.bjx.com.cn/specials/102158.html",
       "sourceUrl": "https://fdjob.bjx.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -3499,10 +3849,10 @@
       "corroboratingSources": [
         "国际风力发电网",
         "新华网",
+        "央视影音",
         "新浪财经",
         "mpower.in-en.com",
-        "世纪新能源网",
-        "goldwind.com"
+        "世纪新能源网"
       ],
       "feedbackAggregate": {
         "useful": 0,
@@ -3523,6 +3873,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "ignored",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -3624,7 +3975,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-25T08:34:08.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.toutiao.com/article/7666381074976490011/",
       "sourceUrl": "https://www.toutiao.com/",
       "sourceChannel": "Google News RSS",
@@ -3682,6 +4033,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -3941,7 +4293,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "3098daccf3d5",
@@ -3951,12 +4304,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T23:22:23.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://gtj.linyi.gov.cn/info/1706/179451.htm",
       "sourceUrl": "http://gtj.linyi.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -3976,7 +4329,7 @@
         "isOpenAccess": false,
         "isInDoaj": false,
         "contentAccess": "metadata",
-        "contentSource": "",
+        "contentSource": "metadata",
         "extractedCharacters": 0,
         "sourceMetrics": {
           "provider": "",
@@ -4011,6 +4364,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -4075,14 +4429,14 @@
       "readingMinutes": 2,
       "relevanceScore": 6,
       "reliability": {
-        "score": 65,
+        "score": 69,
         "grade": "B",
         "label": "较高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
           "evidence": 4,
-          "traceability": 11,
+          "traceability": 15,
           "corroboration": 6,
           "recency": 8,
           "transparency": 8,
@@ -4091,7 +4445,7 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "原文直链已在采集时验证",
           "发现 1 个独立来源报道相近信息",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
@@ -4126,7 +4480,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-24T15:09:36.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.vestas.com/en/investor/announcements/wind-turbines-orders",
       "sourceUrl": "https://www.vestas.com/",
       "sourceChannel": "Google News 官网单域定向",
@@ -4191,6 +4545,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -4468,7 +4823,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "37ce4b3096f4",
@@ -4478,7 +4834,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-24T12:23:27.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.windpowermonthly.com/article/1965633/wind-power-patents-mingyang-vestas-goldwind-totalenergies",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -4536,6 +4892,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -4653,7 +5010,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T10:21:39.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://zj.news.cn/20260724/23b82715041746bcbc05c3f6a76f4228/c.html",
       "sourceUrl": "http://zj.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -4711,6 +5068,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -4833,7 +5191,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T09:56:53.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2469069.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -4891,6 +5249,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -4994,12 +5353,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T08:13:25.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://guangdong.chinatax.gov.cn/gdsw/jysw_swxw/2026-07/24/content_126fe32fd155480a838c50b3336c91d3.shtml",
       "sourceUrl": "https://guangdong.chinatax.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -5018,9 +5377,9 @@
         "lastPage": "",
         "isOpenAccess": false,
         "isInDoaj": false,
-        "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
+        "contentAccess": "fulltext",
+        "contentSource": "publisher-html",
+        "extractedCharacters": 1666,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -5052,6 +5411,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -5110,17 +5470,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 2,
+      "readingMinutes": 9,
       "relevanceScore": 6,
       "reliability": {
-        "score": 59,
-        "grade": "C",
-        "label": "待核验",
+        "score": 83,
+        "grade": "A",
+        "label": "高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
+          "evidence": 24,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -5129,12 +5489,12 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "已提取发布方公开正文",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
         "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论",
           "本轮采集未发现独立来源交叉印证"
         ],
         "feedback": {
@@ -5164,7 +5524,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T07:56:37.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2469067.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -5222,6 +5582,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -5474,7 +5835,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "a077713fabb1",
@@ -5484,7 +5846,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T07:54:40.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.sd.news.cn/20260724/d43a85cf191a478c8f26533fb7d6bba2/c.html",
       "sourceUrl": "https://www.sd.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -5544,6 +5906,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -5656,7 +6019,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T07:44:01.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://newenergy.in-en.com/html/newenergy-2454986.shtml",
       "sourceUrl": "https://newenergy.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -5714,6 +6077,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -5817,15 +6181,15 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T07:42:41.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.ne21.com/news/show-229305.html",
       "sourceUrl": "https://www.ne21.com/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": true,
+      "linkVerified": false,
       "evidence": {
         "hasAbstract": false,
-        "hasPublisherDescription": true,
+        "hasPublisherDescription": false,
         "doi": "",
         "authorsCount": 0,
         "authors": [],
@@ -5841,9 +6205,9 @@
         "lastPage": "",
         "isOpenAccess": false,
         "isInDoaj": false,
-        "contentAccess": "fulltext",
-        "contentSource": "publisher-html",
-        "extractedCharacters": 808,
+        "contentAccess": "metadata",
+        "contentSource": "",
+        "extractedCharacters": 0,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -5877,6 +6241,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -5943,17 +6308,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 5,
+      "readingMinutes": 2,
       "relevanceScore": 5,
       "reliability": {
-        "score": 77,
-        "grade": "B",
-        "label": "较高",
+        "score": 53,
+        "grade": "C",
+        "label": "待核验",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 16,
-          "evidence": 24,
-          "traceability": 15,
+          "evidence": 4,
+          "traceability": 11,
           "corroboration": 6,
           "recency": 8,
           "transparency": 8,
@@ -5962,13 +6327,14 @@
         },
         "factors": [
           "来源为可识别的新闻或财经发布平台",
-          "已提取发布方公开正文",
-          "原文直链已在采集时验证",
+          "链接指向发布方或 DOI 页面",
           "发现 1 个独立来源报道相近信息",
-          "发布时间处于当前监测窗口"
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
         ],
         "limitations": [
-          "媒体转载不能替代技术报告、试验数据或原始公告"
+          "媒体转载不能替代技术报告、试验数据或原始公告",
+          "公开索引缺少足够摘要，无法仅凭标题判断结论"
         ],
         "feedback": {
           "useful": 0,
@@ -5997,7 +6363,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-24T07:27:02.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://flender.com/media-download/media-direct/Pressrelease_Flender_WindEnergy_en.pdf",
       "sourceUrl": "https://flender.com/",
       "sourceChannel": "Google News 官网单域定向",
@@ -6055,6 +6421,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -6163,7 +6530,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://sthjt.jl.gov.cn/ztzl/sgszl/xzxkxx/202602/t20260202_3551870.html",
       "sourceUrl": "https://sthjt.jl.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -6221,6 +6588,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -6348,12 +6716,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T05:57:02.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.ne21.com/news/show-229313.html",
       "sourceUrl": "https://www.ne21.com/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": true,
+      "linkVerified": false,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -6373,8 +6741,8 @@
         "isOpenAccess": false,
         "isInDoaj": false,
         "contentAccess": "metadata",
-        "contentSource": "metadata",
-        "extractedCharacters": 451,
+        "contentSource": "",
+        "extractedCharacters": 0,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -6411,6 +6779,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "brief",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -6423,7 +6792,7 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商",
+      "industryCategory": "项目进展",
       "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
       "componentCategory": "行业综合",
@@ -6475,17 +6844,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 4,
-      "relevanceScore": 8,
+      "readingMinutes": 2,
+      "relevanceScore": 5,
       "reliability": {
-        "score": 81,
-        "grade": "A",
-        "label": "高",
+        "score": 61,
+        "grade": "C",
+        "label": "待核验",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 16,
-          "evidence": 20,
-          "traceability": 15,
+          "evidence": 4,
+          "traceability": 11,
           "corroboration": 14,
           "recency": 8,
           "transparency": 8,
@@ -6494,13 +6863,14 @@
         },
         "factors": [
           "来源为可识别的新闻或财经发布平台",
-          "发布方提供了较完整的公开摘要",
-          "原文直链已在采集时验证",
+          "链接指向发布方或 DOI 页面",
           "发现 4 个独立来源报道相近信息",
-          "发布时间处于当前监测窗口"
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
         ],
         "limitations": [
-          "媒体转载不能替代技术报告、试验数据或原始公告"
+          "媒体转载不能替代技术报告、试验数据或原始公告",
+          "公开索引缺少足够摘要，无法仅凭标题判断结论"
         ],
         "feedback": {
           "useful": 0,
@@ -6529,7 +6899,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T05:43:55.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2469063.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -6587,6 +6957,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -6690,7 +7061,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T04:08:15.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://m.ne21.com/news/show-229314.html",
       "sourceUrl": "https://m.ne21.com/",
       "sourceChannel": "Google News RSS",
@@ -6750,6 +7121,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -6873,7 +7245,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T03:39:24.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.laizhou.gov.cn/col/col23203/art/2026/art_cfd428040881409e83b993f7d781e4de.html",
       "sourceUrl": "https://www.laizhou.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -6931,6 +7303,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -7049,7 +7422,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T01:33:10.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2469049.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -7107,6 +7480,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -7208,7 +7582,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T01:23:10.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2469046.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -7268,6 +7642,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -7371,7 +7746,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T01:13:09.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2469045.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -7429,6 +7804,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -7530,7 +7906,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T00:59:15.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.news.cn/enterprise/20260724/c995a70711ac4354904d6f927c06e8f7/c.html",
       "sourceUrl": "https://www.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -7588,6 +7964,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -7710,7 +8087,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T00:24:41.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.ggzy.gov.cn/information/deal/html/a/0067/0104/20260723/006768a9520067a047f9bc36eab5c10a2e74.html",
       "sourceUrl": "https://www.ggzy.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -7768,6 +8145,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -7882,7 +8260,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-24T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.1088/2631-8695/ae9029",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -7916,7 +8294,7 @@
         "isInDoaj": false,
         "contentAccess": "fulltext",
         "contentSource": "publisher-html",
-        "extractedCharacters": 5118,
+        "extractedCharacters": 5553,
         "sourceMetrics": {
           "provider": "OpenAlex",
           "metricName": "2年平均被引率",
@@ -7925,7 +8303,7 @@
           "i10Index": 350,
           "worksCount": 5762,
           "citedByCount": 15572,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -7950,6 +8328,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -8238,7 +8617,8 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "informationLevel": "readable"
     },
     {
       "id": "6d347eecc6d1",
@@ -8425,7 +8805,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "项目进展"
+      "industryCategory": "项目进展",
+      "informationLevel": "readable"
     },
     {
       "id": "fba5b2415125",
@@ -8435,7 +8816,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T17:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://power.in-en.com/html/power-2476440.shtml",
       "sourceUrl": "",
       "sourceChannel": "Bing News RSS",
@@ -8493,6 +8874,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -8771,7 +9153,8 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "informationLevel": "readable"
     },
     {
       "id": "e9c51b8a41a7",
@@ -8781,15 +9164,15 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T11:16:15.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.guangde.gov.cn/OpennessContent/show/3798575.html",
       "sourceUrl": "https://www.guangde.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
-        "hasPublisherDescription": false,
+        "hasPublisherDescription": true,
         "doi": "",
         "authorsCount": 0,
         "authors": [],
@@ -8805,9 +9188,9 @@
         "lastPage": "",
         "isOpenAccess": false,
         "isInDoaj": false,
-        "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
+        "contentAccess": "fulltext",
+        "contentSource": "publisher-html",
+        "extractedCharacters": 2134,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -8839,14 +9222,23 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
       ],
-      "technicalDomains": [],
-      "technicalTags": [],
+      "technicalDomains": [
+        "振动与NVH",
+        "失效分析"
+      ],
+      "technicalTags": [
+        "噪声与异响",
+        "温升泄漏与装配质量"
+      ],
       "componentTags": [],
-      "failureModes": [],
+      "failureModes": [
+        "漏油与密封失效"
+      ],
       "developmentStages": [
         "运维与技改"
       ],
@@ -8905,17 +9297,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 2,
+      "readingMinutes": 11,
       "relevanceScore": 6,
       "reliability": {
-        "score": 59,
-        "grade": "C",
-        "label": "待核验",
+        "score": 83,
+        "grade": "A",
+        "label": "高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
+          "evidence": 24,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -8924,12 +9316,12 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "已提取发布方公开正文",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
         "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论",
           "本轮采集未发现独立来源交叉印证"
         ],
         "feedback": {
@@ -9122,7 +9514,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "readable"
     },
     {
       "id": "32f6bb762b43",
@@ -9132,12 +9525,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T08:48:45.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://wap.sasac.gov.cn/n2588025/n2588124/c35654029/content.html",
       "sourceUrl": "http://wap.sasac.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -9157,8 +9550,8 @@
         "isOpenAccess": false,
         "isInDoaj": false,
         "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
+        "contentSource": "metadata",
+        "extractedCharacters": 400,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -9193,6 +9586,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -9201,7 +9595,9 @@
       "technicalTags": [],
       "componentTags": [],
       "failureModes": [],
-      "developmentStages": [],
+      "developmentStages": [
+        "并网运行"
+      ],
       "evidenceTypes": [
         "官方发布"
       ],
@@ -9251,17 +9647,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 2,
-      "relevanceScore": 6,
+      "readingMinutes": 4,
+      "relevanceScore": 7,
       "reliability": {
-        "score": 71,
-        "grade": "B",
-        "label": "较高",
+        "score": 91,
+        "grade": "A",
+        "label": "高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
+          "evidence": 20,
+          "traceability": 15,
           "corroboration": 12,
           "recency": 8,
           "transparency": 8,
@@ -9270,14 +9666,12 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "发布方提供了较完整的公开摘要",
+          "原文直链已在采集时验证",
           "发现 2 个独立来源报道相近信息",
-          "发布时间处于当前监测窗口",
-          "来源、日期和采集通道信息完整"
+          "发布时间处于当前监测窗口"
         ],
-        "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论"
-        ],
+        "limitations": [],
         "feedback": {
           "useful": 0,
           "questionable": 0,
@@ -9305,7 +9699,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T08:33:27.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.windtech-international.com/product-news/edwim-project-aims-to-improve-wind-powertrain-manufacturing",
       "sourceUrl": "https://www.windtech-international.com/",
       "sourceChannel": "Google News RSS",
@@ -9363,6 +9757,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -9504,12 +9899,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T08:23:09.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.xiangshui.gov.cn/art/2026/7/23/art_34068_4441573.html",
       "sourceUrl": "https://www.xiangshui.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -9529,8 +9924,8 @@
         "isOpenAccess": false,
         "isInDoaj": false,
         "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
+        "contentSource": "metadata",
+        "extractedCharacters": 458,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -9562,6 +9957,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -9622,17 +10018,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 2,
+      "readingMinutes": 4,
       "relevanceScore": 6,
       "reliability": {
-        "score": 59,
-        "grade": "C",
-        "label": "待核验",
+        "score": 79,
+        "grade": "B",
+        "label": "较高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
+          "evidence": 20,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -9641,12 +10037,12 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "发布方提供了较完整的公开摘要",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
         "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论",
           "本轮采集未发现独立来源交叉印证"
         ],
         "feedback": {
@@ -9676,7 +10072,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T08:15:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://tv.cctv.com/2026/07/23/VIDEHjmAfuU7zcuaiTKniZd3260723.shtml",
       "sourceUrl": "https://tv.cctv.com/",
       "sourceChannel": "Google News RSS",
@@ -9734,6 +10130,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -9847,7 +10244,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T07:44:51.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.windtech-international.com/projects-and-contracts/envision-to-supply-turbines-for-179-mw-narrogin-wind-farm",
       "sourceUrl": "https://www.windtech-international.com/",
       "sourceChannel": "Google News RSS",
@@ -9905,6 +10302,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -10023,7 +10421,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T07:01:44.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://gxj.baotou.gov.cn/nmgbtszxqyggfwpt/xwdt/202607/t20260715_939168.html",
       "sourceUrl": "http://gxj.baotou.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -10081,6 +10479,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -10195,7 +10594,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T06:03:18.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2469026.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -10255,6 +10654,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -10356,7 +10756,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T04:21:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://tv.cctv.com/2026/07/23/VIDEmOpSrsSb8gJUkhA33SmB260723.shtml",
       "sourceUrl": "https://tv.cctv.com/",
       "sourceChannel": "Google News RSS",
@@ -10414,6 +10814,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -10527,7 +10928,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T01:23:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.toutiao.com/article/7665527810005549608/",
       "sourceUrl": "https://www.toutiao.com/",
       "sourceChannel": "Google News RSS",
@@ -10587,6 +10988,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -10688,7 +11090,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T00:55:15.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2468986.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -10746,6 +11148,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -10847,7 +11250,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.5194/wes-2026-90-rc2",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -10908,6 +11311,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -11068,7 +11472,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.3390/s26154697",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -11110,7 +11514,7 @@
           "i10Index": 42104,
           "worksCount": 80280,
           "citedByCount": 1894778,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [],
@@ -11133,6 +11537,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -11425,7 +11830,8 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "informationLevel": "readable"
     },
     {
       "id": "98cc6f2e4ba2",
@@ -11435,15 +11841,15 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T18:22:30.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.ne21.com/news/show-229211.html",
       "sourceUrl": "https://www.ne21.com/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": true,
+      "linkVerified": false,
       "evidence": {
         "hasAbstract": false,
-        "hasPublisherDescription": true,
+        "hasPublisherDescription": false,
         "doi": "",
         "authorsCount": 0,
         "authors": [],
@@ -11459,9 +11865,9 @@
         "lastPage": "",
         "isOpenAccess": false,
         "isInDoaj": false,
-        "contentAccess": "abstract",
-        "contentSource": "publisher-description",
-        "extractedCharacters": 319,
+        "contentAccess": "metadata",
+        "contentSource": "",
+        "extractedCharacters": 0,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -11493,6 +11899,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "brief",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -11501,9 +11908,7 @@
       "technicalTags": [],
       "componentTags": [],
       "failureModes": [],
-      "developmentStages": [
-        "运维与技改"
-      ],
+      "developmentStages": [],
       "evidenceTypes": [
         "媒体报道"
       ],
@@ -11560,17 +11965,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 3,
-      "relevanceScore": 8,
+      "readingMinutes": 2,
+      "relevanceScore": 4,
       "reliability": {
-        "score": 67,
-        "grade": "B",
-        "label": "较高",
+        "score": 47,
+        "grade": "D",
+        "label": "谨慎",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 16,
-          "evidence": 20,
-          "traceability": 15,
+          "evidence": 4,
+          "traceability": 11,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -11579,13 +11984,13 @@
         },
         "factors": [
           "来源为可识别的新闻或财经发布平台",
-          "发布方提供了较完整的公开摘要",
-          "原文直链已在采集时验证",
+          "链接指向发布方或 DOI 页面",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
         "limitations": [
           "媒体转载不能替代技术报告、试验数据或原始公告",
+          "公开索引缺少足够摘要，无法仅凭标题判断结论",
           "本轮采集未发现独立来源交叉印证"
         ],
         "feedback": {
@@ -11615,7 +12020,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T16:59:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.in-en.com/article/html/energy-2343140.shtml",
       "sourceUrl": "",
       "sourceChannel": "Bing News RSS",
@@ -11653,7 +12058,9 @@
           "updatedAt": ""
         }
       },
-      "corroboratingSources": [],
+      "corroboratingSources": [
+        "中国能源网"
+      ],
       "feedbackAggregate": {
         "useful": 0,
         "questionable": 0,
@@ -11673,6 +12080,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -11740,15 +12148,15 @@
       "readingMinutes": 3,
       "relevanceScore": 6,
       "reliability": {
-        "score": 63,
-        "grade": "C",
-        "label": "待核验",
+        "score": 69,
+        "grade": "B",
+        "label": "较高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 16,
           "evidence": 20,
           "traceability": 11,
-          "corroboration": 0,
+          "corroboration": 6,
           "recency": 8,
           "transparency": 8,
           "feedback": 0,
@@ -11758,12 +12166,11 @@
           "来源为可识别的新闻或财经发布平台",
           "发布方提供了较完整的公开摘要",
           "链接指向发布方或 DOI 页面",
-          "发布时间处于当前监测窗口",
-          "来源、日期和采集通道信息完整"
+          "发现 1 个独立来源报道相近信息",
+          "发布时间处于当前监测窗口"
         ],
         "limitations": [
-          "媒体转载不能替代技术报告、试验数据或原始公告",
-          "本轮采集未发现独立来源交叉印证"
+          "媒体转载不能替代技术报告、试验数据或原始公告"
         ],
         "feedback": {
           "useful": 0,
@@ -11792,7 +12199,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T16:59:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://newenergy.in-en.com/html/newenergy-2454875.shtml",
       "sourceUrl": "",
       "sourceChannel": "Bing News RSS",
@@ -11850,6 +12257,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -12122,7 +12530,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "2701daebf013",
@@ -12294,7 +12703,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "readable"
     },
     {
       "id": "d464d3f1b1df",
@@ -12304,7 +12714,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-22T13:35:37.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://renewablesnow.com/news/vestas-wins-turbine-order-for-eurowinds-43-mw-wind-project-in-germany-1298484/",
       "sourceUrl": "https://renewablesnow.com/",
       "sourceChannel": "Google News RSS",
@@ -12364,6 +12774,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -12480,7 +12891,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T13:29:46.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://m.ne21.com/news/show-229242.html",
       "sourceUrl": "https://m.ne21.com/",
       "sourceChannel": "Google News RSS",
@@ -12538,6 +12949,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -12666,7 +13078,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T10:09:12.000Z",
-      "collectedAt": "2026-07-27T09:06:29.266Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2468982.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -12724,12 +13136,20 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": "",
       "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
       "componentCategory": "行业综合",
@@ -12809,14 +13229,7 @@
           "broken": 0,
           "total": 0
         }
-      },
-      "componentTags": [],
-      "failureModes": [],
-      "developmentStages": [],
-      "evidenceTypes": [
-        "官方发布"
-      ],
-      "industryCategory": ""
+      }
     },
     {
       "id": "1bce5e3249fa",
@@ -12826,7 +13239,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T10:06:19.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2468981.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -12884,6 +13297,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -12985,7 +13399,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T09:04:52.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.cpem.org.cn/list35/118772.html",
       "sourceUrl": "https://www.cpem.org.cn/",
       "sourceChannel": "Google News RSS",
@@ -13043,6 +13457,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -13167,7 +13582,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2468962.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -13225,6 +13640,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -13326,12 +13742,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://www.changle.gov.cn/CLXXXGK/XHBJ/202607/t20260722_738235.html",
       "sourceUrl": "http://www.changle.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -13351,7 +13767,7 @@
         "isOpenAccess": false,
         "isInDoaj": false,
         "contentAccess": "metadata",
-        "contentSource": "",
+        "contentSource": "metadata",
         "extractedCharacters": 0,
         "sourceMetrics": {
           "provider": "",
@@ -13384,6 +13800,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -13449,14 +13866,14 @@
       "readingMinutes": 2,
       "relevanceScore": 6,
       "reliability": {
-        "score": 59,
+        "score": 63,
         "grade": "C",
         "label": "待核验",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
           "evidence": 4,
-          "traceability": 11,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -13465,7 +13882,7 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
@@ -13500,7 +13917,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T04:02:53.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2468964.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -13558,6 +13975,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -13659,7 +14077,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T01:23:11.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2468944.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -13717,6 +14135,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -13820,7 +14239,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T01:17:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://www.jixian.gov.cn/jx/43/202607/c07_251268.shtml",
       "sourceUrl": "http://www.jixian.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -13880,6 +14299,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -14143,7 +14563,8 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "informationLevel": "brief"
     },
     {
       "id": "27ecc2bfe204",
@@ -14153,7 +14574,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-22T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.1088/2631-8695/ae8f04",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -14188,7 +14609,7 @@
         "isInDoaj": false,
         "contentAccess": "fulltext",
         "contentSource": "publisher-html",
-        "extractedCharacters": 4543,
+        "extractedCharacters": 5015,
         "sourceMetrics": {
           "provider": "OpenAlex",
           "metricName": "2年平均被引率",
@@ -14197,7 +14618,7 @@
           "i10Index": 350,
           "worksCount": 5762,
           "citedByCount": 15572,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -14222,6 +14643,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -14342,7 +14764,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-22T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.2516/stet/2026032/pdf",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -14381,7 +14803,7 @@
           "i10Index": 4965,
           "worksCount": 217094,
           "citedByCount": 218946,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [],
@@ -14404,6 +14826,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -14543,7 +14966,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T09:28:52.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2468898.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -14601,6 +15024,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -14704,7 +15128,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-21T09:25:43.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.windpowermonthly.com/article/1964979/wind-power-patents-goldwind-sany-lm-wind-power-china-three-gorges",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -14762,6 +15186,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -14876,7 +15301,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T09:14:59.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://www.news.cn/finance/20260721/2be6691d7f434105aa85a2a5f2d818e7/c.html",
       "sourceUrl": "http://www.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -14934,9 +15359,10 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "故障、质量与运维",
+      "informationLevel": "readable",
+      "primarySection": "传动链技术开发与质量运维",
       "sections": [
-        "故障、质量与运维"
+        "传动链技术开发与质量运维"
       ],
       "technicalDomains": [
         "结构强度",
@@ -15241,7 +15667,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "readable"
     },
     {
       "id": "623aeab258db",
@@ -15251,7 +15678,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T07:15:56.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.news.cn/digital/20260721/7716de8c11e747a3bf25e53882a2e40c/c.html",
       "sourceUrl": "https://www.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -15311,6 +15738,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -15429,7 +15857,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2468878.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -15487,6 +15915,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -15588,7 +16017,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://mm.chinapower.com.cn/fd/jcdt/20260721/285901.html",
       "sourceUrl": "http://mm.chinapower.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -15646,6 +16075,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -15749,7 +16179,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://kw.beijing.gov.cn/xwdt/kcyx/xwdtkjqy/202607/t20260721_4774382.html",
       "sourceUrl": "https://kw.beijing.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -15807,6 +16237,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -15923,7 +16354,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-21T06:46:20.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.constructionworld.in/energy-infrastructure/power-and-renewable-energy/envision-grid-connects-first-ai-wind-turbine-prototype-for-fortescue/94788",
       "sourceUrl": "https://www.constructionworld.in/",
       "sourceChannel": "Google News RSS",
@@ -15984,6 +16415,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -16112,7 +16544,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T02:37:13.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.dafeng.gov.cn/art/2026/7/21/art_11827_4440904.html",
       "sourceUrl": "https://www.dafeng.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -16170,6 +16602,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -16294,12 +16727,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T02:32:02.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://nyj.guizhou.gov.cn/xwzx/gsgg/202607/t20260721_90644524.html",
       "sourceUrl": "https://nyj.guizhou.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -16319,8 +16752,8 @@
         "isOpenAccess": false,
         "isInDoaj": false,
         "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
+        "contentSource": "metadata",
+        "extractedCharacters": 273,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -16352,6 +16785,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -16408,17 +16842,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 2,
+      "readingMinutes": 3,
       "relevanceScore": 6,
       "reliability": {
-        "score": 59,
-        "grade": "C",
-        "label": "待核验",
+        "score": 79,
+        "grade": "B",
+        "label": "较高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
+          "evidence": 20,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -16427,12 +16861,12 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "发布方提供了较完整的公开摘要",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
         "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论",
           "本轮采集未发现独立来源交叉印证"
         ],
         "feedback": {
@@ -16452,12 +16886,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T01:30:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.kbs.gov.cn/hdjl/zjdc/202607/t20260721_3909992.html",
       "sourceUrl": "https://www.kbs.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -16476,9 +16910,9 @@
         "lastPage": "",
         "isOpenAccess": false,
         "isInDoaj": false,
-        "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
+        "contentAccess": "fulltext",
+        "contentSource": "publisher-html",
+        "extractedCharacters": 1568,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -16510,6 +16944,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -16569,17 +17004,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 2,
+      "readingMinutes": 9,
       "relevanceScore": 6,
       "reliability": {
-        "score": 59,
-        "grade": "C",
-        "label": "待核验",
+        "score": 83,
+        "grade": "A",
+        "label": "高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
+          "evidence": 24,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -16588,12 +17023,12 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "已提取发布方公开正文",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
         "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论",
           "本轮采集未发现独立来源交叉印证"
         ],
         "feedback": {
@@ -16623,7 +17058,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T01:19:35.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2468867.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -16681,6 +17116,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -16784,7 +17220,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-21T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.20944/preprints202607.1597.v1",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -16825,7 +17261,7 @@
           "i10Index": 5143,
           "worksCount": 132593,
           "citedByCount": 273067,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -16850,6 +17286,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -16976,7 +17413,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-20T20:39:06.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5QbjFCVDR0aHpoX2toQUNhblk0MDh4V0E2QWtBY2VhWmYxNDJqMkI3RUZtcE51NmVhYmJxeXhpQjUyd0FEVVpHQnMwNHJpZUxXMm94MVhnQUdZZHRtWE9BOHc1OURGUjNPS3Fmdg?oc=5",
       "sourceUrl": "https://www.ebiotrade.com/",
       "sourceChannel": "Google News RSS",
@@ -17034,9 +17471,10 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "技术与产品开发",
+      "informationLevel": "lead",
+      "primarySection": "传动链技术开发与质量运维",
       "sections": [
-        "技术与产品开发"
+        "传动链技术开发与质量运维"
       ],
       "technicalDomains": [
         "监测诊断"
@@ -17323,7 +17761,8 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "informationLevel": "brief"
     },
     {
       "id": "ef3ff0f64438",
@@ -17333,7 +17772,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-20T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2469061.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -17391,6 +17830,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -17492,7 +17932,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-20T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2468937.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -17550,6 +17990,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -17800,7 +18241,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "c8f4ee77b472",
@@ -17969,7 +18411,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "6680694a05f7",
@@ -17979,7 +18422,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-20T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.59400/sv4262",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -18023,7 +18466,7 @@
           "i10Index": 82,
           "worksCount": 461,
           "citedByCount": 4608,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -18048,6 +18491,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -18205,7 +18649,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-20T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.3390/su18147390",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -18247,7 +18691,7 @@
           "i10Index": 56160,
           "worksCount": 107752,
           "citedByCount": 2255283,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -18272,6 +18716,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -18410,7 +18855,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-20T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.1016/j.ijfatigue.2026.109866",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -18455,7 +18900,7 @@
           "i10Index": 7255,
           "worksCount": 14791,
           "citedByCount": 363675,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -18480,6 +18925,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "catalog",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -18600,7 +19046,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-19T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.5281/zenodo.21443135",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -18638,7 +19084,7 @@
           "i10Index": 15815,
           "worksCount": 12744521,
           "citedByCount": 972610,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [],
@@ -18661,6 +19107,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -18969,7 +19416,8 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "informationLevel": "readable"
     },
     {
       "id": "85e08ff40cc8",
@@ -18979,12 +19427,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-18T12:46:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.ggzy.gov.cn/information/deal/html/a/0067/0104/20260718/00679644e782fbe1434f9fa356eb3bb01529.html",
       "sourceUrl": "https://www.ggzy.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -19004,7 +19452,7 @@
         "isOpenAccess": false,
         "isInDoaj": false,
         "contentAccess": "metadata",
-        "contentSource": "",
+        "contentSource": "metadata",
         "extractedCharacters": 0,
         "sourceMetrics": {
           "provider": "",
@@ -19037,6 +19485,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -19100,14 +19549,14 @@
       "readingMinutes": 2,
       "relevanceScore": 6,
       "reliability": {
-        "score": 60,
+        "score": 64,
         "grade": "C",
         "label": "待核验",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
           "evidence": 13,
-          "traceability": 11,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -19117,7 +19566,7 @@
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
           "发布方提供了可核查的内容简介",
-          "链接指向发布方或 DOI 页面",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
@@ -19152,7 +19601,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-18T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.zhangwu.gov.cn/content/2026/1090803.html",
       "sourceUrl": "https://www.zhangwu.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -19210,6 +19659,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -19481,7 +19931,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "d02facbe3710",
@@ -19491,7 +19942,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T10:57:42.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2468821.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -19549,6 +20000,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -19650,7 +20102,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T10:38:02.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.saurenergy.com/solar-energy-news/envision-energy-grid-connects-first-ai-wind-turbine-prototype-for-fortescue-in-australia-12172875",
       "sourceUrl": "https://www.saurenergy.com/",
       "sourceChannel": "Google News RSS",
@@ -19711,6 +20163,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -19843,7 +20296,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T10:10:53.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2468816.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -19903,6 +20356,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -20006,7 +20460,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://finance.sina.com.cn/roll/2026-07-17/doc-iniicqkw1429181.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -20067,6 +20521,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -20182,7 +20637,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.163.com/dy/article/L22D90SN05568W0A.html",
       "sourceUrl": "https://www.163.com/",
       "sourceChannel": "Google News RSS",
@@ -20240,6 +20695,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -20353,7 +20809,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://asian-power.com/news/envision-ships-first-turbines-fortescues-132-mw-australian-wind-project",
       "sourceUrl": "https://asian-power.com/",
       "sourceChannel": "Google News RSS",
@@ -20411,6 +20867,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -20528,7 +20985,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T05:08:08.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.hami.gov.cn/hami/c119977/202607/291ba24ed0af4631bfb86659013516d0.shtml",
       "sourceUrl": "https://www.hami.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -20586,6 +21043,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -20700,7 +21158,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.58286/33755",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -20742,7 +21200,7 @@
           "i10Index": 12,
           "worksCount": 2833,
           "citedByCount": 1338,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [],
@@ -20765,6 +21223,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -20892,7 +21351,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.1088/1361-6501/ae8c64",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -20930,7 +21389,7 @@
         "isInDoaj": false,
         "contentAccess": "fulltext",
         "contentSource": "publisher-html",
-        "extractedCharacters": 4410,
+        "extractedCharacters": 5017,
         "sourceMetrics": {
           "provider": "OpenAlex",
           "metricName": "2年平均被引率",
@@ -20939,7 +21398,7 @@
           "i10Index": 8257,
           "worksCount": 19281,
           "citedByCount": 369065,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -20964,6 +21423,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -20981,21 +21441,23 @@
         "故障诊断与PHM"
       ],
       "componentTags": [],
-      "failureModes": [],
+      "failureModes": [
+        "润滑污染与失效"
+      ],
       "developmentStages": [],
       "evidenceTypes": [
         "论文"
       ],
       "industryCategory": "",
-      "drivetrainComponent": "齿轮箱总成",
+      "drivetrainComponent": "监测与传感",
       "drivetrainComponents": [
+        "监测与传感",
+        "滑动轴承系统",
         "齿轮箱总成",
         "润滑冷却与密封",
-        "滑动轴承系统",
-        "监测与传感",
         "齿轮件"
       ],
-      "componentCategory": "齿轮箱总成",
+      "componentCategory": "监测与传感",
       "titleZh": "基于数据驱动的风电润滑油破乳化度估计方法",
       "category": "润滑",
       "tags": [
@@ -21304,7 +21766,8 @@
       "evidenceTypes": [
         "论文"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "catalog"
     },
     {
       "id": "8973542527d8",
@@ -21489,7 +21952,8 @@
       "evidenceTypes": [
         "论文"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "catalog"
     },
     {
       "id": "9d216737251b",
@@ -21499,7 +21963,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-16T14:51:16.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://www.cjw.gov.cn/zwzc/zdgk/zhgl/gzhdjl/gzzx/202607/t20260716_62683.shtml",
       "sourceUrl": "http://www.cjw.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -21557,6 +22021,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -21828,7 +22293,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "e036c0d58017",
@@ -21838,7 +22304,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-16T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.mengcheng.gov.cn/XxgkContent/show/2992523.html",
       "sourceUrl": "https://www.mengcheng.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -21896,6 +22362,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -22010,7 +22477,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-16T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://news.qq.com/rain/a/20260716A0B7FI00",
       "sourceUrl": "https://news.qq.com/",
       "sourceChannel": "Google News RSS",
@@ -22070,6 +22537,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -22187,7 +22655,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-16T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.windpowermonthly.com/features",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -22245,6 +22713,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -22504,174 +22973,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
-    },
-    {
-      "id": "b8ae10521980",
-      "title": "[正点财经]聚焦海上风电产业 向深远海纵深拓展 全国多地海上风电项目接连取得重要进展",
-      "source": "央视网",
-      "sourceType": "行业资讯",
-      "region": "国内",
-      "language": "zh",
-      "publishedAt": "2026-07-16T01:45:00.000Z",
-      "collectedAt": "2026-07-21T02:41:49.954Z",
-      "url": "https://tv.cctv.com/2026/07/16/VIDE7sgGIIVlR1nk74K1nuVy260716.shtml",
-      "sourceUrl": "https://tv.cctv.com/",
-      "sourceChannel": "Google News RSS",
-      "linkType": "publisher",
-      "linkVerified": true,
-      "evidence": {
-        "hasAbstract": false,
-        "hasPublisherDescription": false,
-        "doi": "",
-        "authorsCount": 0,
-        "authors": [],
-        "citedByCount": 0,
-        "publicationType": "",
-        "journal": "",
-        "issnL": "",
-        "issns": [],
-        "publisher": "",
-        "volume": "",
-        "issue": "",
-        "firstPage": "",
-        "lastPage": "",
-        "isOpenAccess": false,
-        "isInDoaj": false,
-        "sourceMetrics": {
-          "provider": "",
-          "metricName": "",
-          "twoYearMeanCitedness": 0,
-          "hIndex": 0,
-          "i10Index": 0,
-          "worksCount": 0,
-          "citedByCount": 0,
-          "updatedAt": ""
-        }
-      },
-      "corroboratingSources": [],
-      "feedbackAggregate": {
-        "useful": 0,
-        "questionable": 0,
-        "irrelevant": 0,
-        "broken": 0,
-        "total": 0
-      },
-      "engineeringExperience": {
-        "total": 0,
-        "supports": 0,
-        "conditional": 0,
-        "contradicts": 0,
-        "uncertain": 0,
-        "writtenTotal": 0,
-        "averageConfidence": 0,
-        "evidence": {},
-        "topContexts": []
-      },
-      "intelligenceType": "official",
-      "titleZh": "聚焦海上风电产业 向深远海纵深拓展 全国多地海上风电项目接连取得重要进展",
-      "category": "行业资讯",
-      "tags": [
-        "海上风电",
-        "深远海",
-        "产业进展",
-        "权威发布",
-        "央视"
-      ],
-      "summary": "该资料为央视网报道，聚焦海上风电产业向深远海拓展，提及全国多地海上风电项目取得重要进展。未提供具体项目名称、容量或技术细节，属于宏观产业动态报道，证据层级为媒体报道，结论边界限于报道内容。",
-      "keyPoints": [
-        "海上风电产业向深远海拓展",
-        "全国多地项目取得重要进展",
-        "信息来源为央视网报道"
-      ],
-      "engineeringImpact": "该报道反映海上风电向深远海发展趋势，可能对风电齿轮箱、轴承的防腐、可靠性提出更高要求，但具体影响待项目技术细节披露。",
-      "paperDetails": {
-        "objective": "",
-        "methods": "",
-        "testObject": "",
-        "operatingConditions": "",
-        "quantitativeFindings": [],
-        "limitations": []
-      },
-      "industryDetails": {
-        "eventType": "产业进展报道",
-        "companies": [],
-        "location": "",
-        "capacity": "",
-        "investment": "",
-        "timeline": "",
-        "supplyChainImpact": "",
-        "verificationStatus": "媒体报道",
-        "quantitativeFacts": []
-      },
-      "experienceReview": {
-        "status": "无经验",
-        "synthesis": "",
-        "applicableBoundary": "",
-        "verificationNeeded": ""
-      },
-      "readingMinutes": 2,
-      "relevanceScore": 6,
-      "reliability": {
-        "score": 51,
-        "grade": "C",
-        "label": "待核验",
-        "methodVersion": "1.0",
-        "dimensions": {
-          "authority": 16,
-          "evidence": 4,
-          "traceability": 15,
-          "corroboration": 0,
-          "recency": 8,
-          "transparency": 8,
-          "feedback": 0,
-          "riskPenalty": 0
-        },
-        "factors": [
-          "来源为可识别的新闻或财经发布平台",
-          "原文直链已在采集时验证",
-          "发布时间处于当前监测窗口",
-          "来源、日期和采集通道信息完整"
-        ],
-        "limitations": [
-          "媒体转载不能替代技术报告、试验数据或原始公告",
-          "公开索引缺少足够摘要，无法仅凭标题判断结论",
-          "本轮采集未发现独立来源交叉印证"
-        ],
-        "feedback": {
-          "useful": 0,
-          "questionable": 0,
-          "irrelevant": 0,
-          "broken": 0,
-          "total": 0
-        }
-      },
-      "aiAnalysis": {
-        "provider": "deepseek",
-        "model": "deepseek-chat",
-        "generatedAt": "2026-07-21T02:41:49.954Z",
-        "reason": "new",
-        "feedbackTotalAtAnalysis": 0,
-        "experienceTotalAtAnalysis": 0,
-        "experienceWrittenTotalAtAnalysis": 0,
-        "experienceLatestAtAnalysis": ""
-      },
-      "technicalDomains": [],
-      "technicalTags": [],
-      "sections": [
-        "政策、市场与产业环境"
-      ],
-      "primarySection": "政策、市场与产业环境",
-      "drivetrainComponent": "行业综合",
-      "drivetrainComponents": [],
-      "componentCategory": "行业综合",
-      "componentTags": [],
-      "failureModes": [],
-      "developmentStages": [],
-      "evidenceTypes": [
-        "官方发布"
-      ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "fe1153cc14d2",
@@ -22839,7 +23142,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "96302a5f7624",
@@ -23037,7 +23341,8 @@
       "evidenceTypes": [
         "论文"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "catalog"
     },
     {
       "id": "bb4849e34e2b",
@@ -23209,7 +23514,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "74dab05fabd7",
@@ -23219,7 +23525,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-15T08:55:27.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://gd.news.cn/20260715/c095a830927f466a99f6d27bbe6c564f/c.html",
       "sourceUrl": "http://gd.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -23277,6 +23583,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -23545,7 +23852,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "ce1fe3cd9dc5",
@@ -23710,7 +24018,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "067c4e05b7e4",
@@ -23720,7 +24029,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-15T01:36:53.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2468711.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -23778,6 +24087,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -24034,7 +24344,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "7a2d3033de5d",
@@ -24203,7 +24514,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "5d7dd5dc6f8e",
@@ -24213,7 +24525,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-14T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://www.kailu.gov.cn/xwzx/tzgggs/202607/t20260714_1060135.html",
       "sourceUrl": "http://www.kailu.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -24271,6 +24583,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -24388,7 +24701,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-14T01:15:37.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://wind.in-en.com/html/wind-2468687.shtml",
       "sourceUrl": "https://wind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -24446,6 +24759,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -24753,7 +25067,8 @@
       "evidenceTypes": [
         "论文"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "catalog"
     },
     {
       "id": "30778a211d9e",
@@ -24918,7 +25233,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "d42ef9a79e31",
@@ -24928,7 +25244,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-13T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://finance.sina.com.cn/wm/2026-07-13/doc-inihtews5450532.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -24986,6 +25302,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -25256,7 +25573,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "lead"
     },
     {
       "id": "4387349d2d92",
@@ -25266,7 +25584,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-12T17:00:00.000Z",
-      "collectedAt": "2026-07-27T16:37:10.626Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://paper.people.com.cn/zgnyb/pc/content/202607/13/content_30169140.html",
       "sourceUrl": "",
       "sourceChannel": "Bing News RSS",
@@ -25324,19 +25642,24 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "政策、市场与产业环境",
+      "informationLevel": "readable",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "政策、市场与产业环境"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
       "componentTags": [],
       "failureModes": [],
-      "developmentStages": [],
+      "developmentStages": [
+        "交付与吊装",
+        "并网运行",
+        "运维与技改"
+      ],
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": "",
+      "industryCategory": "整机与开发商",
       "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
       "componentCategory": "行业综合",
@@ -25602,7 +25925,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "bf49ec9ccf14",
@@ -25771,7 +26095,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "e2da9fa16b62",
@@ -25781,12 +26106,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-11T10:17:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.wsq.gov.cn/zw/tzggx/202607/t20260712_3908583.html",
       "sourceUrl": "https://www.wsq.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -25805,9 +26130,9 @@
         "lastPage": "",
         "isOpenAccess": false,
         "isInDoaj": false,
-        "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
+        "contentAccess": "fulltext",
+        "contentSource": "publisher-html",
+        "extractedCharacters": 691,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -25841,6 +26166,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -25849,7 +26175,10 @@
       "technicalTags": [],
       "componentTags": [],
       "failureModes": [],
-      "developmentStages": [],
+      "developmentStages": [
+        "并网运行",
+        "运维与技改"
+      ],
       "evidenceTypes": [
         "官方发布"
       ],
@@ -25900,17 +26229,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 2,
+      "readingMinutes": 5,
       "relevanceScore": 6,
       "reliability": {
-        "score": 65,
-        "grade": "B",
-        "label": "较高",
+        "score": 89,
+        "grade": "A",
+        "label": "高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
+          "evidence": 24,
+          "traceability": 15,
           "corroboration": 6,
           "recency": 8,
           "transparency": 8,
@@ -25919,14 +26248,12 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "已提取发布方公开正文",
+          "原文直链已在采集时验证",
           "发现 1 个独立来源报道相近信息",
-          "发布时间处于当前监测窗口",
-          "来源、日期和采集通道信息完整"
+          "发布时间处于当前监测窗口"
         ],
-        "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论"
-        ],
+        "limitations": [],
         "feedback": {
           "useful": 0,
           "questionable": 0,
@@ -25954,7 +26281,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-11T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://cj.sina.com.cn/articles/view/2442012107/918e25cb00101mm52",
       "sourceUrl": "https://cj.sina.cn/",
       "sourceChannel": "Google News RSS",
@@ -26012,9 +26339,10 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "技术与产品开发",
+      "informationLevel": "readable",
+      "primarySection": "传动链技术开发与质量运维",
       "sections": [
-        "技术与产品开发"
+        "传动链技术开发与质量运维"
       ],
       "technicalDomains": [
         "系统架构"
@@ -26263,7 +26591,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "729c05247b67",
@@ -26428,7 +26757,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "6dc79c7d5c57",
@@ -26496,33 +26826,22 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "厂商与项目动态",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "厂商与项目动态"
+        "政策、市场与产业环境"
       ],
-      "technicalDomains": [
-        "系统架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "componentTags": [],
       "failureModes": [],
-      "developmentStages": [
-        "交付与吊装",
-        "并网运行",
-        "运维与技改"
-      ],
+      "developmentStages": [],
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": "整机与开发商",
-      "drivetrainComponent": "齿轮箱总成",
-      "drivetrainComponents": [
-        "齿轮箱总成",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成",
+      "industryCategory": "",
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "海上风电转向“深蓝”",
       "category": "行业资讯",
       "tags": [
@@ -26609,7 +26928,8 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "informationLevel": "readable"
     },
     {
       "id": "4420df438b08",
@@ -26778,7 +27098,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "4760f5366501",
@@ -26948,7 +27269,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "bef572ca271e",
@@ -26958,7 +27280,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-10T00:16:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://m.sohu.com/a/1048293532_121157270?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
       "sourceUrl": "https://m.sohu.com/",
       "sourceChannel": "Google News RSS",
@@ -27016,6 +27338,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -27289,7 +27612,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "4e65c36d6046",
@@ -27299,7 +27623,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-09T10:22:09.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.ad-hoc-news.de/boerse/news/ueberblick/nordex-balances-order-growth-and-margin-pressure-as-global-wind-demand/69730733",
       "sourceUrl": "https://www.ad-hoc-news.de/",
       "sourceChannel": "Google News RSS",
@@ -27357,6 +27681,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -27474,7 +27799,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-09T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.globalbankingandfinance.com/nordex-q2-orders-rise-u-demand/",
       "sourceUrl": "https://www.globalbankingandfinance.com/",
       "sourceChannel": "Google News RSS",
@@ -27500,7 +27825,7 @@
         "isInDoaj": false,
         "contentAccess": "fulltext",
         "contentSource": "publisher-html",
-        "extractedCharacters": 1587,
+        "extractedCharacters": 1606,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -27534,6 +27859,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -27805,7 +28131,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "74b7727a17f7",
@@ -27975,7 +28302,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "ab8c5d0edec8",
@@ -28145,7 +28473,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "f3712b82fb13",
@@ -28155,7 +28484,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-08T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://windeyenergy.com/news_show?id=435",
       "sourceUrl": "https://windeyenergy.com/",
       "sourceChannel": "Google News 官网单域定向",
@@ -28213,6 +28542,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -28489,7 +28819,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "db7e71a8fc0d",
@@ -28655,7 +28986,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "1add60007305",
@@ -28795,7 +29127,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "lead"
     },
     {
       "id": "dcd42840994d",
@@ -28971,7 +29304,8 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "informationLevel": "readable"
     },
     {
       "id": "d1aba5654fb3",
@@ -28981,7 +29315,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-07T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://sthjj.chizhou.gov.cn/Hbsp/show/HPNSP/648.html",
       "sourceUrl": "https://sthjj.chizhou.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -29039,6 +29373,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -29313,7 +29648,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "7e614a29472d",
@@ -29479,7 +29815,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "e2642cd3dbac",
@@ -29489,7 +29826,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-07T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.3390/modelling7040139",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -29532,7 +29869,7 @@
           "i10Index": 53,
           "worksCount": 547,
           "citedByCount": 1975,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [],
@@ -29555,6 +29892,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -29712,7 +30050,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-06T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://www.yangjiang.gov.cn/yj/ywdt/bmzx/content/post_966327.html",
       "sourceUrl": "http://www.yangjiang.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -29770,6 +30108,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -29879,6 +30218,186 @@
       }
     },
     {
+      "id": "52a8f3d511ed",
+      "title": "【扬子晚报】同比增长超四成，上半年南通启东海上风电场发电14.72 亿千瓦",
+      "source": "江苏海事局",
+      "sourceType": "行业资讯",
+      "region": "国内",
+      "language": "zh",
+      "publishedAt": "2026-07-06T07:00:00.000Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
+      "url": "https://js.msa.gov.cn/art/2026/7/6/art_50_1607395.html",
+      "sourceUrl": "https://js.msa.gov.cn/",
+      "sourceChannel": "Google News RSS",
+      "linkType": "publisher",
+      "linkVerified": true,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": true,
+        "doi": "",
+        "authorsCount": 0,
+        "authors": [],
+        "citedByCount": 0,
+        "publicationType": "",
+        "journal": "",
+        "issnL": "",
+        "issns": [],
+        "publisher": "",
+        "volume": "",
+        "issue": "",
+        "firstPage": "",
+        "lastPage": "",
+        "isOpenAccess": false,
+        "isInDoaj": false,
+        "contentAccess": "abstract",
+        "contentSource": "publisher-description",
+        "extractedCharacters": 516,
+        "sourceMetrics": {
+          "provider": "",
+          "metricName": "",
+          "twoYearMeanCitedness": 0,
+          "hIndex": 0,
+          "i10Index": 0,
+          "worksCount": 0,
+          "citedByCount": 0,
+          "updatedAt": ""
+        }
+      },
+      "corroboratingSources": [],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
+      "engineeringExperience": {
+        "total": 0,
+        "supports": 0,
+        "conditional": 0,
+        "contradicts": 0,
+        "uncertain": 0,
+        "writtenTotal": 0,
+        "averageConfidence": 0,
+        "evidence": {},
+        "topContexts": []
+      },
+      "intelligenceType": "official",
+      "informationLevel": "readable",
+      "primarySection": "政策、市场与产业环境",
+      "sections": [
+        "政策、市场与产业环境"
+      ],
+      "technicalDomains": [],
+      "technicalTags": [],
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": "",
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
+      "titleZh": "同比增长超四成，上半年南通启东海上风电场发电14.72亿千瓦",
+      "category": "行业资讯",
+      "tags": [
+        "海上风电",
+        "发电量",
+        "运行数据",
+        "权威发布",
+        "中国政府网",
+        "齿轮箱架构"
+      ],
+      "summary": "据扬子晚报报道，截至2026年6月30日，南通启东海上风电场上半年累计发电约14.72亿千瓦时，同比增长40.73%。日均发电813万千瓦时，可满足约4.2万户家庭月度用电需求，相当于节约标煤89.2万吨、减排二氧化碳240万吨。数据来源于媒体报道，未经独立核实。",
+      "keyPoints": [
+        "2026年上半年启东风电场发电14.72亿千瓦时，同比增长40.73%",
+        "日均发电813万千瓦时，可满足4.2万户家庭月用电",
+        "相当于节约标煤89.2万吨、减排二氧化碳240万吨"
+      ],
+      "engineeringImpact": "该数据反映了海上风电场实际运行绩效，可作为齿轮箱与轴承可靠性验证的参考背景，但未涉及具体设备性能或故障信息。",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "运行数据发布",
+        "companies": [
+          "南通启东海上风电场"
+        ],
+        "location": "南通启东",
+        "capacity": "",
+        "investment": "",
+        "timeline": "2026年上半年",
+        "supplyChainImpact": "无直接供应链影响",
+        "verificationStatus": "媒体报道",
+        "quantitativeFacts": [
+          "累计发电14.72亿千瓦时",
+          "同比增长40.73%",
+          "日均发电813万千瓦时",
+          "满足4.2万户家庭月用电",
+          "节约标煤89.2万吨",
+          "减排二氧化碳240万吨"
+        ]
+      },
+      "experienceReview": {
+        "status": "无经验",
+        "synthesis": "",
+        "applicableBoundary": "",
+        "verificationNeeded": ""
+      },
+      "readingMinutes": 4,
+      "relevanceScore": 7,
+      "reliability": {
+        "score": 79,
+        "grade": "B",
+        "label": "较高",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 28,
+          "evidence": 20,
+          "traceability": 15,
+          "corroboration": 0,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": 0
+        },
+        "factors": [
+          "来源属于政府、科研机构或行业标准组织",
+          "发布方提供了较完整的公开摘要",
+          "原文直链已在采集时验证",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "本轮采集未发现独立来源交叉印证"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-27T02:54:07.888Z",
+        "reason": "new",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0,
+        "experienceWrittenTotalAtAnalysis": 0,
+        "experienceLatestAtAnalysis": ""
+      }
+    },
+    {
       "id": "080f96dffb1a",
       "title": "“小鹿跑市场”系列活动——风电装备产业供需对接专场活动成功举办",
       "source": "包头市人民政府",
@@ -29886,7 +30405,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-06T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://gxj.baotou.gov.cn/ztzl/xlpsc/202607/t20260706_934809.html",
       "sourceUrl": "http://gxj.baotou.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -29944,6 +30463,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -30039,185 +30559,6 @@
       }
     },
     {
-      "id": "52a8f3d511ed",
-      "title": "【扬子晚报】同比增长超四成，上半年南通启东海上风电场发电14.72 亿千瓦",
-      "source": "江苏海事局",
-      "sourceType": "行业资讯",
-      "region": "国内",
-      "language": "zh",
-      "publishedAt": "2026-07-06T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
-      "url": "https://js.msa.gov.cn/art/2026/7/6/art_50_1607395.html",
-      "sourceUrl": "https://js.msa.gov.cn/",
-      "sourceChannel": "Google News RSS",
-      "linkType": "publisher",
-      "linkVerified": false,
-      "evidence": {
-        "hasAbstract": false,
-        "hasPublisherDescription": false,
-        "doi": "",
-        "authorsCount": 0,
-        "authors": [],
-        "citedByCount": 0,
-        "publicationType": "",
-        "journal": "",
-        "issnL": "",
-        "issns": [],
-        "publisher": "",
-        "volume": "",
-        "issue": "",
-        "firstPage": "",
-        "lastPage": "",
-        "isOpenAccess": false,
-        "isInDoaj": false,
-        "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
-        "sourceMetrics": {
-          "provider": "",
-          "metricName": "",
-          "twoYearMeanCitedness": 0,
-          "hIndex": 0,
-          "i10Index": 0,
-          "worksCount": 0,
-          "citedByCount": 0,
-          "updatedAt": ""
-        }
-      },
-      "corroboratingSources": [],
-      "feedbackAggregate": {
-        "useful": 0,
-        "questionable": 0,
-        "irrelevant": 0,
-        "broken": 0,
-        "total": 0
-      },
-      "engineeringExperience": {
-        "total": 0,
-        "supports": 0,
-        "conditional": 0,
-        "contradicts": 0,
-        "uncertain": 0,
-        "writtenTotal": 0,
-        "averageConfidence": 0,
-        "evidence": {},
-        "topContexts": []
-      },
-      "intelligenceType": "official",
-      "primarySection": "政策、市场与产业环境",
-      "sections": [
-        "政策、市场与产业环境"
-      ],
-      "technicalDomains": [],
-      "technicalTags": [],
-      "componentTags": [],
-      "failureModes": [],
-      "developmentStages": [],
-      "evidenceTypes": [
-        "官方发布"
-      ],
-      "industryCategory": "",
-      "drivetrainComponent": "行业综合",
-      "drivetrainComponents": [],
-      "componentCategory": "行业综合",
-      "titleZh": "同比增长超四成，上半年南通启东海上风电场发电14.72亿千瓦",
-      "category": "行业资讯",
-      "tags": [
-        "海上风电",
-        "发电量",
-        "运行数据",
-        "权威发布",
-        "中国政府网",
-        "齿轮箱架构"
-      ],
-      "summary": "据扬子晚报报道，截至2026年6月30日，南通启东海上风电场上半年累计发电约14.72亿千瓦时，同比增长40.73%。日均发电813万千瓦时，可满足约4.2万户家庭月度用电需求，相当于节约标煤89.2万吨、减排二氧化碳240万吨。数据来源于媒体报道，未经独立核实。",
-      "keyPoints": [
-        "2026年上半年启东风电场发电14.72亿千瓦时，同比增长40.73%",
-        "日均发电813万千瓦时，可满足4.2万户家庭月用电",
-        "相当于节约标煤89.2万吨、减排二氧化碳240万吨"
-      ],
-      "engineeringImpact": "该数据反映了海上风电场实际运行绩效，可作为齿轮箱与轴承可靠性验证的参考背景，但未涉及具体设备性能或故障信息。",
-      "paperDetails": {
-        "objective": "",
-        "methods": "",
-        "testObject": "",
-        "operatingConditions": "",
-        "quantitativeFindings": [],
-        "limitations": []
-      },
-      "industryDetails": {
-        "eventType": "运行数据发布",
-        "companies": [
-          "南通启东海上风电场"
-        ],
-        "location": "南通启东",
-        "capacity": "",
-        "investment": "",
-        "timeline": "2026年上半年",
-        "supplyChainImpact": "无直接供应链影响",
-        "verificationStatus": "媒体报道",
-        "quantitativeFacts": [
-          "累计发电14.72亿千瓦时",
-          "同比增长40.73%",
-          "日均发电813万千瓦时",
-          "满足4.2万户家庭月用电",
-          "节约标煤89.2万吨",
-          "减排二氧化碳240万吨"
-        ]
-      },
-      "experienceReview": {
-        "status": "无经验",
-        "synthesis": "",
-        "applicableBoundary": "",
-        "verificationNeeded": ""
-      },
-      "readingMinutes": 2,
-      "relevanceScore": 6,
-      "reliability": {
-        "score": 59,
-        "grade": "C",
-        "label": "待核验",
-        "methodVersion": "1.0",
-        "dimensions": {
-          "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
-          "corroboration": 0,
-          "recency": 8,
-          "transparency": 8,
-          "feedback": 0,
-          "riskPenalty": 0
-        },
-        "factors": [
-          "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
-          "发布时间处于当前监测窗口",
-          "来源、日期和采集通道信息完整"
-        ],
-        "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论",
-          "本轮采集未发现独立来源交叉印证"
-        ],
-        "feedback": {
-          "useful": 0,
-          "questionable": 0,
-          "irrelevant": 0,
-          "broken": 0,
-          "total": 0
-        }
-      },
-      "aiAnalysis": {
-        "provider": "deepseek",
-        "model": "deepseek-chat",
-        "generatedAt": "2026-07-27T02:54:07.888Z",
-        "reason": "new",
-        "feedbackTotalAtAnalysis": 0,
-        "experienceTotalAtAnalysis": 0,
-        "experienceWrittenTotalAtAnalysis": 0,
-        "experienceLatestAtAnalysis": ""
-      }
-    },
-    {
       "id": "fbfc4f7cefcf",
       "title": "Wind power patents: Dongfang | Siemens Gamesa | Goldwind | Nordex | ZF",
       "source": "Wind Power Monthly",
@@ -30225,7 +30566,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-06T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.windpowermonthly.com/article/1963730/wind-power-patents-dongfang-siemens-gamesa-goldwind-nordex-zf",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -30283,6 +30624,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -30548,7 +30890,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "传动链企业"
+      "industryCategory": "传动链企业",
+      "informationLevel": "brief"
     },
     {
       "id": "13b4f410ad9e",
@@ -30558,7 +30901,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-06T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.5194/wes-2026-83",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -30622,6 +30965,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -30792,7 +31136,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-05T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.lnst.gov.cn/html/CYSTQ/202607/0178322072595317.html",
       "sourceUrl": "https://www.lnst.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -30850,6 +31194,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -31119,7 +31464,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "c13e761744a2",
@@ -31129,12 +31475,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-03T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "http://wap.sasac.gov.cn/n16582853/n16582893/c35538638/content.html",
       "sourceUrl": "http://wap.sasac.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -31153,9 +31499,9 @@
         "lastPage": "",
         "isOpenAccess": false,
         "isInDoaj": false,
-        "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
+        "contentAccess": "fulltext",
+        "contentSource": "publisher-html",
+        "extractedCharacters": 1214,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -31187,6 +31533,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "readable",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -31195,7 +31542,10 @@
       "technicalTags": [],
       "componentTags": [],
       "failureModes": [],
-      "developmentStages": [],
+      "developmentStages": [
+        "并网运行",
+        "运维与技改"
+      ],
       "evidenceTypes": [
         "官方发布"
       ],
@@ -31251,17 +31601,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 2,
-      "relevanceScore": 6,
+      "readingMinutes": 7,
+      "relevanceScore": 7,
       "reliability": {
-        "score": 59,
-        "grade": "C",
-        "label": "待核验",
+        "score": 83,
+        "grade": "A",
+        "label": "高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
+          "evidence": 24,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -31270,12 +31620,12 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "已提取发布方公开正文",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
         "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论",
           "本轮采集未发现独立来源交叉印证"
         ],
         "feedback": {
@@ -31305,7 +31655,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-03T03:47:54.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2468499.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -31363,6 +31713,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "brief",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -31638,7 +31989,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "68cafa0fc659",
@@ -31802,7 +32154,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "8d5742ca585d",
@@ -31812,7 +32165,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.renewable-energy-industry.com/news/press-releases/pm-8862-nordex-group-to-deliver-20-mw-wind-farm-for-continental-tire-plant-in-korbach-germany",
       "sourceUrl": "https://www.renewable-energy-industry.com/",
       "sourceChannel": "Google News RSS",
@@ -31872,6 +32225,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -32156,7 +32510,8 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "informationLevel": "readable"
     },
     {
       "id": "5332983693e3",
@@ -32326,7 +32681,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "lead"
     },
     {
       "id": "32c474b9c63c",
@@ -32471,7 +32827,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "传动链企业"
+      "industryCategory": "传动链企业",
+      "informationLevel": "brief"
     },
     {
       "id": "136f866e8c3a",
@@ -32481,7 +32838,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.3390/en19133153",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -32525,7 +32882,7 @@
           "i10Index": 30533,
           "worksCount": 63526,
           "citedByCount": 1114810,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -32550,6 +32907,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -32712,7 +33070,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.3390/electronics15132907",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -32753,7 +33111,7 @@
           "i10Index": 9011,
           "worksCount": 30582,
           "citedByCount": 349405,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -32778,6 +33136,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -32904,7 +33263,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T11:39:34.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.windpowermonthly.com/article/1963356/us-german-onshore-projects-dominate-vestas-q2-wind-turbine-order-intake",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -32964,6 +33323,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "brief",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -33073,7 +33433,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.nsk.com/company/news/2026/nsk-cosmo-en/",
       "sourceUrl": "https://www.nsk.com/",
       "sourceChannel": "Google News 官网单域定向",
@@ -33131,6 +33491,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -33275,7 +33636,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://windinsider.com/2026/07/01/vestas-secures-309-mw-of-global-wind-turbine-orders-across-europe-and-japan-in-q2/",
       "sourceUrl": "https://windinsider.com/",
       "sourceChannel": "Google News RSS",
@@ -33335,6 +33696,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -33613,7 +33975,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "readable"
     },
     {
       "id": "eb6e123f9978",
@@ -33787,7 +34150,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "2982f4424f8c",
@@ -33797,7 +34161,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.58286/33501",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -33841,7 +34205,7 @@
           "i10Index": 12,
           "worksCount": 2833,
           "citedByCount": 1338,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -33866,6 +34230,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -34008,7 +34373,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.24084/reepqj26-238",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -34054,7 +34419,7 @@
           "i10Index": 0,
           "worksCount": 336,
           "citedByCount": 29,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [
@@ -34079,6 +34444,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -34394,7 +34760,8 @@
       "evidenceTypes": [
         "论文"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "catalog"
     },
     {
       "id": "4a172271bb5c",
@@ -34404,7 +34771,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-30T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mwind.in-en.com/html/wind-2468400.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -34462,6 +34829,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -34575,7 +34943,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-30T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://sthjj.wulanchabu.gov.cn/slgs/1984363.html",
       "sourceUrl": "https://sthjj.wulanchabu.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -34633,6 +35001,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -34750,7 +35119,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-29T17:06:28.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://ynb.nea.gov.cn/dtyw/gzdt/202606/t20260629_303763.html",
       "sourceUrl": "https://ynb.nea.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -34808,6 +35177,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
+      "informationLevel": "brief",
       "primarySection": "政策、市场与产业环境",
       "sections": [
         "政策、市场与产业环境"
@@ -34927,7 +35297,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-29T14:28:10.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://mpower.in-en.com/html/power-2474694.shtml",
       "sourceUrl": "https://mpower.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -34988,6 +35358,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "brief",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -35105,7 +35476,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-29T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://cj.sina.com.cn/articles/view/5953740931/162dee08306703i8ms?froms=ggmp",
       "sourceUrl": "https://cj.sina.cn/",
       "sourceChannel": "Google News RSS",
@@ -35163,6 +35534,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -35290,7 +35662,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-29T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://cj.sina.com.cn/articles/view/5952915705/162d248f9067037ay4?froms=ggmp",
       "sourceUrl": "https://cj.sina.cn/",
       "sourceChannel": "Google News RSS",
@@ -35348,6 +35720,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "readable",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -35475,7 +35848,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-29T07:00:00.000Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://www.windpowermonthly.com/article/1963085/wind-power-patents-sany-vestas-windey-siemens-gamesa-enercon",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -35533,6 +35906,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
+      "informationLevel": "lead",
       "primarySection": "厂商与项目动态",
       "sections": [
         "厂商与项目动态"
@@ -35647,7 +36021,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-29T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.55092/sc20260013",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -35691,7 +36065,7 @@
           "i10Index": 3,
           "worksCount": 61,
           "citedByCount": 89,
-          "updatedAt": "2026-07-27T17:13:29.491Z"
+          "updatedAt": "2026-07-27T18:15:08.283Z"
         }
       },
       "corroboratingSources": [],
@@ -35714,6 +36088,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -35877,7 +36252,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-29T00:00:00Z",
-      "collectedAt": "2026-07-27T17:13:29.491Z",
+      "collectedAt": "2026-07-27T18:15:08.283Z",
       "url": "https://doi.org/10.5194/wes-2026-102",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -35940,6 +36315,7 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
+      "informationLevel": "readable",
       "primarySection": "论文、标准与专利",
       "sections": [
         "论文、标准与专利"
@@ -36252,7 +36628,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "readable"
     },
     {
       "id": "41d61531f6d1",
@@ -36420,7 +36797,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "829dca08e09c",
@@ -36587,7 +36965,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "lead"
     },
     {
       "id": "0af6398dc256",
@@ -36761,7 +37140,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "传动链企业"
+      "industryCategory": "传动链企业",
+      "informationLevel": "brief"
     },
     {
       "id": "05068e5fb1b5",
@@ -36928,7 +37308,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "b20a28e68b61",
@@ -37098,7 +37479,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "18432885d763",
@@ -37266,7 +37648,8 @@
       "evidenceTypes": [
         "官方发布"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "brief"
     },
     {
       "id": "96097dd63390",
@@ -37434,7 +37817,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "lead"
     },
     {
       "id": "2226d7174990",
@@ -37606,7 +37990,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "d2716ffdfd65",
@@ -37790,7 +38175,8 @@
       "evidenceTypes": [
         "论文"
       ],
-      "industryCategory": ""
+      "industryCategory": "",
+      "informationLevel": "catalog"
     },
     {
       "id": "d1ba20808079",
@@ -37960,7 +38346,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "c1d4741b30a8",
@@ -38129,7 +38516,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "9d36f523476e",
@@ -38302,7 +38690,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "af16bb4ea61b",
@@ -38472,7 +38861,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "c525d8e44f40",
@@ -38640,7 +39030,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "项目进展"
+      "industryCategory": "项目进展",
+      "informationLevel": "brief"
     },
     {
       "id": "82cee6dc6704",
@@ -38811,7 +39202,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "lead"
     },
     {
       "id": "2507c538b917",
@@ -38985,7 +39377,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "cdcdbd54533f",
@@ -39152,7 +39545,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "3331536ce3ea",
@@ -39322,7 +39716,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "lead"
     },
     {
       "id": "8a47034a3853",
@@ -39493,7 +39888,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     },
     {
       "id": "a2fe7a65b408",
@@ -39662,7 +40058,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "lead"
     },
     {
       "id": "c078bd83b1af",
@@ -39827,7 +40224,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "lead"
     },
     {
       "id": "9b9a2cd4a838",
@@ -39998,7 +40396,8 @@
       "evidenceTypes": [
         "媒体报道"
       ],
-      "industryCategory": "整机与开发商"
+      "industryCategory": "整机与开发商",
+      "informationLevel": "brief"
     }
   ]
 }
