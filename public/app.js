@@ -522,6 +522,7 @@ function reportAction(article) {
     const method = String(article.paperDetails.methods || "")
       .trim()
       .replace(/^方法[：:]\s*/, "")
+      .replace(/^(?:采用|使用|通过)\s*/, "")
       .replace(/[。；;.]$/, "");
     return stripReportLabels(method ? `${objective}，并采用${method}` : objective);
   }
@@ -543,7 +544,9 @@ function stripReportLabels(value) {
 
 function cleanReportProse(value) {
   const cleaned = stripReportLabels(value)
+    .replace(/^[^。！？!?]{1,120}?发布的信息显示[，,]\s*/, "")
     .replace(/(?:该|此)?(?:信息|资讯|报道|成果|资料)?\s*属于(?:行业资讯(?:类)?(?:官方公告)?|官方公告|媒体报道|企业声明)(?=[，,；;。.!！?？]|$)/gi, "")
+    .replace(/[，,；;]\s*(?:属于|归为)(?:行业|厂商|企业|政策|官方|媒体|新闻)[^，,；;。.!！?？]{0,20}(?=[，,；;。.!！?？]|$)/gi, "")
     .replace(/(?:该|此)?(?:信息|资讯|报道|资料)?\s*(?:来源|渠道)(?:来自|属于|于|为)[^，,；;。.!！?？]{0,36}(?=[，,；;。.!！?？]|$)/gi, "")
     .replace(/(?:该|此)?(?:信息|资讯|报道)\s*来自[^，,；;。.!！?？]{1,36}(?=[，,；;。.!！?？]|$)/gi, "")
     .replace(/(?:该|此)?(?:信息|资讯|报道)?渠道(?:来自|属于|为)[^。.!！?？]*/gi, "")
@@ -556,6 +559,9 @@ function cleanReportProse(value) {
     .map((sentence) => sentence.trim())
     .filter(Boolean)
     .filter((sentence) => !/(?:需要|仍需|应当)?(?:结合|回到|查阅).*原文|进一步核验|来源可靠|官方媒体|渠道权威|无法评估具体影响|具体内容未提供.*(?:数据|结论)|信息有限[。.!！]?$/i.test(sentence))
+    .filter((sentence) => !/^(?:该|此)?(?:资料|信息|资讯|报道)?\s*(?:属于|归为)(?:行业|厂商|企业|政策|官方|媒体|新闻)[^。.!！?？]{0,24}(?:动态|资讯|信息|报道|公告|宣传)/i.test(sentence))
+    .filter((sentence) => !/^(?:但|不过|同时)?(?:该|此)?(?:摘要|资料|信息|报道|公开内容)?\s*(?:未|尚未|没有)(?:提供|披露|给出|说明|提及|包含)[^。.!！?？]*(?:数据|参数|指标|金额|机型|细节|内容|结果|时间|边界)[。.!！?？]?$/i.test(sentence))
+    .filter((sentence) => !/^(?:证据层级|结论边界|待验证问题)[：:]?/i.test(sentence))
     .join("");
 }
 
@@ -580,15 +586,46 @@ function reportSubjectAppears(item) {
 
 function reportOpening(item) {
   if (reportSubjectAppears(item)) return String(item.action || "").replace(/[。！？!?；;.]$/, "");
-  const connector = item.article.sourceType === "论文" ? "围绕相关问题开展研究，" : "发布的信息显示，";
+  const connector = item.article.sourceType === "论文" ? "围绕相关问题开展研究，" : "显示，";
   return `${item.subject}${connector}${item.action}`.replace(/[。！？!?；;.]$/, "");
 }
 
+function reportNumberValues(value) {
+  return (String(value || "").match(/\d+(?:\.\d+)?/g) || []).map((number) => String(Number(number)));
+}
+
 function reportMissingDataPoints(item) {
-  const action = item.action.toLowerCase();
+  const seenNumbers = new Set(reportNumberValues(item.action));
   return item.dataPoints.filter((point) => {
-    const numberTokens = point.toLowerCase().match(/\d+(?:\.\d+)?\s*(?:mw|gw|kw|%|亿元|万元|年|月|日|小时|h)?/g) || [];
-    return numberTokens.length && !numberTokens.every((token) => action.includes(token.replace(/\s+/g, "")) || action.replace(/\s+/g, "").includes(token.replace(/\s+/g, "")));
+    const values = reportNumberValues(point);
+    const hasNewValue = values.some((value) => !seenNumbers.has(value));
+    values.forEach((value) => seenNumbers.add(value));
+    return values.length && hasNewValue;
+  });
+}
+
+function reportSentenceParts(value) {
+  return (String(value || "").match(/[^。！？!?]+[。！？!?]?/g) || []).map((sentence) => reportSentence(sentence.trim()));
+}
+
+function reportSentenceSignature(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/该(?:项目|研究|资料|成果|方法|框架|订单|事件|政策)|进一步|工程上|实际|具体|相关/g, "")
+    .replace(/[^\p{L}\p{N}]+/gu, "");
+}
+
+function reportSentenceIsDuplicate(sentence, accepted) {
+  const signature = reportSentenceSignature(sentence);
+  if (signature.length < 10) return false;
+  return accepted.some((existing) => {
+    const other = reportSentenceSignature(existing);
+    if (other.length < 10) return false;
+    if (signature.includes(other) || other.includes(signature)) return Math.min(signature.length, other.length) >= 14;
+    const grams = new Set(Array.from({ length: Math.max(0, signature.length - 1) }, (_, index) => signature.slice(index, index + 2)));
+    const otherGrams = new Set(Array.from({ length: Math.max(0, other.length - 1) }, (_, index) => other.slice(index, index + 2)));
+    const overlap = [...grams].filter((gram) => otherGrams.has(gram)).length;
+    return overlap / Math.max(grams.size, otherGrams.size, 1) >= 0.72;
   });
 }
 
@@ -597,7 +634,11 @@ function reportNarrativePlain(item) {
   const opening = reportOpening(item);
   const factual = [opening, ...missingData.map(cleanReportProse)].filter(Boolean).join("，");
   const insight = reportInsightBody(item);
-  return `${reportSentence(factual)}${insight && !factual.includes(insight) ? reportSentence(insight) : ""}`;
+  const sentences = [];
+  for (const sentence of [...reportSentenceParts(factual), ...reportSentenceParts(insight)]) {
+    if (!reportSentenceIsDuplicate(sentence, sentences)) sentences.push(sentence);
+  }
+  return sentences.slice(0, 4).join("");
 }
 
 function reportHighlightSegments(item) {

@@ -17,7 +17,12 @@ import {
   resolveNewsUrl,
   toPublicArticle
 } from "./lib/articles.mjs";
-import { extractHtmlContent, extractPdfText } from "./lib/content.mjs";
+import {
+  extractHtmlContent,
+  extractPdfText,
+  extractReaderContent,
+  MIN_FULLTEXT_CHARACTERS
+} from "./lib/content.mjs";
 import {
   experienceNeedsAiReview,
   feedbackNeedsAiReview,
@@ -50,6 +55,7 @@ const xmlParser = new XMLParser({
   trimValues: true
 });
 const googleDecoder = new GoogleDecoder();
+const readerFallbackBaseUrl = String(process.env.READER_FALLBACK_BASE_URL || "https://r.jina.ai/").replace(/\/+$/, "");
 
 async function readJson(url, fallback) {
   try {
@@ -143,17 +149,17 @@ async function fetchPublisherMetadata(url) {
         description: "",
         fullText,
         finalUrl: response.url,
-        contentAccess: fullText.length >= 600 ? "fulltext" : "metadata",
-        contentSource: fullText.length >= 600 ? "open-access-pdf" : "metadata",
+        contentAccess: fullText.length >= MIN_FULLTEXT_CHARACTERS ? "fulltext" : "metadata",
+        contentSource: fullText.length >= MIN_FULLTEXT_CHARACTERS ? "open-access-pdf" : "metadata",
         extractedCharacters: fullText.length,
-        contentFailureReason: fullText.length >= 600 ? "" : "PDF 没有足够可提取文本"
+        contentFailureReason: fullText.length >= MIN_FULLTEXT_CHARACTERS ? "" : "PDF 没有足够可提取文本"
       };
     }
     if (!contentType.includes("text/html") && !contentType.includes("application/xhtml+xml")) {
       return { contentFailureReason: "发布方返回了暂不支持的内容格式" };
     }
     const content = extractHtmlContent(await response.text());
-    const contentAccess = content.fullText.length >= 600
+    const contentAccess = content.fullText.length >= MIN_FULLTEXT_CHARACTERS
       ? "fulltext"
       : content.description.length >= 40
         ? "abstract"
@@ -271,6 +277,31 @@ function sourceContext(source) {
     directSource: Boolean(source.directSource),
     ...(source.sourceType ? { sourceType: source.sourceType } : {})
   };
+}
+
+async function fetchReaderContent(url, expectedTitle) {
+  if (!readerFallbackBaseUrl || !/^https?:\/\//i.test(url) || /\.(?:pdf|docx?|xlsx?)(?:$|\?)/i.test(url)) return null;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+  try {
+    const response = await fetch(`${readerFallbackBaseUrl}/${url}`, {
+      headers: {
+        Accept: "text/plain",
+        "User-Agent": "MechanicalCenterDrivetrainBot/1.0 (public engineering intelligence)"
+      },
+      signal: controller.signal
+    });
+    if (!response.ok) return null;
+    const markdown = await response.text();
+    if (/captcha|security check required|请登录后|付费后阅读|subscription required/i.test(markdown.slice(0, 3000))) return null;
+    const content = extractReaderContent(markdown, expectedTitle);
+    if (content.fullText.length < MIN_FULLTEXT_CHARACTERS) return null;
+    return content;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 function isCandidateRelevant(article) {
@@ -903,7 +934,7 @@ async function enrichPublicFullText(articles) {
           continue;
         }
         const description = usefulPublisherDescription(content.description, article.title);
-        if (content.fullText?.length >= 600) {
+        if (content.fullText?.length >= MIN_FULLTEXT_CHARACTERS) {
           article.snippet = content.fullText;
           article.contentAccess = "fulltext";
           article.contentSource = content.contentSource;
@@ -929,6 +960,44 @@ async function enrichPublicFullText(articles) {
   await Promise.all(Array.from({ length: Math.min(concurrency, targets.length) }, () => worker()));
   const fullTextCount = articles.filter((article) => article.contentAccess === "fulltext").length;
   console.log(`公开全文提取：${fullTextCount} 条全文，补充尝试 ${targets.length} 条，并发 ${concurrency}`);
+}
+
+async function enrichReaderFullText(articles) {
+  const limit = Math.max(0, Number(process.env.READER_FALLBACK_MAX_ARTICLES || 24));
+  const concurrency = Math.max(1, Math.min(3, Number(process.env.READER_FALLBACK_CONCURRENCY || 2)));
+  const targets = articles
+    .filter((article) =>
+      article.contentAccess === "metadata" &&
+      article.contentFetched &&
+      Number(article.contentAttempts || 0) > 0 &&
+      article.linkType !== "aggregator" &&
+      /^https?:\/\//i.test(article.url || "") &&
+      !/news\.google\.com/i.test(article.url || "") &&
+      classifyArticle(article).informationLevel !== "ignored"
+    )
+    .slice(0, limit);
+  let cursor = 0;
+  let recovered = 0;
+  async function worker() {
+    while (cursor < targets.length) {
+      const article = targets[cursor++];
+      const content = await fetchReaderContent(article.url, article.title);
+      article.contentAttempts = Number(article.contentAttempts || 0) + 1;
+      if (!content || (content.title && titleSimilarity(article.title, content.title) < 0.18)) continue;
+      article.snippet = content.fullText;
+      article.contentAccess = "fulltext";
+      article.contentSource = "public-web-reader";
+      article.extractedCharacters = content.fullText.length;
+      article.contentFailureReason = "";
+      article.contentFetched = true;
+      article.linkVerified = true;
+      recovered += 1;
+      await delay(180);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, targets.length) }, () => worker()));
+  console.log(`公开网页文本化回退：尝试 ${targets.length} 条，恢复 ${recovered} 条正文`);
+  return recovered;
 }
 
 async function enrichOpenAlexSourceMetrics(articles) {
@@ -1040,6 +1109,14 @@ function needsDetailedSummaryUpgrade(article) {
   if (article?.sourceType === "论文" && !article.paperDetails) return true;
   if (article?.intelligenceType === "industry" && !article.industryDetails) return true;
   return false;
+}
+
+function contentAccessRank(value) {
+  return { metadata: 0, abstract: 1, fulltext: 2 }[value] ?? 0;
+}
+
+function hasContentUpgrade(existing, current) {
+  return contentAccessRank(current?.contentAccess) > contentAccessRank(existing?.evidence?.contentAccess);
 }
 
 async function loadFeedbackAggregates() {
@@ -1229,6 +1306,7 @@ async function main() {
     .slice(0, maxArticles);
 
   await enrichPublicFullText(candidates);
+  await enrichReaderFullText(candidates);
   await enrichOpenAlexSourceMetrics(candidates);
 
   const aiProvider = resolveAiProvider(process.env);
@@ -1238,6 +1316,7 @@ async function main() {
     const existing = previousByUrl.get(article.url);
     let reason = "";
     if (!existing) reason = "new";
+    else if (hasContentUpgrade(existing, article)) reason = "content-upgrade";
     else if (needsDetailedSummaryUpgrade(existing)) reason = "schema-upgrade";
     else if (forceAiSummary) reason = "manual-refresh";
     else if (feedbackNeedsAiReview(article.feedbackAggregate, existing.aiAnalysis, minimumFeedback)) {
@@ -1421,6 +1500,7 @@ async function main() {
       ignoredCount: currentArticles.filter((article) => article.informationLevel === "ignored").length,
       fullTextCount: currentArticles.filter((article) => article.evidence?.contentAccess === "fulltext").length,
       abstractCount: currentArticles.filter((article) => article.evidence?.contentAccess === "abstract").length,
+      readerRecoveredCount: currentArticles.filter((article) => article.evidence?.contentSource === "public-web-reader").length,
       archiveCount: articles.length,
       ai: {
         provider: aiProvider?.id || "none",

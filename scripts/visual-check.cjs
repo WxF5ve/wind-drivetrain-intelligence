@@ -177,6 +177,10 @@ async function inspectLayout(page, label) {
     if (reportNarrativeText.some((text) => /[，,；;]\s*20\d{2}[-/.年]\d{1,2}(?:[-/.月]\d{1,2}日?)?[。.!！?？]/.test(text))) {
       throw new Error("Weekly report still appends a standalone timeline value");
     }
+    const redundantReportText = reportNarrativeText.filter((text) => /采用采用|证据层级|结论边界|待验证问题|属于(?:行业|厂商|政策|官方|媒体)[^，。；]{0,16}(?:资讯|动态|信息|报道)|项目容量\s*[:：]?|容量\s*[:：]\s*\d/i.test(text));
+    if (redundantReportText.length) {
+      throw new Error(`Weekly report still contains redundant meta prose:\n${redundantReportText.join("\n")}`);
+    }
     await desktop.locator(".report-item").first().screenshot({ path: path.join(outputDir, "weekly-report-item.png") });
     await reportDownload.saveAs(path.join(outputDir, "weekly-report.pdf"));
     const pdfBytes = fs.readFileSync(path.join(outputDir, "weekly-report.pdf"));
