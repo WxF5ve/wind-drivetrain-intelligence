@@ -1,9 +1,9 @@
 {
   "app": "机械中心-传动技术部在线平台",
-  "generatedAt": "2026-07-27T07:16:11.655Z",
+  "generatedAt": "2026-07-27T07:27:32.480Z",
   "period": {
-    "from": "2026-06-27T07:16:11.655Z",
-    "to": "2026-07-27T07:16:11.655Z"
+    "from": "2026-06-27T07:27:32.480Z",
+    "to": "2026-07-27T07:27:32.480Z"
   },
   "collectionStatus": {
     "dataMode": "live",
@@ -11,14 +11,14 @@
     "channels": 58,
     "succeeded": 58,
     "failed": 0,
-    "rawFetched": 193,
-    "currentCount": 102,
-    "archiveCount": 167,
+    "rawFetched": 184,
+    "currentCount": 103,
+    "archiveCount": 168,
     "ai": {
       "provider": "deepseek",
       "model": "deepseek-chat",
-      "requested": 26,
-      "summarized": 25,
+      "requested": 2,
+      "summarized": 1,
       "feedbackReviews": 0,
       "experienceReviews": 0
     },
@@ -52,7 +52,7 @@
         "label": "海外齿轮箱与传动链资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 3,
+        "fetched": 0,
         "error": ""
       },
       {
@@ -60,7 +60,7 @@
         "label": "海外轴承与润滑资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 1,
+        "fetched": 0,
         "error": ""
       },
       {
@@ -68,7 +68,7 @@
         "label": "海外状态监测资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 2,
+        "fetched": 0,
         "error": ""
       },
       {
@@ -100,7 +100,7 @@
         "label": "海外齿轮设计与载荷资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 1,
+        "fetched": 0,
         "error": ""
       },
       {
@@ -108,7 +108,7 @@
         "label": "海外失效与材料资讯",
         "type": "news",
         "status": "ok",
-        "fetched": 1,
+        "fetched": 0,
         "error": ""
       },
       {
@@ -316,7 +316,7 @@
         "label": "海外润滑供应商动态",
         "type": "news",
         "status": "ok",
-        "fetched": 1,
+        "fetched": 0,
         "error": ""
       },
       {
@@ -495,20 +495,20 @@
     "note": "可靠度评估来源质量、证据完整度和可追溯性，不等同于事实已经证实。"
   },
   "feedbackStatus": {
-    "aggregateGeneratedAt": "2026-07-27T07:16:12.674Z",
+    "aggregateGeneratedAt": "2026-07-27T07:27:33.138Z",
     "centralized": true
   },
   "weeklyBrief": {
-    "title": "本周聚焦：系统与架构、监测诊断与试验、风电行业全景",
-    "summary": "过去 30 天共筛选 102 条高相关资料，其中国内 56 条、论文 20 篇，33 条已提取公开全文。资料库累计保留 167 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
+    "title": "本周聚焦：风电行业全景、企业与项目追踪、系统与架构",
+    "summary": "过去 30 天共筛选 103 条高相关资料，其中国内 57 条、论文 20 篇，35 条已提取公开全文。资料库累计保留 168 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
     "signals": [
       "[正点财经]风电出海一线观察 势头强劲 风电装备海外订单构筑行业增长新引擎",
-      "沂南县鑫海75MW风电项目材料堆场、施工便道、农用地表土剥离堆放场临时用地土地复垦方案审查结果公示",
-      "Wind power patents: Mingyang | Vestas | Goldwind | TotalEnergies"
+      "乾安文字风电场工程项目220kV升压站工程",
+      "沂南县鑫海75MW风电项目材料堆场、施工便道、农用地表土剥离堆放场临时用地土地复垦方案审查结果公示"
     ],
     "metrics": {
-      "total": 102,
-      "domestic": 56,
+      "total": 103,
+      "domestic": 57,
       "overseas": 46,
       "papers": 20
     },
@@ -523,7 +523,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-27T01:39:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://tv.cctv.com/2026/07/27/VIDEsll9qqXajg1LRyUPKTbb260727.shtml",
       "sourceUrl": "https://tv.cctv.com/",
       "sourceChannel": "Google News RSS",
@@ -837,19 +837,19 @@
       "primarySection": "企业与项目追踪"
     },
     {
-      "id": "3098daccf3d5",
-      "title": "沂南县鑫海75MW风电项目材料堆场、施工便道、农用地表土剥离堆放场临时用地土地复垦方案审查结果公示",
-      "source": "临沂市人民政府",
+      "id": "55756d7802a9",
+      "title": "乾安文字风电场工程项目220kV升压站工程",
+      "source": "吉林省生态环境厅",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
-      "publishedAt": "2026-07-24T23:22:23.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
-      "url": "http://gtj.linyi.gov.cn/info/1706/179451.htm",
-      "sourceUrl": "http://gtj.linyi.gov.cn/",
+      "publishedAt": "2026-07-25T07:00:00.000Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
+      "url": "https://sthjt.jl.gov.cn/ywdt/gkgs/gszx/slgs/202306/t20230608_2378682.html",
+      "sourceUrl": "https://sthjt.jl.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": true,
+      "linkVerified": false,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -869,7 +869,165 @@
         "isOpenAccess": false,
         "isInDoaj": false,
         "contentAccess": "metadata",
-        "contentSource": "metadata",
+        "contentSource": "",
+        "extractedCharacters": 0,
+        "sourceMetrics": {
+          "provider": "",
+          "metricName": "",
+          "twoYearMeanCitedness": 0,
+          "hIndex": 0,
+          "i10Index": 0,
+          "worksCount": 0,
+          "citedByCount": 0,
+          "updatedAt": ""
+        }
+      },
+      "corroboratingSources": [],
+      "feedbackAggregate": {
+        "useful": 0,
+        "questionable": 0,
+        "irrelevant": 0,
+        "broken": 0,
+        "total": 0
+      },
+      "engineeringExperience": {
+        "total": 0,
+        "supports": 0,
+        "conditional": 0,
+        "contradicts": 0,
+        "uncertain": 0,
+        "writtenTotal": 0,
+        "averageConfidence": 0,
+        "evidence": {},
+        "topContexts": []
+      },
+      "intelligenceType": "official",
+      "primarySection": "风电行业全景",
+      "sections": [
+        "风电行业全景"
+      ],
+      "technicalDomains": [],
+      "technicalTags": [],
+      "titleZh": "乾安文字风电场工程项目220kV升压站工程",
+      "category": "行业资讯",
+      "tags": [
+        "升压站",
+        "风电场工程",
+        "权威发布",
+        "中国政府网"
+      ],
+      "summary": "吉林省生态环境厅发布了乾安文字风电场工程项目220kV升压站工程的相关信息，属于行业资讯类官方公告。具体内容未提供详细数据或结论。",
+      "keyPoints": [
+        "项目为乾安文字风电场配套的220kV升压站工程",
+        "信息来源为吉林省生态环境厅",
+        "属于官方公告性质，无具体技术细节"
+      ],
+      "engineeringImpact": "该升压站工程是风电场并网的关键设施，其建设进度和质量直接影响风电场的电力送出。但公告未提供设计参数或验证数据，无法评估具体影响。",
+      "paperDetails": {
+        "objective": "",
+        "methods": "",
+        "testObject": "",
+        "operatingConditions": "",
+        "quantitativeFindings": [],
+        "limitations": []
+      },
+      "industryDetails": {
+        "eventType": "项目公告",
+        "companies": [],
+        "location": "乾安",
+        "capacity": "",
+        "investment": "",
+        "timeline": "2026-07-25",
+        "supplyChainImpact": "升压站设备供应商可能受益",
+        "verificationStatus": "官方公告",
+        "quantitativeFacts": []
+      },
+      "experienceReview": {
+        "status": "无经验",
+        "synthesis": "",
+        "applicableBoundary": "",
+        "verificationNeeded": ""
+      },
+      "readingMinutes": 2,
+      "relevanceScore": 6,
+      "reliability": {
+        "score": 59,
+        "grade": "C",
+        "label": "待核验",
+        "methodVersion": "1.0",
+        "dimensions": {
+          "authority": 28,
+          "evidence": 4,
+          "traceability": 11,
+          "corroboration": 0,
+          "recency": 8,
+          "transparency": 8,
+          "feedback": 0,
+          "riskPenalty": 0
+        },
+        "factors": [
+          "来源属于政府、科研机构或行业标准组织",
+          "链接指向发布方或 DOI 页面",
+          "发布时间处于当前监测窗口",
+          "来源、日期和采集通道信息完整"
+        ],
+        "limitations": [
+          "公开索引缺少足够摘要，无法仅凭标题判断结论",
+          "本轮采集未发现独立来源交叉印证"
+        ],
+        "feedback": {
+          "useful": 0,
+          "questionable": 0,
+          "irrelevant": 0,
+          "broken": 0,
+          "total": 0
+        }
+      },
+      "aiAnalysis": {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "generatedAt": "2026-07-27T07:27:32.480Z",
+        "reason": "new",
+        "feedbackTotalAtAnalysis": 0,
+        "experienceTotalAtAnalysis": 0,
+        "experienceWrittenTotalAtAnalysis": 0,
+        "experienceLatestAtAnalysis": ""
+      }
+    },
+    {
+      "id": "3098daccf3d5",
+      "title": "沂南县鑫海75MW风电项目材料堆场、施工便道、农用地表土剥离堆放场临时用地土地复垦方案审查结果公示",
+      "source": "临沂市人民政府",
+      "sourceType": "行业资讯",
+      "region": "国内",
+      "language": "zh",
+      "publishedAt": "2026-07-24T23:22:23.000Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
+      "url": "http://gtj.linyi.gov.cn/info/1706/179451.htm",
+      "sourceUrl": "http://gtj.linyi.gov.cn/",
+      "sourceChannel": "Google News RSS",
+      "linkType": "publisher",
+      "linkVerified": false,
+      "evidence": {
+        "hasAbstract": false,
+        "hasPublisherDescription": false,
+        "doi": "",
+        "authorsCount": 0,
+        "authors": [],
+        "citedByCount": 0,
+        "publicationType": "",
+        "journal": "",
+        "issnL": "",
+        "issns": [],
+        "publisher": "",
+        "volume": "",
+        "issue": "",
+        "firstPage": "",
+        "lastPage": "",
+        "isOpenAccess": false,
+        "isInDoaj": false,
+        "contentAccess": "metadata",
+        "contentSource": "",
         "extractedCharacters": 0,
         "sourceMetrics": {
           "provider": "",
@@ -958,14 +1116,14 @@
       "readingMinutes": 2,
       "relevanceScore": 6,
       "reliability": {
-        "score": 69,
+        "score": 65,
         "grade": "B",
         "label": "较高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
           "evidence": 4,
-          "traceability": 15,
+          "traceability": 11,
           "corroboration": 6,
           "recency": 8,
           "transparency": 8,
@@ -974,7 +1132,7 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "原文直链已在采集时验证",
+          "链接指向发布方或 DOI 页面",
           "发现 1 个独立来源报道相近信息",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
@@ -1168,7 +1326,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-24T12:23:27.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.windpowermonthly.com/article/1965633/wind-power-patents-mingyang-vestas-goldwind-totalenergies",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -1333,7 +1491,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T10:21:39.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://zj.news.cn/20260724/23b82715041746bcbc05c3f6a76f4228/c.html",
       "sourceUrl": "http://zj.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -1500,12 +1658,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T08:13:25.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://guangdong.chinatax.gov.cn/gdsw/jysw_swxw/2026-07/24/content_126fe32fd155480a838c50b3336c91d3.shtml",
       "sourceUrl": "https://guangdong.chinatax.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -1524,9 +1682,9 @@
         "lastPage": "",
         "isOpenAccess": false,
         "isInDoaj": false,
-        "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
+        "contentAccess": "fulltext",
+        "contentSource": "publisher-html",
+        "extractedCharacters": 1666,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -1606,17 +1764,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 2,
+      "readingMinutes": 9,
       "relevanceScore": 6,
       "reliability": {
-        "score": 59,
-        "grade": "C",
-        "label": "待核验",
+        "score": 83,
+        "grade": "A",
+        "label": "高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
+          "evidence": 24,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -1625,12 +1783,12 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "已提取发布方公开正文",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
         "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论",
           "本轮采集未发现独立来源交叉印证"
         ],
         "feedback": {
@@ -1660,7 +1818,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T07:54:40.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.sd.news.cn/20260724/d43a85cf191a478c8f26533fb7d6bba2/c.html",
       "sourceUrl": "https://www.sd.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -1718,17 +1876,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "山东威海上半年布局六大陆上风电项目",
       "category": "行业资讯",
       "tags": [
@@ -1825,7 +1978,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T07:42:41.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.ne21.com/news/show-229305.html",
       "sourceUrl": "https://www.ne21.com/",
       "sourceChannel": "Google News RSS",
@@ -1883,7 +2036,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
         "企业与项目追踪",
         "风电传动链专栏"
@@ -1892,7 +2045,6 @@
         "系统与架构"
       ],
       "technicalTags": [
-        "传动链系统",
         "齿轮箱架构"
       ],
       "titleZh": "重磅！新增装机9.58亿千瓦！“十五五”全国海上风电新增开工规模100GW",
@@ -2000,7 +2152,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T05:57:02.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.ne21.com/news/show-229313.html",
       "sourceUrl": "https://www.ne21.com/",
       "sourceChannel": "Google News RSS",
@@ -2062,7 +2214,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
         "企业与项目追踪",
         "风电传动链专栏"
@@ -2071,7 +2223,6 @@
         "系统与架构"
       ],
       "technicalTags": [
-        "传动链系统",
         "齿轮箱架构"
       ],
       "titleZh": "350MW风电项目成交结果公示",
@@ -2176,7 +2327,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T04:08:15.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://m.ne21.com/news/show-229314.html",
       "sourceUrl": "https://m.ne21.com/",
       "sourceChannel": "Google News RSS",
@@ -2234,7 +2385,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
         "企业与项目追踪",
         "风电传动链专栏"
@@ -2243,7 +2394,6 @@
         "系统与架构"
       ],
       "technicalTags": [
-        "传动链系统",
         "齿轮箱架构"
       ],
       "titleZh": "1.29GW！4个海上风电项目核准批复",
@@ -2354,7 +2504,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T03:39:24.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.laizhou.gov.cn/col/col23203/art/2026/art_cfd428040881409e83b993f7d781e4de.html",
       "sourceUrl": "https://www.laizhou.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -2412,17 +2562,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "莱州市（万华化学11.2万千瓦）风电项目社会稳定风险评估公示",
       "category": "行业资讯",
       "tags": [
@@ -2523,7 +2668,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T00:59:15.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.news.cn/enterprise/20260724/c995a70711ac4354904d6f927c06e8f7/c.html",
       "sourceUrl": "https://www.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -2581,17 +2726,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "远景获澳洲179MW风电项目，新型电力系统落地澳大利亚",
       "category": "行业资讯",
       "tags": [
@@ -2694,7 +2834,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-24T00:24:41.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.ggzy.gov.cn/information/deal/html/a/0067/0104/20260723/006768a9520067a047f9bc36eab5c10a2e74.html",
       "sourceUrl": "https://www.ggzy.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -2752,17 +2892,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "华能山西分公司山阴能源转型与生态治理风光示范基地风电项目净空电磁环境影响评估报告编制服务候选人公示",
       "category": "行业资讯",
       "tags": [
@@ -2861,7 +2996,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-24T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.1088/2631-8695/ae9029",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -2895,7 +3030,7 @@
         "isInDoaj": false,
         "contentAccess": "fulltext",
         "contentSource": "publisher-html",
-        "extractedCharacters": 5118,
+        "extractedCharacters": 5553,
         "sourceMetrics": {
           "provider": "OpenAlex",
           "metricName": "2年平均被引率",
@@ -2904,7 +3039,7 @@
           "i10Index": 350,
           "worksCount": 5762,
           "citedByCount": 15567,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -2932,9 +3067,12 @@
         "风电传动链专栏"
       ],
       "technicalDomains": [
+        "系统与架构",
         "监测诊断与试验"
       ],
       "technicalTags": [
+        "齿轮箱架构",
+        "故障诊断与PHM",
         "SCADA与CMS"
       ],
       "titleZh": "基于SSA-PSO-DBN的风电机组故障早期预警：多区域数据支持研究",
@@ -2943,7 +3081,9 @@
         "故障预警",
         "深度学习",
         "SCADA数据",
-        "SCADA与CMS"
+        "SCADA与CMS",
+        "齿轮箱架构",
+        "故障诊断与PHM"
       ],
       "summary": "该论文提出一种结合麻雀搜索算法与粒子群优化算法优化深度置信网络（SSA-PSO-DBN）的风电机组故障早期预警方法，利用三个不同区域风电场的SCADA数据进行验证，结果表明该方法能有效实现故障早期预警，适应不同运行环境。",
       "keyPoints": [
@@ -3035,7 +3175,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T17:03:29.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.energyglobal.com/wind/23072026/european-project-launches-to-improve-manufacturing-of-wind-turbine-components/",
       "sourceUrl": "https://www.energyglobal.com/",
       "sourceChannel": "Google News RSS",
@@ -3095,19 +3235,20 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
         "企业与项目追踪",
         "风电传动链专栏"
       ],
       "technicalDomains": [
         "系统与架构",
+        "齿轮与行星传动",
         "材料与制造工艺",
         "润滑与摩擦"
       ],
       "technicalTags": [
-        "传动链系统",
         "齿轮箱架构",
+        "行星传动",
         "感应淬火",
         "润滑油与添加剂"
       ],
@@ -3222,7 +3363,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T16:31:23.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.utilitydive.com/news/ge-vernova-gas-turbine-backlog-climbs-to-116-gw/826039/",
       "sourceUrl": "https://www.utilitydive.com/",
       "sourceChannel": "Google News RSS",
@@ -3280,17 +3421,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "GE Vernova燃气轮机积压订单攀升至116 GW",
       "category": "厂商动态",
       "tags": [
@@ -3390,7 +3526,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T11:16:15.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.guangde.gov.cn/OpennessContent/show/3798575.html",
       "sourceUrl": "https://www.guangde.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -3448,17 +3584,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "广德垣鑫数控重机有限公司风电零部件绿色智能制造技改项目环境影响评价征求意见稿公示",
       "category": "行业资讯",
       "tags": [
@@ -3558,7 +3689,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T09:03:27.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.industrialinfo.com/news/article/ge-vernova-orders-up-88-year-over-year--360466",
       "sourceUrl": "https://www.industrialinfo.com/",
       "sourceChannel": "Google News RSS",
@@ -3616,17 +3747,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "GE Vernova 订单同比增长88%",
       "category": "厂商动态",
       "tags": [
@@ -3726,7 +3852,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T08:48:45.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://wap.sasac.gov.cn/n2588025/n2588124/c35654029/content.html",
       "sourceUrl": "http://wap.sasac.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -3784,17 +3910,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "我国单机容量最大的高原山地风电项目全容量投产",
       "category": "行业资讯",
       "tags": [
@@ -3891,7 +4012,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T08:33:27.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.windtech-international.com/product-news/edwim-project-aims-to-improve-wind-powertrain-manufacturing",
       "sourceUrl": "https://www.windtech-international.com/",
       "sourceChannel": "Google News RSS",
@@ -3951,17 +4072,19 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
         "企业与项目追踪",
         "风电传动链专栏"
       ],
       "technicalDomains": [
         "系统与架构",
+        "齿轮与行星传动",
         "监测诊断与试验"
       ],
       "technicalTags": [
         "齿轮箱架构",
+        "行星传动",
         "台架与型式试验"
       ],
       "titleZh": "EDWIM项目旨在改进风电传动系统制造",
@@ -4075,7 +4198,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T08:23:09.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.xiangshui.gov.cn/art/2026/7/23/art_34068_4441573.html",
       "sourceUrl": "https://www.xiangshui.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -4133,17 +4256,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "响水县“千乡万村驭风行动”黄圩镇20MW风电项目建设事项稳评公示",
       "category": "行业资讯",
       "tags": [
@@ -4242,7 +4360,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T08:15:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://tv.cctv.com/2026/07/23/VIDEHjmAfuU7zcuaiTKniZd3260723.shtml",
       "sourceUrl": "https://tv.cctv.com/",
       "sourceChannel": "Google News RSS",
@@ -4300,17 +4418,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "《可再生能源发展“十五五”规划》发布：沙戈荒、水风光、海上风电基地成为装机重要增量",
       "category": "标准政策",
       "tags": [
@@ -4408,7 +4521,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T07:44:51.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.windtech-international.com/projects-and-contracts/envision-to-supply-turbines-for-179-mw-narrogin-wind-farm",
       "sourceUrl": "https://www.windtech-international.com/",
       "sourceChannel": "Google News RSS",
@@ -4469,17 +4582,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "远景能源将为179兆瓦Narrogin风电场供应风机",
       "category": "厂商动态",
       "tags": [
@@ -4579,7 +4687,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T07:01:44.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://gxj.baotou.gov.cn/nmgbtszxqyggfwpt/xwdt/202607/t20260715_939168.html",
       "sourceUrl": "http://gxj.baotou.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -4637,17 +4745,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "风电装备产业供需对接活动在包头市成功举办",
       "category": "行业资讯",
       "tags": [
@@ -4744,7 +4847,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T06:52:22.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://energywatch.com/EnergyNews/wind/article19491783.ece",
       "sourceUrl": "https://energywatch.com/",
       "sourceChannel": "Google News RSS",
@@ -4805,17 +4908,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "Eurowind向维斯塔斯下达订单",
       "category": "厂商动态",
       "tags": [
@@ -4916,7 +5014,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-23T04:21:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://tv.cctv.com/2026/07/23/VIDEmOpSrsSb8gJUkhA33SmB260723.shtml",
       "sourceUrl": "https://tv.cctv.com/",
       "sourceChannel": "Google News RSS",
@@ -4974,17 +5072,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "《可再生能源发展“十五五”规划》发布 沙戈荒 水风光 海上风电基地成为装机重要增量",
       "category": "标准政策",
       "tags": [
@@ -5082,7 +5175,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.5194/wes-2026-90-rc2",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -5148,13 +5241,11 @@
         "风电传动链专栏"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "监测诊断与试验"
+        "系统与架构"
       ],
       "technicalTags": [
         "传动链系统",
-        "齿轮箱架构",
-        "可靠性与寿命"
+        "齿轮箱架构"
       ],
       "titleZh": "中速风电传动系统分层物理优化框架",
       "category": "学术论文",
@@ -5290,7 +5381,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-23T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.3390/s26154697",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -5332,7 +5423,7 @@
           "i10Index": 42097,
           "worksCount": 80280,
           "citedByCount": 1894589,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -5470,7 +5561,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-22T22:56:36.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://energynews.pro/en/envision-energy-to-supply-23-turbines-of-78-mw-for-neoen-in-australia",
       "sourceUrl": "https://energynews.pro/",
       "sourceChannel": "Google News RSS",
@@ -5528,17 +5619,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "远景能源将为Neoen在澳大利亚的Narrogin风电场供应23台7.8 MW风机",
       "category": "厂商动态",
       "tags": [
@@ -5640,7 +5726,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T18:22:30.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.ne21.com/news/show-229211.html",
       "sourceUrl": "https://www.ne21.com/",
       "sourceChannel": "Google News RSS",
@@ -5698,7 +5784,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
         "企业与项目追踪",
         "风电传动链专栏"
@@ -5955,17 +6041,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "2701daebf013",
@@ -5975,7 +6056,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-22T14:24:17.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.ess-news.com/2026/07/22/windey-energy-plans-brazil-bess-production-at-siemens-gamesa-factory/",
       "sourceUrl": "https://www.ess-news.com/",
       "sourceChannel": "Google News RSS",
@@ -6033,17 +6114,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "运达能源计划在巴西前西门子歌美飒工厂生产电池储能系统",
       "category": "厂商动态",
       "tags": [
@@ -6142,7 +6218,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T13:29:46.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://m.ne21.com/news/show-229242.html",
       "sourceUrl": "https://m.ne21.com/",
       "sourceChannel": "Google News RSS",
@@ -6200,7 +6276,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
         "企业与项目追踪",
         "风电传动链专栏"
@@ -6319,7 +6395,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T09:04:52.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.cpem.org.cn/list35/118772.html",
       "sourceUrl": "https://www.cpem.org.cn/",
       "sourceChannel": "Google News RSS",
@@ -6377,17 +6453,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "明阳智能中标江苏国信大丰H19#海上风电项目11MW风机订单",
       "category": "厂商动态",
       "tags": [
@@ -6492,7 +6563,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-22T07:18:18.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.renews.biz/onshore-wind/vestas-wins-43mw-german-turbine-order/",
       "sourceUrl": "https://www.renews.biz/",
       "sourceChannel": "Google News RSS",
@@ -6553,17 +6624,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "Vestas获得德国43MW风机订单",
       "category": "厂商动态",
       "tags": [
@@ -6664,7 +6730,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://www.changle.gov.cn/CLXXXGK/XHBJ/202607/t20260722_738235.html",
       "sourceUrl": "http://www.changle.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -6722,17 +6788,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "山东潍坊昌乐县红河131.25MW风电项目配套220kV升压站工程获批",
       "category": "标准政策",
       "tags": [
@@ -6833,7 +6894,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-22T01:17:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://www.jixian.gov.cn/jx/43/202607/c07_251268.shtml",
       "sourceUrl": "http://www.jixian.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -6997,7 +7058,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-22T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.1088/2631-8695/ae8f04",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -7041,7 +7102,7 @@
           "i10Index": 350,
           "worksCount": 5762,
           "citedByCount": 15567,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -7172,7 +7233,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-22T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.2516/stet/2026032/pdf",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -7211,7 +7272,7 @@
           "i10Index": 4965,
           "worksCount": 217094,
           "citedByCount": 218946,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -7257,7 +7318,8 @@
         "双馈感应发电机",
         "粒子群优化",
         "保持架与滚动体",
-        "齿轮箱振动与NVH"
+        "齿轮箱振动与NVH",
+        "齿轮箱架构"
       ],
       "summary": "该研究提出一种基于电池储能系统的增强型阻尼控制器，用于缓解双馈感应发电机风电场中串联补偿线路的次同步谐振。控制器在d-q轴控制通道中引入附加阻尼信号，采用角速度偏差作为输入，并通过特征值分析与改进粒子群优化混合方法优化增益系数。时域仿真验证了在风速7、9、11 m/s及补偿水平40%、55%、60%下，该控制器能稳定所有先前不稳定的系统模式，阻尼性能优于传统控制器。",
       "keyPoints": [
@@ -7350,7 +7412,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-21T09:25:43.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.windpowermonthly.com/article/1964979/wind-power-patents-goldwind-sany-lm-wind-power-china-three-gorges",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -7512,7 +7574,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T09:14:59.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://www.news.cn/finance/20260721/2be6691d7f434105aa85a2a5f2d818e7/c.html",
       "sourceUrl": "http://www.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -7570,23 +7632,22 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
         "风电行业全景",
         "风电传动链专栏"
       ],
       "technicalDomains": [
-        "系统与架构",
         "失效与质量",
         "仿真与数字工程",
         "监测诊断与试验"
       ],
       "technicalTags": [
-        "齿轮箱架构",
         "齿轮箱振动与NVH",
         "有限元与强度",
         "故障诊断与PHM",
-        "SCADA与CMS"
+        "SCADA与CMS",
+        "可靠性与寿命"
       ],
       "titleZh": "15MW风力发电机研发落地解锁风电装备核心技术新突破",
       "category": "行业资讯",
@@ -7691,7 +7752,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-21T07:19:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://energywatch.com/EnergyNews/wind/article19487361.ece",
       "sourceUrl": "https://energywatch.com/",
       "sourceChannel": "Google News RSS",
@@ -7749,17 +7810,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "Vestas在澳大利亚收购300兆瓦开发项目",
       "category": "厂商动态",
       "tags": [
@@ -7861,12 +7917,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://kw.beijing.gov.cn/xwdt/kcyx/xwdtkjqy/202607/t20260721_4774382.html",
       "sourceUrl": "https://kw.beijing.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -7885,9 +7941,9 @@
         "lastPage": "",
         "isOpenAccess": false,
         "isInDoaj": false,
-        "contentAccess": "metadata",
-        "contentSource": "",
-        "extractedCharacters": 0,
+        "contentAccess": "fulltext",
+        "contentSource": "publisher-html",
+        "extractedCharacters": 966,
         "sourceMetrics": {
           "provider": "",
           "metricName": "",
@@ -7919,17 +7975,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "中国科学院电工研究所海上风电机组直流变换技术研究取得进展",
       "category": "行业资讯",
       "tags": [
@@ -7974,17 +8025,17 @@
         "applicableBoundary": "",
         "verificationNeeded": ""
       },
-      "readingMinutes": 2,
+      "readingMinutes": 6,
       "relevanceScore": 6,
       "reliability": {
-        "score": 59,
-        "grade": "C",
-        "label": "待核验",
+        "score": 83,
+        "grade": "A",
+        "label": "高",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
-          "evidence": 4,
-          "traceability": 11,
+          "evidence": 24,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -7993,12 +8044,12 @@
         },
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
-          "链接指向发布方或 DOI 页面",
+          "已提取发布方公开正文",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
         "limitations": [
-          "公开索引缺少足够摘要，无法仅凭标题判断结论",
           "本轮采集未发现独立来源交叉印证"
         ],
         "feedback": {
@@ -8028,7 +8079,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-21T06:46:20.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.constructionworld.in/energy-infrastructure/power-and-renewable-energy/envision-grid-connects-first-ai-wind-turbine-prototype-for-fortescue/94788",
       "sourceUrl": "https://www.constructionworld.in/",
       "sourceChannel": "Google News RSS",
@@ -8086,7 +8137,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
         "企业与项目追踪",
         "风电传动链专栏"
@@ -8199,7 +8250,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T02:37:13.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.dafeng.gov.cn/art/2026/7/21/art_11827_4440904.html",
       "sourceUrl": "https://www.dafeng.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -8363,7 +8414,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-21T01:30:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.kbs.gov.cn/hdjl/zjdc/202607/t20260721_3909992.html",
       "sourceUrl": "https://www.kbs.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -8421,17 +8472,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "康巴什区2026年分散式风电、分布式光伏发电项目优选公告",
       "category": "标准政策",
       "tags": [
@@ -8529,7 +8575,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-21T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.20944/preprints202607.1597.v1",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -8570,7 +8616,7 @@
           "i10Index": 5141,
           "worksCount": 132532,
           "citedByCount": 273028,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -8706,7 +8752,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-20T20:39:06.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5QbjFCVDR0aHpoX2toQUNhblk0MDh4V0E2QWtBY2VhWmYxNDJqMkI3RUZtcE51NmVhYmJxeXhpQjUyd0FEVVpHQnMwNHJpZUxXMm94MVhnQUdZZHRtWE9BOHc1OURGUjNPS3Fmdg?oc=5",
       "sourceUrl": "https://www.ebiotrade.com/",
       "sourceChannel": "Google News RSS",
@@ -8872,7 +8918,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-20T12:47:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://commerce.shandong.gov.cn/art/2026/7/20/art_367919_10369646.html",
       "sourceUrl": "http://commerce.shandong.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -9198,7 +9244,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-20T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.59400/sv4262",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -9242,7 +9288,7 @@
           "i10Index": 82,
           "worksCount": 461,
           "citedByCount": 4608,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -9271,14 +9317,16 @@
       ],
       "technicalDomains": [
         "系统与架构",
+        "齿轮与行星传动",
         "轴承与连接",
         "失效与质量",
-        "仿真与数字工程",
-        "监测诊断与试验"
+        "仿真与数字工程"
       ],
       "technicalTags": [
         "传动链系统",
         "齿轮箱架构",
+        "行星传动",
+        "齿轮强度",
         "滚动轴承",
         "齿轮箱振动与NVH",
         "有限元与强度",
@@ -9394,7 +9442,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-20T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.3390/su18147390",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -9436,7 +9484,7 @@
           "i10Index": 56153,
           "worksCount": 107752,
           "citedByCount": 2254810,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -9577,7 +9625,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-20T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.1016/j.ijfatigue.2026.109866",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -9622,7 +9670,7 @@
           "i10Index": 7255,
           "worksCount": 14790,
           "citedByCount": 363615,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -9754,7 +9802,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-19T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.5281/zenodo.21443135",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -9792,7 +9840,7 @@
           "i10Index": 15761,
           "worksCount": 12724152,
           "citedByCount": 969266,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -9950,12 +9998,12 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-18T12:46:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.ggzy.gov.cn/information/deal/html/a/0067/0104/20260718/00679644e782fbe1434f9fa356eb3bb01529.html",
       "sourceUrl": "https://www.ggzy.gov.cn/",
       "sourceChannel": "Google News RSS",
       "linkType": "publisher",
-      "linkVerified": false,
+      "linkVerified": true,
       "evidence": {
         "hasAbstract": false,
         "hasPublisherDescription": false,
@@ -9975,7 +10023,7 @@
         "isOpenAccess": false,
         "isInDoaj": false,
         "contentAccess": "metadata",
-        "contentSource": "",
+        "contentSource": "metadata",
         "extractedCharacters": 0,
         "sourceMetrics": {
           "provider": "",
@@ -10008,17 +10056,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "山东电力工程咨询院有限公司2026年度第159批招标《漂浮式风电机组基础智能监测与控制技术研究》项目漂浮式风电浮体基础监测传感器及安装调试招标中标候选人公示",
       "category": "行业资讯",
       "tags": [
@@ -10066,14 +10109,14 @@
       "readingMinutes": 2,
       "relevanceScore": 6,
       "reliability": {
-        "score": 60,
+        "score": 64,
         "grade": "C",
         "label": "待核验",
         "methodVersion": "1.0",
         "dimensions": {
           "authority": 28,
           "evidence": 13,
-          "traceability": 11,
+          "traceability": 15,
           "corroboration": 0,
           "recency": 8,
           "transparency": 8,
@@ -10083,7 +10126,7 @@
         "factors": [
           "来源属于政府、科研机构或行业标准组织",
           "发布方提供了可核查的内容简介",
-          "链接指向发布方或 DOI 页面",
+          "原文直链已在采集时验证",
           "发布时间处于当前监测窗口",
           "来源、日期和采集通道信息完整"
         ],
@@ -10118,7 +10161,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-18T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.zhangwu.gov.cn/content/2026/1090803.html",
       "sourceUrl": "https://www.zhangwu.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -10176,17 +10219,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "辽宁省阜新市彰武县平安150MW风电项目规划许可批后公示",
       "category": "行业资讯",
       "tags": [
@@ -10427,17 +10465,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "ebbd06f33fdd",
@@ -10447,7 +10480,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://finance.sina.com.cn/roll/2026-07-17/doc-iniicqkw1429181.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -10487,7 +10520,7 @@
       },
       "corroboratingSources": [
         "国际风力发电网",
-        "QQ News",
+        "xw.qq.com",
         "星岛环球网"
       ],
       "feedbackAggregate": {
@@ -10509,17 +10542,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "共建3GW海上风电项目！明阳智能、中海油拟增资6.25亿元",
       "category": "厂商动态",
       "tags": [
@@ -10619,7 +10647,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.163.com/dy/article/L22D90SN05568W0A.html",
       "sourceUrl": "https://www.163.com/",
       "sourceChannel": "Google News RSS",
@@ -10780,7 +10808,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://asian-power.com/news/envision-ships-first-turbines-fortescues-132-mw-australian-wind-project",
       "sourceUrl": "https://asian-power.com/",
       "sourceChannel": "Google News RSS",
@@ -10840,17 +10868,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "Envision向Fortescue在澳大利亚的132MW风电项目交付首批风机",
       "category": "厂商动态",
       "tags": [
@@ -10949,7 +10972,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-17T05:08:08.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.hami.gov.cn/hami/c119977/202607/291ba24ed0af4631bfb86659013516d0.shtml",
       "sourceUrl": "https://www.hami.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -11007,17 +11030,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "国内最大陆上试验风电场在哈密并网运行",
       "category": "行业资讯",
       "tags": [
@@ -11114,7 +11132,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.58286/33755",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -11156,7 +11174,7 @@
           "i10Index": 12,
           "worksCount": 2833,
           "citedByCount": 1338,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -11291,7 +11309,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-17T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.1088/1361-6501/ae8c64",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -11329,7 +11347,7 @@
         "isInDoaj": false,
         "contentAccess": "fulltext",
         "contentSource": "publisher-html",
-        "extractedCharacters": 4410,
+        "extractedCharacters": 5017,
         "sourceMetrics": {
           "provider": "OpenAlex",
           "metricName": "2年平均被引率",
@@ -11338,7 +11356,7 @@
           "i10Index": 8257,
           "worksCount": 19281,
           "citedByCount": 369049,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -11372,7 +11390,9 @@
       ],
       "technicalTags": [
         "齿轮箱架构",
+        "滑动轴承开发",
         "润滑油与添加剂",
+        "摩擦磨损",
         "故障诊断与PHM"
       ],
       "titleZh": "基于数据驱动的风电润滑油破乳化度估计方法",
@@ -11385,7 +11405,9 @@
         "状态监测",
         "齿轮箱架构",
         "润滑油与添加剂",
-        "故障诊断与PHM"
+        "故障诊断与PHM",
+        "滑动轴承开发",
+        "摩擦磨损"
       ],
       "summary": "该论文提出一种基于数据驱动的风电润滑油破乳化度在线估计方法。通过受控破乳化实验建立多条件数据集，识别水质量分数、相对介电常数、运动粘度和温度为特征参数，开发多阶段混合估计框架。在两种代表性齿轮箱油和扰动条件下，平均绝对百分比误差为3.88%，优于对比模型（7%-10%）。结论基于实验室数据，未涉及现场验证。",
       "keyPoints": [
@@ -11833,11 +11855,9 @@
         "experienceTotalAtAnalysis": 0
       },
       "technicalDomains": [
-        "失效与质量",
         "监测诊断与试验"
       ],
       "technicalTags": [
-        "齿轮箱振动与NVH",
         "故障诊断与PHM"
       ],
       "sections": [
@@ -11853,7 +11873,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-16T14:51:16.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://www.cjw.gov.cn/zwzc/zdgk/zhgl/gzhdjl/gzzx/202607/t20260716_62683.shtml",
       "sourceUrl": "http://www.cjw.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -11911,17 +11931,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "江苏某企业光伏电站、风力发电等项目是否合规？",
       "category": "标准政策",
       "tags": [
@@ -12162,17 +12177,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "e036c0d58017",
@@ -12182,7 +12192,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-16T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.mengcheng.gov.cn/XxgkContent/show/2992523.html",
       "sourceUrl": "https://www.mengcheng.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -12240,17 +12250,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "华能蒙城县楚村风电场项目-升压站CC-01地块建设工程设计方案公示",
       "category": "标准政策",
       "tags": [
@@ -12344,12 +12349,12 @@
     {
       "id": "85953137b86a",
       "title": "明阳智能：拟向参股公司增资2.81亿元 推进海上风电示范项目",
-      "source": "QQ News",
+      "source": "xw.qq.com",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-16T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://news.qq.com/rain/a/20260716A0B7FI00",
       "sourceUrl": "https://news.qq.com/",
       "sourceChannel": "Google News RSS",
@@ -12410,17 +12415,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "明阳智能：拟向参股公司增资2.81亿元 推进海上风电示范项目",
       "category": "厂商动态",
       "tags": [
@@ -12522,7 +12522,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-16T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://renewablesnow.com/news/envision-ships-first-7-8-mw-turbines-for-fortescue-project-in-australia-1298158/",
       "sourceUrl": "https://renewablesnow.com/",
       "sourceChannel": "Google News RSS",
@@ -12582,17 +12582,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "远景能源向澳大利亚Fortescue项目交付首批7.8MW风机",
       "category": "厂商动态",
       "tags": [
@@ -12694,7 +12689,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-16T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.windpowermonthly.com/features",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -12752,7 +12747,7 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
         "企业与项目追踪",
         "风电传动链专栏"
@@ -12989,17 +12984,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "b8ae10521980",
@@ -13151,17 +13141,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "fe1153cc14d2",
@@ -13659,17 +13644,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "74dab05fabd7",
@@ -13679,7 +13659,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-15T08:55:27.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://gd.news.cn/20260715/c095a830927f466a99f6d27bbe6c564f/c.html",
       "sourceUrl": "http://gd.news.cn/",
       "sourceChannel": "Google News RSS",
@@ -13737,17 +13717,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "打造风电产业人才高地 阳江风电城项目建设稳步推进",
       "category": "行业资讯",
       "tags": [
@@ -14469,7 +14444,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-14T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://www.kailu.gov.cn/xwzx/tzgggs/202607/t20260714_1060135.html",
       "sourceUrl": "http://www.kailu.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -14527,17 +14502,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "开鲁县北方电网新能源有限公司通辽市开鲁县20万千瓦上网消纳风电项目环境影响评价公众参与第一次公示",
       "category": "行业资讯",
       "tags": [
@@ -14826,7 +14796,6 @@
       "technicalTags": [
         "主轴承",
         "保持架与滚动体",
-        "故障诊断与PHM",
         "SCADA与CMS"
       ],
       "sections": [
@@ -14997,7 +14966,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-13T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://finance.sina.com.cn/wm/2026-07-13/doc-inihtews5450532.shtml",
       "sourceUrl": "https://finance.sina.com.cn/",
       "sourceChannel": "Google News RSS",
@@ -15458,17 +15427,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "3be56d7a2ea3",
@@ -15794,7 +15758,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-11T10:17:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.wsq.gov.cn/zw/tzggx/202607/t20260712_3908583.html",
       "sourceUrl": "https://www.wsq.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -15957,7 +15921,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-11T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://cj.sina.com.cn/articles/view/2442012107/918e25cb00101mm52",
       "sourceUrl": "https://cj.sina.cn/",
       "sourceChannel": "Google News RSS",
@@ -16391,17 +16355,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "6dc79c7d5c57",
@@ -16411,7 +16370,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-10T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://www.nea.gov.cn/20260710/2706be51a7f1446a90658328d1c245d4/c.html",
       "sourceUrl": "http://www.nea.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -16469,7 +16428,7 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
         "风电行业全景",
         "风电传动链专栏"
@@ -16879,27 +16838,22 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "bef572ca271e",
       "title": "超21亿元 上海电气风电集团股份有限公司中标国家电投近百万千瓦集采大单",
-      "source": "搜狐网",
+      "source": "Sohu",
       "sourceType": "行业资讯",
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-10T00:16:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://m.sohu.com/a/1048293532_121157270?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
       "sourceUrl": "https://m.sohu.com/",
       "sourceChannel": "Google News RSS",
@@ -16957,17 +16911,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "超21亿元 上海电气风电集团股份有限公司中标国家电投近百万千瓦集采大单",
       "category": "厂商动态",
       "tags": [
@@ -17210,17 +17159,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "e87fd5f8fd0f",
@@ -17230,7 +17174,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-09T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.globalbankingandfinance.com/nordex-q2-orders-rise-u-demand/",
       "sourceUrl": "https://www.globalbankingandfinance.com/",
       "sourceChannel": "Google News RSS",
@@ -17288,17 +17232,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "Nordex第二季度订单激增，美国需求强劲",
       "category": "厂商动态",
       "tags": [
@@ -17539,17 +17478,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "74b7727a17f7",
@@ -17704,17 +17638,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "ab8c5d0edec8",
@@ -17869,17 +17798,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "c2f1dec5bc05",
@@ -18315,17 +18239,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "dcd42840994d",
@@ -18335,7 +18254,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-07T08:26:29.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.windtech-international.com/projects-and-contracts/nordex-receives-700-mw-turbine-orders-from-uka-for-projects-in-germany",
       "sourceUrl": "https://www.windtech-international.com/",
       "sourceChannel": "Google News RSS",
@@ -18395,17 +18314,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "Nordex从UKA获得德国项目700MW风机订单",
       "category": "厂商动态",
       "tags": [
@@ -18506,7 +18420,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-07T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://sthjj.chizhou.gov.cn/Hbsp/show/HPNSP/648.html",
       "sourceUrl": "https://sthjj.chizhou.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -18564,17 +18478,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "池州官港新能源东至县官港风电场项目（重新报批）环境影响报告表",
       "category": "行业资讯",
       "tags": [
@@ -18672,7 +18581,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-07T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://qinhuangdao.gov.cn:81/info/content.jsp?code=144015",
       "sourceUrl": "http://qinhuangdao.gov.cn:81/",
       "sourceChannel": "Google News RSS",
@@ -18974,17 +18883,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "e2642cd3dbac",
@@ -18994,7 +18898,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-07T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.3390/modelling7040139",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -19037,7 +18941,7 @@
           "i10Index": 53,
           "worksCount": 546,
           "citedByCount": 1973,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -19083,7 +18987,8 @@
         "SVM",
         "多通道振动",
         "齿轮箱振动与NVH",
-        "振动监测"
+        "振动监测",
+        "齿轮箱架构"
       ],
       "summary": "该研究提出一种结合离散小波变换（DWT）和线性判别分析（LDA）的机器学习方法，用于风力发电机转子不平衡故障分类。采用Group K-Fold交叉验证防止数据泄露，在实验室规模风机上使用支持向量机（SVM）分类器，平均准确率达98.84±1.16%，加权F1分数为0.9905±0.0089。结果表明降维对提升类别可分性作用显著，其影响大于小波变换的选择。研究仅基于实验室数据，未在真实风场验证。",
       "keyPoints": [
@@ -19194,7 +19099,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-06T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://www.yangjiang.gov.cn/yj/ywdt/bmzx/content/post_966327.html",
       "sourceUrl": "http://www.yangjiang.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -19252,17 +19157,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "阳江实施海上风电产业营商环境“一业一方案”",
       "category": "行业资讯",
       "tags": [
@@ -19359,7 +19259,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-06T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://js.msa.gov.cn/art/2026/7/6/art_50_1607395.html",
       "sourceUrl": "https://js.msa.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -19417,17 +19317,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "同比增长超四成，上半年南通启东海上风电场发电14.72亿千瓦",
       "category": "行业资讯",
       "tags": [
@@ -19533,7 +19428,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-06T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.windpowermonthly.com/article/1963730/wind-power-patents-dongfang-siemens-gamesa-goldwind-nordex-zf",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -19591,17 +19486,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "风电专利：东方风电 | 西门子歌美飒 | 金风科技 | Nordex | ZF",
       "category": "厂商动态",
       "tags": [
@@ -19836,17 +19726,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "13b4f410ad9e",
@@ -19856,7 +19741,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-06T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.5194/wes-2026-83",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -19924,11 +19809,13 @@
       ],
       "technicalDomains": [
         "系统与架构",
+        "失效与质量",
         "润滑与摩擦",
         "监测诊断与试验"
       ],
       "technicalTags": [
         "传动链系统",
+        "温升泄漏与装配质量",
         "摩擦磨损",
         "振动监测",
         "故障诊断与PHM",
@@ -20073,7 +19960,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-05T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.lnst.gov.cn/html/CYSTQ/202607/0178322072595317.html",
       "sourceUrl": "https://www.lnst.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -20131,17 +20018,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "企业投资项目核准（风电项目）咨询监督（20260705）",
       "category": "行业资讯",
       "tags": [
@@ -20395,7 +20277,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-03T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "http://wap.sasac.gov.cn/n16582853/n16582893/c35538638/content.html",
       "sourceUrl": "http://wap.sasac.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -20453,17 +20335,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "传动链系统"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "山东港口渤海湾港分散式风电项目累计发电量突破1亿千瓦时",
       "category": "行业资讯",
       "tags": [
@@ -20566,7 +20443,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-07-03T03:47:54.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://mwind.in-en.com/html/wind-2468499.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -20624,17 +20501,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "金风科技澳洲Baldon风储融合项目获并网批准",
       "category": "厂商动态",
       "tags": [
@@ -21028,17 +20900,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "8d5742ca585d",
@@ -21048,7 +20915,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.renewable-energy-industry.com/news/press-releases/pm-8862-nordex-group-to-deliver-20-mw-wind-farm-for-continental-tire-plant-in-korbach-germany",
       "sourceUrl": "https://www.renewable-energy-industry.com/",
       "sourceChannel": "Google News RSS",
@@ -21108,18 +20975,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "传动链系统",
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "Nordex集团将为德国Korbach大陆轮胎工厂交付20MW风电场",
       "category": "厂商动态",
       "tags": [
@@ -21218,7 +21079,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://renewablesnow.com/news/nordex-lands-197-mw-in-german-turbine-orders-from-enova-bmr-1297406/",
       "sourceUrl": "https://renewablesnow.com/",
       "sourceChannel": "Google News RSS",
@@ -21278,17 +21139,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "Nordex获得Enova和BMR在德国的197 MW风机订单",
       "category": "厂商动态",
       "tags": [
@@ -21535,17 +21391,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "32c474b9c63c",
@@ -21678,7 +21529,7 @@
         "企业与项目追踪",
         "风电传动链专栏"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "136f866e8c3a",
@@ -21688,7 +21539,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.3390/en19133153",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -21732,7 +21583,7 @@
           "i10Index": 30529,
           "worksCount": 63526,
           "citedByCount": 1114606,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -21889,7 +21740,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-02T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.3390/electronics15132907",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -21930,7 +21781,7 @@
           "i10Index": 9010,
           "worksCount": 30582,
           "citedByCount": 349360,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -22067,7 +21918,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T11:39:34.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.windpowermonthly.com/article/1963356/us-german-onshore-projects-dominate-vestas-q2-wind-turbine-order-intake",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -22127,17 +21978,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "美国和德国陆上项目主导维斯塔斯第二季度风机订单",
       "category": "厂商动态",
       "tags": [
@@ -22231,7 +22077,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://windinsider.com/2026/07/01/vestas-secures-309-mw-of-global-wind-turbine-orders-across-europe-and-japan-in-q2/",
       "sourceUrl": "https://windinsider.com/",
       "sourceChannel": "Google News RSS",
@@ -22289,17 +22135,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "维斯塔斯在2026年第二季度获得欧洲和日本总计309兆瓦的风机订单",
       "category": "厂商动态",
       "tags": [
@@ -22400,7 +22241,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://energywatch.com/EnergyNews/wind/article19442037.ece",
       "sourceUrl": "https://energywatch.com/",
       "sourceChannel": "Google News RSS",
@@ -22708,17 +22549,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "2982f4424f8c",
@@ -22728,7 +22564,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.58286/33501",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -22772,7 +22608,7 @@
           "i10Index": 12,
           "worksCount": 2833,
           "citedByCount": 1338,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -22922,7 +22758,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-07-01T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.24084/reepqj26-238",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -22968,7 +22804,7 @@
           "i10Index": 0,
           "worksCount": 336,
           "citedByCount": 29,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -23284,7 +23120,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-30T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://mwind.in-en.com/html/wind-2468400.shtml",
       "sourceUrl": "https://mwind.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -23342,17 +23178,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "传动链系统"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "奋力冲刺双过半！电气风电多个风电项目传捷报",
       "category": "厂商动态",
       "tags": [
@@ -23449,7 +23280,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-30T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://sthjj.wulanchabu.gov.cn/slgs/1984363.html",
       "sourceUrl": "https://sthjj.wulanchabu.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -23507,17 +23338,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "关于华电乌兰察布四子王旗100MW上网消纳风电项目环境影响评价文件受理情况的公示",
       "category": "标准政策",
       "tags": [
@@ -23619,7 +23445,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-29T17:06:28.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://ynb.nea.gov.cn/dtyw/gzdt/202606/t20260629_303763.html",
       "sourceUrl": "https://ynb.nea.gov.cn/",
       "sourceChannel": "Google News RSS",
@@ -23677,17 +23503,12 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "风电行业全景",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "传动链系统"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "云南首个分散式风电项目获核准 助推新能源高质量发展",
       "category": "行业资讯",
       "tags": [
@@ -23789,7 +23610,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-29T14:28:10.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://mpower.in-en.com/html/power-2474694.shtml",
       "sourceUrl": "https://mpower.in-en.com/",
       "sourceChannel": "Google News RSS",
@@ -23847,17 +23668,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "传动链系统"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "金风科技完成越南朔庄海上风电项目首批机组交付",
       "category": "厂商动态",
       "tags": [
@@ -23956,7 +23772,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-29T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://cj.sina.com.cn/articles/view/5953740931/162dee08306703i8ms?froms=ggmp",
       "sourceUrl": "https://cj.sina.cn/",
       "sourceChannel": "Google News RSS",
@@ -24014,17 +23830,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "传动链系统"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "含海上风电253MW！明阳智能预中标353MW风机采购",
       "category": "厂商动态",
       "tags": [
@@ -24132,7 +23943,7 @@
       "region": "国内",
       "language": "zh",
       "publishedAt": "2026-06-29T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://cj.sina.com.cn/articles/view/5952915705/162d248f9067037ay4?froms=ggmp",
       "sourceUrl": "https://cj.sina.cn/",
       "sourceChannel": "Google News RSS",
@@ -24190,17 +24001,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "传动链系统"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "远景能源转让菲律宾200MW风电项目",
       "category": "厂商动态",
       "tags": [
@@ -24310,7 +24116,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-29T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://www.windpowermonthly.com/article/1963085/wind-power-patents-sany-vestas-windey-siemens-gamesa-enercon",
       "sourceUrl": "https://www.windpowermonthly.com/",
       "sourceChannel": "Google News RSS",
@@ -24368,17 +24174,12 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "企业与项目追踪",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "titleZh": "风电专利：三一 | 维斯塔斯 | 运达 | 西门子歌美飒 | 艾纳康",
       "category": "厂商动态",
       "tags": [
@@ -24477,7 +24278,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-29T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.55092/sc20260013",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -24521,7 +24322,7 @@
           "i10Index": 3,
           "worksCount": 61,
           "citedByCount": 89,
-          "updatedAt": "2026-07-27T07:16:11.655Z"
+          "updatedAt": "2026-07-27T07:27:32.480Z"
         }
       },
       "corroboratingSources": [],
@@ -24688,7 +24489,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-29T00:00:00Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://doi.org/10.5194/wes-2026-102",
       "sourceUrl": "",
       "sourceChannel": "OpenAlex",
@@ -24873,7 +24674,7 @@
       "region": "海外",
       "language": "en",
       "publishedAt": "2026-06-28T07:00:00.000Z",
-      "collectedAt": "2026-07-27T07:16:11.655Z",
+      "collectedAt": "2026-07-27T07:27:32.480Z",
       "url": "https://finance.yahoo.com/energy/articles/nordex-group-scores-325-mw-063600580.html",
       "sourceUrl": "https://finance.yahoo.com/",
       "sourceChannel": "Google News RSS",
@@ -25185,17 +24986,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "829dca08e09c",
@@ -25347,17 +25143,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "0af6398dc256",
@@ -25517,7 +25308,7 @@
         "企业与项目追踪",
         "风电传动链专栏"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "05068e5fb1b5",
@@ -25667,17 +25458,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "b20a28e68b61",
@@ -25830,17 +25616,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "18432885d763",
@@ -25993,17 +25774,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "风电行业全景"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "风电行业全景"
     },
     {
       "id": "96097dd63390",
@@ -26156,17 +25932,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "2226d7174990",
@@ -26323,17 +26094,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "d2716ffdfd65",
@@ -26655,17 +26421,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "c1d4741b30a8",
@@ -26819,17 +26580,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "9d36f523476e",
@@ -26987,17 +26743,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "af16bb4ea61b",
@@ -27152,17 +26903,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "c525d8e44f40",
@@ -27312,17 +27058,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "82cee6dc6704",
@@ -27478,17 +27219,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "2507c538b917",
@@ -27645,17 +27381,12 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "cdcdbd54533f",
@@ -27807,17 +27538,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "3331536ce3ea",
@@ -27972,17 +27698,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "8a47034a3853",
@@ -28138,17 +27859,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "a2fe7a65b408",
@@ -28300,17 +28016,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "c078bd83b1af",
@@ -28460,17 +28171,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     },
     {
       "id": "9b9a2cd4a838",
@@ -28624,17 +28330,12 @@
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
       },
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
+      "technicalDomains": [],
+      "technicalTags": [],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "企业与项目追踪"
       ],
-      "primarySection": "风电传动链专栏"
+      "primarySection": "企业与项目追踪"
     }
   ]
 }
