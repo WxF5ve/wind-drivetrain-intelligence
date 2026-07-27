@@ -21,8 +21,9 @@ on:
         type: number
         default: 80
   schedule:
-    # 每周一 08:30（北京时间）
+    # 每周一 08:30 主任务；11:15 兜底（北京时间）
     - cron: "30 0 * * 1"
+    - cron: "15 3 * * 1"
 
 permissions:
   contents: write
@@ -49,11 +50,22 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Sync scheduled run with latest main
+        if: github.event_name == 'schedule'
+        run: git pull --ff-only origin main
+
+      - name: Check whether collection is due
+        id: collection
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: node scripts/check-collection-freshness.mjs
+        env:
+          COLLECTION_TIME_ZONE: Asia/Shanghai
+
       - name: Install collector dependencies
         run: npm ci
 
       - name: Collect and summarize
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: steps.collection.outputs.should_collect == 'true'
         run: npm run collect
         env:
           AI_PROVIDER: deepseek
@@ -69,7 +81,7 @@ jobs:
           FEEDBACK_AGGREGATE_TOKEN: ${{ secrets.FEEDBACK_AGGREGATE_TOKEN }}
 
       - name: Commit refreshed intelligence
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: steps.collection.outputs.should_collect == 'true'
         continue-on-error: true
         run: |
           if git diff --quiet -- public/data/articles.json; then
