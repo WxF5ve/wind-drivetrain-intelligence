@@ -165,8 +165,7 @@ export const DRIVETRAIN_COMPONENT_TAXONOMY = [
 ];
 
 export const PRIMARY_SECTIONS = [
-  "技术与产品开发",
-  "故障、质量与运维",
+  "传动链技术开发与质量运维",
   "论文、标准与专利",
   "厂商与项目动态",
   "政策、市场与产业环境"
@@ -252,6 +251,42 @@ function containsKeyword(text, keyword) {
     return new RegExp(`\\b${escaped}\\b`, "i").test(text);
   }
   return text.includes(normalizedKeyword);
+}
+
+const TITLE_EVENT_SIGNALS = [
+  "发布", "印发", "通知", "意见", "规划", "方案", "公示", "核准", "批复", "获批", "启动", "开工",
+  "投产", "投运", "并网", "吊装", "交付", "发运", "下线", "中标", "成交", "签约", "订单", "合作",
+  "扩产", "量产", "完成", "突破", "验证", "试验", "研究", "布局", "新增", "装机", "检修", "维修",
+  "announces", "released", "publishes", "launches", "approved", "starts", "completed", "commissioned",
+  "installed", "delivers", "delivery", "order", "contract", "award", "production", "prototype", "test",
+  "study", "research", "validation", "maintenance", "repair"
+];
+
+const TITLE_TECHNICAL_SIGNALS = [
+  "齿轮箱", "传动链", "主轴", "轴承", "行星架", "齿轮", "润滑", "振动", "故障", "失效", "强度", "仿真",
+  "gearbox", "drivetrain", "main shaft", "bearing", "planet carrier", "gear", "lubrication", "vibration",
+  "failure", "strength", "simulation"
+];
+
+const TITLE_DISPLAY_NOISE = [
+  "招聘", "岗位", "薪资", "简历", "项目经理", "猎聘", "职位", "job opening", "career opportunity", "salary"
+];
+
+export function informationLevel(article = {}) {
+  const contentAccess = article.contentAccess || article.evidence?.contentAccess || "metadata";
+  if (contentAccess !== "metadata") return "readable";
+  if (["论文", "标准", "专利"].includes(article.sourceType)) return "catalog";
+
+  const title = cleanText(article.titleZh || article.title || "");
+  const normalized = title.toLowerCase();
+  if (!title || TITLE_DISPLAY_NOISE.some((signal) => containsKeyword(normalized, signal))) return "ignored";
+
+  const hasEvent = TITLE_EVENT_SIGNALS.some((signal) => containsKeyword(normalized, signal));
+  const hasTechnicalSubject = TITLE_TECHNICAL_SIGNALS.some((signal) => containsKeyword(normalized, signal));
+  const hasUsefulLength = /[\p{Script=Han}]/u.test(title) ? title.length >= 10 : title.length >= 28;
+  const technicalRecord = (article.intelligenceType === "technical" || article.queryTopic === "technical") &&
+    hasTechnicalSubject && hasEvent;
+  return hasUsefulLength && (hasEvent || technicalRecord) ? "brief" : "lead";
 }
 
 function classificationText(article) {
@@ -390,7 +425,7 @@ function inferPrimarySection(article, classification, text) {
     "故障", "失效", "损伤", "异常", "裂纹", "断齿", "跑圈", "剥落", "漏油", "维修", "检修", "案例",
     "failure", "damage", "fault", "crack", "fracture", "repair", "case study"
   ].some((signal) => containsKeyword(text, signal));
-  if (concreteFailure) return "故障、质量与运维";
+  if (concreteFailure) return "传动链技术开发与质量运维";
   const companyEvent = hasIndustryEntity(text) && [
     "订单", "中标", "签约", "交付", "下线", "吊装", "并网", "项目", "合作", "扩产", "工厂", "新品", "样机",
     "order", "contract", "delivery", "project", "partnership", "factory", "prototype", "installation", "commissioning"
@@ -401,7 +436,7 @@ function inferPrimarySection(article, classification, text) {
   if (topic === "industry" && policyOrMarket && !hasIndustryEntity(text)) return "政策、市场与产业环境";
   if (topic === "industry") return "厂商与项目动态";
   if (topic === "official") return "政策、市场与产业环境";
-  return "技术与产品开发";
+  return "传动链技术开发与质量运维";
 }
 
 export function classifyArticle(article) {
@@ -412,7 +447,7 @@ export function classifyArticle(article) {
     : inferDrivetrainClassification(article);
   const primarySection = inferPrimarySection(article, classification, text);
   const isDrivetrainItem = classification.drivetrainComponents.length > 0 || [
-    "技术与产品开发", "故障、质量与运维", "论文、标准与专利"
+    "传动链技术开发与质量运维", "论文、标准与专利"
   ].includes(primarySection);
   const componentCategory = classification.drivetrainComponent || (isDrivetrainItem ? "传动链总体" : "行业综合");
   const drivetrainComponents = classification.drivetrainComponents.length
@@ -425,6 +460,7 @@ export function classifyArticle(article) {
     componentCategory,
     evidenceTypes: inferEvidenceTypes(article, text),
     industryCategory: primarySection === "厂商与项目动态" ? inferIndustryCategory(article, text) : "",
+    informationLevel: informationLevel(article),
     sections: [primarySection],
     primarySection
   };
@@ -1115,6 +1151,7 @@ export function toPublicArticle(article, summaryData) {
       : article.queryTopic === "official"
         ? "official"
         : "technical",
+    informationLevel: classification.informationLevel,
     primarySection: classification.primarySection,
     sections: classification.sections,
     technicalDomains: classification.technicalDomains,

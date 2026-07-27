@@ -23,7 +23,8 @@ data.articles = (data.articles || []).map((article) => {
     failureModes: classification.failureModes,
     developmentStages: classification.developmentStages,
     evidenceTypes: classification.evidenceTypes,
-    industryCategory: classification.industryCategory
+    industryCategory: classification.industryCategory,
+    informationLevel: classification.informationLevel
   };
 });
 
@@ -43,6 +44,6 @@ if (data.weeklyBrief && leadingSections.length) {
   data.weeklyBrief.title = `本周聚焦：${leadingSections.join("、")}`;
 }
 
-data.taxonomyVersion = 2;
+data.taxonomyVersion = 3;
 await writeFile(dataPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
 console.log(`已迁移 ${data.articles.length} 条情报到传动链分类体系 v${data.taxonomyVersion}`);

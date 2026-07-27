@@ -15,16 +15,18 @@ const DRIVETRAIN_COMPONENTS = [
 ];
 
 const INDUSTRY_CATEGORIES = ["传动链企业", "整机与开发商", "项目进展", "企业动态"];
+const COMPREHENSIVE_SECTION = "综合资讯与待深读线索";
 const PRIMARY_SECTIONS = [
-  "技术与产品开发",
-  "故障、质量与运维",
+  "传动链技术开发与质量运维",
   "论文、标准与专利",
   "厂商与项目动态",
   "政策、市场与产业环境"
 ];
 
 const LEGACY_SECTION_MAP = {
-  "风电传动链专栏": "技术与产品开发",
+  "技术与产品开发": "传动链技术开发与质量运维",
+  "故障、质量与运维": "传动链技术开发与质量运维",
+  "风电传动链专栏": "传动链技术开发与质量运维",
   "企业与项目追踪": "厂商与项目动态",
   "风电行业全景": "政策、市场与产业环境"
 };
@@ -42,7 +44,7 @@ const state = {
   data: null,
   articles: [],
   query: "",
-  category: "技术与产品开发",
+  category: "传动链技术开发与质量运维",
   component: "全部部件",
   industryCategory: "全部动态",
   region: "全部",
@@ -269,10 +271,11 @@ function personalScore(article) {
 }
 
 function matchesCategory(article) {
-  const clue = isTitleClue(article);
-  if (state.category === "标题线索") return clue;
-  if (clue) return false;
+  const level = articleInformationLevel(article);
+  if (level === "ignored") return false;
+  if (state.category === COMPREHENSIVE_SECTION) return level === "lead";
   if (state.category === "全部") return true;
+  if (level === "lead") return false;
   return primarySection(article) === state.category;
 }
 
@@ -288,21 +291,35 @@ function isTitleClue(article) {
   return (article.evidence?.contentAccess || "metadata") === "metadata";
 }
 
+function articleInformationLevel(article) {
+  if (["readable", "brief", "catalog", "lead", "ignored"].includes(article.informationLevel)) {
+    return article.informationLevel;
+  }
+  if (!isTitleClue(article)) return "readable";
+  if (["论文", "标准", "专利"].includes(article.sourceType)) return "catalog";
+  const title = String(article.titleZh || article.title || "").trim();
+  if (/招聘|岗位|薪资|简历|项目经理|猎聘|职位|job opening|career opportunity|salary/i.test(title)) return "ignored";
+  const hasEvent = /发布|印发|通知|意见|规划|方案|公示|核准|批复|获批|启动|开工|投产|投运|并网|吊装|交付|发运|下线|中标|成交|签约|订单|合作|扩产|量产|完成|突破|验证|试验|研究|布局|新增|装机|检修|维修|announces|released|publishes|launches|approved|starts|completed|commissioned|installed|delivers|delivery|order|contract|award|production|prototype|test|study|research|validation|maintenance|repair/i.test(title);
+  const longEnough = /[\p{Script=Han}]/u.test(title) ? title.length >= 10 : title.length >= 28;
+  return hasEvent && longEnough ? "brief" : "lead";
+}
+
 function articleSections(article) {
   return [primarySection(article)];
 }
 
 function primarySection(article) {
   if (PRIMARY_SECTIONS.includes(article.primarySection)) return article.primarySection;
+  if (LEGACY_SECTION_MAP[article.primarySection]) return LEGACY_SECTION_MAP[article.primarySection];
   if (["论文", "标准", "专利"].includes(article.sourceType)) return "论文、标准与专利";
   const failureSignals = [
     ...(article.failureModes || []),
     ...(article.technicalDomains || []).filter((domain) => ["失效分析", "失效与质量"].includes(domain))
   ];
-  if (failureSignals.length && article.intelligenceType !== "official") return "故障、质量与运维";
+  if (failureSignals.length && article.intelligenceType !== "official") return "传动链技术开发与质量运维";
   if (article.intelligenceType === "industry") return "厂商与项目动态";
   if (article.intelligenceType === "official") return "政策、市场与产业环境";
-  return LEGACY_SECTION_MAP[article.primarySection] || "技术与产品开发";
+  return "传动链技术开发与质量运维";
 }
 
 function technicalDomains(article) {
@@ -418,9 +435,23 @@ function renderWeeklyBrief() {
   `;
 }
 
+function renderCategoryCounts() {
+  const counts = new Map([...PRIMARY_SECTIONS, COMPREHENSIVE_SECTION, "全部"].map((section) => [section, 0]));
+  for (const article of state.articles) {
+    const level = articleInformationLevel(article);
+    if (level === "ignored") continue;
+    counts.set("全部", counts.get("全部") + 1);
+    const section = level === "lead" ? COMPREHENSIVE_SECTION : primarySection(article);
+    counts.set(section, (counts.get(section) || 0) + 1);
+  }
+  elements.categoryTabs.querySelectorAll("[data-category]").forEach((button) => {
+    const count = button.querySelector("[data-category-count]");
+    if (count) count.textContent = counts.get(button.dataset.category) || 0;
+  });
+}
+
 const weeklyReportGroups = [
-  { key: "development", title: "技术与产品开发", caption: "传动链设计、制造、仿真、试验与产品验证" },
-  { key: "quality", title: "故障、质量与运维", caption: "公开故障、质量问题、诊断方法与现场改进" },
+  { key: "technical", title: "传动链技术开发与质量运维", caption: "设计、制造、仿真、试验、故障质量与现场运维" },
   { key: "research", title: "论文、标准与专利", caption: "研究结论、标准变化与公开专利进展" },
   { key: "industry", title: "厂商与项目动态", caption: "传动链企业、整机厂商与项目进展" },
   { key: "environment", title: "政策、市场与产业环境", caption: "政策、规划、市场和供应链环境变化" }
@@ -429,12 +460,13 @@ const weeklyReportGroups = [
 function reportGroupKey(article) {
   const section = primarySection(article);
   return {
-    "技术与产品开发": "development",
-    "故障、质量与运维": "quality",
+    "传动链技术开发与质量运维": "technical",
+    "技术与产品开发": "technical",
+    "故障、质量与运维": "technical",
     "论文、标准与专利": "research",
     "厂商与项目动态": "industry",
     "政策、市场与产业环境": "environment"
-  }[section] || "development";
+  }[section] || "technical";
 }
 
 function reportUnique(values) {
@@ -456,9 +488,8 @@ function reportQuantitativeFindings(article) {
 function reportDataPoints(article) {
   const details = article.industryDetails || {};
   const industryPoints = [
-    details.capacity ? `项目容量为${details.capacity}` : "",
-    details.investment ? `公开金额为${details.investment}` : "",
-    details.timeline ? `计划节点为${details.timeline}` : "",
+    details.capacity ? `规模${stripReportLabels(details.capacity)}` : "",
+    details.investment ? `涉及${stripReportLabels(details.investment)}` : "",
     ...(details.quantitativeFacts || []).map((point) => stripReportLabels(point))
   ];
   const paperPoints = reportQuantitativeFindings(article);
@@ -494,7 +525,7 @@ function reportAction(article) {
       .replace(/[。；;.]$/, "");
     return stripReportLabels(method ? `${objective}，并采用${method}` : objective);
   }
-  return stripReportLabels(summary);
+  return cleanReportProse(summary);
 }
 
 function reportEffect(article, dataPoints) {
@@ -510,6 +541,24 @@ function stripReportLabels(value) {
     .trim();
 }
 
+function cleanReportProse(value) {
+  const cleaned = stripReportLabels(value)
+    .replace(/(?:该|此)?(?:信息|资讯|报道|成果|资料)?\s*属于(?:行业资讯(?:类)?(?:官方公告)?|官方公告|媒体报道|企业声明)(?=[，,；;。.!！?？]|$)/gi, "")
+    .replace(/(?:该|此)?(?:信息|资讯|报道|资料)?\s*(?:来源|渠道)(?:来自|属于|于|为)[^，,；;。.!！?？]{0,36}(?=[，,；;。.!！?？]|$)/gi, "")
+    .replace(/(?:该|此)?(?:信息|资讯|报道)\s*来自[^，,；;。.!！?？]{1,36}(?=[，,；;。.!！?？]|$)/gi, "")
+    .replace(/(?:该|此)?(?:信息|资讯|报道)?渠道(?:来自|属于|为)[^。.!！?？]*/gi, "")
+    .replace(/(^|[。.!！?？])\s*(?:该|此)?(?:资料|信息|资讯|报道)(?:为|属于)(?:政府|企业|媒体|官方)[^，,；;。.!！?？]{0,24}(?:[，,；;]|(?=[。.!！?？]|$))/gi, "$1")
+    .replace(/[，,]{2,}/g, "，")
+    .replace(/([。.!！?？])[，,；;]+/g, "$1")
+    .replace(/^[，,；;\s]+|[，,；;\s]+$/g, "");
+  return cleaned
+    .split(/(?<=[。！？!?])/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean)
+    .filter((sentence) => !/(?:需要|仍需|应当)?(?:结合|回到|查阅).*原文|进一步核验|来源可靠|官方媒体|渠道权威|无法评估具体影响|具体内容未提供.*(?:数据|结论)|信息有限[。.!！]?$/i.test(sentence))
+    .join("");
+}
+
 function reportSentence(value) {
   const text = String(value || "").trim();
   if (!text) return "";
@@ -517,7 +566,7 @@ function reportSentence(value) {
 }
 
 function reportInsightBody(item) {
-  return stripReportLabels(item.significance)
+  return cleanReportProse(item.significance)
     .trim()
     .replace(/^(?:从)?(?:工程应用|工程实践|工程|借鉴意义|工程意义)(?:角度)?(?:来看|看)?[，,:：]?\s*/, "");
 }
@@ -530,9 +579,9 @@ function reportSubjectAppears(item) {
 }
 
 function reportOpening(item) {
-  if (reportSubjectAppears(item)) return reportSentence(item.action);
+  if (reportSubjectAppears(item)) return String(item.action || "").replace(/[。！？!?；;.]$/, "");
   const connector = item.article.sourceType === "论文" ? "围绕相关问题开展研究，" : "发布的信息显示，";
-  return reportSentence(`${item.subject}${connector}${item.action}`);
+  return `${item.subject}${connector}${item.action}`.replace(/[。！？!?；;.]$/, "");
 }
 
 function reportMissingDataPoints(item) {
@@ -545,11 +594,10 @@ function reportMissingDataPoints(item) {
 
 function reportNarrativePlain(item) {
   const missingData = reportMissingDataPoints(item);
-  const result = missingData.length ? reportSentence(`其中，${missingData.join("，")}`) : "";
-  const fallbackResult = !missingData.length && item.effect && !item.action.includes(item.effect)
-    ? reportSentence(item.effect)
-    : "";
-  return `${reportOpening(item)}${result || fallbackResult}${reportSentence(reportInsightBody(item))}`;
+  const opening = reportOpening(item);
+  const factual = [opening, ...missingData.map(cleanReportProse)].filter(Boolean).join("，");
+  const insight = reportInsightBody(item);
+  return `${reportSentence(factual)}${insight && !factual.includes(insight) ? reportSentence(insight) : ""}`;
 }
 
 function reportHighlightSegments(item) {
@@ -614,7 +662,7 @@ function reportItem(article) {
     action: reportAction(article),
     effect: reportEffect(article, dataPoints),
     dataPoints,
-    significance: article.engineeringImpact || "需要结合原文、机型和载荷边界进一步核验。"
+    significance: article.engineeringImpact || ""
   };
 }
 
@@ -1093,15 +1141,20 @@ async function downloadWeeklyReportPdf() {
 
 function titleClueCard(article) {
   const displayTitle = article.titleZh || article.title;
+  const level = articleInformationLevel(article);
+  const kind = level === "catalog"
+    ? article.sourceType === "论文" ? "论文题录" : `${article.sourceType || "资料"}题录`
+    : level === "brief" ? "题名简讯" : "待深读";
   return `
     <article class="clue-card" data-id="${escapeHtml(article.id)}">
       <div class="clue-marker"><i data-lucide="list-tree"></i></div>
       <div class="clue-main">
         <div class="clue-meta">
+          <span class="clue-kind level-${escapeHtml(level)}">${escapeHtml(kind)}</span>
           <span>${escapeHtml(article.source || "公开题录")}</span>
           <span>${escapeHtml(article.sourceType || "公开资讯")}</span>
           <time datetime="${escapeHtml(article.publishedAt)}">${formatDate(article.publishedAt)}</time>
-          <span class="component-chip">${escapeHtml(componentCategory(article))}</span>
+          <span class="clue-section">${escapeHtml(primarySection(article))}</span>
         </div>
         <h3><a href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer">${highlight(displayTitle)}</a></h3>
       </div>
@@ -1194,10 +1247,10 @@ function renderFeed() {
 
   elements.feedTitle.textContent = state.view === "saved"
     ? "我的收藏"
-    : state.query
+      : state.query
       ? "搜索结果"
-      : state.category === "标题线索"
-        ? "标题线索"
+      : state.category === COMPREHENSIVE_SECTION
+        ? COMPREHENSIVE_SECTION
         : state.category === "全部"
           ? "全部情报"
           : state.category;
@@ -1273,7 +1326,7 @@ function renderTrends() {
 }
 
 function renderDimensionFilters() {
-  if (["标题线索", "政策、市场与产业环境"].includes(state.category)) {
+  if ([COMPREHENSIVE_SECTION, "政策、市场与产业环境"].includes(state.category)) {
     elements.dimensionFilters.innerHTML = "";
     elements.dimensionFilters.hidden = true;
     return;
@@ -1986,7 +2039,7 @@ function wireEvents() {
   elements.trendList.addEventListener("click", (event) => {
     const button = event.target.closest("[data-trend]");
     if (button) {
-      if (["标题线索", "政策、市场与产业环境", "厂商与项目动态"].includes(state.category)) {
+      if ([COMPREHENSIVE_SECTION, "政策、市场与产业环境", "厂商与项目动态"].includes(state.category)) {
         setCategory("全部");
       }
       setComponent(button.dataset.trend);
@@ -2114,6 +2167,7 @@ async function loadData() {
     state.data = await response.json();
     state.articles = state.data.articles || [];
     renderWeeklyBrief();
+    renderCategoryCounts();
     renderTrends();
     renderWatchlist();
     renderDimensionFilters();

@@ -10,6 +10,7 @@ import {
   inferCategory,
   inferDrivetrainClassification,
   inferTags,
+  informationLevel,
   isDomainRelevant,
   isOfficialRelevant,
   isIndustryRelevant,
@@ -232,9 +233,37 @@ test("section classification assigns exactly one primary section", () => {
     title: "风电齿轮箱轴承跑圈故障案例与现场维修",
     sourceType: "行业资讯"
   });
-  assert.deepEqual(failureCase.sections, ["故障、质量与运维"]);
+  assert.deepEqual(failureCase.sections, ["传动链技术开发与质量运维"]);
   assert.equal(failureCase.failureModes.includes("轴承跑圈"), true);
   assert.equal(failureCase.developmentStages.includes("运维与技改"), true);
+});
+
+test("metadata records are separated into topical briefs, catalogs, leads, and noise", () => {
+  assert.equal(informationLevel({
+    title: "华能乾安四海20万千瓦风电项目全容量并网投产",
+    sourceType: "行业资讯",
+    evidence: { contentAccess: "metadata" }
+  }), "brief");
+  assert.equal(informationLevel({
+    title: "Wind turbine gearbox bearing degradation assessment",
+    sourceType: "论文",
+    evidence: { contentAccess: "metadata" }
+  }), "catalog");
+  assert.equal(informationLevel({
+    title: "风电产业观察",
+    sourceType: "行业资讯",
+    evidence: { contentAccess: "metadata" }
+  }), "lead");
+  assert.equal(informationLevel({
+    title: "陆上风电项目经理招聘 1.8-5.5万",
+    sourceType: "行业资讯",
+    evidence: { contentAccess: "metadata" }
+  }), "ignored");
+  assert.equal(informationLevel({
+    title: "风电齿轮箱试验",
+    sourceType: "技术资料",
+    evidence: { contentAccess: "fulltext" }
+  }), "readable");
 });
 
 test("WECS is not mislabeled as a white etching crack acronym", () => {

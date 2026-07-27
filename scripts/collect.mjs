@@ -972,7 +972,8 @@ async function enrichOpenAlexSourceMetrics(articles) {
 
 function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
   const readableArticles = articles.filter((article) => article.evidence?.contentAccess !== "metadata");
-  const clueCount = articles.length - readableArticles.length;
+  const briefCount = articles.filter((article) => ["brief", "catalog"].includes(article.informationLevel)).length;
+  const clueCount = articles.filter((article) => article.informationLevel === "lead").length;
   const counts = new Map();
   for (const article of readableArticles) {
     const topics = [article.primarySection || article.componentCategory || article.category];
@@ -991,7 +992,7 @@ function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
       ? `本周聚焦：${leadingTopics.join("、")}`
       : "本周暂无新增高相关资料",
     summary: readableArticles.length
-      ? `过去 ${lookbackDays} 天共筛选 ${readableArticles.length} 条可读情报，其中国内 ${domesticCount} 条、论文 ${paperCount} 篇，${fullTextCount} 条已提取公开全文${clueCount ? `；另有 ${clueCount} 条仅保留标题的线索` : ""}。资料库累计保留 ${archiveCount} 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。`
+      ? `过去 ${lookbackDays} 天共筛选 ${readableArticles.length} 条可读情报，其中国内 ${domesticCount} 条、论文 ${paperCount} 篇，${fullTextCount} 条已提取公开全文${briefCount ? `；另有 ${briefCount} 条题名简讯或论文题录已归入对应主栏目` : ""}${clueCount ? `，${clueCount} 条综合资讯等待深读` : ""}。资料库累计保留 ${archiveCount} 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。`
       : `过去 ${lookbackDays} 天未发现满足相关性阈值的新资料；资料库仍保留 ${archiveCount} 条历史记录供检索。`,
     signals: readableArticles.slice(0, 3).map((article) => article.title),
     metrics: {
@@ -999,6 +1000,7 @@ function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
       domestic: domesticCount,
       overseas: readableArticles.length - domesticCount,
       papers: paperCount,
+      briefs: briefCount,
       clues: clueCount
     },
     summaryMode: usedAi ? "全文优先 · AI 结构化" : readableArticles.length ? "全文优先 · 规则摘要" : "本周无新增"
@@ -1395,7 +1397,7 @@ async function main() {
 
   const payload = {
     app: "机械中心-传动技术部在线平台",
-    taxonomyVersion: 2,
+    taxonomyVersion: 3,
     generatedAt: now.toISOString(),
     period: {
       from: new Date(now.getTime() - lookbackDays * 86400000).toISOString(),
@@ -1413,7 +1415,10 @@ async function main() {
       rawFetched: rawArticles.length,
       currentCount: currentArticles.length,
       readableCount: currentArticles.filter((article) => article.evidence?.contentAccess !== "metadata").length,
-      clueCount: currentArticles.filter((article) => article.evidence?.contentAccess === "metadata").length,
+      metadataCount: currentArticles.filter((article) => article.evidence?.contentAccess === "metadata").length,
+      briefCount: currentArticles.filter((article) => ["brief", "catalog"].includes(article.informationLevel)).length,
+      clueCount: currentArticles.filter((article) => article.informationLevel === "lead").length,
+      ignoredCount: currentArticles.filter((article) => article.informationLevel === "ignored").length,
       fullTextCount: currentArticles.filter((article) => article.evidence?.contentAccess === "fulltext").length,
       abstractCount: currentArticles.filter((article) => article.evidence?.contentAccess === "abstract").length,
       archiveCount: articles.length,

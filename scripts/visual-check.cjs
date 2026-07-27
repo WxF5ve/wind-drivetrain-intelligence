@@ -51,7 +51,8 @@ async function inspectLayout(page, label) {
     technicalLabels: document.querySelectorAll(".technical-labels").length,
     componentChips: document.querySelectorAll(".article-card .component-chip").length,
     dimensionFilters: document.querySelectorAll(".dimension-filter").length,
-    activeCategory: document.querySelector(".category-tab.active")?.textContent?.trim(),
+    activeCategory: document.querySelector(".category-tab.active > span")?.textContent?.trim(),
+    categoryCounts: [...document.querySelectorAll("[data-category-count]")].map((item) => Number(item.textContent || 0)),
     brand: document.querySelector(".brand strong")?.textContent?.trim()
   }));
   if (result.bodyScrollWidth > result.viewportWidth + 1) {
@@ -62,7 +63,10 @@ async function inspectLayout(page, label) {
   if (result.accessBadges < result.cards) throw new Error(`${label} is missing content access badges`);
   if (!result.technicalLabels) throw new Error(`${label} rendered no drivetrain technical labels`);
   if (result.componentChips !== result.cards) throw new Error(`${label} is missing primary component labels`);
-  if (result.activeCategory !== "技术与产品开发") throw new Error(`${label} did not default to technical development`);
+  if (result.activeCategory !== "传动链技术开发与质量运维") throw new Error(`${label} did not default to technical development and quality operations`);
+  if (result.categoryCounts.length !== 6 || result.categoryCounts.some((count) => !Number.isFinite(count))) {
+    throw new Error(`${label} did not expose stable main-section counts`);
+  }
   if (!result.dimensionFilters) throw new Error(`${label} rendered no drivetrain component filters`);
   if (result.brand !== "机械中心-传动技术部在线平台") throw new Error(`${label} rendered the wrong platform name`);
   return result;
@@ -87,12 +91,12 @@ async function inspectLayout(page, label) {
     const desktopLayout = await inspectLayout(desktop, "desktop");
     await desktop.screenshot({ path: path.join(outputDir, "desktop.png") });
 
-    await desktop.locator('[data-category="标题线索"]').click();
+    await desktop.locator('[data-category="综合资讯与待深读线索"]').click();
     await desktop.waitForTimeout(150);
     const clueCards = await desktop.locator(".clue-card").count();
     const verboseClueCards = await desktop.locator(".clue-card .article-summary").count();
     if (!clueCards || verboseClueCards) {
-      throw new Error(`Title clue pool did not render compact entries: ${clueCards} clues, ${verboseClueCards} summaries`);
+      throw new Error(`Comprehensive lead pool did not render compact entries: ${clueCards} clues, ${verboseClueCards} summaries`);
     }
     await desktop.screenshot({ path: path.join(outputDir, "title-clues.png") });
     await desktop.locator('[data-category="厂商与项目动态"]').click();
@@ -100,7 +104,7 @@ async function inspectLayout(page, label) {
     if (!(await desktop.locator('[data-industry-category="传动链企业"]').count())) {
       throw new Error("Manufacturer section did not expose its internal categories");
     }
-    await desktop.locator('[data-category="技术与产品开发"]').click();
+    await desktop.locator('[data-category="传动链技术开发与质量运维"]').click();
     await desktop.waitForTimeout(100);
 
     await desktop.locator('[data-category="全部"]').click();
@@ -165,6 +169,13 @@ async function inspectLayout(page, label) {
     if (!reportOrganizationHighlights) throw new Error("Weekly report did not highlight any organizations");
     if (reportNarrativeText.some((text) => /(?:主体|做了什么|效果|关键数据|关键点|工程意义|公开资料披露)[：:]/.test(text))) {
       throw new Error("Weekly report still contains template field labels");
+    }
+    const prohibitedReportText = reportNarrativeText.filter((text) => /其中[，,]|项目容量为|计划节点为|公开金额为|来源为官方媒体|信息渠道来自官方媒体|属于行业资讯/.test(text));
+    if (prohibitedReportText.length) {
+      throw new Error(`Weekly report still appends standalone fields or source evaluations:\n${prohibitedReportText.join("\n")}`);
+    }
+    if (reportNarrativeText.some((text) => /[，,；;]\s*20\d{2}[-/.年]\d{1,2}(?:[-/.月]\d{1,2}日?)?[。.!！?？]/.test(text))) {
+      throw new Error("Weekly report still appends a standalone timeline value");
     }
     await desktop.locator(".report-item").first().screenshot({ path: path.join(outputDir, "weekly-report-item.png") });
     await reportDownload.saveAs(path.join(outputDir, "weekly-report.pdf"));
