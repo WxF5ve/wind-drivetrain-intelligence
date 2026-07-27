@@ -1,8 +1,50 @@
+const DRIVETRAIN_COMPONENTS = [
+  "传动链总体",
+  "齿轮箱总成",
+  "主轴系统",
+  "行星级",
+  "平行轴级",
+  "齿轮件",
+  "齿轮箱轴承",
+  "滑动轴承系统",
+  "箱体与支承",
+  "轴系连接",
+  "润滑冷却与密封",
+  "制动与高速端",
+  "监测与传感"
+];
+
+const INDUSTRY_CATEGORIES = ["传动链企业", "整机与开发商", "项目进展", "企业动态"];
+const PRIMARY_SECTIONS = [
+  "技术与产品开发",
+  "故障、质量与运维",
+  "论文、标准与专利",
+  "厂商与项目动态",
+  "政策、市场与产业环境"
+];
+
+const LEGACY_SECTION_MAP = {
+  "风电传动链专栏": "技术与产品开发",
+  "企业与项目追踪": "厂商与项目动态",
+  "风电行业全景": "政策、市场与产业环境"
+};
+
+const LEGACY_COMPONENT_MAP = {
+  "主轴与主轴承": "主轴系统",
+  "箱体与扭力臂": "箱体与支承",
+  "发电机与高速端接口": "制动与高速端",
+  "监测与传感系统": "监测与传感",
+  "齿轮箱总成与架构": "齿轮箱总成",
+  "传动链系统与整机接口": "传动链总体"
+};
+
 const state = {
   data: null,
   articles: [],
   query: "",
-  category: "风电传动链专栏",
+  category: "技术与产品开发",
+  component: "全部部件",
+  industryCategory: "全部动态",
   region: "全部",
   sourceType: "全部",
   sort: "latest",
@@ -33,6 +75,7 @@ const elements = {
   clearSearch: document.querySelector("#clear-search"),
   dialogContent: document.querySelector("#dialog-content"),
   dialogSource: document.querySelector("#dialog-source"),
+  dimensionFilters: document.querySelector("#dimension-filters"),
   feedTitle: document.querySelector("#feed-title"),
   filterCount: document.querySelector("#filter-count"),
   filterDialog: document.querySelector("#filter-dialog"),
@@ -173,6 +216,11 @@ function articleSearchScore(article) {
       ...(article.sections || []),
       ...(article.technicalDomains || []),
       ...(article.technicalTags || []),
+      ...(article.componentTags || []),
+      ...(article.failureModes || []),
+      ...(article.developmentStages || []),
+      ...(article.evidenceTypes || []),
+      article.industryCategory,
       article.componentCategory,
       article.drivetrainComponent,
       ...(article.drivetrainComponents || [])
@@ -225,14 +273,15 @@ function matchesCategory(article) {
   if (state.category === "标题线索") return clue;
   if (clue) return false;
   if (state.category === "全部") return true;
-  const sections = articleSections(article);
-  return sections.includes(state.category) ||
-    article.category === state.category ||
-    componentCategory(article) === state.category ||
-    drivetrainComponents(article).includes(state.category) ||
-    (article.tags || []).includes(state.category) ||
-    (article.technicalDomains || []).includes(state.category) ||
-    (article.technicalTags || []).includes(state.category);
+  return primarySection(article) === state.category;
+}
+
+function matchesDimension(article) {
+  if (state.category === "厂商与项目动态") {
+    return state.industryCategory === "全部动态" || article.industryCategory === state.industryCategory;
+  }
+  if (state.component === "全部部件") return true;
+  return componentCategory(article) === state.component || drivetrainComponents(article).includes(state.component);
 }
 
 function isTitleClue(article) {
@@ -240,24 +289,20 @@ function isTitleClue(article) {
 }
 
 function articleSections(article) {
-  if (Array.isArray(article.sections) && article.sections.length) return article.sections;
-  const sections = [];
-  if (article.intelligenceType === "official") sections.push("风电行业全景");
-  if (article.intelligenceType === "industry") sections.push("企业与项目追踪");
-  if (article.intelligenceType === "technical" || article.sourceType === "论文" || (article.tags || []).some((tag) =>
-    ["齿轮箱", "轴承", "润滑", "状态监测", "白色蚀刻裂纹"].includes(tag)
-  )) sections.push("风电传动链专栏");
-  return sections.length ? [...new Set(sections)] : ["风电行业全景"];
+  return [primarySection(article)];
 }
 
 function primarySection(article) {
-  if (article.primarySection) return article.primarySection;
-  const sections = articleSections(article);
-  return sections.includes("风电传动链专栏")
-    ? "风电传动链专栏"
-    : sections.includes("企业与项目追踪")
-      ? "企业与项目追踪"
-      : "风电行业全景";
+  if (PRIMARY_SECTIONS.includes(article.primarySection)) return article.primarySection;
+  if (["论文", "标准", "专利"].includes(article.sourceType)) return "论文、标准与专利";
+  const failureSignals = [
+    ...(article.failureModes || []),
+    ...(article.technicalDomains || []).filter((domain) => ["失效分析", "失效与质量"].includes(domain))
+  ];
+  if (failureSignals.length && article.intelligenceType !== "official") return "故障、质量与运维";
+  if (article.intelligenceType === "industry") return "厂商与项目动态";
+  if (article.intelligenceType === "official") return "政策、市场与产业环境";
+  return LEGACY_SECTION_MAP[article.primarySection] || "技术与产品开发";
 }
 
 function technicalDomains(article) {
@@ -279,22 +324,23 @@ function technicalTags(article) {
 
 function componentCategory(article) {
   if (article.componentCategory || article.drivetrainComponent) {
-    return article.componentCategory || article.drivetrainComponent;
+    const component = article.componentCategory || article.drivetrainComponent;
+    if (["行业政策与市场", "企业与项目综合"].includes(component)) return "行业综合";
+    return LEGACY_COMPONENT_MAP[component] || component;
   }
   const tags = technicalTags(article);
   if (tags.some((tag) => ["行星传动", "行星架强度"].includes(tag))) return "行星级";
   if (tags.some((tag) => ["滚动轴承", "轴承跑圈与配合", "游隙与预紧", "保持架与滚动体"].includes(tag))) return "齿轮箱轴承";
   if (tags.some((tag) => ["润滑油与添加剂", "油液污染与磨粒", "热平衡与润滑系统"].includes(tag))) return "润滑冷却与密封";
-  if (primarySection(article) === "企业与项目追踪") return "企业与项目综合";
-  if (primarySection(article) === "风电行业全景") return "行业政策与市场";
-  return "传动链系统与整机接口";
+  if (["厂商与项目动态", "政策、市场与产业环境"].includes(primarySection(article))) return "行业综合";
+  return "传动链总体";
 }
 
 function drivetrainComponents(article) {
   if (Array.isArray(article.drivetrainComponents) && article.drivetrainComponents.length) {
-    return article.drivetrainComponents;
+    return [...new Set(article.drivetrainComponents.map((component) => LEGACY_COMPONENT_MAP[component] || component))];
   }
-  return primarySection(article) === "风电传动链专栏" ? [componentCategory(article)] : [];
+  return componentCategory(article) === "行业综合" ? [] : [componentCategory(article)];
 }
 
 function contentAccessMeta(article) {
@@ -316,6 +362,7 @@ function getVisibleArticles() {
     .filter(({ article, searchScore }) => {
       if (searchScore < 0) return false;
       if (!matchesCategory(article)) return false;
+      if (!matchesDimension(article)) return false;
       if (state.region !== "全部" && article.region !== state.region) return false;
       if (!matchesSourceType(article)) return false;
       if (state.view === "saved" && !state.saved.has(article.id)) return false;
@@ -370,16 +417,22 @@ function renderWeeklyBrief() {
 }
 
 const weeklyReportGroups = [
-  { key: "drivetrain", title: "风电传动链专栏", caption: "传动系统设计、制造、失效、仿真、试验与研究进展" },
-  { key: "panorama", title: "风电行业全景", caption: "政策、规划、装机、市场与产业技术动态" },
-  { key: "enterprise", title: "企业与项目追踪", caption: "整机、部件、供应链企业及风电项目进展" }
+  { key: "development", title: "技术与产品开发", caption: "传动链设计、制造、仿真、试验与产品验证" },
+  { key: "quality", title: "故障、质量与运维", caption: "公开故障、质量问题、诊断方法与现场改进" },
+  { key: "research", title: "论文、标准与专利", caption: "研究结论、标准变化与公开专利进展" },
+  { key: "industry", title: "厂商与项目动态", caption: "传动链企业、整机厂商与项目进展" },
+  { key: "environment", title: "政策、市场与产业环境", caption: "政策、规划、市场和供应链环境变化" }
 ];
 
 function reportGroupKey(article) {
   const section = primarySection(article);
-  if (section === "风电传动链专栏") return "drivetrain";
-  if (section === "企业与项目追踪") return "enterprise";
-  return "panorama";
+  return {
+    "技术与产品开发": "development",
+    "故障、质量与运维": "quality",
+    "论文、标准与专利": "research",
+    "厂商与项目动态": "industry",
+    "政策、市场与产业环境": "environment"
+  }[section] || "development";
 }
 
 function reportUnique(values) {
@@ -389,9 +442,9 @@ function reportUnique(values) {
 function reportQuantitativeFindings(article) {
   return (article.paperDetails?.quantitativeFindings || [])
     .map((item) => {
-      const value = `${item.metric || "指标"}：${item.value || ""}${item.unit || ""}`;
+      const value = `${item.metric || "相关指标"}达到${item.value || ""}${item.unit || ""}`;
       const comparison = item.comparison && /\d/.test(item.comparison) && item.comparison.length <= 48
-        ? `，${item.comparison}`
+        ? `，相较之下${item.comparison}`
         : "";
       return `${value}${comparison}`;
     })
@@ -401,10 +454,10 @@ function reportQuantitativeFindings(article) {
 function reportDataPoints(article) {
   const details = article.industryDetails || {};
   const industryPoints = [
-    details.capacity ? `项目容量：${details.capacity}` : "",
-    details.investment ? `投资/金额：${details.investment}` : "",
-    details.timeline ? `时间线：${details.timeline}` : "",
-    ...(details.quantitativeFacts || [])
+    details.capacity ? `项目容量为${details.capacity}` : "",
+    details.investment ? `公开金额为${details.investment}` : "",
+    details.timeline ? `计划节点为${details.timeline}` : "",
+    ...(details.quantitativeFacts || []).map((point) => stripReportLabels(point))
   ];
   const paperPoints = reportQuantitativeFindings(article);
   const fallbackPoints = (article.keyPoints || []).filter((point) => /\d/.test(point));
@@ -437,23 +490,22 @@ function reportAction(article) {
       .trim()
       .replace(/^方法[：:]\s*/, "")
       .replace(/[。；;.]$/, "");
-    return method ? `${objective}，并采用${method}` : objective;
+    return stripReportLabels(method ? `${objective}，并采用${method}` : objective);
   }
-  return summary;
+  return stripReportLabels(summary);
 }
 
 function reportEffect(article, dataPoints) {
-  if (dataPoints.length) return `公开资料披露：${dataPoints.slice(0, 3).join("；")}`;
-  const verification = article.industryDetails?.verificationStatus;
-  const timeline = article.industryDetails?.timeline;
-  const limitation = article.paperDetails?.limitations?.[0];
-  if (article.sourceType === "论文") {
-    return `公开摘要未披露可核验量化效果${limitation ? `；已知限制：${limitation}` : ""}。`;
-  }
-  if (verification || timeline) {
-    return `${verification || "公开报道"}${timeline ? `；${timeline}` : ""}；公开摘录未披露可核验量化效果。`;
-  }
-  return `${article.keyPoints?.[0] || "公开摘录未给出明确效果"}；公开摘录未披露可核验量化效果。`;
+  if (dataPoints.length) return dataPoints.slice(0, 3).join("，");
+  return stripReportLabels(article.keyPoints?.find((point) => point && point !== article.summary) || "");
+}
+
+function stripReportLabels(value) {
+  return String(value || "")
+    .replace(/(^|[。；]\s*)(?:主体|做了什么|事件|效果|结果|关键数据|关键点|工程意义|借鉴意义|公开资料披露|项目容量|投资\/金额|时间线)[：:]\s*/g, "$1")
+    .replace(/[；;]\s*(?=[\u4e00-\u9fffA-Za-z])/g, "，")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function reportSentence(value) {
@@ -462,30 +514,93 @@ function reportSentence(value) {
   return /[。！？!?；;.]$/.test(text) ? text : `${text}。`;
 }
 
-function reportEventLead(item) {
-  return item.article.sourceType === "论文" ? "开展了相关研究。" : "披露了相关进展。";
-}
-
 function reportInsightBody(item) {
-  return String(item.significance || "")
+  return stripReportLabels(item.significance)
     .trim()
     .replace(/^(?:从)?(?:工程应用|工程实践|工程|借鉴意义|工程意义)(?:角度)?(?:来看|看)?[，,:：]?\s*/, "");
 }
 
-function reportSubjectLead(item) {
+function reportSubjectAppears(item) {
   const action = String(item.action || "").toLowerCase();
   const subject = String(item.subject || "").trim();
   const subjectProbe = subject.split(/[（(、]/)[0].toLowerCase();
-  return subjectProbe && action.includes(subjectProbe)
-    ? ""
-    : `${subject}${reportEventLead(item)}`;
+  return Boolean(subjectProbe && action.includes(subjectProbe));
+}
+
+function reportOpening(item) {
+  if (reportSubjectAppears(item)) return reportSentence(item.action);
+  const connector = item.article.sourceType === "论文" ? "围绕相关问题开展研究，" : "发布的信息显示，";
+  return reportSentence(`${item.subject}${connector}${item.action}`);
+}
+
+function reportMissingDataPoints(item) {
+  const action = item.action.toLowerCase();
+  return item.dataPoints.filter((point) => {
+    const numberTokens = point.toLowerCase().match(/\d+(?:\.\d+)?\s*(?:mw|gw|kw|%|亿元|万元|年|月|日|小时|h)?/g) || [];
+    return numberTokens.length && !numberTokens.every((token) => action.includes(token.replace(/\s+/g, "")) || action.replace(/\s+/g, "").includes(token.replace(/\s+/g, "")));
+  });
 }
 
 function reportNarrativePlain(item) {
-  const result = item.dataPoints.length
-    ? reportSentence(`公开资料披露${item.dataPoints.join("；")}`)
-    : reportSentence(item.effect);
-  return `${reportSubjectLead(item)}${reportSentence(item.action)}${result}${reportSentence(reportInsightBody(item))}`;
+  const missingData = reportMissingDataPoints(item);
+  const result = missingData.length ? reportSentence(`其中，${missingData.join("，")}`) : "";
+  const fallbackResult = !missingData.length && item.effect && !item.action.includes(item.effect)
+    ? reportSentence(item.effect)
+    : "";
+  return `${reportOpening(item)}${result || fallbackResult}${reportSentence(reportInsightBody(item))}`;
+}
+
+function reportHighlightSegments(item) {
+  const narrative = reportNarrativePlain(item);
+  const roles = Array.from({ length: narrative.length }, () => "");
+  const applyRange = (start, length, role) => {
+    for (let index = start; index < start + length; index += 1) {
+      if (!roles[index]) roles[index] = role;
+    }
+  };
+  for (const match of narrative.matchAll(/\d+(?:\.\d+)?\s*(?:mw|gw|kw|%|亿元|万元|年|月|日|倍|台|套|小时|h|℃|°c)?/gi)) {
+    applyRange(match.index, match[0].length, "data");
+  }
+  const organizations = reportUnique([
+    ...(item.article.industryDetails?.companies || []),
+    item.article.evidence?.journal,
+    item.article.source,
+    item.subject
+  ]).sort((left, right) => right.length - left.length);
+  const technologies = reportUnique([
+    ...(item.article.componentTags || []),
+    ...(item.article.technicalTags || []),
+    ...(item.article.failureModes || [])
+  ]).sort((left, right) => right.length - left.length);
+  for (const [terms, role] of [[organizations, "organization"], [technologies, "technology"]]) {
+    for (const term of terms) {
+      let start = narrative.indexOf(term);
+      while (start >= 0) {
+        applyRange(start, term.length, role);
+        start = narrative.indexOf(term, start + term.length);
+      }
+    }
+  }
+  const segments = [];
+  Array.from(narrative).forEach((character, index) => {
+    const role = roles[index] || "body";
+    const previous = segments[segments.length - 1];
+    if (previous?.role === role) previous.text += character;
+    else segments.push({ text: character, role });
+  });
+  return segments;
+}
+
+function reportNarrativeHtml(item) {
+  const classes = {
+    data: "report-key-data",
+    organization: "report-key-organization",
+    technology: "report-key-technology"
+  };
+  return reportHighlightSegments(item).map((segment) => {
+    const content = escapeHtml(segment.text);
+    return classes[segment.role] ? `<mark class="${classes[segment.role]}">${content}</mark>` : content;
+  }).join("");
 }
 
 function reportItem(article) {
@@ -519,7 +634,7 @@ function buildWeeklyReport() {
   const quantified = articles.filter((item) => item.dataPoints.length).length;
   const domestic = articles.filter((item) => item.article.region === "国内").length;
   const papers = articles.filter((item) => item.article.sourceType === "论文").length;
-  const industry = articles.filter((item) => item.group === "enterprise" || item.group === "panorama").length;
+  const industry = articles.filter((item) => item.group === "industry" || item.group === "environment").length;
   const highlights = [...articles]
     .sort((left, right) => {
       const score = (item) => (item.article.reliability?.score || 0) + (item.article.relevanceScore || 0) * 2 + (item.dataPoints.length ? 6 : 0);
@@ -543,9 +658,6 @@ function weeklyReportPeriod(model) {
 function renderReportItem(item, index) {
   const article = item.article;
   const reliability = article.reliability || { grade: "D", label: "谨慎", score: 0 };
-  const resultHtml = item.dataPoints.length
-    ? `公开资料披露${item.dataPoints.map((point) => `<mark class="report-key-data">${escapeHtml(point)}</mark>`).join("；")}。`
-    : escapeHtml(reportSentence(item.effect));
   return `
     <article class="report-item">
       <div class="report-item-number">${String(index + 1).padStart(2, "0")}</div>
@@ -559,7 +671,7 @@ function renderReportItem(item, index) {
         </div>
         <h3>${escapeHtml(article.titleZh || article.title)}</h3>
         <div class="report-narrative">
-          <p class="report-paragraph">${escapeHtml(reportSubjectLead(item))}${escapeHtml(reportSentence(item.action))}${resultHtml}${escapeHtml(reportSentence(reportInsightBody(item)))}</p>
+          <p class="report-paragraph">${reportNarrativeHtml(item)}</p>
         </div>
         <a class="report-source-link" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link"></i>阅读原文</a>
       </div>
@@ -570,17 +682,17 @@ function renderReportItem(item, index) {
 function renderWeeklyReport(model = buildWeeklyReport()) {
   activeWeeklyReport = model;
   const reportSummary = model.metrics.total
-    ? `最近一周收录 ${model.metrics.total} 条资料，其中国内 ${model.metrics.domestic} 条、海外 ${model.metrics.overseas} 条；包含 ${model.metrics.papers} 篇论文和 ${model.metrics.industry} 条行业全景/企业动态，其中 ${model.metrics.quantified} 条包含可核验的必要数据。`
+    ? `最近一周收录 ${model.metrics.total} 条资料，其中国内 ${model.metrics.domestic} 条、海外 ${model.metrics.overseas} 条；包含 ${model.metrics.papers} 篇论文和 ${model.metrics.industry} 条产业或厂商动态，其中 ${model.metrics.quantified} 条包含可核验的必要数据。`
     : "最近一周没有符合当前采集和相关性规则的资料。";
   elements.weeklyReportToolbarPeriod.textContent = weeklyReportPeriod(model);
   elements.weeklyReportContent.innerHTML = `
     <header class="report-cover">
       <span class="report-kicker">MECHANICAL CENTER · DRIVETRAIN TECHNOLOGY</span>
-      <h1>机械中心-传动技术部风电情报周报</h1>
+      <h1>机械中心-传动技术部风电传动链情报周报</h1>
       <p>${escapeHtml(weeklyReportPeriod(model))} · 数据截至 ${escapeHtml(formatDate(model.end))}</p>
       <div class="report-metrics">
         <div><strong>${model.metrics.total}</strong><span>周内资料</span></div>
-        <div><strong>${model.metrics.industry}</strong><span>全景/企业动态</span></div>
+        <div><strong>${model.metrics.industry}</strong><span>产业/厂商动态</span></div>
         <div><strong>${model.metrics.papers}</strong><span>研究论文</span></div>
         <div><strong>${model.metrics.quantified}</strong><span>含必要数据</span></div>
       </div>
@@ -607,7 +719,7 @@ function renderWeeklyReport(model = buildWeeklyReport()) {
 
 function weeklyReportPlainText(model = activeWeeklyReport || buildWeeklyReport()) {
   const lines = [
-    "机械中心-传动技术部风电情报周报",
+    "机械中心-传动技术部风电传动链情报周报",
     `报告范围：${weeklyReportPeriod(model)}，数据截至 ${formatDate(model.end)}`,
     `周内资料：${model.metrics.total}；国内：${model.metrics.domestic}；海外：${model.metrics.overseas}；论文：${model.metrics.papers}；含必要数据：${model.metrics.quantified}`,
     ""
@@ -633,7 +745,7 @@ function openWeeklyReport({ download = false, updateUrl = true } = {}) {
     url.searchParams.set("report", "weekly");
     history.replaceState(null, "", url);
   }
-  updateShareMetadata(`机械中心-传动技术部风电情报周报｜${weeklyReportPeriod(activeWeeklyReport)}`, weeklyReportPlainText(activeWeeklyReport).slice(0, 180));
+  updateShareMetadata(`机械中心-传动技术部风电传动链情报周报｜${weeklyReportPeriod(activeWeeklyReport)}`, weeklyReportPlainText(activeWeeklyReport).slice(0, 180));
   if (download) void downloadWeeklyReportPdf();
 }
 
@@ -665,7 +777,7 @@ async function shareWeeklyReport() {
   url.searchParams.delete("article");
   url.searchParams.set("report", "weekly");
   return shareContent({
-    title: `机械中心-传动技术部风电情报周报｜${weeklyReportPeriod(activeWeeklyReport || buildWeeklyReport())}`,
+    title: `机械中心-传动技术部风电传动链情报周报｜${weeklyReportPeriod(activeWeeklyReport || buildWeeklyReport())}`,
     text: weeklyReportPlainText().slice(0, 500),
     url: url.toString()
   });
@@ -771,7 +883,7 @@ function pdfPlainHeight(context, value, maxWidth, options = {}) {
 
 function pdfOverviewText(model) {
   return model.metrics.total
-    ? `最近一周收录 ${model.metrics.total} 条资料，其中国内 ${model.metrics.domestic} 条、海外 ${model.metrics.overseas} 条；包含 ${model.metrics.papers} 篇论文和 ${model.metrics.industry} 条行业全景/企业动态，其中 ${model.metrics.quantified} 条包含可核验的必要数据。`
+    ? `最近一周收录 ${model.metrics.total} 条资料，其中国内 ${model.metrics.domestic} 条、海外 ${model.metrics.overseas} 条；包含 ${model.metrics.papers} 篇论文和 ${model.metrics.industry} 条产业或厂商动态，其中 ${model.metrics.quantified} 条包含可核验的必要数据。`
     : "最近一周没有符合当前采集和相关性规则的资料。";
 }
 
@@ -784,28 +896,23 @@ function pdfNewPage(model, pages, pageNumber) {
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.fillStyle = "#153a31";
   context.fillRect(0, 0, canvas.width, 94);
-  pdfText(context, "机械中心-传动技术部  |  风电情报周报", pdfPageSize.margin, 59, 700, { size: 21, weight: 700, color: "#ffffff" });
+  pdfText(context, "机械中心-传动技术部  |  风电传动链情报周报", pdfPageSize.margin, 59, 700, { size: 21, weight: 700, color: "#ffffff" });
   pdfText(context, `${weeklyReportPeriod(model)}  |  第 ${pageNumber} 页`, 850, 59, 310, { size: 16, color: "#dbece5" });
   pages.push(canvas);
   return { canvas, context, y: 142 };
 }
 
 function pdfNarrativeSegments(item) {
-  const segments = [
-    { text: `${reportSubjectLead(item)}${reportSentence(item.action)}`, color: "#34463f" }
-  ];
-  if (!item.dataPoints.length) {
-    segments.push({ text: reportSentence(item.effect), color: "#34463f" });
-  } else {
-    segments.push({ text: "公开资料披露", color: "#34463f" });
-    item.dataPoints.forEach((point, index) => {
-      if (index) segments.push({ text: "；", color: "#34463f" });
-      segments.push({ text: point, color: "#a96712", weight: 700 });
-    });
-    segments.push({ text: "。", color: "#34463f" });
-  }
-  segments.push({ text: reportSentence(reportInsightBody(item)), color: "#34463f" });
-  return segments;
+  const styles = {
+    body: { color: "#34463f", weight: 400 },
+    data: { color: "#a96712", weight: 700 },
+    organization: { color: "#176c55", weight: 700 },
+    technology: { color: "#2e7680", weight: 700 }
+  };
+  return reportHighlightSegments(item).map((segment) => ({
+    text: segment.text,
+    ...styles[segment.role]
+  }));
 }
 
 function pdfItemHeight(context, item) {
@@ -846,9 +953,9 @@ function createWeeklyReportCanvases(model) {
   context.fillStyle = "#153a31";
   context.fillRect(0, 94, pdfPageSize.width, 250);
   pdfText(context, "MECHANICAL CENTER · DRIVETRAIN TECHNOLOGY", pdfPageSize.margin, 160, 800, { size: 18, weight: 700, color: "#b9ded0" });
-  pdfText(context, "机械中心-传动技术部风电情报周报", pdfPageSize.margin, 214, 590, { size: 38, weight: 700, color: "#ffffff", lineHeight: 52 });
+  pdfText(context, "机械中心-传动技术部风电传动链情报周报", pdfPageSize.margin, 214, 620, { size: 38, weight: 700, color: "#ffffff", lineHeight: 52 });
   pdfText(context, `${weeklyReportPeriod(model)}  ·  数据截至 ${formatDate(model.end)}`, pdfPageSize.margin, 322, 590, { size: 18, color: "#dbece5" });
-  const metricLabels = [[model.metrics.total, "周内资料"], [model.metrics.industry, "全景/企业动态"], [model.metrics.papers, "研究论文"], [model.metrics.quantified, "含必要数据"]];
+  const metricLabels = [[model.metrics.total, "周内资料"], [model.metrics.industry, "产业/厂商动态"], [model.metrics.papers, "研究论文"], [model.metrics.quantified, "含必要数据"]];
   metricLabels.forEach(([value, label], index) => {
     const x = 700 + index * 125;
     pdfText(context, String(value), x, 180, 110, { size: 30, weight: 700, color: "#f5d898" });
@@ -1007,7 +1114,12 @@ function articleCard(article) {
   const displayTitle = article.titleZh || article.title;
   const access = contentAccessMeta(article);
   const domains = technicalDomains(article).slice(0, 2);
-  const detailTags = technicalTags(article).slice(0, 5);
+  const detailTags = [...new Set([
+    ...(article.componentTags || []),
+    ...technicalTags(article),
+    ...(article.failureModes || []),
+    ...(article.developmentStages || [])
+  ])].slice(0, 6);
   const components = drivetrainComponents(article).slice(1, 3);
   return `
     <article class="article-card" data-id="${escapeHtml(article.id)}">
@@ -1047,7 +1159,8 @@ function articleCard(article) {
         <div class="article-footer">
           <div class="tag-list">
             <span class="tag source-type-tag">${escapeHtml(article.sourceType || "公开资讯")}</span>
-            ${articleSections(article).filter((section) => section !== primarySection(article)).slice(0, 1).map((section) => `<span class="tag">兼属 ${escapeHtml(section)}</span>`).join("")}
+            ${article.industryCategory ? `<span class="tag">${escapeHtml(article.industryCategory)}</span>` : ""}
+            ${(article.evidenceTypes || []).slice(0, 1).map((type) => `<span class="tag">${escapeHtml(type)}</span>`).join("")}
           </div>
           <div class="article-actions">
             <button class="icon-button ${saved ? "saved" : ""}" type="button" data-action="save" title="${saved ? "取消收藏" : "收藏"}" aria-label="${saved ? "取消收藏" : "收藏"}">
@@ -1071,6 +1184,8 @@ function renderFeed() {
   const hasFilters =
     state.query ||
     state.category !== "全部" ||
+    state.component !== "全部部件" ||
+    state.industryCategory !== "全部动态" ||
     state.region !== "全部" ||
     state.sourceType !== "全部" ||
     state.view === "saved";
@@ -1081,7 +1196,9 @@ function renderFeed() {
       ? "搜索结果"
       : state.category === "标题线索"
         ? "标题线索"
-        : "最新情报";
+        : state.category === "全部"
+          ? "全部情报"
+          : state.category;
   elements.resultCount.textContent = `找到 ${articles.length} 条资料${hasFilters ? "，已按当前条件筛选" : ""}`;
   elements.clearSearch.hidden = !state.query;
 
@@ -1109,6 +1226,8 @@ function renderActiveFilters() {
   const filters = [];
   if (state.query) filters.push({ key: "query", label: `关键词：${state.query}` });
   if (state.category !== "全部") filters.push({ key: "category", label: state.category });
+  if (state.component !== "全部部件") filters.push({ key: "component", label: state.component });
+  if (state.industryCategory !== "全部动态") filters.push({ key: "industryCategory", label: state.industryCategory });
   if (state.region !== "全部") filters.push({ key: "region", label: state.region });
   if (state.sourceType !== "全部") filters.push({ key: "sourceType", label: state.sourceType });
   if (state.view === "saved") filters.push({ key: "view", label: "仅看收藏" });
@@ -1151,6 +1270,24 @@ function renderTrends() {
     .join("");
 }
 
+function renderDimensionFilters() {
+  if (["标题线索", "政策、市场与产业环境"].includes(state.category)) {
+    elements.dimensionFilters.innerHTML = "";
+    elements.dimensionFilters.hidden = true;
+    return;
+  }
+  const isIndustry = state.category === "厂商与项目动态";
+  const values = isIndustry ? ["全部动态", ...INDUSTRY_CATEGORIES] : ["全部部件", ...DRIVETRAIN_COMPONENTS];
+  const current = isIndustry ? state.industryCategory : state.component;
+  const attribute = isIndustry ? "data-industry-category" : "data-component";
+  elements.dimensionFilters.hidden = false;
+  elements.dimensionFilters.innerHTML = values.map((value) => `
+    <button class="dimension-filter ${current === value ? "active" : ""}" type="button" ${attribute}="${escapeHtml(value)}">
+      ${escapeHtml(value)}
+    </button>
+  `).join("");
+}
+
 function renderWatchlist() {
   elements.watchList.innerHTML = state.watchlist
     .map(
@@ -1169,8 +1306,19 @@ function renderWatchlist() {
 
 function setCategory(category) {
   state.category = category;
+  state.component = "全部部件";
+  state.industryCategory = "全部动态";
   document.querySelectorAll("[data-category]").forEach((button) => {
     button.classList.toggle("active", button.dataset.category === category);
+  });
+  renderDimensionFilters();
+  renderFeed();
+}
+
+function setComponent(component) {
+  state.component = component;
+  document.querySelectorAll("[data-component]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.component === component);
   });
   renderFeed();
 }
@@ -1205,18 +1353,27 @@ function renderTechnicalClassification(article) {
   const domains = technicalDomains(article);
   const tags = technicalTags(article);
   const components = drivetrainComponents(article);
+  const componentTags = article.componentTags || [];
+  const failureModes = article.failureModes || [];
+  const developmentStages = article.developmentStages || [];
+  const evidenceTypes = article.evidenceTypes || [];
   if (!sections.length && !domains.length && !tags.length) return "";
   return `
     <section class="classification-panel" aria-labelledby="classification-title">
       <div class="classification-heading">
         <span>TECHNICAL CLASSIFICATION</span>
-        <h3 id="classification-title">栏目与技术标签</h3>
+        <h3 id="classification-title">传动链精准分类</h3>
       </div>
       <div class="classification-row"><strong>所属栏目</strong><div>${sections.map((section) => `<span class="section-chip">${escapeHtml(section)}</span>`).join("")}</div></div>
       <div class="classification-row"><strong>主部件</strong><div><span class="component-chip">${escapeHtml(componentCategory(article))}</span></div></div>
       ${components.length > 1 ? `<div class="classification-row"><strong>关联部件</strong><div>${components.slice(1).map((component) => `<span class="component-related">${escapeHtml(component)}</span>`).join("")}</div></div>` : ""}
-      ${domains.length ? `<div class="classification-row"><strong>技术主题</strong><div>${domains.map((domain) => `<span class="technical-domain">${escapeHtml(domain)}</span>`).join("")}</div></div>` : ""}
-      ${tags.length ? `<div class="classification-row"><strong>细分标签</strong><div>${tags.map((tag) => `<span class="technical-tag">${escapeHtml(tag)}</span>`).join("")}</div></div>` : ""}
+      ${componentTags.length ? `<div class="classification-row"><strong>具体零件</strong><div>${componentTags.map((tag) => `<span class="technical-tag">${escapeHtml(tag)}</span>`).join("")}</div></div>` : ""}
+      ${domains.length ? `<div class="classification-row"><strong>技术领域</strong><div>${domains.map((domain) => `<span class="technical-domain">${escapeHtml(domain)}</span>`).join("")}</div></div>` : ""}
+      ${tags.length ? `<div class="classification-row"><strong>精确技术</strong><div>${tags.map((tag) => `<span class="technical-tag">${escapeHtml(tag)}</span>`).join("")}</div></div>` : ""}
+      ${failureModes.length ? `<div class="classification-row"><strong>失效模式</strong><div>${failureModes.map((tag) => `<span class="technical-tag">${escapeHtml(tag)}</span>`).join("")}</div></div>` : ""}
+      ${developmentStages.length ? `<div class="classification-row"><strong>开发阶段</strong><div>${developmentStages.map((tag) => `<span class="technical-tag">${escapeHtml(tag)}</span>`).join("")}</div></div>` : ""}
+      ${evidenceTypes.length ? `<div class="classification-row"><strong>证据类型</strong><div>${evidenceTypes.map((tag) => `<span class="technical-tag">${escapeHtml(tag)}</span>`).join("")}</div></div>` : ""}
+      ${article.industryCategory ? `<div class="classification-row"><strong>动态类型</strong><div><span class="section-chip">${escapeHtml(article.industryCategory)}</span></div></div>` : ""}
     </section>
   `;
 }
@@ -1753,9 +1910,17 @@ function clearFilter(key) {
     elements.searchInput.value = "";
   } else if (key === "view") {
     state.view = "all";
+  } else if (key === "component") {
+    state.component = "全部部件";
+  } else if (key === "industryCategory") {
+    state.industryCategory = "全部动态";
   } else {
     state[key] = "全部";
   }
+  document.querySelectorAll("[data-category]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.category === state.category);
+  });
+  renderDimensionFilters();
   renderFeed();
 }
 
@@ -1779,6 +1944,17 @@ function wireEvents() {
   elements.categoryTabs.addEventListener("click", (event) => {
     const button = event.target.closest("[data-category]");
     if (button) setCategory(button.dataset.category);
+  });
+
+  elements.dimensionFilters.addEventListener("click", (event) => {
+    const componentButton = event.target.closest("[data-component]");
+    const industryButton = event.target.closest("[data-industry-category]");
+    if (componentButton) setComponent(componentButton.dataset.component);
+    if (industryButton) {
+      state.industryCategory = industryButton.dataset.industryCategory;
+      renderDimensionFilters();
+      renderFeed();
+    }
   });
 
   document.querySelector(".segmented-control").addEventListener("click", (event) => {
@@ -1807,7 +1983,12 @@ function wireEvents() {
 
   elements.trendList.addEventListener("click", (event) => {
     const button = event.target.closest("[data-trend]");
-    if (button) setCategory(button.dataset.trend);
+    if (button) {
+      if (["标题线索", "政策、市场与产业环境", "厂商与项目动态"].includes(state.category)) {
+        setCategory("全部");
+      }
+      setComponent(button.dataset.trend);
+    }
   });
 
   elements.watchForm.addEventListener("submit", (event) => {
@@ -1933,6 +2114,7 @@ async function loadData() {
     renderWeeklyBrief();
     renderTrends();
     renderWatchlist();
+    renderDimensionFilters();
     renderFeed();
     renderIcons();
     flushPendingFeedback();

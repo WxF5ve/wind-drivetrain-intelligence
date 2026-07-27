@@ -50,6 +50,7 @@ async function inspectLayout(page, label) {
     accessBadges: document.querySelectorAll(".content-access").length,
     technicalLabels: document.querySelectorAll(".technical-labels").length,
     componentChips: document.querySelectorAll(".article-card .component-chip").length,
+    dimensionFilters: document.querySelectorAll(".dimension-filter").length,
     activeCategory: document.querySelector(".category-tab.active")?.textContent?.trim(),
     brand: document.querySelector(".brand strong")?.textContent?.trim()
   }));
@@ -61,7 +62,8 @@ async function inspectLayout(page, label) {
   if (result.accessBadges < result.cards) throw new Error(`${label} is missing content access badges`);
   if (!result.technicalLabels) throw new Error(`${label} rendered no drivetrain technical labels`);
   if (result.componentChips !== result.cards) throw new Error(`${label} is missing primary component labels`);
-  if (result.activeCategory !== "风电传动链专栏") throw new Error(`${label} did not default to the drivetrain section`);
+  if (result.activeCategory !== "技术与产品开发") throw new Error(`${label} did not default to technical development`);
+  if (!result.dimensionFilters) throw new Error(`${label} rendered no drivetrain component filters`);
   if (result.brand !== "机械中心-传动技术部在线平台") throw new Error(`${label} rendered the wrong platform name`);
   return result;
 }
@@ -93,9 +95,15 @@ async function inspectLayout(page, label) {
       throw new Error(`Title clue pool did not render compact entries: ${clueCards} clues, ${verboseClueCards} summaries`);
     }
     await desktop.screenshot({ path: path.join(outputDir, "title-clues.png") });
-    await desktop.locator('[data-category="风电传动链专栏"]').click();
+    await desktop.locator('[data-category="厂商与项目动态"]').click();
+    await desktop.waitForTimeout(100);
+    if (!(await desktop.locator('[data-industry-category="传动链企业"]').count())) {
+      throw new Error("Manufacturer section did not expose its internal categories");
+    }
+    await desktop.locator('[data-category="技术与产品开发"]').click();
     await desktop.waitForTimeout(100);
 
+    await desktop.locator('[data-category="全部"]').click();
     await desktop.locator("#search-input").fill("轴承");
     await desktop.waitForTimeout(150);
     const searchResults = await desktop.locator(".article-card").count();
@@ -146,11 +154,18 @@ async function inspectLayout(page, label) {
     const reportInsightParagraphs = await desktop.locator(".report-insight").count();
     const reportEntities = await desktop.locator(".report-entity").count();
     const reportDataHighlights = await desktop.locator(".report-key-data").count();
+    const reportOrganizationHighlights = await desktop.locator(".report-key-organization").count();
+    const reportTechnologyHighlights = await desktop.locator(".report-key-technology").count();
+    const reportNarrativeText = await desktop.locator(".report-paragraph").allTextContents();
     const legacyFactRows = await desktop.locator(".report-facts > div").count();
     if (reportItems < 1 || reportParagraphs !== reportItems || reportEventParagraphs || reportInsightParagraphs || reportEntities || legacyFactRows) {
       throw new Error(`Weekly report must use one paragraph per item: ${reportItems} items, ${reportParagraphs} paragraphs`);
     }
     if (!reportDataHighlights) throw new Error("Weekly report did not highlight any quantitative data");
+    if (!reportOrganizationHighlights) throw new Error("Weekly report did not highlight any organizations");
+    if (reportNarrativeText.some((text) => /(?:主体|做了什么|效果|关键数据|关键点|工程意义|公开资料披露)[：:]/.test(text))) {
+      throw new Error("Weekly report still contains template field labels");
+    }
     await desktop.locator(".report-item").first().screenshot({ path: path.join(outputDir, "weekly-report-item.png") });
     await reportDownload.saveAs(path.join(outputDir, "weekly-report.pdf"));
     const pdfBytes = fs.readFileSync(path.join(outputDir, "weekly-report.pdf"));
@@ -199,7 +214,7 @@ async function inspectLayout(page, label) {
       throw new Error(`Browser console errors:\n${consoleErrors.join("\n")}`);
     }
 
-    console.log(JSON.stringify({ desktopLayout, mobileLayout, clueCards, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportParagraphs, reportDataHighlights, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
+    console.log(JSON.stringify({ desktopLayout, mobileLayout, clueCards, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportParagraphs, reportDataHighlights, reportOrganizationHighlights, reportTechnologyHighlights, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
   } finally {
     if (browser) await browser.close();
     server.kill();

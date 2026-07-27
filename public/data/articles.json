@@ -775,7 +775,7 @@
     "centralized": true
   },
   "weeklyBrief": {
-    "title": "本周聚焦：企业与项目综合、行业政策与市场、齿轮箱总成与架构",
+    "title": "本周聚焦：政策、市场与产业环境、厂商与项目动态、论文、标准与专利",
     "summary": "过去 30 天共筛选 73 条可读情报，其中国内 36 条、论文 20 篇，48 条已提取公开全文；另有 72 条仅保留标题的线索。资料库累计保留 212 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。",
     "signals": [
       "基于边缘计算的风电机组关键部件实时状态监测系统设计与工程应用",
@@ -865,17 +865,17 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "传动链系统与整机接口",
+      "drivetrainComponent": "齿轮箱轴承",
       "drivetrainComponents": [
-        "传动链系统与整机接口"
+        "齿轮箱轴承"
       ],
-      "componentCategory": "传动链系统与整机接口",
+      "componentCategory": "齿轮箱轴承",
       "titleZh": "",
       "category": "学术论文",
       "tags": [
@@ -949,7 +949,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "7ed5368f815f",
@@ -1022,22 +1029,22 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "监测诊断与试验"
+        "监测诊断"
       ],
       "technicalTags": [
         "故障诊断与PHM",
         "SCADA与CMS"
       ],
-      "drivetrainComponent": "监测与传感系统",
+      "drivetrainComponent": "监测与传感",
       "drivetrainComponents": [
-        "监测与传感系统"
+        "监测与传感"
       ],
-      "componentCategory": "监测与传感系统",
+      "componentCategory": "监测与传感",
       "titleZh": "基于边缘计算的风电机组关键部件实时状态监测系统设计与工程应用",
       "category": "学术论文",
       "tags": [
@@ -1125,7 +1132,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "139d6171b14f",
@@ -1193,15 +1207,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "风电行业全景"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "中核汇能与金风科技会谈，聚焦新能源重点项目与存量运维提质",
       "category": "行业资讯",
       "tags": [
@@ -1277,7 +1291,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "运维与技改"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "cefe24656951",
@@ -1347,15 +1370,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "河南单体容量最大风电项目全容量投运",
       "category": "行业资讯",
       "tags": [
@@ -1431,7 +1454,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "7209d984acda",
@@ -1501,22 +1533,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "政策、市场与产业环境"
       ],
-      "technicalDomains": [
-        "监测诊断与试验"
-      ],
-      "technicalTags": [
-        "故障诊断与PHM"
-      ],
-      "drivetrainComponent": "传动链系统与整机接口",
-      "drivetrainComponents": [
-        "传动链系统与整机接口"
-      ],
-      "componentCategory": "传动链系统与整机接口",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "电信、顺丰盯上海风！中国海油、国家电网等密集布局！",
       "category": "行业资讯",
       "tags": [
@@ -1624,7 +1649,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "5d955f56a731",
@@ -1692,15 +1724,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "辽宁法库200MW风力发电项目获核准",
       "category": "行业资讯",
       "tags": [
@@ -1776,7 +1808,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "72cdb0e7d4bc",
@@ -1844,15 +1883,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "风电出海一线观察：势头强劲，风电装备海外订单构筑行业增长新引擎",
       "category": "行业资讯",
       "tags": [
@@ -1938,7 +1977,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "19b78363b413",
@@ -2008,15 +2054,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "大唐儋州120万千瓦海上风电项目二场址两回路定向钻管道施工顺利竣工",
       "category": "行业资讯",
       "tags": [
@@ -2092,7 +2138,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "fd780d5d6d1b",
@@ -2160,15 +2213,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "黑龙江巴彦西集200MW风电项目获环评批复",
       "category": "行业资讯",
       "tags": [
@@ -2244,7 +2297,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ef124be8cb06",
@@ -2404,12 +2464,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "17e0b54ee963",
@@ -2483,15 +2550,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "陆上风电项目经理 1.8-5.5万·13薪",
       "category": "行业资讯",
       "tags": [
@@ -2567,7 +2634,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "b14d8171e9e6",
@@ -2635,15 +2709,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "《2026能源产业生态报告》发布 风电光伏装机超越火电",
       "category": "行业资讯",
       "tags": [
@@ -2719,7 +2793,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "55756d7802a9",
@@ -2787,9 +2868,9 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
@@ -2878,9 +2959,16 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "3098daccf3d5",
@@ -2950,15 +3038,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "沂南县鑫海75MW风电项目材料堆场、施工便道、农用地表土剥离堆放场临时用地土地复垦方案审查结果公示",
       "category": "标准政策",
       "tags": [
@@ -3048,7 +3136,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "146934d825da",
@@ -3205,12 +3300,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "37ce4b3096f4",
@@ -3278,15 +3380,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "风电专利：明阳 | 维斯塔斯 | 金风 | 道达尔能源",
       "category": "厂商动态",
       "tags": [
@@ -3378,7 +3480,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "ed28f8dd6c56",
@@ -3446,15 +3555,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "绍兴大学ARID创新团队科创成果加速落地深远海风电赛道",
       "category": "行业资讯",
       "tags": [
@@ -3548,7 +3657,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "b7376d80ed1e",
@@ -3616,15 +3732,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "蓝洋能源风电项目首台机组顺利吊装",
       "category": "行业资讯",
       "tags": [
@@ -3700,7 +3816,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "aab6544f40ed",
@@ -3768,15 +3893,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "南方+：揭阳海工装备与海上风电产业加速崛起背后的“税力量”",
       "category": "标准政策",
       "tags": [
@@ -3863,7 +3988,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "27342988f936",
@@ -3931,15 +4063,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "1.33GW！辽宁沈阳2026第二批风电项目启动竞配",
       "category": "行业资讯",
       "tags": [
@@ -4015,7 +4147,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "80daa2f95003",
@@ -4083,15 +4222,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "宁夏仁和力威中煤哈密1400MW新能源项目48台风机吊装圆满完成",
       "category": "行业资讯",
       "tags": [
@@ -4167,7 +4306,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "a077713fabb1",
@@ -4237,15 +4385,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "山东威海上半年布局六大陆上风电项目",
       "category": "行业资讯",
       "tags": [
@@ -4332,7 +4480,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "6671039e4148",
@@ -4400,15 +4555,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "北京航天中源南宫 300MW（二期 200MW）风力发电示范项目全容量并网发电",
       "category": "行业资讯",
       "tags": [
@@ -4484,7 +4639,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "a0e555f788dd",
@@ -4554,23 +4718,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "政策、市场与产业环境"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
-      "drivetrainComponent": "齿轮箱总成与架构",
-      "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成与架构",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "重磅！新增装机9.58亿千瓦！“十五五”全国海上风电新增开工规模100GW",
       "category": "厂商动态",
       "tags": [
@@ -4665,7 +4821,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "b1789d521bca",
@@ -4733,22 +4896,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "政策、市场与产业环境"
       ],
-      "technicalDomains": [
-        "失效与质量"
-      ],
-      "technicalTags": [
-        "齿轮箱振动与NVH"
-      ],
-      "drivetrainComponent": "传动链系统与整机接口",
-      "drivetrainComponents": [
-        "传动链系统与整机接口"
-      ],
-      "componentCategory": "传动链系统与整机接口",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "吉林省生态环境厅关于中深层地热供暖+风电多能互补示范项目配套风电项目升压站工程环境影响报告表的批复",
       "category": "标准政策",
       "tags": [
@@ -4842,7 +4998,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "95bd5bacb2db",
@@ -4915,23 +5078,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
-      "drivetrainComponent": "齿轮箱总成与架构",
-      "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成与架构",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "350MW风电项目成交结果公示",
       "category": "厂商动态",
       "tags": [
@@ -5024,7 +5179,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "项目进展"
     },
     {
       "id": "93ee0cd3513e",
@@ -5092,15 +5254,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "辽宁阜新彰武五峰300MW风电项目全容量并网",
       "category": "行业资讯",
       "tags": [
@@ -5176,7 +5338,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "33ac443448a1",
@@ -5246,23 +5417,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
-      "drivetrainComponent": "齿轮箱总成与架构",
-      "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成与架构",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "1.29GW！4个海上风电项目核准批复",
       "category": "厂商动态",
       "tags": [
@@ -5360,7 +5523,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "项目进展"
     },
     {
       "id": "2cf18242fe41",
@@ -5428,15 +5598,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "莱州市（万华化学11.2万千瓦）风电项目社会稳定风险评估公示",
       "category": "行业资讯",
       "tags": [
@@ -5527,7 +5697,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "7ddac446dc88",
@@ -5595,15 +5772,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "中标 | 中国能建西北电建中标陕西华电旬邑10万千瓦风电项目（含送出）EPC总承包工程",
       "category": "行业资讯",
       "tags": [
@@ -5679,7 +5856,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ccf16371e50c",
@@ -5749,15 +5933,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "新疆戈恩斯风电项目风机吊装完成",
       "category": "行业资讯",
       "tags": [
@@ -5833,7 +6017,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "7c927262dd76",
@@ -5901,15 +6094,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "内蒙古达茂联合旗自然资源局高效推进风电项目用地预审工作",
       "category": "行业资讯",
       "tags": [
@@ -5985,7 +6178,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "24ab724457a7",
@@ -6053,15 +6253,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "远景获澳洲179MW风电项目，新型电力系统落地澳大利亚",
       "category": "行业资讯",
       "tags": [
@@ -6154,7 +6354,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "de05cc6d9ac9",
@@ -6222,15 +6429,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "华能山西分公司山阴能源转型与生态治理风光示范基地风电项目净空电磁环境影响评估报告编制服务候选人公示",
       "category": "行业资讯",
       "tags": [
@@ -6319,7 +6526,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "2977f5464a58",
@@ -6395,26 +6609,26 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "监测诊断与试验"
+        "系统架构",
+        "监测诊断"
       ],
       "technicalTags": [
         "齿轮箱架构",
         "故障诊断与PHM",
         "SCADA与CMS"
       ],
-      "drivetrainComponent": "监测与传感系统",
+      "drivetrainComponent": "监测与传感",
       "drivetrainComponents": [
-        "监测与传感系统",
-        "齿轮箱总成与架构",
+        "监测与传感",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "监测与传感系统",
+      "componentCategory": "监测与传感",
       "titleZh": "基于SSA-PSO-DBN的风电机组故障早期预警：多区域数据支持研究",
       "category": "学术论文",
       "tags": [
@@ -6505,7 +6719,16 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "详细设计"
+      ],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "6d347eecc6d1",
@@ -6575,31 +6798,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "technicalDomains": [
-        "系统与架构",
-        "齿轮与行星传动",
-        "材料与制造工艺",
-        "润滑与摩擦"
-      ],
-      "technicalTags": [
-        "齿轮箱架构",
-        "行星传动",
-        "感应淬火",
-        "润滑油与添加剂"
-      ],
-      "drivetrainComponent": "齿轮箱总成与架构",
-      "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "润滑冷却与密封",
-        "行星级",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成与架构",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "欧洲项目启动以改进风电机组部件制造",
       "category": "厂商动态",
       "tags": [
@@ -6701,7 +6908,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "项目进展"
     },
     {
       "id": "fba5b2415125",
@@ -6769,15 +6983,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "中国能建辽宁院与东港市达成共识，深化新能源领域合作",
       "category": "行业资讯",
       "tags": [
@@ -6867,7 +7081,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "c71a422c5640",
@@ -6935,15 +7156,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "GE Vernova燃气轮机积压订单攀升至116 GW",
       "category": "厂商动态",
       "tags": [
@@ -7033,7 +7254,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "e9c51b8a41a7",
@@ -7101,23 +7329,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "政策、市场与产业环境"
       ],
-      "technicalDomains": [
-        "失效与质量"
-      ],
-      "technicalTags": [
-        "齿轮箱振动与NVH",
-        "温升泄漏与装配质量"
-      ],
-      "drivetrainComponent": "传动链系统与整机接口",
-      "drivetrainComponents": [
-        "传动链系统与整机接口"
-      ],
-      "componentCategory": "传动链系统与整机接口",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "广德垣鑫数控重机有限公司风电零部件绿色智能制造技改项目环境影响评价征求意见稿公示",
       "category": "行业资讯",
       "tags": [
@@ -7209,7 +7429,16 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "运维与技改"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "084e1a44f513",
@@ -7277,15 +7506,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "GE Vernova 订单同比增长88%",
       "category": "厂商动态",
       "tags": [
@@ -7375,7 +7604,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "32f6bb762b43",
@@ -7446,15 +7682,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "我国单机容量最大的高原山地风电项目全容量投产",
       "category": "行业资讯",
       "tags": [
@@ -7539,7 +7775,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "2962a01eb647",
@@ -7609,28 +7852,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "technicalDomains": [
-        "系统与架构",
-        "齿轮与行星传动",
-        "监测诊断与试验"
-      ],
-      "technicalTags": [
-        "齿轮箱架构",
-        "行星传动",
-        "台架与型式试验"
-      ],
-      "drivetrainComponent": "齿轮箱总成与架构",
-      "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "行星级",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成与架构",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "EDWIM项目旨在改进风电传动系统制造",
       "category": "厂商动态",
       "tags": [
@@ -7732,7 +7962,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "项目进展"
     },
     {
       "id": "959baac7d5a5",
@@ -7800,15 +8037,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "响水县“千乡万村驭风行动”黄圩镇20MW风电项目建设事项稳评公示",
       "category": "行业资讯",
       "tags": [
@@ -7897,7 +8134,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "3f91b80204f4",
@@ -7965,15 +8209,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "《可再生能源发展“十五五”规划》发布：沙戈荒、水风光、海上风电基地成为装机重要增量",
       "category": "标准政策",
       "tags": [
@@ -8061,7 +8305,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "4fb7735c2e47",
@@ -8129,15 +8380,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "远景能源将为179兆瓦Narrogin风电场供应风机",
       "category": "厂商动态",
       "tags": [
@@ -8227,7 +8478,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "a7bf1aa6274a",
@@ -8295,15 +8553,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "风电装备产业供需对接活动在包头市成功举办",
       "category": "行业资讯",
       "tags": [
@@ -8390,7 +8648,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "611f89d54a2d",
@@ -8458,15 +8723,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "Eurowind向维斯塔斯下达订单",
       "category": "厂商动态",
       "tags": [
@@ -8557,7 +8822,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "0c2d30c9d198",
@@ -8627,15 +8899,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "风电行业全景"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "中标 | 中国电建350MW风电项目成交结果公示：电气风电、明阳智能中标",
       "category": "行业资讯",
       "tags": [
@@ -8711,7 +8983,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "a64f0a108674",
@@ -8779,15 +9058,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "《可再生能源发展“十五五”规划》发布 沙戈荒 水风光 海上风电基地成为装机重要增量",
       "category": "标准政策",
       "tags": [
@@ -8875,7 +9154,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "815717cf02c8",
@@ -8945,15 +9231,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "两部门：“十五五”时期全国海上风电新增开工规模1亿千瓦左右",
       "category": "行业资讯",
       "tags": [
@@ -9029,7 +9315,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "f5e40a73132f",
@@ -9097,15 +9390,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "塞尔维亚维特罗风电项目首台机组成功下线",
       "category": "行业资讯",
       "tags": [
@@ -9181,7 +9474,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "42b6dbf2ab63",
@@ -9252,24 +9552,24 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构"
+        "系统架构"
       ],
       "technicalTags": [
         "传动链系统",
         "齿轮箱架构"
       ],
-      "drivetrainComponent": "传动链系统与整机接口",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "传动链系统与整机接口",
-        "齿轮箱总成与架构",
+        "齿轮箱总成",
+        "传动链总体",
         "齿轮件"
       ],
-      "componentCategory": "传动链系统与整机接口",
+      "componentCategory": "齿轮箱总成",
       "titleZh": "中速风电传动系统分层物理优化框架",
       "category": "学术论文",
       "tags": [
@@ -9394,7 +9694,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "929d07ff1bcc",
@@ -9469,24 +9776,24 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "仿真与数字工程",
-        "监测诊断与试验"
+        "仿真分析",
+        "监测诊断"
       ],
       "technicalTags": [
         "数字孪生",
         "故障诊断与PHM",
         "SCADA与CMS"
       ],
-      "drivetrainComponent": "监测与传感系统",
+      "drivetrainComponent": "监测与传感",
       "drivetrainComponents": [
-        "监测与传感系统"
+        "监测与传感"
       ],
-      "componentCategory": "监测与传感系统",
+      "componentCategory": "监测与传感",
       "titleZh": "海上风电结构健康监测：传感技术、不确定性与人工智能",
       "category": "学术论文",
       "tags": [
@@ -9579,7 +9886,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "b5851fd78bb0",
@@ -9647,15 +9961,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "远景能源将为Neoen在澳大利亚的Narrogin风电场供应23台7.8 MW风机",
       "category": "厂商动态",
       "tags": [
@@ -9747,7 +10061,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "98cc6f2e4ba2",
@@ -9815,23 +10136,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
-      "drivetrainComponent": "齿轮箱总成与架构",
-      "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成与架构",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "83.4MW！金风预中标“以大代小”风机订单",
       "category": "厂商动态",
       "tags": [
@@ -9926,7 +10239,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "5545ba52a702",
@@ -9996,15 +10316,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "电信、顺丰盯上海风！中国海油、国家电网等密集布局！海上风电...",
       "category": "行业资讯",
       "tags": [
@@ -10095,7 +10415,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "29d79ef9dfb7",
@@ -10163,15 +10490,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "国家能源局：2026年上半年新增光伏装机72.07GW，风电38.62GW",
       "category": "行业资讯",
       "tags": [
@@ -10261,7 +10588,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ab7c9d70aae4",
@@ -10416,12 +10750,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "2701daebf013",
@@ -10489,15 +10830,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "运达能源计划在巴西前西门子歌美飒工厂生产电池储能系统",
       "category": "厂商动态",
       "tags": [
@@ -10586,7 +10927,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "8811096e4228",
@@ -10654,23 +11002,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
-      "drivetrainComponent": "齿轮箱总成与架构",
-      "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成与架构",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "远景斩获澳洲179MW风电项目，澳洲最大风电机组落地西澳",
       "category": "厂商动态",
       "tags": [
@@ -10769,7 +11109,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "项目进展"
     },
     {
       "id": "3c141e9daa9b",
@@ -10837,15 +11184,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "运达两项风电相关国家标准斩获浙江省标准创新最高奖",
       "category": "标准政策",
       "tags": [
@@ -10922,7 +11269,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "1bce5e3249fa",
@@ -10990,15 +11344,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "江西电建公司木兰200兆瓦风电项目建设正酣",
       "category": "行业资讯",
       "tags": [
@@ -11074,7 +11428,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "805d1a6ee57e",
@@ -11142,15 +11503,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "明阳智能中标江苏国信大丰H19#海上风电项目11MW风机订单",
       "category": "厂商动态",
       "tags": [
@@ -11245,7 +11606,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "b2fdae3fe77d",
@@ -11315,15 +11683,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "Vestas获得德国43MW风机订单",
       "category": "厂商动态",
       "tags": [
@@ -11414,7 +11782,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "fdf7b576b9d8",
@@ -11482,15 +11857,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "中国能建肇东300兆瓦一期风电项目接入系统设计方案获批",
       "category": "标准政策",
       "tags": [
@@ -11566,7 +11941,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "aca6bcd81a63",
@@ -11634,15 +12016,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "山东潍坊昌乐县红河131.25MW风电项目配套220kV升压站工程获批",
       "category": "标准政策",
       "tags": [
@@ -11733,7 +12115,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "2c4bb40c947c",
@@ -11801,15 +12190,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "西北电建三公司中标陕西华电旬邑10万千瓦风电项目（含送出）EPC总承包工程",
       "category": "行业资讯",
       "tags": [
@@ -11885,7 +12274,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "3c597c68cfd1",
@@ -11953,15 +12349,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "大唐沂南风电项目完成首台风机塔筒首环吊装",
       "category": "行业资讯",
       "tags": [
@@ -12037,7 +12433,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ba7ae74e721a",
@@ -12107,15 +12512,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "中船风电集贤县200MW风电项目临时用地土地复垦规划设计报告审查结果公示",
       "category": "行业资讯",
       "tags": [
@@ -12204,7 +12609,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "27ecc2bfe204",
@@ -12281,24 +12693,24 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构"
+        "系统架构"
       ],
       "technicalTags": [
         "传动链系统",
         "齿轮箱架构"
       ],
-      "drivetrainComponent": "传动链系统与整机接口",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "传动链系统与整机接口",
-        "齿轮箱总成与架构",
+        "齿轮箱总成",
+        "传动链总体",
         "齿轮件"
       ],
-      "componentCategory": "传动链系统与整机接口",
+      "componentCategory": "齿轮箱总成",
       "titleZh": "不确定性下风力发电机齿轮系统的非线性动力学分析",
       "category": "学术论文",
       "tags": [
@@ -12386,7 +12798,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "1ca3038f3b3f",
@@ -12460,26 +12879,26 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "轴承与连接",
-        "失效与质量"
+        "系统架构",
+        "振动与NVH"
       ],
       "technicalTags": [
         "齿轮箱架构",
-        "保持架与滚动体",
-        "齿轮箱振动与NVH"
+        "齿轮箱振动",
+        "模态与共振",
+        "传动误差激励"
       ],
-      "drivetrainComponent": "齿轮箱总成与架构",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "齿轮箱总成与架构",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "齿轮箱总成与架构",
+      "componentCategory": "齿轮箱总成",
       "titleZh": "用于缓解风电场次同步谐振的增强型电池储能阻尼控制器",
       "category": "学术论文",
       "tags": [
@@ -12571,7 +12990,17 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [
+        "保持架",
+        "滚子与滚道"
+      ],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "5fe664e92196",
@@ -12639,15 +13068,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "华能河北分公司深泽10万千瓦风电项目并网发电",
       "category": "行业资讯",
       "tags": [
@@ -12723,7 +13152,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "d9c0091e8414",
@@ -12791,15 +13229,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "风电专利：金风科技 | 三一重能 | LM Wind Power | 中国三峡",
       "category": "厂商动态",
       "tags": [
@@ -12888,7 +13326,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "58f9f6130957",
@@ -12956,28 +13401,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "政策、市场与产业环境"
       ],
-      "technicalDomains": [
-        "失效与质量",
-        "仿真与数字工程",
-        "监测诊断与试验"
-      ],
-      "technicalTags": [
-        "齿轮箱振动与NVH",
-        "有限元与强度",
-        "故障诊断与PHM",
-        "SCADA与CMS",
-        "可靠性与寿命"
-      ],
-      "drivetrainComponent": "监测与传感系统",
-      "drivetrainComponents": [
-        "监测与传感系统"
-      ],
-      "componentCategory": "监测与传感系统",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "15MW风力发电机研发落地解锁风电装备核心技术新突破",
       "category": "行业资讯",
       "tags": [
@@ -13071,7 +13503,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "bf578c43acab",
@@ -13139,15 +13578,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "Vestas在澳大利亚收购300兆瓦开发项目",
       "category": "厂商动态",
       "tags": [
@@ -13239,7 +13678,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "623aeab258db",
@@ -13309,15 +13755,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "巨龙梁风电场扩建项目全容量投产 高原山地风电单机纪录实现突破",
       "category": "行业资讯",
       "tags": [
@@ -13408,7 +13854,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "e16b2f840e0f",
@@ -13476,15 +13929,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "关于2026年6月全国新增建档立卡新能源发电（不含户用光伏）项目情况的公告：风电项目32个",
       "category": "行业资讯",
       "tags": [
@@ -13560,7 +14013,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "aee684647569",
@@ -13628,15 +14088,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "中水物资成都公司以全链条物资保供助力巨龙梁风电扩建项目全容量并网",
       "category": "行业资讯",
       "tags": [
@@ -13712,7 +14172,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "3e731f8056dc",
@@ -13780,15 +14249,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "中国科学院电工研究所海上风电机组直流变换技术研究取得进展",
       "category": "行业资讯",
       "tags": [
@@ -13877,7 +14346,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "2ae1a0771682",
@@ -13945,24 +14421,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "technicalDomains": [
-        "仿真与数字工程",
-        "监测诊断与试验"
-      ],
-      "technicalTags": [
-        "数字孪生",
-        "SCADA与CMS"
-      ],
-      "drivetrainComponent": "监测与传感系统",
-      "drivetrainComponents": [
-        "监测与传感系统"
-      ],
-      "componentCategory": "监测与传感系统",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "远景能源为Fortescue并网首台AI风力发电机原型机",
       "category": "厂商动态",
       "tags": [
@@ -14053,7 +14520,17 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "样机",
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "b9aad8b68071",
@@ -14121,22 +14598,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "政策、市场与产业环境"
       ],
-      "technicalDomains": [
-        "监测诊断与试验"
-      ],
-      "technicalTags": [
-        "SCADA与CMS"
-      ],
-      "drivetrainComponent": "传动链系统与整机接口",
-      "drivetrainComponents": [
-        "传动链系统与整机接口"
-      ],
-      "componentCategory": "传动链系统与整机接口",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "三峡江苏大丰海上风电发电量突破10亿千瓦时",
       "category": "行业资讯",
       "tags": [
@@ -14228,7 +14698,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "647739bf1def",
@@ -14296,15 +14773,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "贵州省能源局2026年4月-2026年6月核准备案风电光伏发电项目情况",
       "category": "标准政策",
       "tags": [
@@ -14379,7 +14856,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ed31f0d47fe0",
@@ -14447,15 +14931,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "康巴什区2026年分散式风电、分布式光伏发电项目优选公告",
       "category": "标准政策",
       "tags": [
@@ -14543,7 +15027,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "5906321ab7a8",
@@ -14611,15 +15102,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "沿河印山风电场首批风机成功并网",
       "category": "行业资讯",
       "tags": [
@@ -14695,7 +15186,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "accfa1d02ea2",
@@ -14769,22 +15269,23 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "仿真与数字工程"
+        "结构强度",
+        "仿真分析"
       ],
       "technicalTags": [
-        "有限元与强度",
+        "有限元与疲劳",
         "数字孪生"
       ],
-      "drivetrainComponent": "传动链系统与整机接口",
+      "drivetrainComponent": "传动链总体",
       "drivetrainComponents": [
-        "传动链系统与整机接口"
+        "传动链总体"
       ],
-      "componentCategory": "传动链系统与整机接口",
+      "componentCategory": "传动链总体",
       "titleZh": "面向风力机叶片层合板厚度-应力分析的数字孪生降阶模型基础",
       "category": "学术论文",
       "tags": [
@@ -14877,7 +15378,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "d6783b69df0d",
@@ -14945,21 +15453,21 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "技术与产品开发",
       "sections": [
-        "风电传动链专栏"
+        "技术与产品开发"
       ],
       "technicalDomains": [
-        "监测诊断与试验"
+        "监测诊断"
       ],
       "technicalTags": [
         "故障诊断与PHM"
       ],
-      "drivetrainComponent": "传动链系统与整机接口",
+      "drivetrainComponent": "传动链总体",
       "drivetrainComponents": [
-        "传动链系统与整机接口"
+        "传动链总体"
       ],
-      "componentCategory": "传动链系统与整机接口",
+      "componentCategory": "传动链总体",
       "titleZh": "多尺度增强层次模糊熵、孤立森林与GWO-GRU集成的风电机组叶片故障诊断",
       "category": "学术论文",
       "tags": [
@@ -15048,7 +15556,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "行业资讯"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "75c275b87c6e",
@@ -15116,15 +15631,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "山东电建三公司沙特万德沙马尔500MW风电项目67台风机全部并网发电",
       "category": "行业资讯",
       "tags": [
@@ -15218,7 +15733,16 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ef3ff0f64438",
@@ -15286,15 +15810,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "风电行业全景"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "风电「周事迹」事关漂浮式风机/绿电直连/虚拟电厂/驭风项目/华电/国家电投/中国能建/东方电气/明阳/西门子歌美飒等！一周风电要闻速递",
       "category": "行业资讯",
       "tags": [
@@ -15370,7 +15894,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "f2e0af14714a",
@@ -15438,15 +15969,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "持续突破超大风机关键核心技术！孙哲君赴温州洞头新能源产业基地调研",
       "category": "行业资讯",
       "tags": [
@@ -15522,7 +16053,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "184091e48811",
@@ -15590,15 +16128,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "云南马关8.125万千瓦风电项目启动竞配",
       "category": "行业资讯",
       "tags": [
@@ -15674,7 +16212,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "c8f4ee77b472",
@@ -15831,12 +16376,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "6680694a05f7",
@@ -15913,37 +16465,35 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "齿轮与行星传动",
-        "轴承与连接",
-        "失效与质量",
-        "仿真与数字工程"
+        "系统架构",
+        "载荷与动力学",
+        "结构强度",
+        "振动与NVH",
+        "仿真分析"
       ],
       "technicalTags": [
         "传动链系统",
         "齿轮箱架构",
-        "行星传动",
-        "齿轮强度",
-        "滚动轴承",
-        "齿轮箱振动与NVH",
-        "有限元与强度",
+        "扭振与耦合动力学",
+        "有限元与疲劳",
+        "齿轮箱振动",
+        "传动误差激励",
         "数字孪生",
         "故障诊断与PHM"
       ],
-      "drivetrainComponent": "齿轮箱轴承",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
+        "齿轮箱总成",
         "齿轮箱轴承",
-        "轴系连接",
-        "箱体与扭力臂",
-        "传动链系统与整机接口",
-        "齿轮箱总成与架构"
+        "传动链总体",
+        "齿轮件"
       ],
-      "componentCategory": "齿轮箱轴承",
+      "componentCategory": "齿轮箱总成",
       "titleZh": "风力发电机齿轮箱-发电机系统的机电参数协同设计",
       "category": "学术论文",
       "tags": [
@@ -16043,7 +16593,16 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "详细设计"
+      ],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "37adb8d69d02",
@@ -16118,28 +16677,26 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "润滑与摩擦"
+        "系统架构",
+        "润滑与热管理"
       ],
       "technicalTags": [
         "齿轮箱架构",
         "润滑油与添加剂",
-        "油液污染与磨粒",
-        "摩擦磨损"
+        "油液污染与过滤"
       ],
-      "drivetrainComponent": "齿轮箱总成与架构",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "轴系连接",
+        "齿轮箱总成",
         "润滑冷却与密封",
         "齿轮件"
       ],
-      "componentCategory": "齿轮箱总成与架构",
+      "componentCategory": "齿轮箱总成",
       "titleZh": "考虑环境影响和可持续性的双润滑油箱风电齿轮箱不完美预防性维护策略",
       "category": "学术论文",
       "tags": [
@@ -16234,7 +16791,18 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [
+        "润滑污染与失效"
+      ],
+      "developmentStages": [
+        "运维与技改"
+      ],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "3753439007eb",
@@ -16312,22 +16880,22 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构"
+        "系统架构"
       ],
       "technicalTags": [
         "齿轮箱架构"
       ],
-      "drivetrainComponent": "齿轮箱总成与架构",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "齿轮箱总成与架构",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "齿轮箱总成与架构",
+      "componentCategory": "齿轮箱总成",
       "titleZh": "非马尔可夫非平稳载荷转换下具有相依失效的风电齿轮箱贝叶斯动态可靠性评估",
       "category": "学术论文",
       "tags": [
@@ -16417,7 +16985,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "dd9c7015fe38",
@@ -16488,22 +17063,22 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构"
+        "系统架构"
       ],
       "technicalTags": [
         "齿轮箱架构"
       ],
-      "drivetrainComponent": "齿轮箱总成与架构",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "齿轮箱总成与架构",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "齿轮箱总成与架构",
+      "componentCategory": "齿轮箱总成",
       "titleZh": "新能源与数字算力热灾增量机制研究——光伏、风电、核电、AI算力作为当代热灾核心加速源的物理实证与系统分析",
       "category": "学术论文",
       "tags": [
@@ -16619,7 +17194,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "2c9698b5ba08",
@@ -16690,23 +17272,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
-      "drivetrainComponent": "齿轮箱总成与架构",
-      "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成与架构",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "风能",
       "category": "厂商动态",
       "tags": [
@@ -16791,7 +17365,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "企业动态"
     },
     {
       "id": "85e08ff40cc8",
@@ -16859,15 +17440,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "山东电力工程咨询院有限公司2026年度第159批招标《漂浮式风电机组基础智能监测与控制技术研究》项目漂浮式风电浮体基础监测传感器及安装调试招标中标候选人公示",
       "category": "行业资讯",
       "tags": [
@@ -16957,7 +17538,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "8d93d619d0ae",
@@ -17025,15 +17613,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "辽宁省阜新市彰武县平安150MW风电项目规划许可批后公示",
       "category": "行业资讯",
       "tags": [
@@ -17121,7 +17709,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "b4b2ffdd6f6e",
@@ -17277,12 +17872,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "d02facbe3710",
@@ -17350,15 +17952,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "中国能建辽宁院中标黄海海上风电500千伏交流配套送出输变电工程可研设计一体化等7个标包",
       "category": "行业资讯",
       "tags": [
@@ -17434,7 +18036,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "8c96f7c8a792",
@@ -17504,15 +18113,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "河南信阳梨园风电项目首台风机吊装完成",
       "category": "行业资讯",
       "tags": [
@@ -17588,7 +18197,16 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ebbd06f33fdd",
@@ -17659,15 +18277,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "共建3GW海上风电项目！明阳智能、中海油拟增资6.25亿元",
       "category": "厂商动态",
       "tags": [
@@ -17757,7 +18375,14 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "4d1cac66bb24",
@@ -17825,15 +18450,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "赵冬徐进会见中国东方电气风电股份有限公司负责人一行",
       "category": "厂商动态",
       "tags": [
@@ -17921,7 +18546,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "8ffdafbb3709",
@@ -17991,15 +18623,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "Envision向Fortescue在澳大利亚的132MW风电项目交付首批风机",
       "category": "厂商动态",
       "tags": [
@@ -18088,7 +18720,16 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "6beafe251d06",
@@ -18156,15 +18797,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "国内最大陆上试验风电场在哈密并网运行",
       "category": "行业资讯",
       "tags": [
@@ -18251,7 +18892,16 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "6db989b7cb8f",
@@ -18326,23 +18976,21 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "轴承与连接",
-        "监测诊断与试验"
+        "监测诊断"
       ],
       "technicalTags": [
-        "主轴承",
         "故障诊断与PHM"
       ],
-      "drivetrainComponent": "主轴与主轴承",
+      "drivetrainComponent": "主轴系统",
       "drivetrainComponents": [
-        "主轴与主轴承"
+        "主轴系统"
       ],
-      "componentCategory": "主轴与主轴承",
+      "componentCategory": "主轴系统",
       "titleZh": "基于GMM子空间故障诊断方法在调度未知的LPV系统中的应用",
       "category": "轴承",
       "tags": [
@@ -18433,7 +19081,19 @@
         "reason": "schema-upgrade",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [
+        "主轴",
+        "主轴承"
+      ],
+      "failureModes": [],
+      "developmentStages": [
+        "台架试验"
+      ],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ae5cefdf0d2d",
@@ -18513,31 +19173,31 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "润滑与摩擦",
-        "监测诊断与试验"
+        "系统架构",
+        "轴承设计",
+        "润滑与热管理",
+        "监测诊断"
       ],
       "technicalTags": [
         "齿轮箱架构",
         "滑动轴承开发",
         "润滑油与添加剂",
-        "摩擦磨损",
         "故障诊断与PHM"
       ],
-      "drivetrainComponent": "齿轮箱总成与架构",
+      "drivetrainComponent": "润滑冷却与密封",
       "drivetrainComponents": [
-        "齿轮箱总成与架构",
         "润滑冷却与密封",
         "滑动轴承系统",
-        "监测与传感系统",
+        "监测与传感",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "齿轮箱总成与架构",
+      "componentCategory": "润滑冷却与密封",
       "titleZh": "基于数据驱动的风电润滑油破乳化度估计方法",
       "category": "润滑",
       "tags": [
@@ -18657,7 +19317,14 @@
         "reason": "schema-upgrade",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "98b18dda9c4b",
@@ -18820,28 +19487,35 @@
         "experienceTotalAtAnalysis": 0
       },
       "technicalDomains": [
-        "系统与架构",
-        "润滑与摩擦",
-        "监测诊断与试验"
+        "系统架构",
+        "润滑与热管理",
+        "监测诊断"
       ],
       "technicalTags": [
         "齿轮箱架构",
-        "热平衡与润滑系统",
+        "热平衡与冷却",
         "故障诊断与PHM",
         "SCADA与CMS"
       ],
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
-      "primarySection": "风电传动链专栏",
-      "drivetrainComponent": "监测与传感系统",
+      "primarySection": "论文、标准与专利",
+      "drivetrainComponent": "监测与传感",
       "drivetrainComponents": [
-        "监测与传感系统",
-        "齿轮箱总成与架构",
+        "监测与传感",
+        "齿轮箱总成",
         "齿轮件",
         "润滑冷却与密封"
       ],
-      "componentCategory": "监测与传感系统"
+      "componentCategory": "监测与传感",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "8973542527d8",
@@ -19006,20 +19680,27 @@
         "experienceTotalAtAnalysis": 0
       },
       "technicalDomains": [
-        "监测诊断与试验"
+        "监测诊断"
       ],
       "technicalTags": [
         "故障诊断与PHM"
       ],
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
-      "primarySection": "风电传动链专栏",
-      "drivetrainComponent": "传动链系统与整机接口",
+      "primarySection": "论文、标准与专利",
+      "drivetrainComponent": "传动链总体",
       "drivetrainComponents": [
-        "传动链系统与整机接口"
+        "传动链总体"
       ],
-      "componentCategory": "传动链系统与整机接口"
+      "componentCategory": "传动链总体",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "9d216737251b",
@@ -19087,15 +19768,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "江苏某企业光伏电站、风力发电等项目是否合规？",
       "category": "标准政策",
       "tags": [
@@ -19183,7 +19864,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "622e6d669654",
@@ -19339,12 +20027,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "e036c0d58017",
@@ -19412,15 +20107,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "华能蒙城县楚村风电场项目-升压站CC-01地块建设工程设计方案公示",
       "category": "标准政策",
       "tags": [
@@ -19509,7 +20204,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "85953137b86a",
@@ -19579,15 +20281,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "明阳智能：拟向参股公司增资2.81亿元 推进海上风电示范项目",
       "category": "厂商动态",
       "tags": [
@@ -19679,7 +20381,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "5ec98ae22ead",
@@ -19749,15 +20458,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "远景能源向澳大利亚Fortescue项目交付首批7.8MW风机",
       "category": "厂商动态",
       "tags": [
@@ -19849,7 +20558,16 @@
         "reason": "schema-upgrade",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "e7b3c80ff9bd",
@@ -19917,23 +20635,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
-      "drivetrainComponent": "齿轮箱总成与架构",
-      "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成与架构",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "",
       "category": "厂商动态",
       "tags": [
@@ -20008,7 +20718,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "企业动态"
     },
     {
       "id": "723a0221b072",
@@ -20163,12 +20880,21 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "b8ae10521980",
@@ -20323,12 +21049,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "fe1153cc14d2",
@@ -20484,12 +21217,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "96302a5f7624",
@@ -20661,26 +21401,33 @@
         "experienceTotalAtAnalysis": 0
       },
       "technicalDomains": [
-        "系统与架构",
-        "失效与质量",
-        "仿真与数字工程"
+        "系统架构",
+        "结构强度",
+        "振动与NVH"
       ],
       "technicalTags": [
         "齿轮箱架构",
-        "齿轮箱振动与NVH",
-        "有限元与强度",
-        "多体动力学"
+        "有限元与疲劳",
+        "噪声与异响",
+        "模态与共振"
       ],
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
-      "primarySection": "风电传动链专栏",
-      "drivetrainComponent": "齿轮箱总成与架构",
+      "primarySection": "论文、标准与专利",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "齿轮箱总成与架构",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "齿轮箱总成与架构"
+      "componentCategory": "齿轮箱总成",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "bb4849e34e2b",
@@ -20838,12 +21585,21 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "74dab05fabd7",
@@ -20911,15 +21667,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "打造风电产业人才高地 阳江风电城项目建设稳步推进",
       "category": "行业资讯",
       "tags": [
@@ -21007,7 +21763,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "a0db34a790c5",
@@ -21160,12 +21923,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ce1fe3cd9dc5",
@@ -21318,12 +22088,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "067c4e05b7e4",
@@ -21391,15 +22168,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "中标 | 中国能建安徽电建二公司中标山东菏泽212.5兆瓦风电项目EPC总承包工程",
       "category": "行业资讯",
       "tags": [
@@ -21475,7 +22252,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "b1d61fc80aa8",
@@ -21628,12 +22412,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "7a2d3033de5d",
@@ -21790,12 +22581,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "5d7dd5dc6f8e",
@@ -21863,15 +22661,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "开鲁县北方电网新能源有限公司通辽市开鲁县20万千瓦上网消纳风电项目环境影响评价公众参与第一次公示",
       "category": "行业资讯",
       "tags": [
@@ -21963,7 +22761,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "2e27afc5196d",
@@ -22031,15 +22836,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "华能清能院“风电机组叶片损伤检测”等2项人工智能创新研发成果获行业认可",
       "category": "行业资讯",
       "tags": [
@@ -22115,7 +22920,14 @@
           "broken": 0,
           "total": 0
         }
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ebff0a6c5619",
@@ -22306,24 +23118,32 @@
         "experienceTotalAtAnalysis": 0
       },
       "technicalDomains": [
-        "轴承与连接",
-        "监测诊断与试验"
+        "监测诊断"
       ],
       "technicalTags": [
-        "主轴承",
-        "保持架与滚动体",
         "SCADA与CMS"
       ],
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
-      "primarySection": "风电传动链专栏",
-      "drivetrainComponent": "主轴与主轴承",
+      "primarySection": "论文、标准与专利",
+      "drivetrainComponent": "主轴系统",
       "drivetrainComponents": [
-        "主轴与主轴承",
-        "监测与传感系统"
+        "主轴系统",
+        "监测与传感"
       ],
-      "componentCategory": "主轴与主轴承"
+      "componentCategory": "主轴系统",
+      "componentTags": [
+        "主轴",
+        "主轴承",
+        "滚子与滚道"
+      ],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "30778a211d9e",
@@ -22476,12 +23296,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "d42ef9a79e31",
@@ -22549,15 +23376,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "电气风电入选Tier1清洁能源技术风机企业榜单",
       "category": "厂商动态",
       "tags": [
@@ -22644,7 +23471,14 @@
         "reason": "schema-upgrade",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "1b6fbf8c8735",
@@ -22800,12 +23634,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "4387349d2d92",
@@ -22873,15 +23714,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "从1%看海上风电的发展前景和破局之路",
       "category": "行业资讯",
       "tags": [
@@ -22977,7 +23818,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "3be56d7a2ea3",
@@ -23132,12 +23980,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "bf49ec9ccf14",
@@ -23294,12 +24149,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "e2da9fa16b62",
@@ -23369,15 +24231,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "乌审旗驭风行动30MW风电项目竞争性比选实施主体结果公示",
       "category": "标准政策",
       "tags": [
@@ -23463,7 +24325,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "e50668a068a5",
@@ -23531,22 +24400,22 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "技术与产品开发",
       "sections": [
-        "风电传动链专栏"
+        "技术与产品开发"
       ],
       "technicalDomains": [
-        "系统与架构"
+        "系统架构"
       ],
       "technicalTags": [
         "齿轮箱架构"
       ],
-      "drivetrainComponent": "齿轮箱总成与架构",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "齿轮箱总成与架构",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "齿轮箱总成与架构",
+      "componentCategory": "齿轮箱总成",
       "titleZh": "韦伯咨询：《2026年中国风电齿轮箱行业专题调研与深度分析报告》",
       "category": "行业资讯",
       "tags": [
@@ -23633,7 +24502,14 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "行业资讯"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "e7ca265c6ed2",
@@ -23761,12 +24637,21 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "729c05247b67",
@@ -23919,12 +24804,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "6dc79c7d5c57",
@@ -23992,23 +24884,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景",
-        "风电传动链专栏"
+        "政策、市场与产业环境"
       ],
-      "technicalDomains": [
-        "系统与架构"
-      ],
-      "technicalTags": [
-        "齿轮箱架构"
-      ],
-      "drivetrainComponent": "齿轮箱总成与架构",
-      "drivetrainComponents": [
-        "齿轮箱总成与架构",
-        "齿轮件"
-      ],
-      "componentCategory": "齿轮箱总成与架构",
+      "technicalDomains": [],
+      "technicalTags": [],
+      "drivetrainComponent": "行业综合",
+      "drivetrainComponents": [],
+      "componentCategory": "行业综合",
       "titleZh": "海上风电转向“深蓝”",
       "category": "行业资讯",
       "tags": [
@@ -24094,7 +24978,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "4420df438b08",
@@ -24251,12 +25142,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "4760f5366501",
@@ -24414,12 +25312,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "厂商与项目动态"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "bef572ca271e",
@@ -24487,15 +25392,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "超21亿元 上海电气风电集团股份有限公司中标国家电投近百万千瓦集采大单",
       "category": "厂商动态",
       "tags": [
@@ -24587,7 +25492,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "699dee3da6f3",
@@ -24741,12 +25653,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "e87fd5f8fd0f",
@@ -24814,15 +25733,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "Nordex第二季度订单激增，美国需求强劲",
       "category": "厂商动态",
       "tags": [
@@ -24908,7 +25827,14 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "30ec588ff544",
@@ -25066,12 +25992,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "74b7727a17f7",
@@ -25229,12 +26162,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "ab8c5d0edec8",
@@ -25392,12 +26332,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "c2f1dec5bc05",
@@ -25550,12 +26497,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "db7e71a8fc0d",
@@ -25709,12 +26663,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "1add60007305",
@@ -25842,12 +26803,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "dcd42840994d",
@@ -25917,15 +26885,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "Nordex从UKA获得德国项目700MW风机订单",
       "category": "厂商动态",
       "tags": [
@@ -26016,7 +26984,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "d1aba5654fb3",
@@ -26084,15 +27059,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "池州官港新能源东至县官港风电场项目（重新报批）环境影响报告表",
       "category": "行业资讯",
       "tags": [
@@ -26180,7 +27155,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "9cbe46003ef7",
@@ -26248,9 +27230,9 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
@@ -26342,9 +27324,16 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "7e614a29472d",
@@ -26498,12 +27487,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "e2642cd3dbac",
@@ -26579,27 +27575,28 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "失效与质量",
-        "监测诊断与试验"
+        "系统架构",
+        "振动与NVH",
+        "监测诊断"
       ],
       "technicalTags": [
         "齿轮箱架构",
-        "齿轮箱振动与NVH",
+        "齿轮箱振动",
+        "传动误差激励",
         "振动监测"
       ],
-      "drivetrainComponent": "监测与传感系统",
+      "drivetrainComponent": "监测与传感",
       "drivetrainComponents": [
-        "监测与传感系统",
-        "齿轮箱总成与架构",
+        "监测与传感",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "监测与传感系统",
+      "componentCategory": "监测与传感",
       "titleZh": "基于多通道振动分析与DWT-LDA框架的风力发电机转子不平衡分类",
       "category": "状态监测",
       "tags": [
@@ -26711,7 +27708,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "21a6923fbe4b",
@@ -26779,15 +27783,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "阳江实施海上风电产业营商环境“一业一方案”",
       "category": "行业资讯",
       "tags": [
@@ -26874,7 +27878,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "52a8f3d511ed",
@@ -26942,15 +27953,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "同比增长超四成，上半年南通启东海上风电场发电14.72亿千瓦",
       "category": "行业资讯",
       "tags": [
@@ -27046,7 +28057,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "fbfc4f7cefcf",
@@ -27114,15 +28132,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "风电专利：东方风电 | 西门子歌美飒 | 金风科技 | Nordex | ZF",
       "category": "厂商动态",
       "tags": [
@@ -27212,7 +28230,14 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "c1102f9eda83",
@@ -27360,12 +28385,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "传动链企业"
     },
     {
       "id": "13b4f410ad9e",
@@ -27437,28 +28469,26 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "润滑与摩擦",
-        "监测诊断与试验"
+        "系统架构",
+        "监测诊断"
       ],
       "technicalTags": [
         "传动链系统",
-        "摩擦磨损",
         "振动监测",
         "故障诊断与PHM",
         "SCADA与CMS"
       ],
-      "drivetrainComponent": "监测与传感系统",
+      "drivetrainComponent": "传动链总体",
       "drivetrainComponents": [
-        "监测与传感系统",
-        "传动链系统与整机接口"
+        "传动链总体",
+        "监测与传感"
       ],
-      "componentCategory": "监测与传感系统",
+      "componentCategory": "传动链总体",
       "titleZh": "基于物理信息多元自编码器的无SCADA风电传动链健康监测",
       "category": "学术论文",
       "tags": [
@@ -27588,7 +28618,15 @@
         "reason": "schema-upgrade",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文",
+        "现场案例"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "8c5e37ea3c83",
@@ -27656,15 +28694,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "企业投资项目核准（风电项目）咨询监督（20260705）",
       "category": "行业资讯",
       "tags": [
@@ -27752,7 +28790,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "5c5b9ade66a2",
@@ -27906,12 +28951,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "c13e761744a2",
@@ -27979,15 +29031,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "山东港口渤海湾港分散式风电项目累计发电量突破1亿千瓦时",
       "category": "行业资讯",
       "tags": [
@@ -28080,7 +29132,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "925a20525832",
@@ -28148,15 +29207,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "金风科技澳洲Baldon风储融合项目获并网批准",
       "category": "厂商动态",
       "tags": [
@@ -28243,7 +29302,16 @@
         "reason": "schema-upgrade",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "2ccce4b4cdaf",
@@ -28400,12 +29468,21 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "68cafa0fc659",
@@ -28557,12 +29634,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "8d5742ca585d",
@@ -28630,15 +29714,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "Nordex集团将为德国Korbach大陆轮胎工厂交付20MW风电场",
       "category": "厂商动态",
       "tags": [
@@ -28727,7 +29811,16 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "82ec07f4300c",
@@ -28797,15 +29890,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "Nordex获得Enova和BMR在德国的197 MW风机订单",
       "category": "厂商动态",
       "tags": [
@@ -28897,7 +29990,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "5332983693e3",
@@ -29055,12 +30155,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "32c474b9c63c",
@@ -29184,22 +30291,28 @@
         "experienceTotalAtAnalysis": 0
       },
       "technicalDomains": [
-        "系统与架构"
+        "系统架构"
       ],
       "technicalTags": [
         "齿轮箱架构"
       ],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "齿轮箱总成与架构",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "齿轮箱总成与架构",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "齿轮箱总成与架构"
+      "componentCategory": "齿轮箱总成",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "传动链企业"
     },
     {
       "id": "136f866e8c3a",
@@ -29276,28 +30389,29 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "失效与质量",
-        "监测诊断与试验"
+        "系统架构",
+        "振动与NVH",
+        "试验验证",
+        "监测诊断"
       ],
       "technicalTags": [
         "齿轮箱架构",
-        "齿轮箱振动与NVH",
-        "故障诊断与PHM",
-        "台架与型式试验"
+        "齿轮箱振动",
+        "传动误差激励",
+        "台架与型式试验",
+        "故障诊断与PHM"
       ],
-      "drivetrainComponent": "监测与传感系统",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "监测与传感系统",
-        "齿轮箱总成与架构",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "监测与传感系统",
+      "componentCategory": "齿轮箱总成",
       "titleZh": "XGBoost引导的谱图剪枝与SE增强残差CNN用于非稳态工况下风电齿轮箱故障诊断",
       "category": "学术论文",
       "tags": [
@@ -29407,7 +30521,16 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "型式试验"
+      ],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "5ab1e6670ca9",
@@ -29481,26 +30604,26 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "监测诊断与试验"
+        "系统架构",
+        "监测诊断"
       ],
       "technicalTags": [
         "齿轮箱架构",
         "故障诊断与PHM",
         "SCADA与CMS"
       ],
-      "drivetrainComponent": "监测与传感系统",
+      "drivetrainComponent": "监测与传感",
       "drivetrainComponents": [
-        "监测与传感系统",
-        "齿轮箱总成与架构",
+        "监测与传感",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "监测与传感系统",
+      "componentCategory": "监测与传感",
       "titleZh": "基于迭代细化和模型验证的风电SCADA数据自动标记流程",
       "category": "学术论文",
       "tags": [
@@ -29592,7 +30715,14 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "a12f7f90cd35",
@@ -29662,15 +30792,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "美国和德国陆上项目主导维斯塔斯第二季度风机订单",
       "category": "厂商动态",
       "tags": [
@@ -29754,7 +30884,14 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "62033c51182d",
@@ -29822,15 +30959,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "维斯塔斯在2026年第二季度获得欧洲和日本总计309兆瓦的风机订单",
       "category": "厂商动态",
       "tags": [
@@ -29921,7 +31058,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "a61e5c7ab795",
@@ -29989,15 +31133,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "Vestas获得东欧和日本五份订单",
       "category": "厂商动态",
       "tags": [
@@ -30083,7 +31227,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "eb6e123f9978",
@@ -30245,12 +31396,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "2982f4424f8c",
@@ -30327,24 +31485,24 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "系统与架构",
-        "监测诊断与试验"
+        "系统架构",
+        "监测诊断"
       ],
       "technicalTags": [
         "传动链系统",
         "故障诊断与PHM"
       ],
-      "drivetrainComponent": "传动链系统与整机接口",
+      "drivetrainComponent": "传动链总体",
       "drivetrainComponents": [
-        "传动链系统与整机接口",
-        "监测与传感系统"
+        "传动链总体",
+        "监测与传感"
       ],
-      "componentCategory": "传动链系统与整机接口",
+      "componentCategory": "传动链总体",
       "titleZh": "基于塔基加速度计的风电传动链部件无损实验故障诊断",
       "category": "学术论文",
       "tags": [
@@ -30450,7 +31608,16 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [
+        "振动传感器"
+      ],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "75e1da952dbe",
@@ -30529,25 +31696,24 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "仿真与数字工程",
-        "监测诊断与试验"
+        "仿真分析",
+        "监测诊断"
       ],
       "technicalTags": [
         "数字孪生",
         "故障诊断与PHM",
         "SCADA与CMS"
       ],
-      "drivetrainComponent": "监测与传感系统",
+      "drivetrainComponent": "监测与传感",
       "drivetrainComponents": [
-        "监测与传感系统",
-        "润滑冷却与密封"
+        "监测与传感"
       ],
-      "componentCategory": "监测与传感系统",
+      "componentCategory": "监测与传感",
       "titleZh": "风力发电机状态监测与性能评估的数字孪生框架开发",
       "category": "状态监测",
       "tags": [
@@ -30641,7 +31807,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "1846ee45efcb",
@@ -30806,25 +31979,36 @@
         "experienceTotalAtAnalysis": 0
       },
       "technicalDomains": [
-        "轴承与连接",
-        "失效与质量",
-        "润滑与摩擦"
+        "润滑与热管理",
+        "失效分析"
       ],
       "technicalTags": [
-        "主轴承",
-        "齿面失效",
-        "润滑油与添加剂"
+        "润滑油与添加剂",
+        "齿面失效"
       ],
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
-      "primarySection": "风电传动链专栏",
-      "drivetrainComponent": "主轴与主轴承",
+      "primarySection": "论文、标准与专利",
+      "drivetrainComponent": "主轴系统",
       "drivetrainComponents": [
-        "主轴与主轴承",
+        "主轴系统",
         "润滑冷却与密封"
       ],
-      "componentCategory": "主轴与主轴承"
+      "componentCategory": "主轴系统",
+      "componentTags": [
+        "主轴",
+        "主轴承"
+      ],
+      "failureModes": [
+        "微点蚀",
+        "点蚀"
+      ],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "4a172271bb5c",
@@ -30892,15 +32076,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "奋力冲刺双过半！电气风电多个风电项目传捷报",
       "category": "厂商动态",
       "tags": [
@@ -30988,7 +32172,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "1f8d7a1f095c",
@@ -31056,15 +32247,15 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场",
+      "componentCategory": "行业综合",
       "titleZh": "关于华电乌兰察布四子王旗100MW上网消纳风电项目环境影响评价文件受理情况的公示",
       "category": "标准政策",
       "tags": [
@@ -31156,7 +32347,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "75d7a5808b60",
@@ -31224,9 +32422,9 @@
         "topContexts": []
       },
       "intelligenceType": "official",
-      "primarySection": "风电行业全景",
+      "primarySection": "政策、市场与产业环境",
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
       "technicalDomains": [],
       "technicalTags": [],
@@ -31322,9 +32520,16 @@
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
       },
-      "drivetrainComponent": "行业政策与市场",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "a88efc934507",
@@ -31394,15 +32599,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "金风科技完成越南朔庄海上风电项目首批机组交付",
       "category": "厂商动态",
       "tags": [
@@ -31492,7 +32697,16 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "f3d0968f7ff8",
@@ -31560,15 +32774,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "含海上风电253MW！明阳智能预中标353MW风机采购",
       "category": "厂商动态",
       "tags": [
@@ -31666,7 +32880,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "d269b4791bec",
@@ -31734,15 +32955,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "远景能源转让菲律宾200MW风电项目",
       "category": "厂商动态",
       "tags": [
@@ -31842,7 +33063,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "53f809fec897",
@@ -31910,15 +33138,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "风电专利：三一 | 维斯塔斯 | 运达 | 西门子歌美飒 | 艾纳康",
       "category": "厂商动态",
       "tags": [
@@ -32007,7 +33235,14 @@
         "reason": "manual-refresh",
         "feedbackTotalAtAnalysis": 0,
         "experienceTotalAtAnalysis": 0
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "1be09af183ee",
@@ -32084,20 +33319,21 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "失效与质量",
-        "仿真与数字工程",
-        "监测诊断与试验"
+        "仿真分析",
+        "试验验证",
+        "监测诊断",
+        "失效分析"
       ],
       "technicalTags": [
-        "齿面失效",
         "数字孪生",
+        "可靠性与寿命",
         "故障诊断与PHM",
-        "可靠性与寿命"
+        "齿面失效"
       ],
       "drivetrainComponent": "齿轮件",
       "drivetrainComponents": [
@@ -32223,7 +33459,18 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [
+        "齿面"
+      ],
+      "failureModes": [
+        "点蚀"
+      ],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "1ce4f2ff1dca",
@@ -32294,24 +33541,25 @@
         "topContexts": []
       },
       "intelligenceType": "technical",
-      "primarySection": "风电传动链专栏",
+      "primarySection": "论文、标准与专利",
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
       "technicalDomains": [
-        "仿真与数字工程",
-        "监测诊断与试验"
+        "载荷与动力学",
+        "仿真分析",
+        "监测诊断"
       ],
       "technicalTags": [
+        "载荷谱",
         "数字孪生",
         "SCADA与CMS"
       ],
-      "drivetrainComponent": "润滑冷却与密封",
+      "drivetrainComponent": "监测与传感",
       "drivetrainComponents": [
-        "润滑冷却与密封",
-        "监测与传感系统"
+        "监测与传感"
       ],
-      "componentCategory": "润滑冷却与密封",
+      "componentCategory": "监测与传感",
       "titleZh": "简报：基于数据驱动偏差校正的数字影子方法增强风力机疲劳载荷估计",
       "category": "学术论文",
       "tags": [
@@ -32417,7 +33665,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "2e4f3a2f1d05",
@@ -32485,15 +33740,15 @@
         "topContexts": []
       },
       "intelligenceType": "industry",
-      "primarySection": "企业与项目追踪",
+      "primarySection": "厂商与项目动态",
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
       "technicalDomains": [],
       "technicalTags": [],
-      "drivetrainComponent": "企业与项目综合",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合",
+      "componentCategory": "行业综合",
       "titleZh": "Nordex集团在美国获得325 MW订单",
       "category": "厂商动态",
       "tags": [
@@ -32587,7 +33842,14 @@
         "experienceTotalAtAnalysis": 0,
         "experienceWrittenTotalAtAnalysis": 0,
         "experienceLatestAtAnalysis": ""
-      }
+      },
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "41d61531f6d1",
@@ -32743,12 +34005,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "829dca08e09c",
@@ -32903,12 +34172,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "0af6398dc256",
@@ -33059,22 +34335,30 @@
         "experienceTotalAtAnalysis": 0
       },
       "technicalDomains": [
-        "系统与架构"
+        "系统架构"
       ],
       "technicalTags": [
         "齿轮箱架构"
       ],
       "sections": [
-        "企业与项目追踪",
-        "风电传动链专栏"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "齿轮箱总成与架构",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "齿轮箱总成",
       "drivetrainComponents": [
-        "齿轮箱总成与架构",
+        "齿轮箱总成",
         "齿轮件"
       ],
-      "componentCategory": "齿轮箱总成与架构"
+      "componentCategory": "齿轮箱总成",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "量产"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "传动链企业"
     },
     {
       "id": "05068e5fb1b5",
@@ -33227,12 +34511,21 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "b20a28e68b61",
@@ -33388,12 +34681,21 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "并网运行"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "18432885d763",
@@ -33549,12 +34851,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "风电行业全景"
+        "政策、市场与产业环境"
       ],
-      "primarySection": "风电行业全景",
-      "drivetrainComponent": "行业政策与市场",
+      "primarySection": "政策、市场与产业环境",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "行业政策与市场"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "官方发布"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "96097dd63390",
@@ -33710,12 +35019,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "2226d7174990",
@@ -33875,12 +35191,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "d2716ffdfd65",
@@ -34037,23 +35360,34 @@
         "experienceTotalAtAnalysis": 0
       },
       "technicalDomains": [
-        "系统与架构",
-        "轴承与连接"
+        "系统架构"
       ],
       "technicalTags": [
         "传动链系统",
-        "主轴承"
+        "主轴系统方案"
       ],
       "sections": [
-        "风电传动链专栏"
+        "论文、标准与专利"
       ],
-      "primarySection": "风电传动链专栏",
-      "drivetrainComponent": "主轴与主轴承",
+      "primarySection": "论文、标准与专利",
+      "drivetrainComponent": "主轴系统",
       "drivetrainComponents": [
-        "主轴与主轴承",
-        "传动链系统与整机接口"
+        "主轴系统",
+        "传动链总体"
       ],
-      "componentCategory": "主轴与主轴承"
+      "componentCategory": "主轴系统",
+      "componentTags": [
+        "主轴",
+        "主轴承"
+      ],
+      "failureModes": [],
+      "developmentStages": [
+        "详细设计"
+      ],
+      "evidenceTypes": [
+        "论文"
+      ],
+      "industryCategory": ""
     },
     {
       "id": "d1ba20808079",
@@ -34211,12 +35545,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "c1d4741b30a8",
@@ -34373,12 +35714,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "9d36f523476e",
@@ -34539,12 +35887,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "af16bb4ea61b",
@@ -34702,12 +36057,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "c525d8e44f40",
@@ -34860,12 +36222,22 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "样机",
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "项目进展"
     },
     {
       "id": "82cee6dc6704",
@@ -35024,12 +36396,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "2507c538b917",
@@ -35189,12 +36568,21 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "cdcdbd54533f",
@@ -35349,12 +36737,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "3331536ce3ea",
@@ -35512,12 +36907,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "8a47034a3853",
@@ -35676,12 +37078,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "a2fe7a65b408",
@@ -35836,12 +37245,21 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "交付与吊装"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "c078bd83b1af",
@@ -35994,12 +37412,19 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     },
     {
       "id": "9b9a2cd4a838",
@@ -36156,12 +37581,22 @@
       "technicalDomains": [],
       "technicalTags": [],
       "sections": [
-        "企业与项目追踪"
+        "厂商与项目动态"
       ],
-      "primarySection": "企业与项目追踪",
-      "drivetrainComponent": "企业与项目综合",
+      "primarySection": "厂商与项目动态",
+      "drivetrainComponent": "行业综合",
       "drivetrainComponents": [],
-      "componentCategory": "企业与项目综合"
+      "componentCategory": "行业综合",
+      "componentTags": [],
+      "failureModes": [],
+      "developmentStages": [
+        "运维与技改"
+      ],
+      "evidenceTypes": [
+        "媒体报道"
+      ],
+      "industryCategory": "整机与开发商"
     }
-  ]
+  ],
+  "taxonomyVersion": 2
 }

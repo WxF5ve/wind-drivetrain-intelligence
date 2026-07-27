@@ -5,7 +5,7 @@ import { readFile } from "node:fs/promises";
 const config = JSON.parse(await readFile(new URL("../config/sources.json", import.meta.url), "utf8"));
 
 test("domestic industry and academic channels are configured without duplicate ids", () => {
-  const sources = [...config.newsQueries, ...config.researchQueries];
+  const sources = [...config.newsQueries, ...(config.webQueries || []), ...config.researchQueries];
   const ids = sources.map((source) => source.id);
   assert.equal(new Set(ids).size, ids.length);
   for (const requiredId of [
@@ -15,6 +15,16 @@ test("domestic industry and academic channels are configured without duplicate i
     "portal-cn-transmission",
     "portal-cn-advanced-manufacturing",
     "portal-cn-toutiao-wind",
+    "web-cn-drivetrain-suppliers",
+    "web-global-gearbox-suppliers",
+    "web-global-bearing-suppliers",
+    "web-cn-wind-oems",
+    "web-global-wind-oems",
+    "web-drivetrain-failure-cases",
+    "web-cwea-drivetrain",
+    "web-cn-drivetrain-patents",
+    "web-global-drivetrain-patents",
+    "web-drivetrain-standards",
     "research-cn-cnki-index",
     "research-cn-wanfang-index",
     "research-cn-cqvip-index",
@@ -24,12 +34,21 @@ test("domestic industry and academic channels are configured without duplicate i
   ]) {
     assert.equal(ids.includes(requiredId), true, `${requiredId} should be configured`);
   }
-  const channelCount = config.newsQueries.length + config.researchQueries.reduce(
+  const channelCount = config.newsQueries.length + (config.webQueries || []).length + config.researchQueries.reduce(
     (total, source) => total + (source.providers?.length || 2),
     0
   );
   assert.equal(channelCount >= 90, true);
   assert.equal(config.maxArticles >= 180, true);
+});
+
+test("direct web channels constrain results to declared publisher domains", () => {
+  assert.equal(config.webQueries.length >= 10, true);
+  for (const source of config.webQueries) {
+    assert.equal(source.directSource, true, `${source.id} should be a direct source`);
+    assert.equal(Array.isArray(source.allowedDomains) && source.allowedDomains.length > 0, true, `${source.id} should constrain domains`);
+    assert.equal(["行业资讯", "技术资料", "专利", "标准"].includes(source.sourceType), true, `${source.id} should declare sourceType`);
+  }
 });
 
 test("domestic priority research uses OpenAlex and Crossref", () => {

@@ -158,9 +158,9 @@ test("drivetrain taxonomy recognizes manufacturing, quality, bearing, simulation
   const cases = [
     ["风电齿轮感应淬火与强化喷丸残余压应力研究", ["感应淬火", "喷丸强化"]],
     ["风电轴承跑圈、套圈蠕动与过盈配合分析", ["轴承跑圈与配合"]],
-    ["Wind turbine gearbox vibration NVH and resonance investigation", ["齿轮箱振动与NVH"]],
-    ["AVL EXCITE and Romax simulation for a wind turbine drivetrain", ["AVL仿真", "传动系统仿真"]],
-    ["风电齿轮箱行星架强度、变形及拓扑优化", ["行星架强度", "有限元与强度"]],
+    ["Wind turbine gearbox vibration NVH and resonance investigation", ["齿轮箱振动", "模态与共振"]],
+    ["AVL EXCITE and Romax simulation for a wind turbine drivetrain", ["AVL EXCITE", "Romax/MASTA/KISSsoft"]],
+    ["风电齿轮箱行星架强度、变形及拓扑优化", ["行星架强度", "有限元与疲劳"]],
     ["Hydrodynamic tilting pad plain bearing development for wind turbine drivetrains", ["滑动轴承开发"]]
   ];
   for (const [title, expectedTags] of cases) {
@@ -172,11 +172,11 @@ test("drivetrain taxonomy recognizes manufacturing, quality, bearing, simulation
 test("every intelligence item receives a primary component classification", () => {
   const cases = [
     ["风电行星架与内齿圈均载分析", "行星级"],
-    ["10 MW 风机主轴承载荷与跑圈研究", "主轴与主轴承"],
+    ["10 MW 风机主轴承载荷与跑圈研究", "主轴系统"],
     ["风电齿轮箱高速轴与平行轴级振动", "平行轴级"],
     ["风电联轴器、锁紧盘和花键连接设计", "轴系连接"],
     ["齿轮箱润滑冷却系统与密封漏油治理", "润滑冷却与密封"],
-    ["Wind turbine gearbox housing and torque arm deformation", "箱体与扭力臂"]
+    ["Wind turbine gearbox housing and torque arm deformation", "箱体与支承"]
   ];
   for (const [title, expected] of cases) {
     assert.equal(classifyArticle({ title, sourceType: "论文" }).componentCategory, expected);
@@ -185,29 +185,32 @@ test("every intelligence item receives a primary component classification", () =
     title: "国家发布年度风电装机统计",
     queryTopic: "official",
     sourceType: "行业资讯"
-  }).componentCategory, "行业政策与市场");
+  }).componentCategory, "行业综合");
   assert.equal(classifyArticle({
     title: "某整机企业发布海外项目进展",
     queryTopic: "industry",
     sourceType: "行业资讯"
-  }).componentCategory, "企业与项目综合");
+  }).componentCategory, "行业综合");
 });
 
-test("section classification separates source type from content topic and allows multiple sections", () => {
+test("section classification assigns exactly one primary section", () => {
   const supplierProgress = classifyArticle({
     title: "某风电齿轮箱企业完成感应淬火与喷丸工艺验证",
     queryTopic: "industry",
-    sourceType: "行业资讯"
+    sourceType: "行业资讯",
+    contextTags: ["齿轮箱厂商"]
   });
-  assert.deepEqual(supplierProgress.sections, ["企业与项目追踪", "风电传动链专栏"]);
-  assert.equal(supplierProgress.primarySection, "企业与项目追踪");
+  assert.deepEqual(supplierProgress.sections, ["厂商与项目动态"]);
+  assert.equal(supplierProgress.primarySection, "厂商与项目动态");
+  assert.equal(supplierProgress.industryCategory, "传动链企业");
+  assert.equal(supplierProgress.technicalTags.includes("感应淬火"), true);
 
   const policy = classifyArticle({
     title: "国家能源局发布年度风电装机规划",
     queryTopic: "official",
     sourceType: "行业资讯"
   });
-  assert.deepEqual(policy.sections, ["风电行业全景"]);
+  assert.deepEqual(policy.sections, ["政策、市场与产业环境"]);
 
   const genericProject = classifyArticle({
     title: "某地200MW风电项目完成并网",
@@ -216,13 +219,22 @@ test("section classification separates source type from content topic and allows
     queryTopic: "industry",
     sourceType: "行业资讯"
   });
-  assert.deepEqual(genericProject.sections, ["企业与项目追踪"]);
+  assert.deepEqual(genericProject.sections, ["厂商与项目动态"]);
+  assert.equal(genericProject.industryCategory, "项目进展");
 
   const paper = classifyArticle({
     title: "Wind power market overview",
     sourceType: "论文"
   });
-  assert.equal(paper.sections.includes("风电传动链专栏"), true);
+  assert.deepEqual(paper.sections, ["论文、标准与专利"]);
+
+  const failureCase = classifyArticle({
+    title: "风电齿轮箱轴承跑圈故障案例与现场维修",
+    sourceType: "行业资讯"
+  });
+  assert.deepEqual(failureCase.sections, ["故障、质量与运维"]);
+  assert.equal(failureCase.failureModes.includes("轴承跑圈"), true);
+  assert.equal(failureCase.developmentStages.includes("运维与技改"), true);
 });
 
 test("WECS is not mislabeled as a white etching crack acronym", () => {

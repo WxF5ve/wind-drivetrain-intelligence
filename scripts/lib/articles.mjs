@@ -2,34 +2,49 @@ import { createHash } from "node:crypto";
 
 export const DRIVETRAIN_TAXONOMY = [
   {
-    domain: "系统与架构",
+    domain: "系统架构",
     tags: [
       ["传动链系统", ["传动链", "主传动链", "轴系", "扭振", "drivetrain", "drive train", "shaft line", "torsional vibration"]],
       ["齿轮箱架构", ["齿轮箱", "主齿轮箱", "中速传动", "高速传动", "功率分流", "gearbox", "gear box", "split torque", "torque density"]],
-      ["滑动轴承开发", ["滑动轴承", "轴瓦", "可倾瓦", "径向滑动轴承", "journal bearing", "plain bearing", "sliding bearing", "tilting pad bearing", "hydrodynamic bearing"]]
+      ["主轴系统方案", ["主轴系统", "三点支撑", "四点支撑", "集成式传动链", "main shaft system", "three point suspension", "four point suspension", "integrated drivetrain"]]
     ]
   },
   {
-    domain: "齿轮与行星传动",
+    domain: "载荷与动力学",
     tags: [
-      ["齿轮设计与修形", ["齿轮修形", "齿形修形", "齿向修形", "鼓形修形", "微观修形", "齿廓修形", "gear microgeometry", "profile modification", "lead modification", "tooth modification"]],
-      ["行星传动", ["行星轮", "太阳轮", "内齿圈", "行星级", "均载", "行星销轴", "planetary gear", "planet gear", "sun gear", "ring gear", "load sharing", "planet pin"]],
-      ["行星架强度", ["行星架", "行星架强度", "行星架变形", "planet carrier", "carrier strength", "carrier deformation"]],
+      ["载荷谱", ["载荷谱", "载荷历程", "扭矩谱", "极限载荷", "疲劳载荷", "load spectrum", "load history", "torque spectrum", "ultimate load", "fatigue load"]],
+      ["扭振与耦合动力学", ["扭振", "传动链动力学", "气弹耦合", "机电耦合", "torsional vibration", "drivetrain dynamics", "aeroelastic coupling", "electromechanical coupling"]],
+      ["行星级均载", ["均载", "载荷分配", "偏载", "load sharing", "load distribution", "load split", "uneven load"]]
+    ]
+  },
+  {
+    domain: "齿轮设计",
+    tags: [
+      ["齿轮宏观参数", ["齿数", "模数", "压力角", "螺旋角", "变位系数", "齿宽", "module", "pressure angle", "helix angle", "profile shift", "face width"]],
+      ["齿轮微观修形", ["齿轮修形", "齿形修形", "齿向修形", "鼓形修形", "微观修形", "齿廓修形", "gear microgeometry", "profile modification", "lead modification", "tooth modification"]],
       ["齿轮强度", ["齿面接触应力", "齿根弯曲应力", "啮合刚度", "传动误差", "接触斑点", "gear strength", "contact stress", "bending stress", "mesh stiffness", "transmission error", "contact pattern"]]
     ]
   },
   {
-    domain: "轴承与连接",
+    domain: "轴承设计",
     tags: [
-      ["滚动轴承", ["滚动轴承", "圆柱滚子轴承", "圆锥滚子轴承", "调心滚子轴承", "四点接触球轴承", "rolling bearing", "roller bearing", "cylindrical roller", "tapered roller", "spherical roller"]],
-      ["主轴承", ["主轴承", "主轴轴承", "main bearing", "main shaft bearing"]],
-      ["轴承跑圈与配合", ["轴承跑圈", "跑内圈", "跑外圈", "套圈蠕动", "内圈打滑", "外圈打滑", "过盈配合", "配合松动", "bearing creep", "ring creep", "ring walk", "inner ring slip", "outer ring slip", "interference fit", "fit looseness"]],
+      ["滚动轴承选型", ["圆柱滚子轴承", "圆锥滚子轴承", "调心滚子轴承", "四点接触球轴承", "cylindrical roller bearing", "tapered roller bearing", "spherical roller bearing", "four-point contact bearing"]],
       ["游隙与预紧", ["轴承游隙", "游隙控制", "轴承预紧", "预紧力", "bearing clearance", "bearing preload", "preload force"]],
-      ["保持架与滚动体", ["保持架", "滚动体", "滚子", "滚道", "cage failure", "rolling element", "roller", "raceway"]]
+      ["轴承配合", ["过盈配合", "配合公差", "轴承座公差", "interference fit", "bearing fit", "fit tolerance"]],
+      ["滑动轴承开发", ["滑动轴承", "轴瓦", "可倾瓦", "径向滑动轴承", "journal bearing", "plain bearing", "sliding bearing", "tilting pad bearing", "hydrodynamic bearing"]]
     ]
   },
   {
-    domain: "材料与制造工艺",
+    domain: "结构强度",
+    tags: [
+      ["行星架强度", ["行星架", "行星架强度", "行星架变形", "planet carrier", "carrier strength", "carrier deformation"]],
+      ["箱体与支承强度", ["箱体变形", "箱体强度", "扭力臂", "弹性支撑", "housing deformation", "housing strength", "torque arm", "elastic support"]],
+      ["轴系强度", ["主轴强度", "高速轴强度", "轴系强度", "轴系对中", "shaft strength", "shaft alignment", "shaft fatigue"]],
+      ["有限元与疲劳", ["有限元", "强度分析", "疲劳强度", "拓扑优化", "ansys", "abaqus", "finite element", "fea", "fatigue strength", "topology optimization"]]
+    ]
+  },
+  {
+    domain: "材料与工艺",
     tags: [
       ["感应淬火", ["感应淬火", "中频淬火", "高频淬火", "双频淬火", "induction hardening", "induction quenching", "dual frequency hardening"]],
       ["渗碳与热处理", ["渗碳", "渗碳淬火", "氮化", "碳氮共渗", "热处理", "残余奥氏体", "carburizing", "case hardening", "nitriding", "heat treatment", "retained austenite"]],
@@ -39,52 +54,64 @@ export const DRIVETRAIN_TAXONOMY = [
     ]
   },
   {
-    domain: "失效与质量",
+    domain: "润滑与热管理",
     tags: [
-      ["齿轮箱振动与NVH", ["齿轮箱振动", "异常振动", "振动超限", "异响", "噪声", "共振", "nvh", "gearbox vibration", "abnormal vibration", "noise", "resonance"]],
+      ["润滑油与添加剂", ["齿轮油", "润滑油", "润滑脂", "添加剂", "黏度", "粘度", "gear oil", "lubricant", "lubrication", "grease", "additive", "viscosity"]],
+      ["油液污染与过滤", ["油液监测", "磨损颗粒", "磨粒", "清洁度", "水分", "过滤精度", "oil debris", "wear debris", "oil monitoring", "cleanliness", "water contamination", "filtration"]],
+      ["弹流润滑与摩擦", ["摩擦学", "摩擦系数", "混合润滑", "弹流润滑", "tribology", "friction coefficient", "mixed lubrication", "elastohydrodynamic", "ehl"]],
+      ["热平衡与冷却", ["热平衡", "油温", "冷却系统", "润滑系统", "喷油润滑", "thermal balance", "oil temperature", "cooling system", "lubrication system", "oil jet"]]
+    ]
+  },
+  {
+    domain: "振动与NVH",
+    tags: [
+      ["齿轮箱振动", ["齿轮箱振动", "异常振动", "振动超限", "gearbox vibration", "abnormal vibration"]],
+      ["噪声与异响", ["异响", "噪声", "声品质", "noise", "abnormal noise", "sound quality"]],
+      ["模态与共振", ["共振", "模态分析", "临界转速", "resonance", "modal analysis", "critical speed"]],
+      ["传动误差激励", ["传动误差", "啮合激励", "阶次激励", "transmission error", "mesh excitation", "order excitation", "nvh"]]
+    ]
+  },
+  {
+    domain: "仿真分析",
+    tags: [
+      ["AVL EXCITE", ["avl excite", "avl仿真", "excite power unit", "excite designer", "excite timing drive"]],
+      ["Romax/MASTA/KISSsoft", ["romax", "masta", "kisssoft", "kisssys", "传动系统仿真", "齿轮箱仿真"]],
+      ["多体动力学", ["simpack", "多体动力学", "动力学仿真", "柔性体", "multibody dynamics", "dynamic simulation", "flexible body"]],
+      ["数字孪生", ["数字孪生", "虚拟样机", "模型降阶", "digital twin", "virtual prototype", "reduced order model"]]
+    ]
+  },
+  {
+    domain: "试验验证",
+    tags: [
+      ["台架与型式试验", ["齿轮箱试验台", "台架试验", "型式试验", "加载试验", "背靠背试验", "test rig", "bench test", "type test", "load test", "back-to-back test"]],
+      ["可靠性与寿命", ["可靠性试验", "加速寿命", "疲劳寿命", "寿命预测", "reliability test", "accelerated life", "fatigue life", "life prediction"]],
+      ["无损检测与内窥镜", ["内窥镜", "无损检测", "超声检测", "磁粉检测", "声发射", "endoscopy", "borescope", "nondestructive testing", "ultrasonic testing", "magnetic particle", "acoustic emission"]]
+    ]
+  },
+  {
+    domain: "监测诊断",
+    tags: [
+      ["振动监测", ["振动监测", "振动分析", "包络解调", "阶次分析", "频谱分析", "vibration monitoring", "vibration analysis", "envelope analysis", "order tracking", "spectral analysis"]],
+      ["故障诊断与PHM", ["故障诊断", "状态监测", "预测性维护", "剩余寿命", "健康管理", "fault diagnosis", "condition monitoring", "predictive maintenance", "remaining useful life", "rul", "phm"]],
+      ["SCADA与CMS", ["scada", "cms", "监测系统", "在线监测", "online monitoring", "condition monitoring system"]]
+    ]
+  },
+  {
+    domain: "失效分析",
+    tags: [
+      ["轴承跑圈与配合", ["轴承跑圈", "跑内圈", "跑外圈", "套圈蠕动", "内圈打滑", "外圈打滑", "配合松动", "bearing creep", "ring creep", "ring walk", "inner ring slip", "outer ring slip", "fit looseness"]],
       ["齿面失效", ["微点蚀", "点蚀", "剥落", "胶合", "擦伤", "齿面磨损", "micropitting", "pitting", "spalling", "scuffing", "tooth wear"]],
       ["轴承失效与WEC", ["白色蚀刻裂纹", "白色组织裂纹", "白色蚀刻区", "wec", "white etching crack", "white structure flaking", "butterfly crack"]],
       ["电蚀与电流损伤", ["轴承电蚀", "电流损伤", "电火花加工纹", "电流绝缘", "electrical damage", "bearing current", "fluting", "electrical erosion"]],
       ["裂纹与断裂", ["断齿", "齿根裂纹", "轮齿断裂", "轴断裂", "疲劳裂纹", "tooth fracture", "root crack", "shaft fracture", "fatigue crack"]],
       ["温升泄漏与装配质量", ["齿轮箱高温", "轴承温升", "漏油", "渗漏", "装配偏差", "同轴度", "不对中", "gearbox overheating", "bearing temperature", "oil leakage", "misalignment", "assembly error"]]
     ]
-  },
-  {
-    domain: "润滑与摩擦",
-    tags: [
-      ["润滑油与添加剂", ["齿轮油", "润滑油", "润滑脂", "添加剂", "黏度", "粘度", "gear oil", "lubricant", "lubrication", "grease", "additive", "viscosity"]],
-      ["油液污染与磨粒", ["油液监测", "磨损颗粒", "磨粒", "清洁度", "水分", "过滤精度", "oil debris", "wear debris", "oil monitoring", "cleanliness", "water contamination", "filtration"]],
-      ["摩擦磨损", ["摩擦学", "摩擦系数", "磨损", "混合润滑", "弹流润滑", "tribology", "friction coefficient", "wear", "mixed lubrication", "elastohydrodynamic", "ehl"]],
-      ["滑移与擦伤", ["滑移", "打滑", "擦伤", "涂抹", "smearing", "skidding", "sliding", "slip ratio"]],
-      ["热平衡与润滑系统", ["热平衡", "油温", "冷却系统", "润滑系统", "喷油润滑", "thermal balance", "oil temperature", "cooling system", "lubrication system", "oil jet"]]
-    ]
-  },
-  {
-    domain: "仿真与数字工程",
-    tags: [
-      ["AVL仿真", ["avl excite", "avl仿真", "excite power unit", "excite designer", "excite timing drive"]],
-      ["传动系统仿真", ["romax", "masta", "kisssoft", "kisssys", "simpack", "传动系统仿真", "齿轮箱仿真"]],
-      ["有限元与强度", ["有限元", "强度分析", "疲劳强度", "拓扑优化", "ansys", "abaqus", "finite element", "fea", "fatigue strength", "topology optimization"]],
-      ["多体动力学", ["多体动力学", "动力学仿真", "柔性体", "模态分析", "multibody dynamics", "dynamic simulation", "flexible body", "modal analysis"]],
-      ["数字孪生", ["数字孪生", "虚拟样机", "模型降阶", "digital twin", "virtual prototype", "reduced order model"]]
-    ]
-  },
-  {
-    domain: "监测诊断与试验",
-    tags: [
-      ["振动监测", ["振动监测", "振动分析", "包络解调", "阶次分析", "频谱分析", "vibration monitoring", "vibration analysis", "envelope analysis", "order tracking", "spectral analysis"]],
-      ["故障诊断与PHM", ["故障诊断", "状态监测", "预测性维护", "剩余寿命", "健康管理", "fault diagnosis", "condition monitoring", "predictive maintenance", "remaining useful life", "rul", "phm"]],
-      ["SCADA与CMS", ["scada", "cms", "监测系统", "在线监测", "online monitoring", "condition monitoring system"]],
-      ["台架与型式试验", ["齿轮箱试验台", "台架试验", "型式试验", "加载试验", "背靠背试验", "test rig", "bench test", "type test", "load test", "back-to-back test"]],
-      ["可靠性与寿命", ["可靠性试验", "加速寿命", "疲劳寿命", "寿命预测", "reliability test", "accelerated life", "fatigue life", "life prediction"]],
-      ["无损检测与内窥镜", ["内窥镜", "无损检测", "超声检测", "磁粉检测", "声发射", "endoscopy", "borescope", "nondestructive testing", "ultrasonic testing", "magnetic particle", "acoustic emission"]]
-    ]
   }
 ];
 
 export const DRIVETRAIN_COMPONENT_TAXONOMY = [
   {
-    component: "主轴与主轴承",
+    component: "主轴系统",
     keywords: ["主轴承", "主轴轴承", "主轴系", "主轴", "main bearing", "main shaft bearing", "main shaft"]
   },
   {
@@ -105,10 +132,10 @@ export const DRIVETRAIN_COMPONENT_TAXONOMY = [
   },
   {
     component: "齿轮箱轴承",
-    keywords: ["齿轮箱轴承", "行星轮轴承", "高速轴轴承", "中间轴轴承", "滚动轴承", "轴承跑圈", "套圈蠕动", "bearing creep", "ring creep", "gearbox bearing", "planet bearing", "rolling bearing", "roller bearing"]
+    keywords: ["齿轮箱轴承", "行星轮轴承", "高速轴轴承", "中间轴轴承", "滚动轴承", "风电轴承", "轴承跑圈", "套圈蠕动", "bearing creep", "ring creep", "gearbox bearing", "planet bearing", "wind turbine bearing", "rolling bearing", "roller bearing"]
   },
   {
-    component: "箱体与扭力臂",
+    component: "箱体与支承",
     keywords: ["齿轮箱箱体", "箱体变形", "扭力臂", "弹性支撑", "机架接口", "gearbox housing", "housing deformation", "torque arm", "elastic support", "bedplate interface"]
   },
   {
@@ -120,21 +147,93 @@ export const DRIVETRAIN_COMPONENT_TAXONOMY = [
     keywords: ["润滑系统", "齿轮油", "润滑油", "润滑脂", "油液", "油温", "冷却系统", "过滤器", "密封", "漏油", "gear oil", "lubrication system", "lubricant", "oil debris", "cooling system", "filter", "seal", "oil leakage"]
   },
   {
-    component: "发电机与高速端接口",
-    keywords: ["发电机轴承", "发电机接口", "高速端", "高速联轴器", "generator bearing", "generator interface", "high-speed coupling", "high speed coupling", "high-speed end"]
+    component: "制动与高速端",
+    keywords: ["机械制动", "制动盘", "制动器", "高速端", "高速联轴器", "高速轴制动", "brake disc", "mechanical brake", "high-speed coupling", "high speed coupling", "high-speed end"]
   },
   {
-    component: "监测与传感系统",
+    component: "监测与传感",
     keywords: ["状态监测", "振动监测", "油液监测", "扭矩传感", "温度传感", "scada", "cms", "condition monitoring", "vibration monitoring", "oil monitoring", "torque sensor", "temperature sensor"]
   },
   {
-    component: "齿轮箱总成与架构",
+    component: "齿轮箱总成",
     keywords: ["齿轮箱", "主齿轮箱", "功率分流", "扭矩密度", "gearbox", "gear box", "split torque", "torque density"]
   },
   {
-    component: "传动链系统与整机接口",
+    component: "传动链总体",
     keywords: ["传动链", "主传动链", "轴系", "扭振", "载荷谱", "drivetrain", "drive train", "shaft line", "torsional vibration", "load spectrum"]
   }
+];
+
+export const PRIMARY_SECTIONS = [
+  "技术与产品开发",
+  "故障、质量与运维",
+  "论文、标准与专利",
+  "厂商与项目动态",
+  "政策、市场与产业环境"
+];
+
+export const DRIVETRAIN_COMPONENT_TAGS = [
+  ["主轴", ["主轴", "main shaft"]],
+  ["主轴承", ["主轴承", "主轴轴承", "main bearing", "main shaft bearing"]],
+  ["行星架", ["行星架", "planet carrier"]],
+  ["行星轮", ["行星轮", "planet gear"]],
+  ["太阳轮", ["太阳轮", "sun gear"]],
+  ["内齿圈", ["内齿圈", "齿圈", "ring gear"]],
+  ["行星销", ["行星销", "行星销轴", "planet pin"]],
+  ["行星轴承", ["行星轮轴承", "行星轴承", "planet bearing"]],
+  ["中间轴", ["中间轴", "中速轴", "intermediate shaft"]],
+  ["高速轴", ["高速轴", "high-speed shaft", "high speed shaft"]],
+  ["齿面", ["齿面", "齿廓", "gear flank", "tooth flank"]],
+  ["齿根", ["齿根", "tooth root", "root fillet"]],
+  ["轴承内圈", ["轴承内圈", "内圈", "inner ring"]],
+  ["轴承外圈", ["轴承外圈", "外圈", "outer ring"]],
+  ["保持架", ["保持架", "bearing cage", "cage failure"]],
+  ["滚子与滚道", ["滚子", "滚动体", "滚道", "roller", "rolling element", "raceway"]],
+  ["轴瓦", ["轴瓦", "可倾瓦", "bearing pad", "tilting pad"]],
+  ["箱体", ["齿轮箱箱体", "箱体", "gearbox housing"]],
+  ["扭力臂", ["扭力臂", "torque arm"]],
+  ["弹性支承", ["弹性支撑", "弹性支承", "elastic support"]],
+  ["联轴器", ["联轴器", "coupling"]],
+  ["锁紧盘", ["锁紧盘", "胀紧套", "胀套", "收缩盘", "shrink disc", "locking assembly"]],
+  ["花键", ["花键", "spline"]],
+  ["过滤器", ["过滤器", "过滤精度", "filter", "filtration"]],
+  ["冷却器", ["冷却器", "冷却系统", "oil cooler", "cooling system"]],
+  ["密封", ["密封", "seal"]],
+  ["制动器", ["制动器", "制动盘", "brake", "brake disc"]],
+  ["振动传感器", ["振动传感器", "加速度传感器", "vibration sensor", "accelerometer"]],
+  ["油液传感器", ["油液传感器", "磨粒传感器", "oil sensor", "debris sensor"]]
+];
+
+export const FAILURE_MODE_TAXONOMY = [
+  ["微点蚀", ["微点蚀", "micropitting"]],
+  ["点蚀", ["点蚀", "pitting"]],
+  ["胶合与擦伤", ["胶合", "擦伤", "scuffing", "smearing"]],
+  ["齿面磨损", ["齿面磨损", "tooth wear", "flank wear"]],
+  ["断齿与齿根裂纹", ["断齿", "齿根裂纹", "轮齿断裂", "tooth fracture", "root crack"]],
+  ["白色蚀刻裂纹", ["白色蚀刻裂纹", "白色组织裂纹", "white etching crack", "wec"]],
+  ["轴承电蚀", ["轴承电蚀", "电流损伤", "fluting", "electrical erosion", "bearing current"]],
+  ["轴承跑圈", ["轴承跑圈", "跑内圈", "跑外圈", "套圈蠕动", "bearing creep", "ring creep", "ring walk"]],
+  ["轴承剥落", ["轴承剥落", "滚道剥落", "bearing spalling", "raceway spalling"]],
+  ["保持架损伤", ["保持架损伤", "保持架断裂", "cage damage", "cage failure"]],
+  ["轴系不对中", ["不对中", "同轴度超差", "misalignment"]],
+  ["箱体与结构裂纹", ["箱体裂纹", "扭力臂裂纹", "housing crack", "torque arm crack"]],
+  ["异常振动与异响", ["异常振动", "振动超限", "异响", "abnormal vibration", "abnormal noise"]],
+  ["温升与过热", ["温升异常", "齿轮箱高温", "轴承温升", "过热", "overheating"]],
+  ["漏油与密封失效", ["漏油", "渗漏", "密封失效", "oil leakage", "seal failure"]],
+  ["润滑污染与失效", ["润滑失效", "油液污染", "水分超标", "清洁度超标", "lubrication failure", "oil contamination"]]
+];
+
+export const DEVELOPMENT_STAGE_TAXONOMY = [
+  ["概念与方案", ["概念设计", "方案设计", "技术路线", "concept design", "architecture study"]],
+  ["详细设计", ["详细设计", "设计优化", "参数优化", "detailed design", "design optimization"]],
+  ["样机", ["样机", "首台套", "prototype", "demonstrator"]],
+  ["台架试验", ["台架试验", "试验台", "背靠背试验", "bench test", "test rig", "back-to-back test"]],
+  ["型式试验", ["型式试验", "type test"]],
+  ["认证", ["认证", "certification", "type certificate"]],
+  ["量产", ["量产", "批量生产", "批量下线", "mass production", "serial production"]],
+  ["交付与吊装", ["交付", "发运", "吊装", "delivery", "shipment", "installation"]],
+  ["并网运行", ["并网", "投运", "现场运行", "commissioning", "in operation"]],
+  ["运维与技改", ["运维", "检修", "维修", "技改", "改造", "maintenance", "repair", "repowering", "retrofit"]]
 ];
 
 const categoryRules = [
@@ -184,6 +283,13 @@ function inferDrivetrainClassificationFromText(text) {
   };
 }
 
+function inferTaxonomyTags(text, taxonomy, limit = 12) {
+  return taxonomy
+    .filter(([, keywords]) => keywords.some((keyword) => containsKeyword(text, keyword)))
+    .map(([label]) => label)
+    .slice(0, limit);
+}
+
 function inferComponentClassificationFromText(text) {
   const matches = DRIVETRAIN_COMPONENT_TAXONOMY
     .map((entry, index) => {
@@ -206,59 +312,120 @@ export function inferDrivetrainClassification(article) {
   const text = classificationText(article);
   return {
     ...inferDrivetrainClassificationFromText(text),
-    ...inferComponentClassificationFromText(text)
+    ...inferComponentClassificationFromText(text),
+    componentTags: inferTaxonomyTags(text, DRIVETRAIN_COMPONENT_TAGS, 10),
+    failureModes: inferTaxonomyTags(text, FAILURE_MODE_TAXONOMY, 8),
+    developmentStages: inferTaxonomyTags(text, DEVELOPMENT_STAGE_TAXONOMY, 6)
   };
 }
 
-function inferDirectDrivetrainClassification(article) {
-  const text = cleanText([
+function directClassificationText(article) {
+  return cleanText([
     article.title,
     article.titleZh,
-    article.snippet,
-    ...(article.contextTags || [])
+    article.snippet
   ].filter(Boolean).join(" ")).toLowerCase();
+}
+
+function inferDirectDrivetrainClassification(article) {
+  const text = directClassificationText(article);
   return {
     ...inferDrivetrainClassificationFromText(text),
-    ...inferComponentClassificationFromText(text)
+    ...inferComponentClassificationFromText(text),
+    componentTags: inferTaxonomyTags(text, DRIVETRAIN_COMPONENT_TAGS, 10),
+    failureModes: inferTaxonomyTags(text, FAILURE_MODE_TAXONOMY, 8),
+    developmentStages: inferTaxonomyTags(text, DEVELOPMENT_STAGE_TAXONOMY, 6)
   };
+}
+
+function inferEvidenceTypes(article, text) {
+  const evidenceTypes = [];
+  if (article.sourceType === "论文") evidenceTypes.push("论文");
+  if (article.sourceType === "标准" || /(?:^|\s)(?:gb\/t|gb|iec|iso|dnv|gl)[-\s]?\d/i.test(text)) evidenceTypes.push("标准");
+  if (article.sourceType === "专利") evidenceTypes.push("专利");
+  if (containsKeyword(text, "台架试验") || containsKeyword(text, "bench test") || containsKeyword(text, "test rig")) evidenceTypes.push("台架试验");
+  if (containsKeyword(text, "现场案例") || containsKeyword(text, "故障案例") || containsKeyword(text, "field case")) evidenceTypes.push("现场案例");
+  if ((article.contextTags || []).includes("企业官网")) evidenceTypes.push("企业公告");
+  else if ((article.contextTags || []).includes("研究机构")) evidenceTypes.push("研究报告");
+  else if ((article.contextTags || []).some((tag) => ["行业权威", "中国风能协会"].includes(tag))) evidenceTypes.push("行业组织发布");
+  else if (article.queryTopic === "official" || article.intelligenceType === "official") evidenceTypes.push("官方发布");
+  else if (article.queryTopic === "industry" || article.intelligenceType === "industry") evidenceTypes.push("媒体报道");
+  if (!evidenceTypes.length) evidenceTypes.push(article.sourceType || "公开资料");
+  return [...new Set(evidenceTypes)].slice(0, 5);
+}
+
+const SUPPLIER_ENTITIES = [
+  "南高齿", "南京高速齿轮", "ngc", "重齿", "重庆齿轮箱", "德力佳", "宁波东力", "杭齿", "winergy", "flender", "zf wind", "moventas", "eickhoff",
+  "洛轴", "lyc", "瓦轴", "zwz", "新强联", "轴研科技", "zys", "skf", "schaeffler", "舍弗勒", "timken", "铁姆肯", "nsk", "ntn",
+  "昆仑润滑", "长城润滑", "mobil", "美孚", "shell", "壳牌", "castrol", "嘉实多", "kluber", "klüber", "克鲁勃", "fuchs", "福斯"
+];
+
+const OEM_ENTITIES = [
+  "金风", "goldwind", "远景能源", "envision", "明阳", "mingyang", "运达", "windey", "三一重能", "东方风电", "电气风电",
+  "vestas", "siemens gamesa", "ge vernova", "nordex", "enercon"
+];
+
+function hasIndustryEntity(text) {
+  return [...SUPPLIER_ENTITIES, ...OEM_ENTITIES].some((entity) => containsKeyword(text, entity));
+}
+
+function inferIndustryCategory(article, text) {
+  const tags = article.contextTags || article.tags || [];
+  if (SUPPLIER_ENTITIES.some((entity) => containsKeyword(text, entity))) return "传动链企业";
+  if (OEM_ENTITIES.some((entity) => containsKeyword(text, entity))) return "整机与开发商";
+  const supplierContext = tags.some((tag) => ["齿轮箱厂商", "轴承厂商", "润滑供应商", "传动链企业"].includes(tag));
+  const directDrivetrainSignal = ["齿轮箱", "轴承", "传动链", "gearbox", "bearing", "drivetrain"].some((signal) => containsKeyword(text, signal));
+  if (supplierContext && directDrivetrainSignal) return "传动链企业";
+  const projectSignals = ["项目", "中标", "订单", "交付", "吊装", "并网", "project", "order", "delivery", "installation", "commissioning"];
+  if (projectSignals.some((signal) => containsKeyword(text, signal))) return "项目进展";
+  if (article.directSource && tags.some((tag) => ["齿轮箱厂商", "轴承厂商", "润滑供应商", "传动链企业"].includes(tag))) return "传动链企业";
+  if (article.directSource && tags.some((tag) => ["整机厂商", "开发商", "业主"].includes(tag))) return "整机与开发商";
+  return "企业动态";
+}
+
+function inferPrimarySection(article, classification, text) {
+  const topic = article.queryTopic || article.intelligenceType || "technical";
+  if (["论文", "标准", "专利"].includes(article.sourceType)) return "论文、标准与专利";
+  const concreteFailure = classification.failureModes.length > 0 && [
+    "故障", "失效", "损伤", "异常", "裂纹", "断齿", "跑圈", "剥落", "漏油", "维修", "检修", "案例",
+    "failure", "damage", "fault", "crack", "fracture", "repair", "case study"
+  ].some((signal) => containsKeyword(text, signal));
+  if (concreteFailure) return "故障、质量与运维";
+  const companyEvent = hasIndustryEntity(text) && [
+    "订单", "中标", "签约", "交付", "下线", "吊装", "并网", "项目", "合作", "扩产", "工厂", "新品", "样机",
+    "order", "contract", "delivery", "project", "partnership", "factory", "prototype", "installation", "commissioning"
+  ].some((signal) => containsKeyword(text, signal));
+  if (companyEvent) return "厂商与项目动态";
+  const policyOrMarket = ["政策", "规划", "装机", "行业统计", "市场规模", "发展目标", "policy", "regulation", "market outlook", "installed capacity"]
+    .some((signal) => containsKeyword(text, signal));
+  if (topic === "industry" && policyOrMarket && !hasIndustryEntity(text)) return "政策、市场与产业环境";
+  if (topic === "industry") return "厂商与项目动态";
+  if (topic === "official") return "政策、市场与产业环境";
+  return "技术与产品开发";
 }
 
 export function classifyArticle(article) {
   const topic = article.queryTopic || article.intelligenceType || "technical";
+  const text = topic === "industry" || topic === "official" ? directClassificationText(article) : classificationText(article);
   const classification = topic === "industry" || topic === "official"
     ? inferDirectDrivetrainClassification(article)
     : inferDrivetrainClassification(article);
-  const sections = [];
-  if (topic === "official") sections.push("风电行业全景");
-  if (topic === "industry") sections.push("企业与项目追踪");
-  if (classification.technicalTags.length || article.sourceType === "论文" || topic === "technical") {
-    sections.push("风电传动链专栏");
-  }
-  if (!sections.length) sections.push("风电行业全景");
-  const uniqueSections = [...new Set(sections)];
-  const primarySection = topic === "industry"
-    ? "企业与项目追踪"
-    : topic === "official"
-      ? "风电行业全景"
-      : uniqueSections.includes("风电传动链专栏")
-        ? "风电传动链专栏"
-        : "风电行业全景";
-  const componentCategory = uniqueSections.includes("风电传动链专栏")
-    ? classification.drivetrainComponent || "传动链系统与整机接口"
-    : topic === "industry"
-      ? "企业与项目综合"
-      : "行业政策与市场";
-  const drivetrainComponents = uniqueSections.includes("风电传动链专栏")
-    ? classification.drivetrainComponents.length
-      ? classification.drivetrainComponents
-      : [componentCategory]
-    : [];
+  const primarySection = inferPrimarySection(article, classification, text);
+  const isDrivetrainItem = classification.drivetrainComponents.length > 0 || [
+    "技术与产品开发", "故障、质量与运维", "论文、标准与专利"
+  ].includes(primarySection);
+  const componentCategory = classification.drivetrainComponent || (isDrivetrainItem ? "传动链总体" : "行业综合");
+  const drivetrainComponents = classification.drivetrainComponents.length
+    ? classification.drivetrainComponents
+    : isDrivetrainItem ? [componentCategory] : [];
   return {
     ...classification,
     drivetrainComponent: componentCategory,
     drivetrainComponents,
     componentCategory,
-    sections: uniqueSections,
+    evidenceTypes: inferEvidenceTypes(article, text),
+    industryCategory: primarySection === "厂商与项目动态" ? inferIndustryCategory(article, text) : "",
+    sections: [primarySection],
     primarySection
   };
 }
@@ -266,13 +433,14 @@ export function classifyArticle(article) {
 export function isIndustryRelevant(article) {
   if (article.queryTopic !== "industry") return false;
   const text = cleanText(`${article.title || ""} ${article.snippet || ""}`).toLowerCase();
-  const hasNamedEntity = (article.matchTerms || []).some((term) => containsKeyword(text, term));
+  const hasNamedEntity = article.directSource || (article.matchTerms || []).some((term) => containsKeyword(text, term));
   if (!hasNamedEntity) return false;
 
   const contextTags = article.contextTags || [];
   const isWindOem = contextTags.includes("整机厂商");
+  const isDrivetrainSupplier = contextTags.some((tag) => ["齿轮箱厂商", "轴承厂商", "润滑供应商", "传动链企业"].includes(tag));
   const windSignals = ["风电", "风机", "风力发电", "wind", "turbine", "offshore", "onshore"];
-  const hasWindContext = isWindOem || windSignals.some((signal) => containsKeyword(text, signal));
+  const hasWindContext = (article.directSource && (isWindOem || isDrivetrainSupplier)) || windSignals.some((signal) => containsKeyword(text, signal));
   const developmentSignals = [
     "订单", "中标", "签约", "交付", "发运", "项目", "基地", "投产", "扩产", "产能", "工厂",
     "并购", "合作", "新品", "技术", "专利", "认证", "试验", "样机", "量产", "安装", "吊装",
@@ -954,6 +1122,11 @@ export function toPublicArticle(article, summaryData) {
     sections: classification.sections,
     technicalDomains: classification.technicalDomains,
     technicalTags: classification.technicalTags,
+    componentTags: classification.componentTags,
+    failureModes: classification.failureModes,
+    developmentStages: classification.developmentStages,
+    evidenceTypes: classification.evidenceTypes,
+    industryCategory: classification.industryCategory,
     drivetrainComponent: classification.drivetrainComponent,
     drivetrainComponents: classification.drivetrainComponents,
     componentCategory: classification.componentCategory,

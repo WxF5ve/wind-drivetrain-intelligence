@@ -9,6 +9,7 @@
     "collect": "node scripts/collect.mjs",
     "collect:dry": "node scripts/collect.mjs --dry-run",
     "collect:resummarize": "node scripts/collect.mjs --resummarize",
+    "migrate:taxonomy": "node scripts/migrate-taxonomy.mjs",
     "build": "node scripts/build.mjs",
     "test": "node --test",
     "test:visual": "node scripts/visual-check.cjs"

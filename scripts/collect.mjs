@@ -255,7 +255,9 @@ function sourceContext(source) {
     queryTopic: source.topic === "industry" || source.topic === "official" ? source.topic : "technical",
     matchTerms: Array.isArray(source.matchTerms) ? source.matchTerms : [],
     contextTags: Array.isArray(source.contextTags) ? source.contextTags : [],
-    allowedDomains: Array.isArray(source.allowedDomains) ? source.allowedDomains : []
+    allowedDomains: Array.isArray(source.allowedDomains) ? source.allowedDomains : [],
+    directSource: Boolean(source.directSource),
+    ...(source.sourceType ? { sourceType: source.sourceType } : {})
   };
 }
 
@@ -645,7 +647,7 @@ async function collectSemanticScholar(source, lookbackDays) {
   });
 }
 
-async function collectAcademicWebIndex(source, lookbackDays) {
+async function collectWebIndex(source, lookbackDays) {
   const cutoff = now.getTime() - lookbackDays * 86400000;
   const fromDate = new Date(cutoff).toISOString().slice(0, 10);
   const url = new URL("https://www.bing.com/search");
@@ -679,13 +681,13 @@ async function collectAcademicWebIndex(source, lookbackDays) {
       title: cleanText(item.title || metadata.title || ""),
       snippet: metadata.fullText || description || "",
       source: sourceName,
-      sourceType: "论文",
-      region: "国内",
-      language: "zh",
+      sourceType: source.sourceType || "论文",
+      region: source.region || "国内",
+      language: source.language === "English" ? "en" : "zh",
       publishedAt,
       collectedAt: now.toISOString(),
       url: metadata.finalUrl || articleUrl,
-      sourceChannel: "Bing Web 学术题录",
+      sourceChannel: source.sourceType === "论文" || !source.sourceType ? "Bing Web 学术题录" : "Bing Web 官网定向",
       linkType: "publisher",
       linkVerified: Boolean(metadata.finalUrl),
       contentAccess: metadata.contentAccess || (description ? "abstract" : "metadata"),
@@ -701,7 +703,7 @@ async function collectAcademicWebIndex(source, lookbackDays) {
         doi: "",
         authorsCount: 0,
         authors: [],
-        journal: sourceName,
+        journal: source.sourceType === "论文" || !source.sourceType ? sourceName : "",
         isOpenAccess: metadata.contentAccess === "fulltext"
       },
       ...sourceContext(source)
@@ -816,7 +818,7 @@ function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
   const clueCount = articles.length - readableArticles.length;
   const counts = new Map();
   for (const article of readableArticles) {
-    const topics = [article.componentCategory || article.drivetrainComponent || article.primarySection || article.category];
+    const topics = [article.primarySection || article.componentCategory || article.category];
     for (const topic of new Set(topics.filter(Boolean))) counts.set(topic, (counts.get(topic) || 0) + 1);
   }
   const leadingTopics = [...counts.entries()]
@@ -920,8 +922,14 @@ async function main() {
     openalex: { label: "OpenAlex", run: collectOpenAlex },
     crossref: { label: "Crossref", run: collectCrossref },
     "semantic-scholar": { label: "Semantic Scholar", run: collectSemanticScholar },
-    "academic-web": { label: "国内公开题录", run: collectAcademicWebIndex }
+    "academic-web": { label: "国内公开题录", run: collectWebIndex }
   };
+  const webJobs = (config.webQueries || []).map((source) => ({
+    id: source.id,
+    label: source.label,
+    type: "web",
+    run: () => collectWebIndex(source, lookbackDays)
+  }));
   const researchJobs = (config.researchQueries || []).flatMap((source) =>
     (source.providers || ["openalex", "crossref"]).flatMap((provider) => {
       const collector = researchCollectors[provider];
@@ -934,7 +942,7 @@ async function main() {
       }];
     })
   );
-  const jobs = [...newsJobs, ...researchJobs];
+  const jobs = [...newsJobs, ...webJobs, ...researchJobs];
 
   console.log(`开始采集 ${jobs.length} 个数据通道，回看 ${lookbackDays} 天...`);
   const newsResults = [];
@@ -946,6 +954,15 @@ async function main() {
     }
     await delay(1800);
   }
+  const webResults = [];
+  for (const job of webJobs) {
+    try {
+      webResults.push({ status: "fulfilled", value: await job.run() });
+    } catch (reason) {
+      webResults.push({ status: "rejected", reason });
+    }
+    await delay(900);
+  }
   const researchResults = [];
   for (const job of researchJobs) {
     try {
@@ -955,7 +972,7 @@ async function main() {
     }
     await delay(1200);
   }
-  const results = [...newsResults, ...researchResults];
+  const results = [...newsResults, ...webResults, ...researchResults];
   const rawArticles = [];
   results.forEach((result, index) => {
     if (result.status === "fulfilled") {
