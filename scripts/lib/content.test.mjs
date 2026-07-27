@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { extractHtmlContent, extractReaderContent } from "./content.mjs";
+import { extractHtmlContent, extractReaderContent, readerContentIsRestricted } from "./content.mjs";
 
 test("HTML content extraction prefers article paragraphs over navigation and footer text", () => {
   const paragraph = "风电齿轮箱试验验证了行星架强度与齿轮箱振动之间的关系，并给出了可核验的载荷数据。";
@@ -86,4 +86,30 @@ Markdown Content:
   const result = extractReaderContent(markdown, "中核汇能与金风科技会谈");
   assert.match(result.fullText, /常态化沟通机制/);
   assert.doesNotMatch(result.fullText, /微信公众号|找项目|相关评论|100万千瓦/);
+});
+
+test("public reader fallback rejects broadcast schedules and paywall pages", () => {
+  const schedule = `
+Title: [今日环球]启源海上风电场首批机组并网
+Markdown Content:
+# [今日环球]启源海上风电场首批机组并网
+*   [00:02:31 [今日环球]天气预报](https://example.com/video/1)
+*   [00:00:22 [今日环球]国际动漫展](https://example.com/video/2)
+00:01:12 上海广东协作帮扶 新闻联播
+00:15:10 扶贫产品专题 焦点访谈
+《正点财经》 20260727 17:00
+《正点财经》 20260727 16:00
+  `;
+  const result = extractReaderContent(schedule, "[今日环球]启源海上风电场首批机组并网");
+  assert.equal(result.fullText, "");
+
+  const paywall = `
+Title: Wind power patents
+Markdown Content:
+# Wind power patents
+Windpower Monthly rounds up the latest wind power technology patents.
+Gain full access and pay nothing for your first 30 days.
+Already a subscriber? Activate your subscription here.
+  `;
+  assert.equal(readerContentIsRestricted(paywall), true);
 });

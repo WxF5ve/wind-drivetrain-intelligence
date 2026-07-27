@@ -21,7 +21,8 @@ import {
   extractHtmlContent,
   extractPdfText,
   extractReaderContent,
-  MIN_FULLTEXT_CHARACTERS
+  MIN_FULLTEXT_CHARACTERS,
+  readerContentIsRestricted
 } from "./lib/content.mjs";
 import {
   experienceNeedsAiReview,
@@ -293,7 +294,7 @@ async function fetchReaderContent(url, expectedTitle) {
     });
     if (!response.ok) return null;
     const markdown = await response.text();
-    if (/captcha|security check required|请登录后|付费后阅读|subscription required/i.test(markdown.slice(0, 3000))) return null;
+    if (readerContentIsRestricted(markdown)) return null;
     const content = extractReaderContent(markdown, expectedTitle);
     if (content.fullText.length < MIN_FULLTEXT_CHARACTERS) return null;
     return content;

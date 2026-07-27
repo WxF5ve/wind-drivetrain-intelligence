@@ -97,6 +97,12 @@ function isReaderArticleEnd(raw, text) {
   return /^(?:风电资讯一手掌握|看资讯\s*\/|如因作品内容|联系方式[:：]?\s*\d|\[?共\s*\d+\s*条|相关评论|匿名发表|当前已经输入|京ICP备|ICP备|增值电信业务许可证|京公网安备|公网安备)/i.test(text);
 }
 
+export function readerContentIsRestricted(markdown) {
+  return /captcha|security check required|请登录后|付费后阅读|subscription required|gain full access|already a subscriber|activate your subscription|take a \d+-day free trial|subscriber[- ]only/i.test(
+    String(markdown || "").slice(0, 12000)
+  );
+}
+
 export function extractReaderContent(markdown, expectedTitle = "", maxCharacters = 14000) {
   const source = String(markdown || "").slice(0, 1_000_000);
   const lines = source.split(/\r?\n/);
@@ -122,10 +128,12 @@ export function extractReaderContent(markdown, expectedTitle = "", maxCharacters
     if (isReaderArticleEnd(raw, text)) break;
     if (!publishedAt) publishedAt = raw.match(/(?:时间|日期|发布时间)[:：]\s*(20\d{2}[-/.年]\d{1,2}(?:[-/.月]\d{1,2}日?)?)/)?.[1] || "";
     if (!raw || /^!\[/.test(raw) || /connect\.qq|share(?:qq|weibo)|javascript:|\/api\/share/i.test(raw)) continue;
+    if (/^(?:[-*+]\s+)?\[.*\]\(https?:\/\/[^)]+\)\s*$/i.test(raw)) continue;
     if (/^_?关键词[:：]/.test(raw) || /^https?:\/\//i.test(raw)) continue;
     const linkCount = (raw.match(/\]\(/g) || []).length;
     if (linkCount >= 3 || (linkCount && raw.length < 80)) continue;
     if (/^(?:来源|时间|日期|发布时间|作者|编辑|记者|关键词)[:：]/.test(text)) continue;
+    if (/^(?:(?:\d{2}:){1,2}\d{2}\s+|《[^》]{1,30}》\s+20\d{6}\s+\d{2}:\d{2}$)/.test(text)) continue;
     if (text.length < 20 || boilerplatePattern.test(text)) continue;
     paragraphs.push(text);
     if (paragraphs.join("\n").length >= maxCharacters) break;
