@@ -900,7 +900,6 @@ async function main() {
     .slice(0, historyMaxArticles)
     .map((article) => ({
       ...article,
-      ...classifyArticle(article),
       engineeringExperience: publicEngineeringExperience(article.engineeringExperience)
     }));
 

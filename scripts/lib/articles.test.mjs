@@ -176,7 +176,7 @@ test("section classification separates source type from content topic and allows
     sourceType: "行业资讯"
   });
   assert.deepEqual(supplierProgress.sections, ["企业与项目追踪", "风电传动链专栏"]);
-  assert.equal(supplierProgress.primarySection, "风电传动链专栏");
+  assert.equal(supplierProgress.primarySection, "企业与项目追踪");
 
   const policy = classifyArticle({
     title: "国家能源局发布年度风电装机规划",
@@ -184,6 +184,15 @@ test("section classification separates source type from content topic and allows
     sourceType: "行业资讯"
   });
   assert.deepEqual(policy.sections, ["风电行业全景"]);
+
+  const genericProject = classifyArticle({
+    title: "某地200MW风电项目完成并网",
+    summary: "该项目可能带动齿轮箱和轴承需求。",
+    engineeringImpact: "可关注传动链供应链机会。",
+    queryTopic: "industry",
+    sourceType: "行业资讯"
+  });
+  assert.deepEqual(genericProject.sections, ["企业与项目追踪"]);
 
   const paper = classifyArticle({
     title: "Wind power market overview",

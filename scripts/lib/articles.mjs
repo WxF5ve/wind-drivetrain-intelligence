@@ -106,15 +106,13 @@ function classificationText(article) {
     article.titleZh,
     article.snippet,
     article.summary,
-    article.engineeringImpact,
     ...(article.keyPoints || []),
     ...(article.tags || []),
     ...(article.contextTags || [])
   ].filter(Boolean).join(" ")).toLowerCase();
 }
 
-export function inferDrivetrainClassification(article) {
-  const text = classificationText(article);
+function inferDrivetrainClassificationFromText(text) {
   const technicalDomains = [];
   const technicalTags = [];
   for (const domain of DRIVETRAIN_TAXONOMY) {
@@ -131,9 +129,25 @@ export function inferDrivetrainClassification(article) {
   };
 }
 
+export function inferDrivetrainClassification(article) {
+  return inferDrivetrainClassificationFromText(classificationText(article));
+}
+
+function inferDirectDrivetrainClassification(article) {
+  const text = cleanText([
+    article.title,
+    article.titleZh,
+    article.snippet,
+    ...(article.contextTags || [])
+  ].filter(Boolean).join(" ")).toLowerCase();
+  return inferDrivetrainClassificationFromText(text);
+}
+
 export function classifyArticle(article) {
-  const classification = inferDrivetrainClassification(article);
   const topic = article.queryTopic || article.intelligenceType || "technical";
+  const classification = topic === "industry" || topic === "official"
+    ? inferDirectDrivetrainClassification(article)
+    : inferDrivetrainClassification(article);
   const sections = [];
   if (topic === "official") sections.push("风电行业全景");
   if (topic === "industry") sections.push("企业与项目追踪");
@@ -142,11 +156,13 @@ export function classifyArticle(article) {
   }
   if (!sections.length) sections.push("风电行业全景");
   const uniqueSections = [...new Set(sections)];
-  const primarySection = uniqueSections.includes("风电传动链专栏")
-    ? "风电传动链专栏"
-    : uniqueSections.includes("企业与项目追踪")
-      ? "企业与项目追踪"
-      : "风电行业全景";
+  const primarySection = topic === "industry"
+    ? "企业与项目追踪"
+    : topic === "official"
+      ? "风电行业全景"
+      : uniqueSections.includes("风电传动链专栏")
+        ? "风电传动链专栏"
+        : "风电行业全景";
   return { ...classification, sections: uniqueSections, primarySection };
 }
 
