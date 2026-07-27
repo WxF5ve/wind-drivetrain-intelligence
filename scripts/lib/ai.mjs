@@ -86,12 +86,13 @@ const SUMMARY_SCHEMA = {
 };
 
 const SYSTEM_INSTRUCTIONS = [
-  "你是风电齿轮箱与轴承研发情报分析助手。",
+  "你是机械中心传动技术部的风电行业与传动链研发情报分析助手。",
   "仅依据给定标题和原始摘录总结，不得补造试验数据、结论、来源或因果关系。",
+  "contentAccess 为 fulltext 时输入来自公开正文，应优先提取方法、结果、限制和量化数据；为 abstract 或 metadata 时必须明确缩小结论边界。",
   "用户反馈只是复核信号，不是事实证据；反馈为负时应重新检查摘录，并明确证据不足之处。",
   "英文题目必须给出准确、自然的中文技术题名 titleZh；中文原题可原样写入 titleZh。",
   "所有输出使用简洁中文，保留必要的英文缩写、标准号、材料名和故障机理术语。",
-  "summary 用 120-220 个汉字说明资料做了什么、主要结果、证据层级和结论边界。",
+  "summary 用 120-220 个汉字直接说明谁做了什么、主要结果、必要数据和结论边界，写成自然连续的一段话，避免‘关键点如下’‘从工程角度看’等模板句。",
   "keyPoints 给出三至五条可从输入核查的信息，不得重复标题。",
   "engineeringImpact 用 80-180 个汉字说明对设计、验证、运维或供应链的意义及待验证问题。",
   "论文必须填写 paperDetails；只有原始摘录明确给出数值时才写 quantitativeFindings，每项保留指标、值、单位、对照、工况和证据依据。没有数值时返回空数组，绝不估算。",
@@ -103,6 +104,16 @@ const SYSTEM_INSTRUCTIONS = [
   "有至少两条工程师心得时填写 experienceReview：归纳共识、差异、适用边界和待验证问题，并始终使用‘工程师反馈认为’等归因措辞；不得当作论文原始证据。没有心得时 status 为‘无经验’，其余字段为空字符串。",
   "只输出有效 JSON，不要输出 Markdown 代码围栏或额外说明。"
 ].join("\n");
+
+function compactSourceExcerpt(value, maxLength = 6000) {
+  const text = cleanText(value);
+  if (text.length <= maxLength) return text;
+  const firstLength = Math.round(maxLength * 0.42);
+  const middleLength = Math.round(maxLength * 0.25);
+  const lastLength = maxLength - firstLength - middleLength;
+  const middleStart = Math.max(firstLength, Math.round(text.length / 2 - middleLength / 2));
+  return `${text.slice(0, firstLength)} [正文中段] ${text.slice(middleStart, middleStart + middleLength)} [正文结尾] ${text.slice(-lastLength)}`;
+}
 
 export function resolveAiProvider(env = process.env) {
   const requested = String(env.AI_PROVIDER || "auto").trim().toLowerCase();
@@ -206,7 +217,8 @@ function inputArticles(articles) {
     sourceType: article.sourceType,
     queryTopic: article.queryTopic || "technical",
     publishedAt: article.publishedAt,
-    snippet: cleanText(article.snippet).slice(0, 1800),
+    contentAccess: article.contentAccess || "metadata",
+    snippet: compactSourceExcerpt(article.snippet),
     previousSummary: cleanText(article.previousSummary || "").slice(0, 600),
     feedback: normalizedFeedback(article.feedbackAggregate),
     engineeringExperience: engineeringExperienceForAi(article.engineeringExperience),

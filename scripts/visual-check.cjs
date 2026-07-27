@@ -46,13 +46,21 @@ async function inspectLayout(page, label) {
     cards: document.querySelectorAll(".article-card").length,
     title: document.querySelector("#brief-title")?.textContent?.trim(),
     searchWidth: document.querySelector(".search-box")?.getBoundingClientRect().width,
-    reliabilityBadges: document.querySelectorAll(".reliability-badge").length
+    reliabilityBadges: document.querySelectorAll(".reliability-badge").length,
+    accessBadges: document.querySelectorAll(".content-access").length,
+    technicalLabels: document.querySelectorAll(".technical-labels").length,
+    activeCategory: document.querySelector(".category-tab.active")?.textContent?.trim(),
+    brand: document.querySelector(".brand strong")?.textContent?.trim()
   }));
   if (result.bodyScrollWidth > result.viewportWidth + 1) {
     throw new Error(`${label} has horizontal overflow: ${result.bodyScrollWidth} > ${result.viewportWidth}`);
   }
   if (!result.cards) throw new Error(`${label} rendered no article cards`);
   if (result.reliabilityBadges !== result.cards) throw new Error(`${label} is missing reliability badges`);
+  if (result.accessBadges < result.cards) throw new Error(`${label} is missing content access badges`);
+  if (!result.technicalLabels) throw new Error(`${label} rendered no drivetrain technical labels`);
+  if (result.activeCategory !== "风电传动链专栏") throw new Error(`${label} did not default to the drivetrain section`);
+  if (result.brand !== "机械中心-传动技术部在线平台") throw new Error(`${label} rendered the wrong platform name`);
   return result;
 }
 
@@ -120,13 +128,14 @@ async function inspectLayout(page, label) {
     const reportDownload = await reportDownloadPromise;
     await desktop.waitForSelector("#weekly-report-dialog[open]");
     const reportItems = await desktop.locator(".report-item").count();
+    const reportParagraphs = await desktop.locator(".report-paragraph").count();
     const reportEventParagraphs = await desktop.locator(".report-event").count();
     const reportInsightParagraphs = await desktop.locator(".report-insight").count();
     const reportEntities = await desktop.locator(".report-entity").count();
     const reportDataHighlights = await desktop.locator(".report-key-data").count();
     const legacyFactRows = await desktop.locator(".report-facts > div").count();
-    if (reportItems < 1 || reportEventParagraphs !== reportItems || reportInsightParagraphs !== reportItems || reportEntities !== reportItems || legacyFactRows) {
-      throw new Error(`Weekly report narrative is incomplete: ${reportItems} items, ${reportEventParagraphs} event paragraphs, ${reportInsightParagraphs} insight paragraphs`);
+    if (reportItems < 1 || reportParagraphs !== reportItems || reportEventParagraphs || reportInsightParagraphs || reportEntities || legacyFactRows) {
+      throw new Error(`Weekly report must use one paragraph per item: ${reportItems} items, ${reportParagraphs} paragraphs`);
     }
     if (!reportDataHighlights) throw new Error("Weekly report did not highlight any quantitative data");
     await desktop.locator(".report-item").first().screenshot({ path: path.join(outputDir, "weekly-report-item.png") });
@@ -177,7 +186,7 @@ async function inspectLayout(page, label) {
       throw new Error(`Browser console errors:\n${consoleErrors.join("\n")}`);
     }
 
-    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportEventParagraphs, reportInsightParagraphs, reportDataHighlights, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
+    console.log(JSON.stringify({ desktopLayout, mobileLayout, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportParagraphs, reportDataHighlights, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
   } finally {
     if (browser) await browser.close();
     server.kill();

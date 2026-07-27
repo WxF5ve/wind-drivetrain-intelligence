@@ -2,8 +2,8 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { GoogleDecoder } from "google-news-url-decoder";
-import { parse } from "node-html-parser";
 import {
+  classifyArticle,
   cleanText,
   createFallbackSummary,
   deduplicateArticles,
@@ -17,6 +17,7 @@ import {
   resolveNewsUrl,
   toPublicArticle
 } from "./lib/articles.mjs";
+import { extractHtmlContent, extractPdfText } from "./lib/content.mjs";
 import {
   experienceNeedsAiReview,
   feedbackNeedsAiReview,
@@ -107,39 +108,46 @@ async function fetchText(url) {
 async function fetchPublisherMetadata(url) {
   if (!/^https?:\/\//i.test(url) || new URL(url).hostname === "news.google.com") return {};
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 18000);
+  const timeout = setTimeout(() => controller.abort(), 15000);
   try {
     const response = await fetch(url, {
       headers: {
-        Accept: "text/html,application/xhtml+xml",
-        "User-Agent": "Mozilla/5.0 (compatible; WindDrivetrainResearchBot/1.0; public metadata only)"
+        Accept: "text/html,application/xhtml+xml,application/pdf",
+        "User-Agent": "Mozilla/5.0 (compatible; MechanicalCenterDrivetrainBot/1.0; public engineering intelligence)"
       },
       redirect: "follow",
       signal: controller.signal
     });
-    if (!response.ok || !response.headers.get("content-type")?.includes("text/html")) return {};
-    const html = await response.text();
-    const root = parse(html.slice(0, 1500000));
-    const title = cleanText(
-      root.querySelector('meta[property="og:title"]')?.getAttribute("content") ||
-      root.querySelector('meta[name="twitter:title"]')?.getAttribute("content") ||
-      root.querySelector("title")?.text ||
-      ""
-    );
-    const selectors = [
-      'meta[property="og:description"]',
-      'meta[name="description"]',
-      'meta[name="twitter:description"]'
-    ];
-    let description = "";
-    for (const selector of selectors) {
-      const candidate = cleanText(root.querySelector(selector)?.getAttribute("content") || "");
-      if (candidate.length >= 40) {
-        description = candidate.slice(0, 1800);
-        break;
-      }
+    if (!response.ok) return {};
+    const contentType = response.headers.get("content-type") || "";
+    const contentLength = Number(response.headers.get("content-length") || 0);
+    if (contentLength > 15_000_000) return {};
+    if (contentType.includes("application/pdf") || /\.pdf(?:$|\?)/i.test(response.url)) {
+      const fullText = await extractPdfText(await response.arrayBuffer());
+      return {
+        title: "",
+        description: "",
+        fullText,
+        finalUrl: response.url,
+        contentAccess: fullText.length >= 600 ? "fulltext" : "metadata",
+        contentSource: fullText.length >= 600 ? "open-access-pdf" : "metadata",
+        extractedCharacters: fullText.length
+      };
     }
-    return { title, description, finalUrl: response.url };
+    if (!contentType.includes("text/html") && !contentType.includes("application/xhtml+xml")) return {};
+    const content = extractHtmlContent(await response.text());
+    const contentAccess = content.fullText.length >= 600
+      ? "fulltext"
+      : content.description.length >= 40
+        ? "abstract"
+        : "metadata";
+    return {
+      ...content,
+      finalUrl: response.url,
+      contentAccess,
+      contentSource: contentAccess === "fulltext" ? "publisher-html" : contentAccess === "abstract" ? "publisher-description" : "metadata",
+      extractedCharacters: content.fullText.length
+    };
   } catch {
     return {};
   } finally {
@@ -176,6 +184,7 @@ async function collectGdelt(source, lookbackDays) {
     sourceChannel: "GDELT",
     linkType: "publisher",
     linkVerified: false,
+    contentAccess: "metadata",
     evidence: { hasPublisherDescription: false },
     ...sourceContext(source)
   }));
@@ -305,6 +314,7 @@ async function collectGoogleNews(source, lookbackDays) {
       sourceChannel: "Google News RSS",
       linkType: hasPublisherLink ? "publisher" : "aggregator",
       linkVerified: false,
+      contentAccess: "metadata",
       evidence: { hasPublisherDescription: false },
       ...sourceContext(source)
     };
@@ -322,6 +332,8 @@ async function collectGoogleNews(source, lookbackDays) {
         snippet: cleanText(originalItem?.description || article.title),
         linkType: "aggregator",
         linkVerified: false,
+        contentAccess: "metadata",
+        contentFetched: true,
         evidence: { hasPublisherDescription: false }
       };
     }
@@ -329,8 +341,12 @@ async function collectGoogleNews(source, lookbackDays) {
     return {
       ...article,
       url: metadata.finalUrl || article.url,
-      snippet: description || article.snippet,
+      snippet: metadata.fullText || description || article.snippet,
       linkVerified: Boolean(metadata.finalUrl),
+      contentAccess: metadata.contentAccess || (description ? "abstract" : "metadata"),
+      contentSource: metadata.contentSource || "",
+      extractedCharacters: Number(metadata.extractedCharacters || 0),
+      contentFetched: true,
       evidence: { hasPublisherDescription: Boolean(description) }
     };
   }));
@@ -367,6 +383,7 @@ async function collectBingNews(source, lookbackDays) {
         sourceChannel: "Bing News RSS",
         linkType: "publisher",
         linkVerified: false,
+        contentAccess: cleanText(item.description).length >= 70 ? "abstract" : "metadata",
         evidence: { hasPublisherDescription: cleanText(item.description).length >= 70 },
         ...sourceContext(source)
       };
@@ -417,6 +434,7 @@ async function collectOpenAlex(source, lookbackDays) {
       const abstract = abstractFromInvertedIndex(item.abstract_inverted_index);
       const journal = location.source || {};
       const biblio = item.biblio || {};
+      const openAccessLocation = item.best_oa_location || (item.locations || []).find((candidate) => candidate?.is_oa) || {};
       return {
         id: makeArticleId(urlValue, item.title),
         title: cleanText(item.title),
@@ -432,6 +450,10 @@ async function collectOpenAlex(source, lookbackDays) {
         sourceChannel: "OpenAlex",
         linkType: "publisher",
         linkVerified: Boolean(item.doi),
+        contentAccess: abstract ? "abstract" : "metadata",
+        contentSource: abstract ? "openalex-abstract" : "metadata",
+        extractedCharacters: abstract.length,
+        fullTextUrl: openAccessLocation.pdf_url || openAccessLocation.landing_page_url || "",
         evidence: {
           hasAbstract: Boolean(abstract),
           doi: item.doi || "",
@@ -455,6 +477,52 @@ async function collectOpenAlex(source, lookbackDays) {
       };
     })
     .filter((item) => item.title && item.url);
+}
+
+async function enrichPublicFullText(articles) {
+  const limit = Math.max(0, Number(process.env.FULLTEXT_MAX_ARTICLES || 45));
+  const concurrency = Math.max(1, Math.min(5, Number(process.env.FULLTEXT_CONCURRENCY || 3)));
+  const targets = articles
+    .map((article) => ({
+      article,
+      targetUrl: article.sourceType === "论文" ? article.fullTextUrl : article.url
+    }))
+    .filter(({ article, targetUrl }) =>
+      !article.contentFetched &&
+      article.contentAccess !== "fulltext" &&
+      /^https?:\/\//i.test(targetUrl || "")
+    )
+    .slice(0, limit);
+  let cursor = 0;
+  async function worker() {
+    while (cursor < targets.length) {
+      const { article, targetUrl } = targets[cursor++];
+      const content = await fetchPublisherMetadata(targetUrl);
+      article.contentFetched = true;
+      if (content.title && titleSimilarity(article.title, content.title) < 0.18) {
+        await delay(180);
+        continue;
+      }
+      const description = usefulPublisherDescription(content.description, article.title);
+      if (content.fullText?.length >= 600) {
+        article.snippet = content.fullText;
+        article.contentAccess = "fulltext";
+        article.contentSource = content.contentSource;
+        article.extractedCharacters = content.extractedCharacters;
+        if (article.sourceType !== "论文" && content.finalUrl) article.url = content.finalUrl;
+        article.linkVerified = true;
+      } else if (description && cleanText(article.snippet).length < description.length) {
+        article.snippet = description;
+        article.contentAccess = "abstract";
+        article.contentSource = content.contentSource || "publisher-description";
+        article.evidence = { ...article.evidence, hasPublisherDescription: true };
+      }
+      await delay(180);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, targets.length) }, () => worker()));
+  const fullTextCount = articles.filter((article) => article.contentAccess === "fulltext").length;
+  console.log(`公开全文提取：${fullTextCount} 条全文，补充尝试 ${targets.length} 条，并发 ${concurrency}`);
 }
 
 async function enrichOpenAlexSourceMetrics(articles) {
@@ -499,21 +567,25 @@ async function enrichOpenAlexSourceMetrics(articles) {
 function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
   const counts = new Map();
   for (const article of articles) {
-    counts.set(article.category, (counts.get(article.category) || 0) + 1);
+    const topics = article.technicalDomains?.length
+      ? article.technicalDomains
+      : [article.primarySection || article.category];
+    for (const topic of new Set(topics.filter(Boolean))) counts.set(topic, (counts.get(topic) || 0) + 1);
   }
-  const leadingCategories = [...counts.entries()]
+  const leadingTopics = [...counts.entries()]
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
-    .map(([category]) => category);
+    .map(([topic]) => topic);
   const domesticCount = articles.filter((article) => article.region === "国内").length;
   const paperCount = articles.filter((article) => article.sourceType === "论文").length;
+  const fullTextCount = articles.filter((article) => article.evidence?.contentAccess === "fulltext").length;
 
   return {
-    title: leadingCategories.length
-      ? `本周聚焦：${leadingCategories.join("、")}`
+    title: leadingTopics.length
+      ? `本周聚焦：${leadingTopics.join("、")}`
       : "本周暂无新增高相关资料",
     summary: articles.length
-      ? `过去 ${lookbackDays} 天共筛选 ${articles.length} 条高相关资料，其中国内 ${domesticCount} 条、论文 ${paperCount} 篇。资料库累计保留 ${archiveCount} 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。`
+      ? `过去 ${lookbackDays} 天共筛选 ${articles.length} 条高相关资料，其中国内 ${domesticCount} 条、论文 ${paperCount} 篇，${fullTextCount} 条已提取公开全文。资料库累计保留 ${archiveCount} 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。`
       : `过去 ${lookbackDays} 天未发现满足相关性阈值的新资料；资料库仍保留 ${archiveCount} 条历史记录供检索。`,
     signals: articles.slice(0, 3).map((article) => article.title),
     metrics: {
@@ -522,7 +594,7 @@ function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
       overseas: articles.length - domesticCount,
       papers: paperCount
     },
-    summaryMode: usedAi ? "AI 结构化摘要" : articles.length ? "原文索引摘要" : "本周无新增"
+    summaryMode: usedAi ? "全文优先 · AI 结构化" : articles.length ? "全文优先 · 规则摘要" : "本周无新增"
   };
 }
 
@@ -649,6 +721,7 @@ async function main() {
     );
     return {
       ...calibrated,
+      ...classifyArticle(calibrated),
       engineeringExperience: aggregate?.experience || article.engineeringExperience || {}
     };
   });
@@ -680,6 +753,7 @@ async function main() {
     })
     .slice(0, maxArticles);
 
+  await enrichPublicFullText(candidates);
   await enrichOpenAlexSourceMetrics(candidates);
 
   const aiProvider = resolveAiProvider(process.env);
@@ -826,6 +900,7 @@ async function main() {
     .slice(0, historyMaxArticles)
     .map((article) => ({
       ...article,
+      ...classifyArticle(article),
       engineeringExperience: publicEngineeringExperience(article.engineeringExperience)
     }));
 
@@ -839,7 +914,7 @@ async function main() {
   }));
 
   const payload = {
-    app: "风传智研",
+    app: "机械中心-传动技术部在线平台",
     generatedAt: now.toISOString(),
     period: {
       from: new Date(now.getTime() - lookbackDays * 86400000).toISOString(),

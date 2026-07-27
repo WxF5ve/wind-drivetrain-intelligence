@@ -2,7 +2,7 @@ const state = {
   data: null,
   articles: [],
   query: "",
-  category: "全部",
+  category: "风电传动链专栏",
   region: "全部",
   sourceType: "全部",
   sort: "latest",
@@ -161,12 +161,19 @@ function articleSearchScore(article) {
   const fields = {
     title: article.title.toLowerCase(),
     titleZh: (article.titleZh || "").toLowerCase(),
-    tags: article.tags.join(" ").toLowerCase(),
+    tags: (article.tags || []).join(" ").toLowerCase(),
     summary: article.summary.toLowerCase(),
     points: article.keyPoints.join(" ").toLowerCase(),
     impact: (article.engineeringImpact || "").toLowerCase(),
     source: article.source.toLowerCase(),
-    classification: `${article.category} ${article.region} ${article.sourceType}`.toLowerCase(),
+    classification: [
+      article.category,
+      article.region,
+      article.sourceType,
+      ...(article.sections || []),
+      ...(article.technicalDomains || []),
+      ...(article.technicalTags || [])
+    ].join(" ").toLowerCase(),
     structured: JSON.stringify({
       evidence: article.evidence || {},
       paper: article.paperDetails || {},
@@ -212,8 +219,57 @@ function personalScore(article) {
 
 function matchesCategory(article) {
   if (state.category === "全部") return true;
-  if (state.category === "学术论文") return article.sourceType === "论文";
-  return article.category === state.category || article.tags.includes(state.category);
+  const sections = articleSections(article);
+  return sections.includes(state.category) ||
+    article.category === state.category ||
+    (article.tags || []).includes(state.category) ||
+    (article.technicalDomains || []).includes(state.category) ||
+    (article.technicalTags || []).includes(state.category);
+}
+
+function articleSections(article) {
+  if (Array.isArray(article.sections) && article.sections.length) return article.sections;
+  const sections = [];
+  if (article.intelligenceType === "official") sections.push("风电行业全景");
+  if (article.intelligenceType === "industry") sections.push("企业与项目追踪");
+  if (article.intelligenceType === "technical" || article.sourceType === "论文" || (article.tags || []).some((tag) =>
+    ["齿轮箱", "轴承", "润滑", "状态监测", "白色蚀刻裂纹"].includes(tag)
+  )) sections.push("风电传动链专栏");
+  return sections.length ? [...new Set(sections)] : ["风电行业全景"];
+}
+
+function primarySection(article) {
+  if (article.primarySection) return article.primarySection;
+  const sections = articleSections(article);
+  return sections.includes("风电传动链专栏")
+    ? "风电传动链专栏"
+    : sections.includes("企业与项目追踪")
+      ? "企业与项目追踪"
+      : "风电行业全景";
+}
+
+function technicalDomains(article) {
+  if (Array.isArray(article.technicalDomains) && article.technicalDomains.length) return article.technicalDomains;
+  const category = article.category;
+  if (["齿轮箱", "白色蚀刻裂纹"].includes(category)) return ["失效与质量"];
+  if (category === "轴承") return ["轴承与连接"];
+  if (category === "润滑") return ["润滑与摩擦"];
+  if (category === "状态监测") return ["监测诊断与试验"];
+  return [];
+}
+
+function technicalTags(article) {
+  if (Array.isArray(article.technicalTags) && article.technicalTags.length) return article.technicalTags;
+  return (article.tags || []).filter((tag) => ![
+    "论文", "海外", "国内", "权威发布", "行业权威", "整机厂商", "齿轮箱厂商", "轴承厂商", "润滑供应商"
+  ].includes(tag));
+}
+
+function contentAccessMeta(article) {
+  const access = article.evidence?.contentAccess || "metadata";
+  if (access === "fulltext") return { access, label: "公开全文已提取", icon: "file-check-2" };
+  if (access === "abstract") return { access, label: "公开摘要", icon: "text-search" };
+  return { access: "metadata", label: "仅元数据", icon: "database" };
 }
 
 function matchesSourceType(article) {
@@ -282,17 +338,16 @@ function renderWeeklyBrief() {
 }
 
 const weeklyReportGroups = [
-  { key: "official", title: "政策与权威发布", caption: "政府部门、新华社、央视和行业协会等公开信息" },
-  { key: "industry", title: "行业与厂商动态", caption: "整机、齿轮箱、轴承、润滑及风电项目进展" },
-  { key: "paper", title: "学术研究", caption: "论文方法、结果、工况和工程限制" },
-  { key: "technical", title: "技术与运维资讯", caption: "设计、失效、监测、试验和数字化主题" }
+  { key: "drivetrain", title: "风电传动链专栏", caption: "传动系统设计、制造、失效、仿真、试验与研究进展" },
+  { key: "panorama", title: "风电行业全景", caption: "政策、规划、装机、市场与产业技术动态" },
+  { key: "enterprise", title: "企业与项目追踪", caption: "整机、部件、供应链企业及风电项目进展" }
 ];
 
 function reportGroupKey(article) {
-  if (article.intelligenceType === "official") return "official";
-  if (article.intelligenceType === "industry") return "industry";
-  if (article.sourceType === "论文") return "paper";
-  return "technical";
+  const section = primarySection(article);
+  if (section === "风电传动链专栏") return "drivetrain";
+  if (section === "企业与项目追踪") return "enterprise";
+  return "panorama";
 }
 
 function reportUnique(values) {
@@ -302,10 +357,11 @@ function reportUnique(values) {
 function reportQuantitativeFindings(article) {
   return (article.paperDetails?.quantitativeFindings || [])
     .map((item) => {
-      const value = `${item.metric || "指标"}: ${item.value || ""}${item.unit || ""}`;
-      const comparison = item.comparison ? `；对比：${item.comparison}` : "";
-      const conditions = item.conditions ? `；工况：${item.conditions}` : "";
-      return `${value}${comparison}${conditions}`;
+      const value = `${item.metric || "指标"}：${item.value || ""}${item.unit || ""}`;
+      const comparison = item.comparison && /\d/.test(item.comparison) && item.comparison.length <= 48
+        ? `，${item.comparison}`
+        : "";
+      return `${value}${comparison}`;
     })
     .filter(Boolean);
 }
@@ -315,7 +371,6 @@ function reportDataPoints(article) {
   const industryPoints = [
     details.capacity ? `项目容量：${details.capacity}` : "",
     details.investment ? `投资/金额：${details.investment}` : "",
-    details.location ? `地点：${details.location}` : "",
     details.timeline ? `时间线：${details.timeline}` : "",
     ...(details.quantitativeFacts || [])
   ];
@@ -327,7 +382,8 @@ function reportDataPoints(article) {
       ? industryPoints
       : fallbackPoints;
   return reportUnique(points)
-    .slice(0, 5);
+    .filter((point) => /\d/.test(point))
+    .slice(0, 3);
 }
 
 function reportSubject(article) {
@@ -344,11 +400,14 @@ function reportSubject(article) {
 function reportAction(article) {
   const summary = article.summary || article.titleZh || article.title;
   if (article.sourceType === "论文" && article.paperDetails?.objective) {
-    const method = article.paperDetails.methods ? `；方法：${article.paperDetails.methods}` : "";
-    return `${article.paperDetails.objective}${method}`;
+    const objective = String(article.paperDetails.objective).trim().replace(/[。；;.]$/, "");
+    const method = String(article.paperDetails.methods || "")
+      .trim()
+      .replace(/^方法[：:]\s*/, "")
+      .replace(/[。；;.]$/, "");
+    return method ? `${objective}，并采用${method}` : objective;
   }
-  const eventType = article.industryDetails?.eventType;
-  return eventType ? `${eventType}：${summary}` : summary;
+  return summary;
 }
 
 function reportEffect(article, dataPoints) {
@@ -378,18 +437,23 @@ function reportEventLead(item) {
 function reportInsightBody(item) {
   return String(item.significance || "")
     .trim()
-    .replace(/^从(?:工程应用|工程实践|工程)角度看[，,:：]?\s*/, "");
+    .replace(/^(?:从)?(?:工程应用|工程实践|工程|借鉴意义|工程意义)(?:角度)?(?:来看|看)?[，,:：]?\s*/, "");
 }
 
-function reportEventParagraph(item) {
+function reportSubjectLead(item) {
+  const action = String(item.action || "").toLowerCase();
+  const subject = String(item.subject || "").trim();
+  const subjectProbe = subject.split(/[（(、]/)[0].toLowerCase();
+  return subjectProbe && action.includes(subjectProbe)
+    ? ""
+    : `${subject}${reportEventLead(item)}`;
+}
+
+function reportNarrativePlain(item) {
   const result = item.dataPoints.length
-    ? reportSentence(`公开资料披露的关键数据包括${item.dataPoints.join("；")}`)
+    ? reportSentence(`公开资料披露${item.dataPoints.join("；")}`)
     : reportSentence(item.effect);
-  return `${item.subject}${reportEventLead(item)}${reportSentence(item.action)}${result}`;
-}
-
-function reportInsightParagraph(item) {
-  return `从工程应用角度看，${reportSentence(reportInsightBody(item))}`;
+  return `${reportSubjectLead(item)}${reportSentence(item.action)}${result}${reportSentence(reportInsightBody(item))}`;
 }
 
 function reportItem(article) {
@@ -423,7 +487,7 @@ function buildWeeklyReport() {
   const quantified = articles.filter((item) => item.dataPoints.length).length;
   const domestic = articles.filter((item) => item.article.region === "国内").length;
   const papers = articles.filter((item) => item.article.sourceType === "论文").length;
-  const industry = articles.filter((item) => item.group === "industry" || item.group === "official").length;
+  const industry = articles.filter((item) => item.group === "enterprise" || item.group === "panorama").length;
   const highlights = [...articles]
     .sort((left, right) => {
       const score = (item) => (item.article.reliability?.score || 0) + (item.article.relevanceScore || 0) * 2 + (item.dataPoints.length ? 6 : 0);
@@ -448,7 +512,7 @@ function renderReportItem(item, index) {
   const article = item.article;
   const reliability = article.reliability || { grade: "D", label: "谨慎", score: 0 };
   const resultHtml = item.dataPoints.length
-    ? `公开资料披露的关键数据包括${item.dataPoints.map((point) => `<mark class="report-key-data">${escapeHtml(point)}</mark>`).join("、")}。`
+    ? `公开资料披露${item.dataPoints.map((point) => `<mark class="report-key-data">${escapeHtml(point)}</mark>`).join("；")}。`
     : escapeHtml(reportSentence(item.effect));
   return `
     <article class="report-item">
@@ -462,8 +526,7 @@ function renderReportItem(item, index) {
         </div>
         <h3>${escapeHtml(article.titleZh || article.title)}</h3>
         <div class="report-narrative">
-          <p class="report-event"><mark class="report-entity">${escapeHtml(item.subject)}</mark>${escapeHtml(reportEventLead(item))}${escapeHtml(reportSentence(item.action))}${resultHtml}</p>
-          <p class="report-insight"><strong>从工程应用角度看，</strong>${escapeHtml(reportSentence(reportInsightBody(item)))}</p>
+          <p class="report-paragraph">${escapeHtml(reportSubjectLead(item))}${escapeHtml(reportSentence(item.action))}${resultHtml}${escapeHtml(reportSentence(reportInsightBody(item)))}</p>
         </div>
         <a class="report-source-link" href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link"></i>阅读原文</a>
       </div>
@@ -474,17 +537,17 @@ function renderReportItem(item, index) {
 function renderWeeklyReport(model = buildWeeklyReport()) {
   activeWeeklyReport = model;
   const reportSummary = model.metrics.total
-    ? `最近一周收录 ${model.metrics.total} 条资料，其中国内 ${model.metrics.domestic} 条、海外 ${model.metrics.overseas} 条；包含 ${model.metrics.papers} 篇论文和 ${model.metrics.industry} 条行业/权威动态，其中 ${model.metrics.quantified} 条包含可核验的必要数据。`
+    ? `最近一周收录 ${model.metrics.total} 条资料，其中国内 ${model.metrics.domestic} 条、海外 ${model.metrics.overseas} 条；包含 ${model.metrics.papers} 篇论文和 ${model.metrics.industry} 条行业全景/企业动态，其中 ${model.metrics.quantified} 条包含可核验的必要数据。`
     : "最近一周没有符合当前采集和相关性规则的资料。";
   elements.weeklyReportToolbarPeriod.textContent = weeklyReportPeriod(model);
   elements.weeklyReportContent.innerHTML = `
     <header class="report-cover">
-      <span class="report-kicker">WIND DRIVETRAIN INTELLIGENCE</span>
-      <h1>风电传动链情报周报</h1>
+      <span class="report-kicker">MECHANICAL CENTER · DRIVETRAIN TECHNOLOGY</span>
+      <h1>机械中心-传动技术部风电情报周报</h1>
       <p>${escapeHtml(weeklyReportPeriod(model))} · 数据截至 ${escapeHtml(formatDate(model.end))}</p>
       <div class="report-metrics">
         <div><strong>${model.metrics.total}</strong><span>周内资料</span></div>
-        <div><strong>${model.metrics.industry}</strong><span>行业/权威动态</span></div>
+        <div><strong>${model.metrics.industry}</strong><span>全景/企业动态</span></div>
         <div><strong>${model.metrics.papers}</strong><span>研究论文</span></div>
         <div><strong>${model.metrics.quantified}</strong><span>含必要数据</span></div>
       </div>
@@ -511,17 +574,16 @@ function renderWeeklyReport(model = buildWeeklyReport()) {
 
 function weeklyReportPlainText(model = activeWeeklyReport || buildWeeklyReport()) {
   const lines = [
-    "风传智研｜风电传动链情报周报",
+    "机械中心-传动技术部风电情报周报",
     `报告范围：${weeklyReportPeriod(model)}，数据截至 ${formatDate(model.end)}`,
     `周内资料：${model.metrics.total}；国内：${model.metrics.domestic}；海外：${model.metrics.overseas}；论文：${model.metrics.papers}；含必要数据：${model.metrics.quantified}`,
     ""
   ];
   model.groups.forEach((group) => {
-    lines.push(`【${group.title}】`);
+      lines.push(`【${group.title}】`);
     group.items.forEach((item, index) => {
       lines.push(`${index + 1}. ${item.article.titleZh || item.article.title}`);
-      lines.push(reportEventParagraph(item));
-      lines.push(reportInsightParagraph(item));
+      lines.push(reportNarrativePlain(item));
       lines.push(`原文链接：${item.article.url}`);
       lines.push("");
     });
@@ -538,7 +600,7 @@ function openWeeklyReport({ download = false, updateUrl = true } = {}) {
     url.searchParams.set("report", "weekly");
     history.replaceState(null, "", url);
   }
-  updateShareMetadata(`风传智研周报｜${weeklyReportPeriod(activeWeeklyReport)}`, weeklyReportPlainText(activeWeeklyReport).slice(0, 180));
+  updateShareMetadata(`机械中心-传动技术部风电情报周报｜${weeklyReportPeriod(activeWeeklyReport)}`, weeklyReportPlainText(activeWeeklyReport).slice(0, 180));
   if (download) void downloadWeeklyReportPdf();
 }
 
@@ -570,7 +632,7 @@ async function shareWeeklyReport() {
   url.searchParams.delete("article");
   url.searchParams.set("report", "weekly");
   return shareContent({
-    title: `风传智研周报｜${weeklyReportPeriod(activeWeeklyReport || buildWeeklyReport())}`,
+    title: `机械中心-传动技术部风电情报周报｜${weeklyReportPeriod(activeWeeklyReport || buildWeeklyReport())}`,
     text: weeklyReportPlainText().slice(0, 500),
     url: url.toString()
   });
@@ -631,7 +693,8 @@ function pdfRichLines(context, segments, maxWidth, options = {}) {
       }
       pdfSetFont(context, style);
       const width = context.measureText(character).width;
-      if (lineWidth && lineWidth + width > maxWidth) {
+      const canHangPunctuation = /[，。；：、！？）》】％%]/.test(character);
+      if (lineWidth && lineWidth + width > maxWidth && !canHangPunctuation) {
         lines.push([]);
         lineWidth = 0;
       }
@@ -675,7 +738,7 @@ function pdfPlainHeight(context, value, maxWidth, options = {}) {
 
 function pdfOverviewText(model) {
   return model.metrics.total
-    ? `最近一周收录 ${model.metrics.total} 条资料，其中国内 ${model.metrics.domestic} 条、海外 ${model.metrics.overseas} 条；包含 ${model.metrics.papers} 篇论文和 ${model.metrics.industry} 条行业/权威动态，其中 ${model.metrics.quantified} 条包含可核验的必要数据。`
+    ? `最近一周收录 ${model.metrics.total} 条资料，其中国内 ${model.metrics.domestic} 条、海外 ${model.metrics.overseas} 条；包含 ${model.metrics.papers} 篇论文和 ${model.metrics.industry} 条行业全景/企业动态，其中 ${model.metrics.quantified} 条包含可核验的必要数据。`
     : "最近一周没有符合当前采集和相关性规则的资料。";
 }
 
@@ -688,35 +751,28 @@ function pdfNewPage(model, pages, pageNumber) {
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.fillStyle = "#153a31";
   context.fillRect(0, 0, canvas.width, 94);
-  pdfText(context, "风传智研  |  风电传动链情报周报", pdfPageSize.margin, 59, 700, { size: 21, weight: 700, color: "#ffffff" });
+  pdfText(context, "机械中心-传动技术部  |  风电情报周报", pdfPageSize.margin, 59, 700, { size: 21, weight: 700, color: "#ffffff" });
   pdfText(context, `${weeklyReportPeriod(model)}  |  第 ${pageNumber} 页`, 850, 59, 310, { size: 16, color: "#dbece5" });
   pages.push(canvas);
   return { canvas, context, y: 142 };
 }
 
-function pdfEventSegments(item) {
+function pdfNarrativeSegments(item) {
   const segments = [
-    { text: item.subject, color: "#176c55", weight: 700 },
-    { text: `${reportEventLead(item)}${reportSentence(item.action)}`, color: "#34463f" }
+    { text: `${reportSubjectLead(item)}${reportSentence(item.action)}`, color: "#34463f" }
   ];
   if (!item.dataPoints.length) {
     segments.push({ text: reportSentence(item.effect), color: "#34463f" });
-    return segments;
+  } else {
+    segments.push({ text: "公开资料披露", color: "#34463f" });
+    item.dataPoints.forEach((point, index) => {
+      if (index) segments.push({ text: "；", color: "#34463f" });
+      segments.push({ text: point, color: "#a96712", weight: 700 });
+    });
+    segments.push({ text: "。", color: "#34463f" });
   }
-  segments.push({ text: "公开资料披露的关键数据包括", color: "#34463f" });
-  item.dataPoints.forEach((point, index) => {
-    if (index) segments.push({ text: "、", color: "#34463f" });
-    segments.push({ text: point, color: "#a96712", weight: 700 });
-  });
-  segments.push({ text: "。", color: "#34463f" });
+  segments.push({ text: reportSentence(reportInsightBody(item)), color: "#34463f" });
   return segments;
-}
-
-function pdfInsightSegments(item) {
-  return [
-    { text: "从工程应用角度看，", color: "#2e7680", weight: 700 },
-    { text: reportSentence(reportInsightBody(item)), color: "#34463f" }
-  ];
 }
 
 function pdfItemHeight(context, item) {
@@ -724,10 +780,9 @@ function pdfItemHeight(context, item) {
   const textWidth = contentWidth - 76;
   return pdfPlainHeight(context, item.article.titleZh || item.article.title, textWidth, { size: 27, lineHeight: 37 })
     + pdfPlainHeight(context, `${item.article.source || "来源待确认"}  ·  ${item.article.region || "地区待确认"}  ·  ${formatDate(item.article.publishedAt)}`, textWidth, { size: 15, lineHeight: 23 })
-    + pdfRichHeight(context, pdfEventSegments(item), textWidth, { size: 19, lineHeight: 31 })
-    + pdfRichHeight(context, pdfInsightSegments(item), textWidth, { size: 19, lineHeight: 31 })
+    + pdfRichHeight(context, pdfNarrativeSegments(item), textWidth, { size: 19, lineHeight: 31 })
     + pdfPlainHeight(context, `原文链接  ${item.article.url}`, textWidth, { size: 14, lineHeight: 22 })
-    + 104;
+    + 82;
 }
 
 function pdfDrawItem(context, item, index, y) {
@@ -740,13 +795,7 @@ function pdfDrawItem(context, item, index, y) {
   y = pdfText(context, item.article.titleZh || item.article.title, titleX, y, titleWidth, { size: 27, weight: 700, lineHeight: 37, color: "#17231f" }) + 5;
   const reliability = item.article.reliability || { grade: "D", label: "谨慎", score: 0 };
   y = pdfText(context, `${item.article.source || "来源待确认"}  ·  ${item.article.region || "地区待确认"}  ·  ${formatDate(item.article.publishedAt)}  ·  可靠度 ${reliability.grade} ${reliability.score}`, titleX, y, titleWidth, { size: 15, color: "#53635d" }) + 14;
-  y = pdfRichText(context, pdfEventSegments(item), titleX, y, titleWidth, { size: 19, lineHeight: 31 }) + 14;
-  const insightHeight = pdfRichHeight(context, pdfInsightSegments(item), titleWidth - 20, { size: 19, lineHeight: 31 });
-  context.fillStyle = "#eef6f6";
-  context.fillRect(titleX - 12, y - 23, titleWidth + 12, insightHeight + 18);
-  context.fillStyle = "#3b8792";
-  context.fillRect(titleX - 12, y - 23, 4, insightHeight + 18);
-  y = pdfRichText(context, pdfInsightSegments(item), titleX, y, titleWidth - 20, { size: 19, lineHeight: 31 }) + 18;
+  y = pdfRichText(context, pdfNarrativeSegments(item), titleX, y, titleWidth, { size: 19, lineHeight: 31 }) + 18;
   y = pdfText(context, `原文链接  ${item.article.url}`, titleX, y, titleWidth, { size: 14, lineHeight: 22, color: "#2e7680" }) + 7;
   context.strokeStyle = "#d5ded9";
   context.lineWidth = 1;
@@ -763,10 +812,10 @@ function createWeeklyReportCanvases(model) {
   const context = page.context;
   context.fillStyle = "#153a31";
   context.fillRect(0, 94, pdfPageSize.width, 250);
-  pdfText(context, "WIND DRIVETRAIN INTELLIGENCE", pdfPageSize.margin, 160, 800, { size: 18, weight: 700, color: "#b9ded0" });
-  pdfText(context, "风电传动链情报周报", pdfPageSize.margin, 218, 900, { size: 46, weight: 700, color: "#ffffff", lineHeight: 60 });
-  pdfText(context, `${weeklyReportPeriod(model)}  ·  数据截至 ${formatDate(model.end)}`, pdfPageSize.margin, 290, 900, { size: 20, color: "#dbece5" });
-  const metricLabels = [[model.metrics.total, "周内资料"], [model.metrics.industry, "行业/权威动态"], [model.metrics.papers, "研究论文"], [model.metrics.quantified, "含必要数据"]];
+  pdfText(context, "MECHANICAL CENTER · DRIVETRAIN TECHNOLOGY", pdfPageSize.margin, 160, 800, { size: 18, weight: 700, color: "#b9ded0" });
+  pdfText(context, "机械中心-传动技术部风电情报周报", pdfPageSize.margin, 214, 590, { size: 38, weight: 700, color: "#ffffff", lineHeight: 52 });
+  pdfText(context, `${weeklyReportPeriod(model)}  ·  数据截至 ${formatDate(model.end)}`, pdfPageSize.margin, 322, 590, { size: 18, color: "#dbece5" });
+  const metricLabels = [[model.metrics.total, "周内资料"], [model.metrics.industry, "全景/企业动态"], [model.metrics.papers, "研究论文"], [model.metrics.quantified, "含必要数据"]];
   metricLabels.forEach(([value, label], index) => {
     const x = 700 + index * 125;
     pdfText(context, String(value), x, 180, 110, { size: 30, weight: 700, color: "#f5d898" });
@@ -904,11 +953,14 @@ function articleCard(article) {
   const saved = state.saved.has(article.id);
   const reliability = article.reliability || { score: 0, grade: "D", label: "待评估" };
   const displayTitle = article.titleZh || article.title;
+  const access = contentAccessMeta(article);
+  const domains = technicalDomains(article).slice(0, 2);
+  const detailTags = technicalTags(article).slice(0, 5);
   return `
     <article class="article-card" data-id="${escapeHtml(article.id)}">
       <div class="article-media">
         <img src="./assets/gearbox-cover.png" alt="" loading="lazy">
-        <span class="media-category">${escapeHtml(article.category)}</span>
+        <span class="media-category">${escapeHtml(primarySection(article))}</span>
       </div>
       <div class="article-body">
         <div class="article-meta">
@@ -920,6 +972,7 @@ function articleCard(article) {
           <span>${escapeHtml(article.region)}</span>
           <span class="meta-separator" aria-hidden="true"></span>
           <time datetime="${escapeHtml(article.publishedAt)}">${formatDate(article.publishedAt)}</time>
+          <span class="content-access access-${escapeHtml(access.access)}"><i data-lucide="${access.icon}"></i>${access.label}</span>
           <span class="meta-separator reading-separator" aria-hidden="true"></span>
           <span class="reading-time">${article.readingMinutes || 4} 分钟</span>
         </div>
@@ -927,6 +980,10 @@ function articleCard(article) {
           <button type="button" data-action="details">${highlight(displayTitle)}</button>
         </h3>
         <p class="article-summary">${highlight(article.summary)}</p>
+        ${(domains.length || detailTags.length) ? `<div class="technical-labels" aria-label="传动链技术标签">
+          ${domains.map((domain) => `<span class="technical-domain">${escapeHtml(domain)}</span>`).join("")}
+          ${detailTags.map((tag) => `<span class="technical-tag">${escapeHtml(tag)}</span>`).join("")}
+        </div>` : ""}
         <button class="experience-link" type="button" data-action="experience">
           <i data-lucide="wrench"></i>
           <span>工程经验</span>
@@ -934,7 +991,8 @@ function articleCard(article) {
         </button>
         <div class="article-footer">
           <div class="tag-list">
-            ${(article.tags || []).slice(0, 3).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
+            <span class="tag source-type-tag">${escapeHtml(article.sourceType || "公开资讯")}</span>
+            ${articleSections(article).filter((section) => section !== primarySection(article)).slice(0, 1).map((section) => `<span class="tag">兼属 ${escapeHtml(section)}</span>`).join("")}
           </div>
           <div class="article-actions">
             <button class="icon-button ${saved ? "saved" : ""}" type="button" data-action="save" title="${saved ? "取消收藏" : "收藏"}" aria-label="${saved ? "取消收藏" : "收藏"}">
@@ -1013,7 +1071,12 @@ function renderActiveFilters() {
 function renderTrends() {
   const counts = new Map();
   for (const article of state.articles) {
-    counts.set(article.category, (counts.get(article.category) || 0) + 1);
+    const labels = technicalDomains(article).length
+      ? technicalDomains(article)
+      : technicalTags(article).length
+        ? technicalTags(article).slice(0, 2)
+        : [article.category || primarySection(article)];
+    for (const label of new Set(labels)) counts.set(label, (counts.get(label) || 0) + 1);
   }
   const trends = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5);
   const max = Math.max(...trends.map(([, count]) => count), 1);
@@ -1078,6 +1141,24 @@ function definitionRows(rows) {
   return `<dl class="detail-grid">${visible.map(([label, value]) => `
     <div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>
   `).join("")}</dl>`;
+}
+
+function renderTechnicalClassification(article) {
+  const sections = articleSections(article);
+  const domains = technicalDomains(article);
+  const tags = technicalTags(article);
+  if (!sections.length && !domains.length && !tags.length) return "";
+  return `
+    <section class="classification-panel" aria-labelledby="classification-title">
+      <div class="classification-heading">
+        <span>TECHNICAL CLASSIFICATION</span>
+        <h3 id="classification-title">栏目与技术标签</h3>
+      </div>
+      <div class="classification-row"><strong>所属栏目</strong><div>${sections.map((section) => `<span class="section-chip">${escapeHtml(section)}</span>`).join("")}</div></div>
+      ${domains.length ? `<div class="classification-row"><strong>技术主体</strong><div>${domains.map((domain) => `<span class="technical-domain">${escapeHtml(domain)}</span>`).join("")}</div></div>` : ""}
+      ${tags.length ? `<div class="classification-row"><strong>细分标签</strong><div>${tags.map((tag) => `<span class="technical-tag">${escapeHtml(tag)}</span>`).join("")}</div></div>` : ""}
+    </section>
+  `;
 }
 
 function renderPaperMetadata(article) {
@@ -1269,9 +1350,11 @@ function renderExperienceReview(article) {
 function openArticle(article, { focusExperience = false } = {}) {
   if (!article) return;
   const displayTitle = article.titleZh || article.title;
-  updateShareMetadata(`${displayTitle}｜风传智研`, article.summary);
+  updateShareMetadata(`${displayTitle}｜机械中心-传动技术部在线平台`, article.summary);
   elements.dialogSource.textContent = `${article.source} · ${article.sourceType}`;
   const linkLabel = article.linkType === "aggregator" ? "聚合跳转" : "发布方原文";
+  const access = contentAccessMeta(article);
+  const extractedCharacters = Number(article.evidence?.extractedCharacters || 0);
   const reliability = article.reliability || { score: 0, grade: "D", label: "待评估", factors: [], limitations: [], feedback: {} };
   const selectedFeedback = state.feedback[article.id] || "";
   const aggregateTotal = reliability.feedback?.total || 0;
@@ -1280,6 +1363,8 @@ function openArticle(article, { focusExperience = false } = {}) {
       <h2>${escapeHtml(displayTitle)}</h2>
       ${article.titleZh && article.titleZh !== article.title ? `<p class="original-title">${escapeHtml(article.title)}</p>` : ""}
       <div class="dialog-meta">
+        <span class="dialog-section">${escapeHtml(primarySection(article))}</span>
+        <span>·</span>
         <span>${escapeHtml(article.region)}</span>
         <span>·</span>
         <time datetime="${escapeHtml(article.publishedAt)}">${formatDate(article.publishedAt)}</time>
@@ -1290,8 +1375,10 @@ function openArticle(article, { focusExperience = false } = {}) {
         <span><i data-lucide="shield-check"></i> 来源可追溯</span>
         <span>${escapeHtml(article.sourceChannel || "网络公开来源")}</span>
         <span>${linkLabel}</span>
+        <span class="content-access access-${escapeHtml(access.access)}"><i data-lucide="${access.icon}"></i>${escapeHtml(access.label)}${extractedCharacters ? ` · ${extractedCharacters.toLocaleString("zh-CN")} 字符` : ""}</span>
         ${article.aiAnalysis?.provider ? `<span>${escapeHtml(article.aiAnalysis.provider)} AI 摘要</span>` : ""}
       </div>
+      ${renderTechnicalClassification(article)}
       ${renderPaperMetadata(article)}
       <p class="dialog-summary">${escapeHtml(article.summary)}</p>
       ${renderPaperDetails(article)}

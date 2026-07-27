@@ -19,7 +19,8 @@
   "dependencies": {
     "fast-xml-parser": "^5.10.0",
     "google-news-url-decoder": "^1.2.2",
-    "node-html-parser": "^7.0.1"
+    "node-html-parser": "^7.0.1",
+    "pdfjs-dist": "^6.1.200"
   },
   "devDependencies": {
     "playwright": "^1.61.1"

@@ -60,5 +60,5 @@ const server = createServer((request, response) => {
 });
 
 server.listen(port, "0.0.0.0", () => {
-  console.log(`风传智研已启动: http://localhost:${port}`);
+  console.log(`机械中心-传动技术部在线平台已启动: http://localhost:${port}`);
 });

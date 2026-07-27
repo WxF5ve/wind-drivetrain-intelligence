@@ -2,11 +2,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   assessReliability,
+  classifyArticle,
   cleanText,
   createFallbackSummary,
   deduplicateArticles,
   feedbackCalibration,
   inferCategory,
+  inferDrivetrainClassification,
   inferTags,
   isDomainRelevant,
   isOfficialRelevant,
@@ -150,6 +152,44 @@ test("relevance and category recognize drivetrain terms", () => {
     isDomainRelevant({ title: "风机齿轮箱润滑状态监测", snippet: "" }),
     true
   );
+});
+
+test("drivetrain taxonomy recognizes manufacturing, quality, bearing, simulation, and structure topics", () => {
+  const cases = [
+    ["风电齿轮感应淬火与强化喷丸残余压应力研究", ["感应淬火", "喷丸强化"]],
+    ["风电轴承跑圈、套圈蠕动与过盈配合分析", ["轴承跑圈与配合"]],
+    ["Wind turbine gearbox vibration NVH and resonance investigation", ["齿轮箱振动与NVH"]],
+    ["AVL EXCITE and Romax simulation for a wind turbine drivetrain", ["AVL仿真", "传动系统仿真"]],
+    ["风电齿轮箱行星架强度、变形及拓扑优化", ["行星架强度", "有限元与强度"]],
+    ["Hydrodynamic tilting pad plain bearing development for wind turbine drivetrains", ["滑动轴承开发"]]
+  ];
+  for (const [title, expectedTags] of cases) {
+    const result = inferDrivetrainClassification({ title });
+    expectedTags.forEach((tag) => assert.equal(result.technicalTags.includes(tag), true, `${title} should include ${tag}`));
+  }
+});
+
+test("section classification separates source type from content topic and allows multiple sections", () => {
+  const supplierProgress = classifyArticle({
+    title: "某风电齿轮箱企业完成感应淬火与喷丸工艺验证",
+    queryTopic: "industry",
+    sourceType: "行业资讯"
+  });
+  assert.deepEqual(supplierProgress.sections, ["企业与项目追踪", "风电传动链专栏"]);
+  assert.equal(supplierProgress.primarySection, "风电传动链专栏");
+
+  const policy = classifyArticle({
+    title: "国家能源局发布年度风电装机规划",
+    queryTopic: "official",
+    sourceType: "行业资讯"
+  });
+  assert.deepEqual(policy.sections, ["风电行业全景"]);
+
+  const paper = classifyArticle({
+    title: "Wind power market overview",
+    sourceType: "论文"
+  });
+  assert.equal(paper.sections.includes("风电传动链专栏"), true);
 });
 
 test("WECS is not mislabeled as a white etching crack acronym", () => {

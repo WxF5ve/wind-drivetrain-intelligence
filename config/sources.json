@@ -1,7 +1,7 @@
 {
   "lookbackDays": 30,
-  "maxArticles": 80,
-  "historyMaxArticles": 400,
+  "maxArticles": 120,
+  "historyMaxArticles": 500,
   "historyRetentionDays": 730,
   "minimumRelevanceScore": 3,
   "industryRelevanceBoost": 3,
@@ -170,6 +170,70 @@
       "query": "\"wind turbine gearbox\" (\"test rig\" OR validation OR NVH OR \"digital twin\" OR reliability OR endoscopy)",
       "language": "English",
       "region": "海外"
+    },
+    {
+      "id": "news-cn-manufacturing-process",
+      "label": "国内齿轮制造与表面强化资讯",
+      "query": "风电 (齿轮 OR 齿轮箱) (感应淬火 OR 中频淬火 OR 高频淬火 OR 喷丸 OR 磨齿 OR 珩齿 OR 超精加工 OR 残余压应力)",
+      "language": "Chinese",
+      "region": "国内",
+      "contextTags": ["制造工艺", "表面强化"]
+    },
+    {
+      "id": "news-global-manufacturing-process",
+      "label": "海外齿轮制造与表面强化资讯",
+      "query": "\"wind turbine gearbox\" (\"induction hardening\" OR \"shot peening\" OR \"gear grinding\" OR honing OR superfinishing OR \"residual stress\")",
+      "language": "English",
+      "region": "海外",
+      "contextTags": ["制造工艺", "表面强化"]
+    },
+    {
+      "id": "news-cn-bearing-fit-plain",
+      "label": "国内轴承跑圈与滑动轴承资讯",
+      "query": "风电 (轴承跑圈 OR 套圈蠕动 OR 内圈打滑 OR 外圈打滑 OR 过盈配合 OR 滑动轴承 OR 轴瓦 OR 可倾瓦)",
+      "language": "Chinese",
+      "region": "国内",
+      "contextTags": ["轴承与连接", "质量问题"]
+    },
+    {
+      "id": "news-global-bearing-fit-plain",
+      "label": "海外轴承配合与滑动轴承资讯",
+      "query": "\"wind turbine\" (\"bearing creep\" OR \"ring creep\" OR \"ring walk\" OR \"interference fit\" OR \"plain bearing\" OR \"journal bearing\" OR \"tilting pad bearing\")",
+      "language": "English",
+      "region": "海外",
+      "contextTags": ["轴承与连接", "质量问题"]
+    },
+    {
+      "id": "news-cn-vibration-structure-quality",
+      "label": "国内齿轮箱振动与结构质量资讯",
+      "query": "风电齿轮箱 (振动 OR NVH OR 异响 OR 共振 OR 行星架强度 OR 行星架变形 OR 箱体变形 OR 轴系不对中 OR 装配偏差 OR 温升 OR 漏油)",
+      "language": "Chinese",
+      "region": "国内",
+      "contextTags": ["振动与NVH", "结构强度", "质量问题"]
+    },
+    {
+      "id": "news-global-vibration-structure-quality",
+      "label": "海外齿轮箱振动与结构质量资讯",
+      "query": "\"wind turbine gearbox\" (vibration OR NVH OR resonance OR \"planet carrier strength\" OR \"housing deformation\" OR misalignment OR overheating OR leakage)",
+      "language": "English",
+      "region": "海外",
+      "contextTags": ["振动与NVH", "结构强度", "质量问题"]
+    },
+    {
+      "id": "news-cn-cae-simulation",
+      "label": "国内传动系统仿真资讯",
+      "query": "风电传动 (AVL EXCITE OR Romax OR MASTA OR KISSsoft OR Simpack OR 有限元 OR 多体动力学 OR 柔性体 OR 拓扑优化)",
+      "language": "Chinese",
+      "region": "国内",
+      "contextTags": ["仿真与数字工程"]
+    },
+    {
+      "id": "news-global-cae-simulation",
+      "label": "海外传动系统仿真资讯",
+      "query": "\"wind turbine drivetrain\" (\"AVL EXCITE\" OR Romax OR MASTA OR KISSsoft OR Simpack OR FEA OR \"multibody dynamics\" OR \"topology optimization\")",
+      "language": "English",
+      "region": "海外",
+      "contextTags": ["仿真与数字工程"]
     },
     {
       "id": "official-cn-xinhua-wind",
@@ -420,6 +484,54 @@
       "label": "国内轴承失效论文",
       "query": "风电 轴承 白色蚀刻裂纹 润滑 电蚀 失效",
       "region": "国内"
+    },
+    {
+      "id": "research-surface-manufacturing",
+      "label": "齿轮热处理与表面强化论文",
+      "query": "wind turbine gearbox gear induction hardening shot peening grinding honing residual stress",
+      "region": "海外"
+    },
+    {
+      "id": "research-bearing-creep-fit",
+      "label": "轴承跑圈与配合论文",
+      "query": "wind turbine bearing ring creep ring walk interference fit inner ring slip",
+      "region": "海外"
+    },
+    {
+      "id": "research-plain-bearing",
+      "label": "风电滑动轴承开发论文",
+      "query": "wind turbine drivetrain plain journal sliding tilting pad bearing hydrodynamic",
+      "region": "海外"
+    },
+    {
+      "id": "research-gearbox-vibration-nvh",
+      "label": "齿轮箱振动与NVH论文",
+      "query": "wind turbine gearbox vibration NVH resonance noise transmission error dynamics",
+      "region": "海外"
+    },
+    {
+      "id": "research-planet-carrier-strength",
+      "label": "行星架强度与变形论文",
+      "query": "wind turbine gearbox planet carrier strength deformation fatigue finite element topology optimization",
+      "region": "海外"
+    },
+    {
+      "id": "research-drivetrain-cae",
+      "label": "传动系统CAE与多体仿真论文",
+      "query": "wind turbine drivetrain AVL EXCITE Romax MASTA KISSsoft Simpack multibody flexible body simulation",
+      "region": "海外"
+    },
+    {
+      "id": "research-housing-alignment-assembly",
+      "label": "箱体变形与装配质量论文",
+      "query": "wind turbine gearbox housing deformation shaft misalignment assembly tolerance load distribution",
+      "region": "海外"
+    },
+    {
+      "id": "research-cn-process-quality",
+      "label": "国内传动链工艺与质量论文",
+      "query": "风电 齿轮箱 感应淬火 喷丸 轴承跑圈 振动 行星架强度 滑动轴承 AVL仿真",
+      "region": "国内"
     }
   ],
   "relevanceKeywords": {
@@ -488,7 +600,42 @@
     "渗碳": 3,
     "氮化": 3,
     "磨齿": 2,
-    "喷丸": 2,
+    "珩齿": 3,
+    "超精加工": 3,
+    "喷丸": 3,
+    "强化喷丸": 4,
+    "残余压应力": 3,
+    "感应淬火": 4,
+    "中频淬火": 3,
+    "高频淬火": 3,
+    "双频淬火": 4,
+    "轴承跑圈": 4,
+    "套圈蠕动": 4,
+    "内圈打滑": 3,
+    "外圈打滑": 3,
+    "过盈配合": 3,
+    "配合松动": 3,
+    "滑动轴承": 4,
+    "轴瓦": 3,
+    "可倾瓦": 3,
+    "异响": 3,
+    "共振": 3,
+    "NVH": 3,
+    "行星架强度": 4,
+    "行星架变形": 4,
+    "箱体变形": 3,
+    "不对中": 3,
+    "装配偏差": 3,
+    "温升": 2,
+    "漏油": 3,
+    "AVL EXCITE": 4,
+    "Romax": 4,
+    "MASTA": 4,
+    "KISSsoft": 4,
+    "Simpack": 3,
+    "有限元": 3,
+    "多体动力学": 3,
+    "拓扑优化": 3,
     "planetary gear": 4,
     "planet carrier": 4,
     "sun gear": 3,
@@ -509,6 +656,31 @@
     "test rig": 3,
     "endoscopy": 2,
     "carburizing": 3,
-    "heat treatment": 3
+    "heat treatment": 3,
+    "induction hardening": 4,
+    "shot peening": 4,
+    "gear grinding": 3,
+    "gear honing": 3,
+    "superfinishing": 3,
+    "residual stress": 3,
+    "bearing creep": 4,
+    "ring creep": 4,
+    "ring walk": 4,
+    "interference fit": 3,
+    "fit looseness": 3,
+    "plain bearing": 4,
+    "journal bearing": 4,
+    "tilting pad bearing": 4,
+    "gearbox vibration": 4,
+    "resonance": 3,
+    "planet carrier strength": 4,
+    "carrier deformation": 4,
+    "housing deformation": 3,
+    "misalignment": 3,
+    "assembly tolerance": 3,
+    "overheating": 2,
+    "oil leakage": 3,
+    "multibody dynamics": 3,
+    "topology optimization": 3
   }
 }

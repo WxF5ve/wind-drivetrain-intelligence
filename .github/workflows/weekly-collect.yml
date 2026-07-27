@@ -19,7 +19,7 @@ on:
         description: "手动采集最大资料数"
         required: false
         type: number
-        default: 80
+        default: 120
   schedule:
     # 每周一 08:30 主任务；11:15 兜底（北京时间）
     - cron: "30 0 * * 1"
