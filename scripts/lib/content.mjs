@@ -103,6 +103,12 @@ export function readerContentIsRestricted(markdown) {
   );
 }
 
+export function readerSummaryIndicatesNonArticle(value) {
+  return /节目列表|节目单|订阅信息|订阅试用|隐私声明|subscription (?:information|trial)|privacy (?:notice|statement)/i.test(
+    cleanText(value)
+  );
+}
+
 export function extractReaderContent(markdown, expectedTitle = "", maxCharacters = 14000) {
   const source = String(markdown || "").slice(0, 1_000_000);
   const lines = source.split(/\r?\n/);

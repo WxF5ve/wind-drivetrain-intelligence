@@ -22,7 +22,8 @@ import {
   extractPdfText,
   extractReaderContent,
   MIN_FULLTEXT_CHARACTERS,
-  readerContentIsRestricted
+  readerContentIsRestricted,
+  readerSummaryIndicatesNonArticle
 } from "./lib/content.mjs";
 import {
   experienceNeedsAiReview,
@@ -1120,6 +1121,26 @@ function hasContentUpgrade(existing, current) {
   return contentAccessRank(current?.contentAccess) > contentAccessRank(existing?.evidence?.contentAccess);
 }
 
+function downgradeInvalidReaderRecovery(article) {
+  if (
+    article.evidence?.contentSource !== "public-web-reader" ||
+    !readerSummaryIndicatesNonArticle(`${article.summary || ""} ${(article.keyPoints || []).join(" ")}`)
+  ) {
+    return article;
+  }
+  return {
+    ...article,
+    evidence: {
+      ...article.evidence,
+      contentAccess: "metadata",
+      contentSource: "",
+      extractedCharacters: 0,
+      hasAbstract: false,
+      isOpenAccess: false
+    }
+  };
+}
+
 async function loadFeedbackAggregates() {
   const localPath = new URL("../public/data/feedback-aggregates.json", import.meta.url);
   let payload = await readJson(localPath, { generatedAt: null, articles: {} });
@@ -1265,11 +1286,12 @@ async function main() {
     previous.collectionStatus?.dataMode === "live" &&
     !previous.collectionStatus?.demo;
   const previousArticles = (previousIsLive ? previous.articles || [] : []).map((article) => {
+    const normalized = downgradeInvalidReaderRecovery(article);
     const aggregate = feedbackAggregates.map.get(article.id);
     const calibrated = recalibratePublishedArticle(
-      article,
+      normalized,
       aggregate ||
-        (feedbackAggregates.loadedFromEndpoint ? {} : article.feedbackAggregate || {}),
+        (feedbackAggregates.loadedFromEndpoint ? {} : normalized.feedbackAggregate || {}),
       minimumFeedback
     );
     return {

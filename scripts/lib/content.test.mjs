@@ -1,7 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { extractHtmlContent, extractReaderContent, readerContentIsRestricted } from "./content.mjs";
+import {
+  extractHtmlContent,
+  extractReaderContent,
+  readerContentIsRestricted,
+  readerSummaryIndicatesNonArticle
+} from "./content.mjs";
 
 test("HTML content extraction prefers article paragraphs over navigation and footer text", () => {
   const paragraph = "风电齿轮箱试验验证了行星架强度与齿轮箱振动之间的关系，并给出了可核验的载荷数据。";
@@ -112,4 +117,6 @@ Gain full access and pay nothing for your first 30 days.
 Already a subscriber? Activate your subscription here.
   `;
   assert.equal(readerContentIsRestricted(paywall), true);
+  assert.equal(readerSummaryIndicatesNonArticle("摘录内容仅为节目列表和无关新闻，未提供具体项目数据。"), true);
+  assert.equal(readerSummaryIndicatesNonArticle("正文介绍了海上风电项目容量和施工进展。"), false);
 });
