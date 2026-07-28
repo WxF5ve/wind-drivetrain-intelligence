@@ -5,7 +5,9 @@ export const DRIVETRAIN_TAXONOMY = [
     domain: "系统架构",
     tags: [
       ["传动链系统", ["传动链", "主传动链", "轴系", "扭振", "drivetrain", "drive train", "shaft line", "torsional vibration"]],
-      ["齿轮箱架构", ["齿轮箱", "主齿轮箱", "中速传动", "高速传动", "功率分流", "gearbox", "gear box", "split torque", "torque density"]],
+      ["齿轮箱架构", ["齿轮箱", "主齿轮箱", "整机齿轮箱", "中速传动", "高速传动", "功率分流", "gearbox", "gear box", "main gearbox", "split torque", "torque density"]],
+      ["齿轮箱开发与轻量化", ["齿轮箱开发", "齿轮箱轻量化", "轻量化设计", "功率密度", "gearbox development", "lightweight gearbox", "lightweight design", "power density"]],
+      ["变桨传动", ["变桨齿轮箱", "变桨减速器", "变桨传动", "变桨驱动", "pitch gearbox", "pitch drive", "pitch transmission"]],
       ["主轴系统方案", ["主轴系统", "三点支撑", "四点支撑", "集成式传动链", "main shaft system", "three point suspension", "four point suspension", "integrated drivetrain"]]
     ]
   },
@@ -22,7 +24,7 @@ export const DRIVETRAIN_TAXONOMY = [
     tags: [
       ["齿轮宏观参数", ["齿数", "模数", "压力角", "螺旋角", "变位系数", "齿宽", "module", "pressure angle", "helix angle", "profile shift", "face width"]],
       ["齿轮微观修形", ["齿轮修形", "齿形修形", "齿向修形", "鼓形修形", "微观修形", "齿廓修形", "gear microgeometry", "profile modification", "lead modification", "tooth modification"]],
-      ["齿轮强度", ["齿面接触应力", "齿根弯曲应力", "啮合刚度", "传动误差", "接触斑点", "gear strength", "contact stress", "bending stress", "mesh stiffness", "transmission error", "contact pattern"]]
+      ["齿轮强度", ["齿面接触应力", "齿根弯曲应力", "齿根弯曲疲劳", "弯曲疲劳强度", "啮合刚度", "传动误差", "接触斑点", "gear strength", "contact stress", "bending stress", "tooth root bending fatigue", "bending fatigue strength", "mesh stiffness", "transmission error", "contact pattern"]]
     ]
   },
   {
@@ -39,7 +41,8 @@ export const DRIVETRAIN_TAXONOMY = [
     tags: [
       ["行星架强度", ["行星架", "行星架强度", "行星架变形", "planet carrier", "carrier strength", "carrier deformation"]],
       ["箱体与支承强度", ["箱体变形", "箱体强度", "扭力臂", "弹性支撑", "housing deformation", "housing strength", "torque arm", "elastic support"]],
-      ["轴系强度", ["主轴强度", "高速轴强度", "轴系强度", "轴系对中", "shaft strength", "shaft alignment", "shaft fatigue"]],
+      ["轴系强度", ["主轴强度", "高速轴强度", "轴系强度", "轴系对中", "主轴开裂", "主轴裂纹", "shaft strength", "shaft alignment", "shaft fatigue", "main shaft crack", "main shaft failure"]],
+      ["锁紧盘与连接", ["锁紧盘", "胀紧套", "胀套", "收缩盘", "联轴器连接", "shrink disc", "locking assembly", "keyless locking device", "coupling connection"]],
       ["有限元与疲劳", ["有限元", "强度分析", "疲劳强度", "拓扑优化", "ansys", "abaqus", "finite element", "fea", "fatigue strength", "topology optimization"]]
     ]
   },
@@ -50,7 +53,7 @@ export const DRIVETRAIN_TAXONOMY = [
       ["渗碳与热处理", ["渗碳", "渗碳淬火", "氮化", "碳氮共渗", "热处理", "残余奥氏体", "carburizing", "case hardening", "nitriding", "heat treatment", "retained austenite"]],
       ["喷丸强化", ["喷丸", "强化喷丸", "应力喷丸", "残余压应力", "shot peening", "stress peening", "compressive residual stress"]],
       ["齿面精加工", ["磨齿", "珩齿", "磨削烧伤", "超精加工", "齿面粗糙度", "gear grinding", "gear honing", "grinding burn", "superfinishing", "surface roughness"]],
-      ["材料与表面工程", ["齿轮钢", "轴承钢", "材料洁净度", "夹杂物", "表面涂层", "表面强化", "gear steel", "bearing steel", "material cleanliness", "inclusion", "surface coating", "surface engineering"]]
+      ["材料与表面工程", ["齿轮钢", "轴承钢", "42CrMo4", "42CrMo", "材料洁净度", "夹杂物", "表面涂层", "表面强化", "gear steel", "bearing steel", "material cleanliness", "inclusion", "surface coating", "surface engineering"]]
     ]
   },
   {
@@ -77,7 +80,8 @@ export const DRIVETRAIN_TAXONOMY = [
       ["AVL EXCITE", ["avl excite", "avl仿真", "excite power unit", "excite designer", "excite timing drive"]],
       ["Romax/MASTA/KISSsoft", ["romax", "masta", "kisssoft", "kisssys", "传动系统仿真", "齿轮箱仿真"]],
       ["多体动力学", ["simpack", "多体动力学", "动力学仿真", "柔性体", "multibody dynamics", "dynamic simulation", "flexible body"]],
-      ["数字孪生", ["数字孪生", "虚拟样机", "模型降阶", "digital twin", "virtual prototype", "reduced order model"]]
+      ["数字孪生", ["数字孪生", "虚拟样机", "模型降阶", "digital twin", "virtual prototype", "reduced order model"]],
+      ["AI辅助设计", ["人工智能", "AI+齿轮箱", "机器学习", "深度学习", "artificial intelligence", "machine learning", "deep learning", "ai-assisted design"]]
     ]
   },
   {
@@ -92,7 +96,7 @@ export const DRIVETRAIN_TAXONOMY = [
     domain: "监测诊断",
     tags: [
       ["振动监测", ["振动监测", "振动分析", "包络解调", "阶次分析", "频谱分析", "vibration monitoring", "vibration analysis", "envelope analysis", "order tracking", "spectral analysis"]],
-      ["故障诊断与PHM", ["故障诊断", "状态监测", "预测性维护", "剩余寿命", "健康管理", "fault diagnosis", "condition monitoring", "predictive maintenance", "remaining useful life", "rul", "phm"]],
+      ["故障诊断与PHM", ["故障诊断", "状态监测", "预测性维护", "剩余寿命", "健康管理", "人工智能诊断", "AI诊断", "机器学习诊断", "fault diagnosis", "condition monitoring", "predictive maintenance", "remaining useful life", "rul", "phm", "machine learning diagnosis", "deep learning diagnosis"]],
       ["SCADA与CMS", ["scada", "cms", "监测系统", "在线监测", "online monitoring", "condition monitoring system"]]
     ]
   },
@@ -103,6 +107,8 @@ export const DRIVETRAIN_TAXONOMY = [
       ["齿面失效", ["微点蚀", "点蚀", "剥落", "胶合", "擦伤", "齿面磨损", "micropitting", "pitting", "spalling", "scuffing", "tooth wear"]],
       ["轴承失效与WEC", ["白色蚀刻裂纹", "白色组织裂纹", "白色蚀刻区", "wec", "white etching crack", "white structure flaking", "butterfly crack"]],
       ["电蚀与电流损伤", ["轴承电蚀", "电流损伤", "电火花加工纹", "电流绝缘", "electrical damage", "bearing current", "fluting", "electrical erosion"]],
+      ["齿根弯曲疲劳", ["齿根弯曲疲劳", "齿根弯曲强度", "弯曲疲劳强度", "tooth root bending fatigue", "tooth root fatigue", "bending fatigue strength"]],
+      ["主轴裂纹与断裂", ["主轴故障", "主轴开裂", "主轴裂纹", "主轴断裂", "main shaft failure", "main shaft crack", "main shaft fracture"]],
       ["裂纹与断裂", ["断齿", "齿根裂纹", "轮齿断裂", "轴断裂", "疲劳裂纹", "tooth fracture", "root crack", "shaft fracture", "fatigue crack"]],
       ["温升泄漏与装配质量", ["齿轮箱高温", "轴承温升", "漏油", "渗漏", "装配偏差", "同轴度", "不对中", "gearbox overheating", "bearing temperature", "oil leakage", "misalignment", "assembly error"]]
     ]
@@ -141,6 +147,10 @@ export const DRIVETRAIN_COMPONENT_TAXONOMY = [
   {
     component: "轴系连接",
     keywords: ["联轴器", "锁紧盘", "胀紧套", "胀套", "花键", "收缩盘", "空心轴", "传动轴", "coupling", "shrink disc", "locking assembly", "spline", "hollow shaft", "drive shaft"]
+  },
+  {
+    component: "变桨传动",
+    keywords: ["变桨齿轮箱", "变桨减速器", "变桨传动", "变桨驱动", "pitch gearbox", "pitch drive", "pitch transmission"]
   },
   {
     component: "润滑冷却与密封",
@@ -194,6 +204,7 @@ export const DRIVETRAIN_COMPONENT_TAGS = [
   ["弹性支承", ["弹性支撑", "弹性支承", "elastic support"]],
   ["联轴器", ["联轴器", "coupling"]],
   ["锁紧盘", ["锁紧盘", "胀紧套", "胀套", "收缩盘", "shrink disc", "locking assembly"]],
+  ["变桨齿轮箱", ["变桨齿轮箱", "变桨减速器", "pitch gearbox", "pitch drive"]],
   ["花键", ["花键", "spline"]],
   ["过滤器", ["过滤器", "过滤精度", "filter", "filtration"]],
   ["冷却器", ["冷却器", "冷却系统", "oil cooler", "cooling system"]],
@@ -209,6 +220,8 @@ export const FAILURE_MODE_TAXONOMY = [
   ["胶合与擦伤", ["胶合", "擦伤", "scuffing", "smearing"]],
   ["齿面磨损", ["齿面磨损", "tooth wear", "flank wear"]],
   ["断齿与齿根裂纹", ["断齿", "齿根裂纹", "轮齿断裂", "tooth fracture", "root crack"]],
+  ["齿根弯曲疲劳", ["齿根弯曲疲劳", "弯曲疲劳强度", "tooth root bending fatigue", "bending fatigue strength"]],
+  ["主轴裂纹与断裂", ["主轴故障", "主轴开裂", "主轴裂纹", "主轴断裂", "main shaft failure", "main shaft crack", "main shaft fracture"]],
   ["白色蚀刻裂纹", ["白色蚀刻裂纹", "白色组织裂纹", "white etching crack", "wec"]],
   ["轴承电蚀", ["轴承电蚀", "电流损伤", "fluting", "electrical erosion", "bearing current"]],
   ["轴承跑圈", ["轴承跑圈", "跑内圈", "跑外圈", "套圈蠕动", "bearing creep", "ring creep", "ring walk"]],
@@ -295,9 +308,7 @@ function classificationText(article) {
     article.titleZh,
     article.snippet,
     article.summary,
-    ...(article.keyPoints || []),
-    ...(article.tags || []),
-    ...(article.contextTags || [])
+    ...(article.keyPoints || [])
   ].filter(Boolean).join(" ")).toLowerCase();
 }
 
@@ -565,14 +576,14 @@ export function resolveNewsUrl(value = "") {
 }
 
 export function relevanceScore(article, keywordWeights) {
-  const text = `${article.title} ${article.snippet} ${(article.tags || []).join(" ")}`.toLowerCase();
+  const text = `${article.title || ""} ${article.snippet || ""} ${article.summary || ""}`.toLowerCase();
   return Object.entries(keywordWeights).reduce((score, [keyword, weight]) => {
     return text.includes(keyword.toLowerCase()) ? score + Number(weight) : score;
   }, 0);
 }
 
 export function isDomainRelevant(article) {
-  const text = `${article.title} ${article.snippet} ${(article.tags || []).join(" ")}`.toLowerCase();
+  const text = `${article.title || ""} ${article.snippet || ""} ${article.summary || ""}`.toLowerCase();
   const windAnchors = ["风电", "风力发电", "风机", "wind turbine", "wind power", "wind energy"];
   const strongDrivetrainAnchors = [
     "齿轮箱",

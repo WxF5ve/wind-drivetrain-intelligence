@@ -946,11 +946,36 @@ mark {
   -webkit-line-clamp: 2;
 }
 
-.technical-labels {
+.related-component-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+  align-items: center;
   margin-top: 10px;
+}
+
+.related-component-label {
+  color: #176c55;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.related-component-chip {
+  display: inline-flex;
+  min-height: 22px;
+  align-items: center;
+  padding: 2px 7px;
+  border: 1px solid #b8d7d9;
+  border-radius: 4px;
+  color: #216873;
+  background: #e8f3f3;
+  font-size: 10px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.clue-component-tags {
+  margin-top: 6px;
 }
 
 .technical-domain,
@@ -1033,7 +1058,7 @@ mark {
 .article-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 12px;
   margin-top: 12px;
 }
@@ -1541,8 +1566,40 @@ dialog::backdrop {
   font-size: 11px;
 }
 
+.report-component-groups {
+  margin-top: 18px;
+}
+
+.report-component-group + .report-component-group {
+  margin-top: 22px;
+}
+
+.report-component-heading {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  border-left: 3px solid var(--green);
+  background: #eef5f2;
+}
+
+.report-component-heading h3 {
+  margin: 0;
+  color: var(--green-dark);
+  font-size: 14px;
+}
+
+.report-component-heading span {
+  flex: 0 0 auto;
+  color: var(--ink-soft);
+  font-size: 10px;
+  font-weight: 750;
+}
+
 .report-items {
-  margin-top: 12px;
+  margin-top: 0;
 }
 
 .report-item {
@@ -1571,6 +1628,27 @@ dialog::backdrop {
 .report-item-meta span:first-child {
   color: var(--green);
   font-weight: 750;
+}
+
+.report-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 8px 0 10px;
+}
+
+.report-tags span {
+  display: inline-flex;
+  min-height: 20px;
+  align-items: center;
+  padding: 1px 6px;
+  border: 1px solid #b8d7d9;
+  border-radius: 4px;
+  color: #216873;
+  background: #e8f3f3;
+  font-size: 9px;
+  font-weight: 750;
+  line-height: 1.35;
 }
 
 .report-reliability {
@@ -2586,13 +2664,12 @@ dialog::backdrop {
     -webkit-line-clamp: 2;
   }
 
-  .technical-labels {
+  .related-component-tags {
     gap: 4px;
     margin-top: 7px;
   }
 
-  .technical-domain,
-  .technical-tag {
+  .related-component-chip {
     min-height: 20px;
     padding: 2px 5px;
     font-size: 9px;
@@ -2802,6 +2879,15 @@ dialog::backdrop {
   .report-item {
     grid-template-columns: 29px minmax(0, 1fr);
     gap: 8px;
+  }
+
+  .report-component-heading {
+    min-height: 36px;
+    padding: 7px 9px;
+  }
+
+  .report-component-heading h3 {
+    font-size: 13px;
   }
 
   .report-item h3 {

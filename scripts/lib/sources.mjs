@@ -22,6 +22,19 @@ export function buildDomainNewsQueries(source = {}) {
     .map((domain) => ({ domain, query: `site:${domain} ${searchTerms}` }));
 }
 
+function normalizedJournal(value = "") {
+  return String(value).trim().toLowerCase().replace(/&/g, " and ").replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+}
+
+export function isAllowedResearchJournal(value, allowedJournals = []) {
+  if (!allowedJournals.length) return true;
+  const journal = normalizedJournal(value);
+  return Boolean(journal) && allowedJournals
+    .map(normalizedJournal)
+    .filter(Boolean)
+    .some((allowed) => journal === allowed);
+}
+
 export function classifyChannelResult(result, previous = {}) {
   if (result?.status !== "fulfilled") {
     return { status: "failed", requestStatus: "failed", zeroFetchStreak: 0 };

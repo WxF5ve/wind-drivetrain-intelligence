@@ -18,6 +18,8 @@
         "iec.ch",
         "iso.org",
         "patents.google.com",
+        "iopscience.iop.org",
+        "sciencedirect.com",
         "gov.cn",
         "ndrc.gov.cn",
         "nea.gov.cn",
@@ -250,6 +252,54 @@
       "contextTags": ["仿真与数字工程"]
     },
     {
+      "id": "news-cn-gearbox-development-pitch",
+      "label": "国内整机齿轮箱开发与变桨传动资讯",
+      "query": "风电 (整机齿轮箱 OR 主齿轮箱 OR 变桨齿轮箱 OR 变桨减速器 OR 齿轮箱轻量化 OR 功率密度) (开发 OR 设计 OR 样机 OR 验证 OR 量产 OR 技术)",
+      "language": "Chinese",
+      "region": "国内",
+      "contextTags": ["齿轮箱架构", "轻量化", "变桨传动"]
+    },
+    {
+      "id": "news-global-gearbox-development-pitch",
+      "label": "海外整机齿轮箱开发与变桨传动资讯",
+      "query": "\"wind turbine\" (\"main gearbox\" OR \"turbine gearbox\" OR \"pitch gearbox\" OR \"pitch drive\" OR lightweight OR \"power density\") (development OR design OR prototype OR validation OR production)",
+      "language": "English",
+      "region": "海外",
+      "contextTags": ["齿轮箱架构", "轻量化", "变桨传动"]
+    },
+    {
+      "id": "news-cn-mainshaft-failure-connection",
+      "label": "国内主轴故障开裂与锁紧连接资讯",
+      "query": "风电 (主轴 OR 主轴承 OR 锁紧盘 OR 胀紧套 OR 联轴器) (故障 OR 开裂 OR 裂纹 OR 断裂 OR 松动 OR 失效 OR 连接)",
+      "language": "Chinese",
+      "region": "国内",
+      "contextTags": ["主轴系统", "锁紧盘连接", "裂纹与断裂"]
+    },
+    {
+      "id": "news-global-mainshaft-failure-connection",
+      "label": "海外主轴故障开裂与锁紧连接资讯",
+      "query": "\"wind turbine\" (\"main shaft\" OR \"main bearing\" OR \"shrink disc\" OR coupling) (failure OR crack OR fracture OR loosening OR damage OR connection)",
+      "language": "English",
+      "region": "海外",
+      "contextTags": ["主轴系统", "锁紧盘连接", "裂纹与断裂"]
+    },
+    {
+      "id": "news-cn-gear-fatigue-material-ai",
+      "label": "国内齿根疲劳材料与AI齿轮箱资讯",
+      "query": "风电齿轮箱 (齿根弯曲疲劳 OR 弯曲疲劳强度 OR 42CrMo4 OR 42CrMo OR 人工智能 OR AI OR 智能诊断) (研究 OR 开发 OR 试验 OR 失效 OR 优化)",
+      "language": "Chinese",
+      "region": "国内",
+      "contextTags": ["齿根弯曲疲劳", "42CrMo4", "AI辅助诊断"]
+    },
+    {
+      "id": "news-global-gear-fatigue-material-ai",
+      "label": "海外齿根疲劳材料与AI齿轮箱资讯",
+      "query": "\"wind turbine gearbox\" (\"tooth root bending fatigue\" OR \"bending fatigue strength\" OR 42CrMo4 OR 42CrMo OR \"artificial intelligence\" OR \"machine learning\")",
+      "language": "English",
+      "region": "海外",
+      "contextTags": ["齿根弯曲疲劳", "42CrMo4", "AI辅助诊断"]
+    },
+    {
       "id": "portal-cn-bjx-wind",
       "label": "北极星风电与电力行业",
       "query": "site:bjx.com.cn (风电 OR 海上风电 OR 风力发电) (项目 OR 政策 OR 装机 OR 技术 OR 齿轮箱 OR 轴承)",
@@ -406,6 +456,15 @@
       "topic": "official",
       "allowedDomains": ["cwea.org.cn"],
       "contextTags": ["行业权威", "中国风能协会"]
+    },
+    {
+      "id": "portal-cn-daily-wind",
+      "label": "每日风电行业动态",
+      "query": "(\"每日风电\" OR \"风芒能源\") (风电 OR 海上风电 OR 风力发电) (项目 OR 装机 OR 整机 OR 齿轮箱 OR 轴承 OR 传动链 OR 技术 OR 运维)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "official",
+      "contextTags": ["行业媒体", "每日风电"]
     },
     {
       "id": "industry-cn-oem",
@@ -600,11 +659,56 @@
       "maxRecords": 12
     },
     {
+      "id": "web-windpower-monthly",
+      "label": "Windpower Monthly 官网",
+      "collector": "domain-news",
+      "query": "site:windpowermonthly.com wind (turbine OR offshore OR onshore OR gearbox OR drivetrain OR bearing OR manufacturer OR project)",
+      "searchTerms": "wind (turbine OR offshore OR onshore OR gearbox OR drivetrain OR bearing OR manufacturer OR project)",
+      "language": "English",
+      "region": "海外",
+      "topic": "industry",
+      "sourceType": "行业资讯",
+      "allowedDomains": ["windpowermonthly.com"],
+      "contextTags": ["国际行业媒体", "Windpower Monthly"],
+      "directSource": true,
+      "maxRecords": 14
+    },
+    {
+      "id": "web-iop-science-drivetrain",
+      "label": "IOP Science 风电传动论文",
+      "collector": "domain-news",
+      "query": "site:iopscience.iop.org \"wind turbine\" (gearbox OR drivetrain OR bearing OR \"main shaft\" OR gear OR vibration OR fatigue)",
+      "searchTerms": "\"wind turbine\" (gearbox OR drivetrain OR bearing OR \"main shaft\" OR gear OR vibration OR fatigue)",
+      "language": "English",
+      "region": "海外",
+      "topic": "technical",
+      "sourceType": "论文",
+      "allowedDomains": ["iopscience.iop.org"],
+      "contextTags": ["学术出版平台", "IOP Science"],
+      "directSource": true,
+      "maxRecords": 12
+    },
+    {
+      "id": "web-rser-drivetrain",
+      "label": "RSER 风电传动论文官网",
+      "collector": "domain-news",
+      "query": "site:sciencedirect.com/journal/renewable-and-sustainable-energy-reviews \"wind turbine\" (gearbox OR drivetrain OR bearing OR reliability OR maintenance)",
+      "searchTerms": "\"Renewable and Sustainable Energy Reviews\" \"wind turbine\" (gearbox OR drivetrain OR bearing OR reliability OR maintenance)",
+      "language": "English",
+      "region": "海外",
+      "topic": "technical",
+      "sourceType": "论文",
+      "allowedDomains": ["sciencedirect.com"],
+      "contextTags": ["学术期刊", "RSER"],
+      "directSource": true,
+      "maxRecords": 12
+    },
+    {
       "id": "web-cn-drivetrain-patents",
       "label": "中国风电传动链专利",
       "collector": "google-patents",
       "query": "site:patents.google.com/patent/CN (风电 OR 风力发电) (齿轮箱 OR 传动链 OR 主轴承 OR 行星架 OR 齿轮 OR 轴承)",
-      "patentQueries": ["风电 齿轮箱", "风力发电 主轴承", "风电 行星架"],
+      "patentQueries": ["风电 齿轮箱", "风力发电 主轴承", "风电 行星架", "风电 齿根弯曲疲劳", "风力发电 变桨齿轮箱", "风电 主轴 锁紧盘", "风电 齿轮箱 人工智能"],
       "patentCountry": "CN",
       "language": "Chinese",
       "region": "国内",
@@ -620,7 +724,7 @@
       "label": "海外风电传动链专利",
       "collector": "google-patents",
       "query": "site:patents.google.com/patent \"wind turbine\" (gearbox OR drivetrain OR main bearing OR planet carrier OR gear bearing)",
-      "patentQueries": ["\"wind turbine\" gearbox", "\"wind turbine\" main bearing", "\"wind turbine\" planet carrier"],
+      "patentQueries": ["\"wind turbine\" gearbox", "\"wind turbine\" main bearing", "\"wind turbine\" planet carrier", "\"wind turbine\" tooth root bending fatigue", "\"wind turbine\" pitch gearbox", "\"wind turbine\" main shaft shrink disc", "\"wind turbine gearbox\" machine learning"],
       "language": "English",
       "region": "海外",
       "topic": "technical",
@@ -771,9 +875,63 @@
       "region": "海外"
     },
     {
+      "id": "research-gearbox-development-lightweight",
+      "label": "整机齿轮箱开发与轻量化论文",
+      "query": "wind turbine main gearbox development design lightweight power density prototype validation",
+      "region": "海外"
+    },
+    {
+      "id": "research-mainshaft-failure-cracking",
+      "label": "主轴故障开裂与连接论文",
+      "query": "wind turbine main shaft main bearing failure crack fracture shrink disc coupling connection",
+      "region": "海外"
+    },
+    {
+      "id": "research-gear-root-fatigue-materials",
+      "label": "齿根弯曲疲劳与42CrMo4论文",
+      "query": "wind turbine gearbox tooth root bending fatigue strength 42CrMo4 gear material",
+      "region": "海外"
+    },
+    {
+      "id": "research-pitch-gearbox-ai",
+      "label": "变桨齿轮箱与AI诊断论文",
+      "query": "wind turbine pitch gearbox pitch drive artificial intelligence machine learning fault diagnosis",
+      "region": "海外"
+    },
+    {
+      "id": "research-rser-drivetrain",
+      "label": "RSER 风电传动链论文",
+      "query": "wind turbine drivetrain gearbox bearing reliability failure maintenance review",
+      "region": "海外",
+      "providers": ["openalex", "crossref"],
+      "journalNames": ["Renewable and Sustainable Energy Reviews"],
+      "maxRecords": 20,
+      "contextTags": ["学术期刊", "RSER"]
+    },
+    {
+      "id": "research-cn-gearbox-development-index",
+      "label": "国内齿轮箱开发与变桨公开题录",
+      "query": "(site:cnki.net OR site:wanfangdata.com.cn OR site:cqvip.com OR site:pubscholar.cn) 风电 (整机齿轮箱 OR 齿轮箱轻量化 OR 变桨齿轮箱 OR 变桨减速器)",
+      "region": "国内",
+      "providers": ["academic-web"],
+      "allowedDomains": ["cnki.net", "wanfangdata.com.cn", "cqvip.com", "pubscholar.cn"],
+      "maxRecords": 10,
+      "contextTags": ["国内学术题录", "齿轮箱架构", "变桨传动"]
+    },
+    {
+      "id": "research-cn-failure-material-index",
+      "label": "国内失效疲劳与材料公开题录",
+      "query": "(site:cnki.net OR site:wanfangdata.com.cn OR site:cqvip.com OR site:pubscholar.cn) 风电 (主轴故障 OR 主轴开裂 OR 齿轮箱失效 OR 齿根弯曲疲劳 OR 42CrMo4 OR 锁紧盘)",
+      "region": "国内",
+      "providers": ["academic-web"],
+      "allowedDomains": ["cnki.net", "wanfangdata.com.cn", "cqvip.com", "pubscholar.cn"],
+      "maxRecords": 10,
+      "contextTags": ["国内学术题录", "裂纹与断裂", "齿根弯曲疲劳", "42CrMo4"]
+    },
+    {
       "id": "research-cn-process-quality",
       "label": "国内传动链工艺与质量论文",
-      "query": "风电 齿轮箱 感应淬火 喷丸 轴承跑圈 振动 行星架强度 滑动轴承 AVL仿真",
+      "query": "风电 齿轮箱 感应淬火 喷丸 轴承跑圈 振动 行星架强度 滑动轴承 AVL仿真 42CrMo4",
       "region": "国内",
       "providers": ["openalex", "crossref"]
     },
@@ -880,6 +1038,21 @@
     "胶合": 4,
     "断齿": 4,
     "齿根裂纹": 4,
+    "齿根弯曲疲劳": 4,
+    "弯曲疲劳强度": 4,
+    "齿轮箱失效": 4,
+    "整机齿轮箱": 4,
+    "主齿轮箱": 4,
+    "齿轮箱轻量化": 4,
+    "变桨齿轮箱": 4,
+    "变桨减速器": 4,
+    "主轴故障": 4,
+    "主轴开裂": 4,
+    "锁紧盘": 4,
+    "胀紧套": 3,
+    "42CrMo4": 4,
+    "42CrMo": 3,
+    "人工智能": 3,
     "电蚀": 4,
     "滑移": 2,
     "偏载": 3,
@@ -953,6 +1126,18 @@
     "micropitting": 4,
     "scuffing": 4,
     "tooth fracture": 4,
+    "tooth root bending fatigue": 4,
+    "bending fatigue strength": 4,
+    "main gearbox": 4,
+    "pitch gearbox": 4,
+    "pitch drive": 3,
+    "lightweight gearbox": 4,
+    "main shaft failure": 4,
+    "main shaft crack": 4,
+    "shrink disc": 4,
+    "machine learning": 3,
+    "artificial intelligence": 3,
+    "42crmo4": 4,
     "electrical damage": 4,
     "smearing": 3,
     "oil debris": 3,

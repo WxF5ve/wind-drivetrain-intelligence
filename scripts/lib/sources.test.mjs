@@ -4,7 +4,8 @@ import assert from "node:assert/strict";
 import {
   buildDomainNewsQueries,
   classifyChannelResult,
-  isAllowedPublisherUrl
+  isAllowedPublisherUrl,
+  isAllowedResearchJournal
 } from "./sources.mjs";
 
 test("domain news queries use one explicit publisher domain per request", () => {
@@ -22,6 +23,14 @@ test("publisher URL validation accepts subdomains and rejects unrelated results"
   assert.equal(isAllowedPublisherUrl("https://engineering.skf.com/wind", ["skf.com"]), true);
   assert.equal(isAllowedPublisherUrl("https://skf.com.evil.example/wind", ["skf.com"]), false);
   assert.equal(isAllowedPublisherUrl("https://news.google.com/article/123", ["skf.com"]), false);
+});
+
+test("research journal filters keep RSER records exact", () => {
+  const journals = ["Renewable and Sustainable Energy Reviews"];
+  assert.equal(isAllowedResearchJournal("Renewable and Sustainable Energy Reviews", journals), true);
+  assert.equal(isAllowedResearchJournal("Renewable & Sustainable Energy Reviews", journals), true);
+  assert.equal(isAllowedResearchJournal("Renewable Energy", journals), false);
+  assert.equal(isAllowedResearchJournal("Any Journal", []), true);
 });
 
 test("successful zero-result channels become low-yield after consecutive runs", () => {

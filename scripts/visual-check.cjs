@@ -49,7 +49,8 @@ async function inspectLayout(page, label) {
     reliabilityBadges: document.querySelectorAll(".reliability-badge").length,
     accessBadges: document.querySelectorAll(".content-access").length,
     technicalLabels: document.querySelectorAll(".technical-labels").length,
-    componentChips: document.querySelectorAll(".article-card .component-chip").length,
+    componentTagRows: document.querySelectorAll(".article-card .related-component-tags").length,
+    componentChips: document.querySelectorAll(".article-card .related-component-chip").length,
     dimensionFilters: document.querySelectorAll(".dimension-filter").length,
     activeCategory: document.querySelector(".category-tab.active > span")?.textContent?.trim(),
     categoryCounts: [...document.querySelectorAll("[data-category-count]")].map((item) => Number(item.textContent || 0)),
@@ -61,8 +62,10 @@ async function inspectLayout(page, label) {
   if (!result.cards) throw new Error(`${label} rendered no article cards`);
   if (result.reliabilityBadges !== result.cards) throw new Error(`${label} is missing reliability badges`);
   if (result.accessBadges < result.cards) throw new Error(`${label} is missing content access badges`);
-  if (!result.technicalLabels) throw new Error(`${label} rendered no drivetrain technical labels`);
-  if (result.componentChips !== result.cards) throw new Error(`${label} is missing primary component labels`);
+  if (result.technicalLabels) throw new Error(`${label} still renders legacy multi-level technical labels`);
+  if (result.componentTagRows !== result.cards || result.componentChips < result.cards) {
+    throw new Error(`${label} is missing simplified related-component labels`);
+  }
   if (result.activeCategory !== "传动链技术开发与质量运维") throw new Error(`${label} did not default to technical development and quality operations`);
   if (result.categoryCounts.length !== 6 || result.categoryCounts.some((count) => !Number.isFinite(count))) {
     throw new Error(`${label} did not expose stable main-section counts`);
@@ -98,6 +101,9 @@ async function inspectLayout(page, label) {
     if (!clueCards || verboseClueCards) {
       throw new Error(`Comprehensive lead pool did not render compact entries: ${clueCards} clues, ${verboseClueCards} summaries`);
     }
+    if (await desktop.locator(".clue-card .related-component-tags").count() !== clueCards) {
+      throw new Error("Comprehensive lead pool is missing simplified related-component labels");
+    }
     await desktop.screenshot({ path: path.join(outputDir, "title-clues.png") });
     await desktop.locator('[data-category="厂商与项目动态"]').click();
     await desktop.waitForTimeout(100);
@@ -119,6 +125,11 @@ async function inspectLayout(page, label) {
     }
     const reliabilityScore = Number(await desktop.locator(".reliability-score strong").textContent());
     if (!Number.isFinite(reliabilityScore) || reliabilityScore <= 0) throw new Error("Reliability score did not render");
+    const detailClassificationRows = await desktop.locator(".classification-panel .classification-row").count();
+    const detailTechnicalLabels = await desktop.locator(".classification-panel .technical-domain, .classification-panel .technical-tag, .classification-panel .failure-chip").count();
+    if (detailClassificationRows !== 2 || detailTechnicalLabels) {
+      throw new Error("Article details did not reduce classification to section and related component");
+    }
     await desktop.locator('[data-feedback="useful"]').click();
     if (await desktop.locator('[data-feedback="useful"]').getAttribute("aria-pressed") !== "true") {
       throw new Error("Feedback selection was not persisted");
@@ -154,16 +165,35 @@ async function inspectLayout(page, label) {
     await desktop.waitForSelector("#weekly-report-dialog[open]");
     const reportItems = await desktop.locator(".report-item").count();
     const reportParagraphs = await desktop.locator(".report-paragraph").count();
+    const reportTags = await desktop.locator(".report-tags").count();
+    const reportComponentGroups = await desktop.locator(".report-component-group").count();
     const reportEventParagraphs = await desktop.locator(".report-event").count();
     const reportInsightParagraphs = await desktop.locator(".report-insight").count();
     const reportEntities = await desktop.locator(".report-entity").count();
     const reportDataHighlights = await desktop.locator(".report-key-data").count();
     const reportOrganizationHighlights = await desktop.locator(".report-key-organization").count();
     const reportTechnologyHighlights = await desktop.locator(".report-key-technology").count();
+    const reportReliability = await desktop.locator(".report-reliability").count();
     const reportNarrativeText = await desktop.locator(".report-paragraph").allTextContents();
     const legacyFactRows = await desktop.locator(".report-facts > div").count();
-    if (reportItems < 1 || reportParagraphs !== reportItems || reportEventParagraphs || reportInsightParagraphs || reportEntities || legacyFactRows) {
+    if (reportItems < 1 || reportParagraphs !== reportItems || reportTags !== reportItems || !reportComponentGroups || reportEventParagraphs || reportInsightParagraphs || reportEntities || legacyFactRows || reportReliability) {
       throw new Error(`Weekly report must use one paragraph per item: ${reportItems} items, ${reportParagraphs} paragraphs`);
+    }
+    const reportStructure = await desktop.locator(".report-section").evaluateAll((sections) => sections.map((section) => ({
+      title: section.querySelector(".report-section-heading h2")?.textContent?.trim(),
+      components: [...section.querySelectorAll(".report-component-group")].map((componentGroup) => ({
+        component: componentGroup.dataset.reportComponent,
+        items: componentGroup.querySelectorAll(".report-item").length,
+        firstTag: componentGroup.querySelector(".report-item .report-tags span")?.textContent?.trim()
+      }))
+    })));
+    const expectedSectionOrder = ["传动链技术开发与质量运维", "论文、标准与专利", "厂商与项目动态", "政策、市场与产业环境"];
+    const actualSectionRanks = reportStructure.map((section) => expectedSectionOrder.indexOf(section.title));
+    if (actualSectionRanks.some((rank) => rank < 0) || actualSectionRanks.some((rank, index) => index && rank <= actualSectionRanks[index - 1])) {
+      throw new Error("Weekly report main sections are not in the fixed taxonomy order");
+    }
+    if (reportStructure.some((section) => !section.components.length || section.components.some((component) => !component.items || component.firstTag !== component.component))) {
+      throw new Error("Weekly report did not keep items under their matching component group");
     }
     if (!reportDataHighlights) throw new Error("Weekly report did not highlight any quantitative data");
     if (!reportOrganizationHighlights) throw new Error("Weekly report did not highlight any organizations");
@@ -177,7 +207,7 @@ async function inspectLayout(page, label) {
     if (reportNarrativeText.some((text) => /[，,；;]\s*20\d{2}[-/.年]\d{1,2}(?:[-/.月]\d{1,2}日?)?[。.!！?？]/.test(text))) {
       throw new Error("Weekly report still appends a standalone timeline value");
     }
-    const redundantReportText = reportNarrativeText.filter((text) => /采用采用|证据层级|结论边界|待验证问题|属于(?:行业|厂商|政策|官方|媒体)[^，。；]{0,16}(?:资讯|动态|信息|报道)|项目容量\s*[:：]?|容量\s*[:：]\s*\d/i.test(text));
+    const redundantReportText = reportNarrativeText.filter((text) => /采用采用|证据层级|结论边界|待验证问题|属于(?:行业|厂商|政策|官方|媒体)[^，。；]{0,16}(?:资讯|动态|信息|报道)|项目容量\s*[:：]?|容量\s*[:：]\s*\d|未(?:披露|提供|说明|给出)|信息(?:有限|不足)|需(?:要)?核验|来源待确认|可靠度/i.test(text));
     if (redundantReportText.length) {
       throw new Error(`Weekly report still contains redundant meta prose:\n${redundantReportText.join("\n")}`);
     }
@@ -229,7 +259,7 @@ async function inspectLayout(page, label) {
       throw new Error(`Browser console errors:\n${consoleErrors.join("\n")}`);
     }
 
-    console.log(JSON.stringify({ desktopLayout, mobileLayout, clueCards, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportParagraphs, reportDataHighlights, reportOrganizationHighlights, reportTechnologyHighlights, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
+    console.log(JSON.stringify({ desktopLayout, mobileLayout, clueCards, searchResults, reliabilityScore, experienceControls, experienceStored, reportItems, reportParagraphs, reportComponentGroups, reportStructure, reportDataHighlights, reportOrganizationHighlights, reportTechnologyHighlights, pdfBytes: pdfBytes.length, pdfPages }, null, 2));
   } finally {
     if (browser) await browser.close();
     server.kill();

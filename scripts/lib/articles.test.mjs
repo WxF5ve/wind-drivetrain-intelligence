@@ -162,12 +162,28 @@ test("drivetrain taxonomy recognizes manufacturing, quality, bearing, simulation
     ["Wind turbine gearbox vibration NVH and resonance investigation", ["齿轮箱振动", "模态与共振"]],
     ["AVL EXCITE and Romax simulation for a wind turbine drivetrain", ["AVL EXCITE", "Romax/MASTA/KISSsoft"]],
     ["风电齿轮箱行星架强度、变形及拓扑优化", ["行星架强度", "有限元与疲劳"]],
-    ["Hydrodynamic tilting pad plain bearing development for wind turbine drivetrains", ["滑动轴承开发"]]
+    ["Hydrodynamic tilting pad plain bearing development for wind turbine drivetrains", ["滑动轴承开发"]],
+    ["风电整机齿轮箱轻量化与变桨齿轮箱开发", ["齿轮箱开发与轻量化", "变桨传动"]],
+    ["Wind turbine gearbox tooth root bending fatigue strength of 42CrMo4 steel", ["齿轮强度", "齿根弯曲疲劳", "材料与表面工程"]],
+    ["Machine learning diagnosis for wind turbine gearbox failures", ["AI辅助设计", "故障诊断与PHM"]],
+    ["风电主轴开裂与锁紧盘连接失效分析", ["锁紧盘与连接", "主轴裂纹与断裂"]]
   ];
   for (const [title, expectedTags] of cases) {
     const result = inferDrivetrainClassification({ title });
     expectedTags.forEach((tag) => assert.equal(result.technicalTags.includes(tag), true, `${title} should include ${tag}`));
   }
+});
+
+test("query context tags do not create false drivetrain classifications", () => {
+  const bladeArticle = {
+    title: "Scientists built wind turbine blades 80% lighter using 4D printing",
+    snippet: "The report concerns blade material development.",
+    contextTags: ["齿轮箱架构", "变桨传动", "AI辅助诊断"]
+  };
+  const classification = inferDrivetrainClassification(bladeArticle);
+  assert.deepEqual(classification.technicalTags, []);
+  assert.equal(isDomainRelevant(bladeArticle), false);
+  assert.equal(relevanceScore(bladeArticle, { gearbox: 4, "pitch gearbox": 4 }), 0);
 });
 
 test("every intelligence item receives a primary component classification", () => {
@@ -177,7 +193,8 @@ test("every intelligence item receives a primary component classification", () =
     ["风电齿轮箱高速轴与平行轴级振动", "平行轴级"],
     ["风电联轴器、锁紧盘和花键连接设计", "轴系连接"],
     ["齿轮箱润滑冷却系统与密封漏油治理", "润滑冷却与密封"],
-    ["Wind turbine gearbox housing and torque arm deformation", "箱体与支承"]
+    ["Wind turbine gearbox housing and torque arm deformation", "箱体与支承"],
+    ["Wind turbine pitch gearbox and pitch drive reliability test", "变桨传动"]
   ];
   for (const [title, expected] of cases) {
     assert.equal(classifyArticle({ title, sourceType: "论文" }).componentCategory, expected);

@@ -34,7 +34,8 @@ import {
 import {
   buildDomainNewsQueries,
   classifyChannelResult,
-  isAllowedPublisherUrl
+  isAllowedPublisherUrl,
+  isAllowedResearchJournal
 } from "./lib/sources.mjs";
 
 const projectRoot = fileURLToPath(new URL("../", import.meta.url));
@@ -594,7 +595,7 @@ async function collectOpenAlex(source, lookbackDays) {
         ...sourceContext(source)
       };
     })
-    .filter((item) => item.title && item.url);
+    .filter((item) => item.title && item.url && isAllowedResearchJournal(item.source, source.journalNames));
 }
 
 function publishedDateFromParts(...values) {
@@ -673,7 +674,7 @@ async function collectCrossref(source, lookbackDays) {
       },
       ...sourceContext(source)
     };
-  }).filter((item) => item.title && item.url);
+  }).filter((item) => item.title && item.url && isAllowedResearchJournal(item.source, source.journalNames));
 }
 
 async function collectSemanticScholar(source, lookbackDays) {
@@ -969,13 +970,18 @@ async function enrichReaderFullText(articles) {
   const concurrency = Math.max(1, Math.min(3, Number(process.env.READER_FALLBACK_CONCURRENCY || 2)));
   const targets = articles
     .filter((article) =>
-      article.contentAccess === "metadata" &&
+      article.contentAccess !== "fulltext" &&
       article.contentFetched &&
       Number(article.contentAttempts || 0) > 0 &&
       article.linkType !== "aggregator" &&
       /^https?:\/\//i.test(article.url || "") &&
       !/news\.google\.com/i.test(article.url || "") &&
       classifyArticle(article).informationLevel !== "ignored"
+    )
+    .sort((left, right) =>
+      Number(Boolean(right.directSource)) - Number(Boolean(left.directSource)) ||
+      Number(right.queryTopic === "industry") - Number(left.queryTopic === "industry") ||
+      Number(right.queryTopic === "technical") - Number(left.queryTopic === "technical")
     )
     .slice(0, limit);
   let cursor = 0;
@@ -1063,7 +1069,7 @@ function buildWeeklyBrief(articles, lookbackDays, usedAi, archiveCount) {
       ? `本周聚焦：${leadingTopics.join("、")}`
       : "本周暂无新增高相关资料",
     summary: readableArticles.length
-      ? `过去 ${lookbackDays} 天共筛选 ${readableArticles.length} 条可读情报，其中国内 ${domesticCount} 条、论文 ${paperCount} 篇，${fullTextCount} 条已提取公开全文${briefCount ? `；另有 ${briefCount} 条题名简讯或论文题录已归入对应主栏目` : ""}${clueCount ? `，${clueCount} 条综合资讯等待深读` : ""}。资料库累计保留 ${archiveCount} 条可追溯记录，工程结论仍需回到原文核对适用机型与载荷边界。`
+      ? `过去 ${lookbackDays} 天共筛选 ${readableArticles.length} 条可读情报，其中国内 ${domesticCount} 条、论文 ${paperCount} 篇，${fullTextCount} 条已提取公开全文${briefCount ? `；另有 ${briefCount} 条题名简讯或论文题录已归入对应主栏目` : ""}${clueCount ? `，${clueCount} 条综合资讯待进一步阅读` : ""}。资料库累计保留 ${archiveCount} 条可追溯记录。`
       : `过去 ${lookbackDays} 天未发现满足相关性阈值的新资料；资料库仍保留 ${archiveCount} 条历史记录供检索。`,
     signals: readableArticles.slice(0, 3).map((article) => article.title),
     metrics: {
