@@ -1423,7 +1423,8 @@ async function main() {
           tags: existing.tags,
           paperDetails: existing.paperDetails,
           industryDetails: existing.industryDetails,
-          experienceReview: existing.experienceReview
+          experienceReview: existing.experienceReview,
+          aiWind: existing.aiWind
         }
       : createFallbackSummary(article);
     const publicArticle = toPublicArticle(
@@ -1465,6 +1466,7 @@ async function main() {
       paperDetails: generatedSummary.paperDetails,
       industryDetails: generatedSummary.industryDetails,
       experienceReview: generatedSummary.experienceReview,
+      aiWind: generatedSummary.aiWind,
       aiAnalysis: {
         provider: aiProvider.id,
         model: aiProvider.model,

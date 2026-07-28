@@ -50,6 +50,14 @@ function validSummary(id = "article-1") {
         synthesis: "",
         applicableBoundary: "",
         verificationNeeded: ""
+      },
+      aiWind: {
+        relevant: true,
+        categories: ["C3", "C12"],
+        methods: ["深度学习"],
+        datasets: [],
+        applications: ["故障诊断"],
+        evidenceScope: "试验数据集"
       }
     }]
   };
@@ -108,6 +116,7 @@ test("AI JSON parser accepts fenced JSON and rejects unsupported records", () =>
   assert.equal(parsed.size, 1);
   assert.equal(parsed.get("article-1").keyPoints.length, 3);
   assert.equal(parsed.get("article-1").paperDetails.quantitativeFindings[0].value, "95");
+  assert.deepEqual(parsed.get("article-1").aiWind.categories, ["C3", "C12"]);
   assert.throws(() => parseSummaryJson(JSON.stringify(validSummary("unknown")), ["article-1"]));
 });
 

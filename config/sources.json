@@ -545,6 +545,63 @@
       "topic": "industry",
       "matchTerms": ["Castrol", "ExxonMobil", "Mobil", "Kluber", "Klüber", "Shell", "FUCHS"],
       "contextTags": ["润滑供应商"]
+    },
+    {
+      "id": "news-ai-cn-platform-llm",
+      "label": "国内AI风电传动平台与大模型",
+      "query": "风电 (齿轮箱 OR 轴承 OR 主轴 OR 传动链) (人工智能 OR 大模型 OR 机器学习 OR 智能运维平台 OR 数字孪生)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "technical",
+      "contextTags": ["AI+风电传动", "智能运维平台"]
+    },
+    {
+      "id": "news-ai-cn-oem",
+      "label": "国内整机与央企AI传动动态",
+      "query": "风电 (金风 OR 明阳 OR 远景 OR 运达 OR 电气风电 OR 华能 OR 华电) (AI OR 人工智能 OR 大模型 OR 智能诊断 OR 预测性维护) (齿轮箱 OR 轴承 OR 传动链 OR 运维)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "industry",
+      "matchTerms": ["金风", "明阳", "远景", "运达", "电气风电", "华能", "华电"],
+      "contextTags": ["AI+风电传动", "整机厂商"]
+    },
+    {
+      "id": "news-ai-cn-products-patents",
+      "label": "国内AI传动产品专利与方案",
+      "query": "风电 (南高齿 OR 德力佳 OR 洛轴 OR 瓦轴 OR 新强联 OR 轴研科技) (AI OR 人工智能 OR 机器学习 OR 智能监测) (齿轮箱 OR 轴承 OR 传动链) (产品 OR 专利 OR 平台 OR 方案 OR 发布)",
+      "language": "Chinese",
+      "region": "国内",
+      "topic": "industry",
+      "matchTerms": ["南高齿", "德力佳", "洛轴", "瓦轴", "新强联", "轴研科技"],
+      "contextTags": ["AI+风电传动", "传动链企业"]
+    },
+    {
+      "id": "news-ai-global-oem",
+      "label": "海外整机厂AI传动与预测性维护",
+      "query": "wind (Vestas OR Siemens Gamesa OR GE Vernova OR Nordex OR Enercon) (AI OR machine learning OR digital twin OR predictive maintenance) (gearbox OR bearing OR drivetrain OR condition monitoring)",
+      "language": "English",
+      "region": "海外",
+      "topic": "industry",
+      "matchTerms": ["Vestas", "Siemens Gamesa", "GE Vernova", "Nordex", "Enercon"],
+      "contextTags": ["AI+风电传动", "整机厂商"]
+    },
+    {
+      "id": "news-ai-edge-diagnosis",
+      "label": "AI边缘诊断与信号处理",
+      "query": "\"wind turbine\" (gearbox OR bearing OR drivetrain) (\"edge AI\" OR edge computing OR TinyML OR model compression OR signal processing) (diagnosis OR monitoring)",
+      "language": "English",
+      "region": "海外",
+      "topic": "technical",
+      "contextTags": ["AI+风电传动", "边缘计算"]
+    },
+    {
+      "id": "news-ai-load-reliability",
+      "label": "AI载荷预测与传动可靠性",
+      "query": "\"wind turbine\" (drivetrain OR gearbox OR bearing OR main shaft) (AI OR machine learning OR neural network) (load prediction OR fatigue OR reliability OR extreme condition)",
+      "language": "English",
+      "region": "海外",
+      "topic": "technical",
+      "contextTags": ["AI+风电传动", "载荷可靠性"]
     }
   ],
   "webQueries": [
@@ -994,6 +1051,49 @@
       "allowedDomains": ["paper.edu.cn"],
       "maxRecords": 8,
       "contextTags": ["国内学术题录", "中国科技论文在线"]
+    },
+    {
+      "id": "research-ai-fault-domain",
+      "label": "AI跨域故障诊断论文",
+      "query": "wind turbine gearbox bearing fault diagnosis deep learning domain adaptation transfer learning self-supervised",
+      "region": "海外"
+    },
+    {
+      "id": "research-ai-rul-digital-twin",
+      "label": "AI剩余寿命与数字孪生论文",
+      "query": "wind turbine drivetrain gearbox bearing remaining useful life predictive maintenance PHM digital twin machine learning",
+      "region": "海外"
+    },
+    {
+      "id": "research-ai-physics-edge",
+      "label": "物理信息与边缘AI传动论文",
+      "query": "wind turbine gearbox bearing physics-informed neural network edge AI condition monitoring",
+      "region": "海外"
+    },
+    {
+      "id": "research-ai-design-loads",
+      "label": "AI传动设计载荷可靠性论文",
+      "query": "wind turbine drivetrain gearbox AI design optimization surrogate model load prediction fatigue reliability",
+      "region": "海外"
+    },
+    {
+      "id": "research-ai-oil-acoustic",
+      "label": "AI油液与声发射监测论文",
+      "query": "wind turbine gearbox bearing machine learning oil debris acoustic emission monitoring diagnosis",
+      "region": "海外"
+    },
+    {
+      "id": "research-ai-llm-platform",
+      "label": "风电传动大模型与智能运维平台论文",
+      "query": "wind turbine drivetrain gearbox large language model intelligent maintenance platform knowledge graph",
+      "region": "海外"
+    },
+    {
+      "id": "research-ai-cn",
+      "label": "国内AI风电传动论文",
+      "query": "风电 齿轮箱 轴承 传动链 人工智能 机器学习 故障诊断 剩余寿命 数字孪生",
+      "region": "国内",
+      "providers": ["openalex", "crossref"]
     }
   ],
   "relevanceKeywords": {
@@ -1053,6 +1153,14 @@
     "42CrMo4": 4,
     "42CrMo": 3,
     "人工智能": 3,
+    "AI+风电传动": 4,
+    "大模型": 3,
+    "迁移学习": 3,
+    "域自适应": 4,
+    "伪标签": 3,
+    "预测性维护": 3,
+    "边缘计算": 3,
+    "物理信息神经网络": 4,
     "电蚀": 4,
     "滑移": 2,
     "偏载": 3,
@@ -1137,6 +1245,13 @@
     "shrink disc": 4,
     "machine learning": 3,
     "artificial intelligence": 3,
+    "large language model": 3,
+    "transfer learning": 3,
+    "domain adaptation": 4,
+    "pseudo-label": 3,
+    "predictive maintenance": 3,
+    "edge ai": 3,
+    "physics-informed neural network": 4,
     "42crmo4": 4,
     "electrical damage": 4,
     "smearing": 3,

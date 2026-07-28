@@ -9,6 +9,7 @@ import {
   feedbackCalibration,
   inferCategory,
   inferDrivetrainClassification,
+  inferAiWindClassification,
   inferTags,
   informationLevel,
   isDomainRelevant,
@@ -19,6 +20,30 @@ import {
   relevanceScore,
   resolveNewsUrl
 } from "./articles.mjs";
+
+test("AI wind drivetrain classification captures methods, datasets, and evidence scope", () => {
+  const classification = inferAiWindClassification({
+    title: "Source-free domain adaptation for cross-domain wind turbine bearing diagnosis",
+    summary: "DPR-PLO combines dynamic prototype alignment and pseudo-label optimization on PU, JNU and a self-collected dataset.",
+    keyPoints: ["18 cross-condition tasks", "97.56% average accuracy"],
+    paperDetails: { operatingConditions: "18个跨工况任务" }
+  });
+  assert.equal(classification.relevant, true);
+  assert.equal(classification.categories.includes("C3"), true);
+  assert.equal(classification.categories.includes("C12"), true);
+  assert.equal(classification.methods.includes("无源域自适应"), true);
+  assert.deepEqual(classification.datasets, ["PU", "JNU", "自采数据集"]);
+  assert.equal(classification.evidenceScope, "18个跨工况任务");
+});
+
+test("generic wind AI without a drivetrain object is excluded from the derived column", () => {
+  const classification = inferAiWindClassification({
+    title: "AI optimizes wind turbine blade inspection",
+    summary: "A vision model identifies coating damage on blades."
+  });
+  assert.equal(classification.relevant, false);
+  assert.deepEqual(classification.categories, []);
+});
 
 const reliabilityConfig = {
   authorityDomains: {

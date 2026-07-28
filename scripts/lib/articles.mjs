@@ -181,6 +181,37 @@ export const PRIMARY_SECTIONS = [
   "政策、市场与产业环境"
 ];
 
+export const AI_WIND_SECTION = "AI+风电传动";
+
+export const AI_WIND_BOARDS = [
+  { id: 1, name: "传动部件智能设计", categories: ["C1", "C2"] },
+  { id: 2, name: "智能监测与故障诊断", categories: ["C3", "C4", "C5", "C6"] },
+  { id: 3, name: "预测与健康管理", categories: ["C7", "C8", "C9", "C10"] },
+  { id: 4, name: "AI技术与平台", categories: ["C11", "C12", "C13", "C14", "C15"] },
+  { id: 5, name: "产业与前沿", categories: ["C16", "C17", "C18"] }
+];
+
+export const AI_WIND_CATEGORIES = [
+  { code: "C1", board: 1, name: "AI+齿轮箱设计优化", keywords: ["设计优化", "参数优化", "修形优化", "拓扑优化", "轻量化", "代理模型", "遗传算法", "design optimization", "topology optimization", "surrogate model", "genetic algorithm"] },
+  { code: "C2", board: 1, name: "AI+传动链系统设计", keywords: ["传动链优化", "构型优化", "耦合优化", "传动效率", "载荷预测", "drivetrain optimization", "architecture optimization", "coupled optimization", "load prediction"] },
+  { code: "C3", board: 2, name: "AI+齿轮箱故障诊断", keywords: ["故障诊断", "异常检测", "齿轮故障", "轴承诊断", "fault diagnosis", "anomaly detection", "gear fault", "bearing diagnosis"] },
+  { code: "C4", board: 2, name: "AI+主轴承状态监测", keywords: ["主轴承", "主轴轴承", "main bearing", "main shaft bearing"] },
+  { code: "C5", board: 2, name: "AI+振动与信号处理", keywords: ["振动", "时频", "阶次分析", "信号处理", "特征提取", "vibration", "time-frequency", "order tracking", "signal processing", "feature extraction"] },
+  { code: "C6", board: 2, name: "AI+油液/声发射监测", keywords: ["油液", "磨粒", "铁谱", "声发射", "oil debris", "oil monitoring", "ferrograph", "acoustic emission"] },
+  { code: "C7", board: 3, name: "AI+剩余寿命预测(RUL)", keywords: ["剩余寿命", "寿命预测", "退化预测", "rul", "remaining useful life", "life prediction", "degradation prediction"] },
+  { code: "C8", board: 3, name: "AI+预测性维护(PdM)", keywords: ["预测性维护", "维修决策", "维护优化", "备件预测", "predictive maintenance", "maintenance decision", "maintenance optimization"] },
+  { code: "C9", board: 3, name: "AI+健康管理(PHM)", keywords: ["健康管理", "健康评估", "健康指标", "phm", "health management", "health assessment", "health indicator"] },
+  { code: "C10", board: 3, name: "AI+数字孪生", keywords: ["数字孪生", "虚实映射", "digital twin", "virtual-physical", "digital shadow"] },
+  { code: "C11", board: 4, name: "大模型/LLM在传动领域", keywords: ["大模型", "语言模型", "知识问答", "智能体", "llm", "large language model", "foundation model", "agent"] },
+  { code: "C12", board: 4, name: "深度学习/迁移学习新方法", keywords: ["深度学习", "迁移学习", "域适应", "无源域", "自监督", "对比学习", "伪标签", "transformer", "deep learning", "transfer learning", "domain adaptation", "source-free", "self-supervised", "contrastive learning", "pseudo-label", "cnn", "gnn", "gan"] },
+  { code: "C13", board: 4, name: "物理信息融合(PINN等)", keywords: ["物理信息", "物理约束", "机理数据融合", "pinn", "physics-informed", "physics guided", "hybrid physics"] },
+  { code: "C14", board: 4, name: "AI+边缘计算与端侧推理", keywords: ["边缘计算", "端侧推理", "模型轻量化", "模型量化", "tinyml", "edge ai", "edge computing", "on-device", "model compression"] },
+  { code: "C15", board: 4, name: "AI+智能运维平台", keywords: ["智能运维平台", "智能运维系统", "智慧风场", "集控中心", "intelligent maintenance platform", "smart wind farm", "operation platform"] },
+  { code: "C16", board: 5, name: "AI+载荷预测与可靠性", keywords: ["载荷预测", "疲劳寿命评估", "可靠性预测", "极端工况", "load prediction", "fatigue life assessment", "reliability prediction", "extreme condition"] },
+  { code: "C17", board: 5, name: "AI风电传动专利与标准", keywords: ["专利", "标准", "认证", "patent", "standard", "certification"] },
+  { code: "C18", board: 5, name: "企业AI传动产品与方案", keywords: ["产品", "平台发布", "解决方案", "企业合作", "战略合作", "product", "solution", "launches", "partnership", "collaboration"] }
+];
+
 export const DRIVETRAIN_COMPONENT_TAGS = [
   ["主轴", ["主轴", "main shaft"]],
   ["主轴承", ["主轴承", "主轴轴承", "main bearing", "main shaft bearing"]],
@@ -310,6 +341,130 @@ function classificationText(article) {
     article.summary,
     ...(article.keyPoints || [])
   ].filter(Boolean).join(" ")).toLowerCase();
+}
+
+const AI_WIND_METHODS = [
+  ["无源域自适应", ["无源域", "source-free domain adaptation", "source free domain adaptation"]],
+  ["域自适应", ["域自适应", "domain adaptation"]],
+  ["迁移学习", ["迁移学习", "transfer learning"]],
+  ["动态原型对齐", ["动态原型对齐", "dynamic prototype alignment"]],
+  ["伪标签优化", ["伪标签", "pseudo-label", "pseudo label"]],
+  ["自监督学习", ["自监督", "self-supervised"]],
+  ["对比学习", ["对比学习", "contrastive learning"]],
+  ["物理信息神经网络", ["物理信息神经网络", "physics-informed neural network", "pinn"]],
+  ["数字孪生", ["数字孪生", "digital twin"]],
+  ["Transformer", ["transformer"]],
+  ["图神经网络", ["图神经网络", "graph neural network", "gnn"]],
+  ["卷积神经网络", ["卷积神经网络", "convolutional neural network", "cnn"]],
+  ["生成对抗网络", ["生成对抗网络", "generative adversarial", "gan"]],
+  ["大语言模型", ["大语言模型", "large language model", "llm"]],
+  ["机器学习", ["机器学习", "machine learning"]],
+  ["深度学习", ["深度学习", "deep learning"]]
+];
+
+const AI_WIND_APPLICATIONS = [
+  ["设计优化", ["设计优化", "参数优化", "修形优化", "拓扑优化", "design optimization", "parameter optimization"]],
+  ["故障诊断", ["故障诊断", "故障识别", "fault diagnosis", "fault identification"]],
+  ["状态监测", ["状态监测", "在线监测", "condition monitoring", "online monitoring"]],
+  ["剩余寿命预测", ["剩余寿命", "寿命预测", "remaining useful life", "rul"]],
+  ["预测性维护", ["预测性维护", "predictive maintenance"]],
+  ["健康管理", ["健康管理", "phm", "health management"]],
+  ["载荷与可靠性预测", ["载荷预测", "可靠性预测", "load prediction", "reliability prediction"]],
+  ["智能运维平台", ["智能运维平台", "智慧风场", "集控中心", "smart wind farm", "maintenance platform"]]
+];
+
+function aiWindText(article = {}) {
+  return cleanText([
+    classificationText(article),
+    article.paperDetails?.objective,
+    article.paperDetails?.methods,
+    article.paperDetails?.testObject,
+    article.paperDetails?.operatingConditions,
+    ...(article.paperDetails?.quantitativeFindings || []).flatMap((item) => [item.metric, item.comparison, item.conditions]),
+    article.industryDetails?.eventType,
+    article.industryDetails?.supplyChainImpact
+  ].filter(Boolean).join(" ")).toLowerCase();
+}
+
+function matchedLabels(text, rules, limit = 8) {
+  return rules
+    .filter(([, keywords]) => keywords.some((keyword) => containsKeyword(text, keyword)))
+    .map(([label]) => label)
+    .slice(0, limit);
+}
+
+function inferAiDatasets(text) {
+  const datasets = [];
+  const add = (value) => {
+    if (value && !datasets.includes(value)) datasets.push(value);
+  };
+  const knownDatasets = [
+    ["PU", /(?:^|\W)pu(?:\W|$)/i],
+    ["JNU", /(?:^|\W)jnu(?:\W|$)/i],
+    ["CWRU", /(?:^|\W)cwru(?:\W|$)/i],
+    ["Paderborn", /paderborn/i],
+    ["XJTU-SY", /xjtu[- ]?sy/i],
+    ["PHM 2009", /phm\s*2009/i],
+    ["SCADA", /(?:^|\W)scada(?:\W|$)/i],
+    ["CMS", /(?:^|\W)cms(?:\W|$)/i]
+  ];
+  knownDatasets.forEach(([label, pattern]) => {
+    if (pattern.test(text)) add(label);
+  });
+  if (/自采(?:集)?数据集|自建数据集|self[- ]collected dataset|in-house dataset/i.test(text)) add("自采数据集");
+  if (/现场数据|风场数据|field data|operational data/i.test(text)) add("现场运行数据");
+  return datasets.slice(0, 8);
+}
+
+function inferAiEvidenceScope(article, text) {
+  const supplied = cleanText(article.aiWind?.evidenceScope || "");
+  if (supplied) return supplied.slice(0, 180);
+  const operatingConditions = cleanText(article.paperDetails?.operatingConditions || "");
+  if (operatingConditions) return operatingConditions.slice(0, 180);
+  const findingConditions = (article.paperDetails?.quantitativeFindings || [])
+    .map((item) => cleanText(item.conditions || ""))
+    .filter(Boolean);
+  if (findingConditions.length) return [...new Set(findingConditions)].join("；").slice(0, 180);
+  const taskMatch = text.match(/\d+\s*(?:个|项)?(?:跨工况|跨条件|跨域|cross[- ]condition)[^。；;,.]{0,24}(?:任务|试验|测试|tasks?)/i);
+  return cleanText(taskMatch?.[0] || "").slice(0, 180);
+}
+
+export function inferAiWindClassification(article = {}) {
+  const text = aiWindText(article);
+  const windRelevant = ["风电", "风力发电", "风机", "wind turbine", "wind power", "wind farm"]
+    .some((keyword) => containsKeyword(text, keyword));
+  const drivetrainRelevant = [
+    "传动链", "齿轮箱", "齿轮", "轴承", "主轴", "行星架", "联轴器", "锁紧盘", "润滑", "振动",
+    "drivetrain", "gearbox", "gear", "bearing", "main shaft", "planet carrier", "coupling", "lubrication", "vibration"
+  ].some((keyword) => containsKeyword(text, keyword));
+  const aiRelevant = [
+    "人工智能", "机器学习", "深度学习", "神经网络", "大模型", "智能诊断", "智能运维", "域自适应", "伪标签", "数字孪生",
+    "artificial intelligence", "machine learning", "deep learning", "neural network", "domain adaptation", "pseudo-label", "digital twin",
+    "transformer", "cnn", "gnn", "gan", "pinn", "llm", "anomaly detection", "predictive maintenance"
+  ].some((keyword) => containsKeyword(text, keyword));
+  const relevant = windRelevant && drivetrainRelevant && aiRelevant;
+  if (!relevant) {
+    return { relevant: false, categories: [], methods: [], datasets: [], applications: [], evidenceScope: "" };
+  }
+
+  const inferredCategories = AI_WIND_CATEGORIES
+    .filter((category) => category.keywords.some((keyword) => containsKeyword(text, keyword)))
+    .map((category) => category.code);
+  if (!inferredCategories.length) inferredCategories.push("C12");
+  const suppliedCategories = Array.isArray(article.aiWind?.categories)
+    ? article.aiWind.categories.filter((code) => AI_WIND_CATEGORIES.some((category) => category.code === code))
+    : [];
+  const suppliedMethods = Array.isArray(article.aiWind?.methods) ? article.aiWind.methods.map(cleanText).filter(Boolean) : [];
+  const suppliedDatasets = Array.isArray(article.aiWind?.datasets) ? article.aiWind.datasets.map(cleanText).filter(Boolean) : [];
+  const suppliedApplications = Array.isArray(article.aiWind?.applications) ? article.aiWind.applications.map(cleanText).filter(Boolean) : [];
+  return {
+    relevant: true,
+    categories: [...new Set([...inferredCategories, ...suppliedCategories])].slice(0, 4),
+    methods: [...new Set([...matchedLabels(text, AI_WIND_METHODS), ...suppliedMethods])].slice(0, 8),
+    datasets: [...new Set([...inferAiDatasets(text), ...suppliedDatasets])].slice(0, 8),
+    applications: [...new Set([...matchedLabels(text, AI_WIND_APPLICATIONS), ...suppliedApplications])].slice(0, 6),
+    evidenceScope: inferAiEvidenceScope(article, text)
+  };
 }
 
 function inferDrivetrainClassificationFromText(text) {
@@ -466,6 +621,7 @@ export function classifyArticle(article) {
     : isDrivetrainItem ? [componentCategory] : [];
   return {
     ...classification,
+    aiWind: inferAiWindClassification(article),
     drivetrainComponent: componentCategory,
     drivetrainComponents,
     componentCategory,
@@ -1101,7 +1257,10 @@ export function toPublicArticle(article, summaryData) {
     summary: summaryData.summary,
     keyPoints: summaryData.keyPoints,
     engineeringImpact: summaryData.engineeringImpact,
-    tags: summaryData.tags
+    tags: summaryData.tags,
+    paperDetails: summaryData.paperDetails,
+    industryDetails: summaryData.industryDetails,
+    aiWind: summaryData.aiWind
   });
   const contentAccess = ["fulltext", "abstract", "metadata"].includes(article.contentAccess)
     ? article.contentAccess
@@ -1175,6 +1334,7 @@ export function toPublicArticle(article, summaryData) {
     drivetrainComponent: classification.drivetrainComponent,
     drivetrainComponents: classification.drivetrainComponents,
     componentCategory: classification.componentCategory,
+    aiWind: classification.aiWind,
     titleZh: cleanText(summaryData.titleZh || (/[\p{Script=Han}]/u.test(article.title || "") ? article.title : "")),
     category: article.queryTopic === "industry"
       ? "厂商动态"

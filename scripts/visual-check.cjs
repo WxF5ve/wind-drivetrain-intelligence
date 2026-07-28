@@ -6,6 +6,7 @@ const { chromium } = require("playwright");
 
 const root = path.resolve(__dirname, "..");
 const outputDir = path.join(root, "test-results");
+const AI_WIND_BOARD_TITLES = ["传动部件智能设计", "智能监测与故障诊断", "预测与健康管理", "AI技术与平台", "产业与前沿"];
 const browserCandidates = [
   process.env.PLAYWRIGHT_CHROME_PATH,
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
@@ -67,7 +68,7 @@ async function inspectLayout(page, label) {
     throw new Error(`${label} is missing simplified related-component labels`);
   }
   if (result.activeCategory !== "传动链技术开发与质量运维") throw new Error(`${label} did not default to technical development and quality operations`);
-  if (result.categoryCounts.length !== 6 || result.categoryCounts.some((count) => !Number.isFinite(count))) {
+  if (result.categoryCounts.length !== 7 || result.categoryCounts.some((count) => !Number.isFinite(count))) {
     throw new Error(`${label} did not expose stable main-section counts`);
   }
   if (!result.dimensionFilters) throw new Error(`${label} rendered no drivetrain component filters`);
@@ -112,6 +113,24 @@ async function inspectLayout(page, label) {
     }
     await desktop.locator('[data-category="传动链技术开发与质量运维"]').click();
     await desktop.waitForTimeout(100);
+
+    await desktop.locator('[data-category="AI+风电传动"]').click();
+    await desktop.waitForTimeout(150);
+    const aiCards = await desktop.locator(".article-card").count();
+    if (!aiCards) throw new Error("AI+wind drivetrain column did not render any verified intelligence");
+    const aiExample = desktop.locator('.article-card[data-id="51e82149a1d9"]');
+    if (!(await aiExample.count())) throw new Error("Verified IOP AI bearing example was not classified into the AI column");
+    if (await aiExample.locator(".ai-wind-category-list").count()) {
+      throw new Error("AI method and dataset labels leaked onto the simplified article card");
+    }
+    await aiExample.locator('[data-action="details"]').click();
+    await desktop.waitForSelector("#article-dialog[open] .ai-wind-detail");
+    const aiDetailText = await desktop.locator(".ai-wind-detail").textContent();
+    if (!/C3/.test(aiDetailText) || !/C12/.test(aiDetailText) || !/PU/.test(aiDetailText) || !/JNU/.test(aiDetailText)) {
+      throw new Error(`AI detail did not expose expected categories and datasets: ${aiDetailText}`);
+    }
+    await desktop.screenshot({ path: path.join(outputDir, "ai-detail.png") });
+    await desktop.locator("#close-dialog").click();
 
     await desktop.locator('[data-category="全部"]').click();
     await desktop.locator("#search-input").fill("轴承");
@@ -222,6 +241,29 @@ async function inspectLayout(page, label) {
     await desktop.screenshot({ path: path.join(outputDir, "weekly-report.png") });
     await desktop.locator("#close-weekly-report").click();
 
+    const aiReportDownloadPromise = desktop.waitForEvent("download");
+    await desktop.locator("#open-ai-weekly-report").click();
+    const aiReportDownload = await aiReportDownloadPromise;
+    await desktop.waitForSelector("#weekly-report-dialog[open] .report-item");
+    const aiReportTitle = await desktop.locator("#weekly-report-toolbar-title").textContent();
+    const aiReportSections = await desktop.locator(".report-section-heading h2").allTextContents();
+    const aiBoardOrder = AI_WIND_BOARD_TITLES;
+    const aiSectionRanks = aiReportSections.map((title) => aiBoardOrder.indexOf(title.trim()));
+    if (!/AI\+风电传动周报/.test(aiReportTitle) || aiSectionRanks.some((rank) => rank < 0) || aiSectionRanks.some((rank, index) => index && rank <= aiSectionRanks[index - 1])) {
+      throw new Error(`AI weekly report did not follow the five-board taxonomy: ${aiReportTitle} / ${aiReportSections.join(", ")}`);
+    }
+    const aiReportTags = (await desktop.locator(".report-tags").allTextContents()).join(" ");
+    if (!/AI\+齿轮箱故障诊断|深度学习\/迁移学习新方法/.test(aiReportTags) || !/PU/.test(aiReportTags)) {
+      throw new Error(`AI weekly report is missing detailed method or dataset tags: ${aiReportTags}`);
+    }
+    await aiReportDownload.saveAs(path.join(outputDir, "ai-weekly-report.pdf"));
+    const aiPdfBytes = fs.readFileSync(path.join(outputDir, "ai-weekly-report.pdf"));
+    if (aiPdfBytes.subarray(0, 8).toString("ascii") !== "%PDF-1.4" || aiPdfBytes.length < 30000) {
+      throw new Error(`AI weekly PDF failed validation: ${aiPdfBytes.length} bytes`);
+    }
+    await desktop.screenshot({ path: path.join(outputDir, "ai-weekly-report.png") });
+    await desktop.locator("#close-weekly-report").click();
+
     const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
     mobile.on("console", (message) => {
       if (message.type() === "error") consoleErrors.push(message.text());
@@ -254,6 +296,15 @@ async function inspectLayout(page, label) {
     const mobileReportOverflow = await mobile.evaluate(() => document.body.scrollWidth > window.innerWidth + 1);
     if (mobileReportOverflow) throw new Error("Mobile weekly report has horizontal overflow");
     await mobile.screenshot({ path: path.join(outputDir, "mobile-weekly-report.png") });
+
+    await mobile.goto("http://127.0.0.1:4173/?report=ai", { waitUntil: "networkidle" });
+    await mobile.waitForSelector("#weekly-report-dialog[open] .report-item");
+    const mobileAiReportTitle = await mobile.locator("#weekly-report-toolbar-title").textContent();
+    const mobileAiReportOverflow = await mobile.evaluate(() => document.body.scrollWidth > window.innerWidth + 1);
+    if (!/AI\+风电传动周报/.test(mobileAiReportTitle) || mobileAiReportOverflow) {
+      throw new Error(`Mobile AI weekly report failed layout or title validation: ${mobileAiReportTitle}`);
+    }
+    await mobile.screenshot({ path: path.join(outputDir, "mobile-ai-weekly-report.png") });
 
     if (consoleErrors.length) {
       throw new Error(`Browser console errors:\n${consoleErrors.join("\n")}`);

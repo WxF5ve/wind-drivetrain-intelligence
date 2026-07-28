@@ -64,6 +64,10 @@
                 <i data-lucide="file-chart-column"></i>
                 生成最近一周 PDF 周报
               </button>
+              <button class="weekly-report-trigger ai-report-trigger" id="open-ai-weekly-report" type="button">
+                <i data-lucide="cpu"></i>
+                生成 AI+风电传动周报 PDF
+              </button>
             </div>
           </div>
           <div class="brief-metrics" aria-label="本周资料统计">
@@ -108,6 +112,7 @@
               <button class="category-tab" type="button" data-category="论文、标准与专利"><span>论文、标准与专利</span><strong data-category-count>0</strong></button>
               <button class="category-tab" type="button" data-category="厂商与项目动态"><span>厂商与项目动态</span><strong data-category-count>0</strong></button>
               <button class="category-tab" type="button" data-category="政策、市场与产业环境"><span>政策、市场与产业环境</span><strong data-category-count>0</strong></button>
+              <button class="category-tab ai-category-tab" type="button" data-category="AI+风电传动"><span>AI+风电传动</span><strong data-category-count>0</strong></button>
               <button class="category-tab" type="button" data-category="综合资讯与待深读线索"><span>综合资讯与待深读线索</span><strong data-category-count>0</strong></button>
               <button class="category-tab utility-tab" type="button" data-category="全部"><span>全部</span><strong data-category-count>0</strong></button>
             </nav>
@@ -210,7 +215,7 @@
       <div class="weekly-report-shell">
         <header class="weekly-report-toolbar">
           <div>
-            <strong>机械中心-传动技术部风电情报周报</strong>
+            <strong id="weekly-report-toolbar-title">机械中心-传动技术部风电情报周报</strong>
             <small id="weekly-report-toolbar-period">最近一周</small>
           </div>
           <div class="weekly-report-tools">
