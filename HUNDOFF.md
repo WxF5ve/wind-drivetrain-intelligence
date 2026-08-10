@@ -81,7 +81,7 @@
 
 - GitHub Actions：`.github/workflows/weekly-collect.yml`
 - 主定时：UTC `30 0 * * 1`，即北京时间每周一 08:30
-- 兜底定时：UTC `15 3 * * 1`，即北京时间每周一 11:15
+- 兜底定时：UTC `30 1 * * 1`，即北京时间每周一 09:30
 - 兜底任务先同步最新 `main`，再按北京时间检查 `generatedAt`；当天已更新则跳过采集，避免重复调用 AI
 - 默认回看：30 天
 - 手动任务可设置 `resummarize`、`lookback_days` 和 `max_articles`
@@ -450,7 +450,7 @@ AI 输出的论文数字和行业数字必须能在标题或公开摘录中找�
 
 ### 14.14 GitHub 定时任务不保证准点
 
-GitHub Actions 的 `schedule` 可能因平台负载延迟数小时；2026-07-20 的 08:30 主任务实际在 12:13 才启动。不能只配置单一 cron 并假设准点执行。当前增加 11:15 兜底，并通过 `scripts/check-collection-freshness.mjs` 按北京时间做同日去重；手动任务始终允许强制采集。
+GitHub Actions 的 `schedule` 可能因平台负载延迟数小时；2026-07-20 的 08:30 主任务实际在 12:13 才启动。不能只配置单一 cron 并假设准点执行。当前增加计划时间为 09:30 的兜底，并通过 `scripts/check-collection-freshness.mjs` 按北京时间做同日去重；手动任务始终允许强制采集。
 
 ### 14.15 全文优先不等于绕过访问控制
 

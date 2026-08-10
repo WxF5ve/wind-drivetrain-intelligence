@@ -9,7 +9,7 @@
 | 正式网页 | https://wxf5ve.github.io/wind-drivetrain-intelligence/ |
 | GitHub 仓库 | https://github.com/WxF5ve/wind-drivetrain-intelligence |
 | 反馈服务 | https://wind-intel-feedback.wxf5ve-wind-intel.workers.dev |
-| 自动更新时间 | 每周一 08:30，北京时间；11:15 同日去重兜底 |
+| 自动更新时间 | 每周一 08:30，北京时间；09:30 同日去重兜底 |
 | 默认采集窗口 | 最近 30 天 |
 | AI 模型 | DeepSeek `deepseek-chat` |
 | 当前数据模式 | 真实公开来源，`dataMode: live` |
@@ -273,7 +273,7 @@ GitHub Actions 工作流有三种触发方式：
 | 触发方式 | 是否采集 | 是否测试和发布 |
 | --- | --- | --- |
 | 每周一 08:30 主定时 | 当天未更新时采集 | 是 |
-| 每周一 11:15 兜底 | 当天未更新时采集 | 是 |
+| 每周一 09:30 兜底 | 当天未更新时采集 | 是 |
 | 手动 `workflow_dispatch` | 是 | 是 |
 | 推送到 `main` | 否 | 是 |
 
