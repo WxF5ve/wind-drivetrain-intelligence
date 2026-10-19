@@ -128,6 +128,14 @@ async function inspectReadingBrief(browser, baseUrl) {
   await (await download).saveAs(path.join(outputDir, "reading-weekly-report.pdf"));
   if (await page.locator(".report-paragraph").textContent() !== brief.paragraphs.join("")) throw new Error("PDF narrative reconstructed or appended extra fields");
   if (await page.locator(".report-paragraph img").count()) throw new Error("Report text was not escaped");
+  fixture.readingBrief = null;
+  fixture.summary = brief.paragraphs[0];
+  fixture.engineeringImpact = brief.paragraphs[1];
+  await page.goto(baseUrl, { waitUntil: "networkidle" });
+  const legacyCardText = (await page.locator('.article-card[data-id="reading-ui-test"] .article-summary').allTextContents()).join("");
+  await page.goto(`${baseUrl}/?report=weekly`, { waitUntil: "networkidle" });
+  await page.waitForSelector(".report-paragraph");
+  if (!legacyCardText.includes("40 N/mm²") || await page.locator(".report-paragraph").textContent() !== legacyCardText) throw new Error("Legacy report discarded existing summary results");
   if (errors.length) throw new Error(errors.join("\n"));
   await page.close();
 }

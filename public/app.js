@@ -850,8 +850,8 @@ function reportSentenceIsDuplicate(sentence, accepted) {
 }
 
 function reportNarrativePlain(item) {
-  const reading = readingContent(item.article);
-  if (reading.version) return reading.paragraphs.join("");
+  const reading = articleReading(item.article);
+  if (reading.paragraphs.length) return reading.paragraphs.join("");
   const missingData = reportMissingDataPoints(item);
   const opening = cleanReportProse(reportOpening(item));
   const factual = [opening, ...missingData.map(cleanReportProse)].filter(Boolean).join("，");
