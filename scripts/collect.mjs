@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { GoogleDecoder } from "google-news-url-decoder";
 import { needsReadingBriefUpgrade } from "../public/lib/reading.mjs";
+import { registryPlan, registryCoverage, isVerifiedRecent, runRegistryJobs, registryPublicationDate, isRegistryDrivetrainArticle } from "./lib/source-registry.mjs";
 import {
   classifyArticle,
   cleanText,
@@ -279,6 +280,7 @@ function sourceContext(source) {
     contextTags: Array.isArray(source.contextTags) ? source.contextTags : [],
     allowedDomains: Array.isArray(source.allowedDomains) ? source.allowedDomains : [],
     directSource: Boolean(source.directSource),
+    leadOnly: Boolean(source.leadOnly),
     ...(source.sourceType ? { sourceType: source.sourceType } : {})
   };
 }
@@ -397,8 +399,10 @@ async function collectGoogleNews(source, lookbackDays) {
       };
     }
     const description = usefulPublisherDescription(metadata.description, article.title);
+    const verifiedDate = source.strictDate ? registryPublicationDate(metadata, metadata.finalUrl || article.url) : "";
     return {
       ...article,
+      ...(source.strictDate ? { publishedAt: verifiedDate || article.publishedAt } : {}),
       url: metadata.finalUrl || article.url,
       snippet: metadata.fullText || description || article.snippet,
       linkVerified: Boolean(metadata.finalUrl),
@@ -408,7 +412,11 @@ async function collectGoogleNews(source, lookbackDays) {
       contentFailureReason: metadata.contentFailureReason || "",
       contentAttempts: 1,
       contentFetched: true,
-      evidence: { hasPublisherDescription: Boolean(description) }
+      evidence: {
+        hasPublisherDescription: Boolean(description),
+        ...(metadata.journal ? { journal: metadata.journal } : {}),
+        ...(source.strictDate ? { publishedDateEstimated: !verifiedDate } : {})
+      }
     };
   }));
 }
@@ -435,7 +443,7 @@ async function collectDomainNews(source, lookbackDays) {
         .map((article) => ({
           ...article,
           sourceChannel: "Google News 官网单域定向",
-          directSource: true
+          directSource: source.directSource !== false
         })));
     } catch (error) {
       errors.push(`${domain}: ${error.message}`);
@@ -453,11 +461,17 @@ async function collectDomainNews(source, lookbackDays) {
 
   const articles = deduplicateArticles(collected)
     .filter((article) => isAllowedPublisherUrl(article.url, source.allowedDomains))
+    .filter((article) => !source.registryId || isRegistryDrivetrainArticle(article))
+    .filter((article) => !source.allowedJournals?.length || isAllowedResearchJournal(article.evidence?.journal || article.source, source.allowedJournals))
     .slice(0, maxRecords);
   if (!articles.length && errors.length === domainQueries.length + 1) {
     throw new Error(errors.join("；"));
   }
-  return articles;
+  const dated = source.strictDate ? articles.filter((article) => isVerifiedRecent(article, now.getTime() - lookbackDays * 86400000, now.getTime())) : articles;
+  return source.leadOnly ? dated.map((article) => ({
+    ...article, snippet: "", contentAccess: "metadata", contentSource: "metadata", extractedCharacters: 0,
+    contentFetched: true, evidence: { ...article.evidence, hasAbstract: false, hasPublisherDescription: false }
+  })) : dated;
 }
 
 async function collectBingNews(source, lookbackDays) {
@@ -756,7 +770,9 @@ async function collectWebIndex(source, lookbackDays) {
     const articleUrl = cleanText(item.link || "");
     if (source.allowedDomains?.length && !isAllowedPublisherUrl(articleUrl, source.allowedDomains)) continue;
     const metadata = await fetchPublisherMetadata(articleUrl);
-    const published = new Date(metadata.publishedAt || "");
+    if (source.allowedDomains?.length && !isAllowedPublisherUrl(metadata.finalUrl || articleUrl, source.allowedDomains)) continue;
+    const published = new Date((source.strictDate ? registryPublicationDate(metadata, metadata.finalUrl || articleUrl) : metadata.publishedAt) || "");
+    if (source.strictDate && (Number.isNaN(published.getTime()) || published.getTime() < cutoff || published.getTime() > now.getTime())) continue;
     const publishedAt = Number.isNaN(published.getTime()) ? now.toISOString() : published.toISOString();
     const description = usefulPublisherDescription(metadata.description || item.description, item.title);
     let sourceName = source.label;
@@ -790,7 +806,7 @@ async function collectWebIndex(source, lookbackDays) {
         doi: "",
         authorsCount: 0,
         authors: [],
-        journal: source.sourceType === "论文" || !source.sourceType ? sourceName : "",
+        journal: source.sourceType === "论文" || !source.sourceType ? metadata.journal || sourceName : "",
         isOpenAccess: metadata.contentAccess === "fulltext"
       },
       ...sourceContext(source)
@@ -920,6 +936,7 @@ async function enrichPublicFullText(articles) {
     }))
     .filter(({ article, targetUrls }) =>
       !article.contentFetched &&
+      !article.leadOnly &&
       article.contentAccess !== "fulltext" &&
       targetUrls.length
     )
@@ -973,6 +990,7 @@ async function enrichReaderFullText(articles) {
     .filter((article) =>
       article.contentAccess !== "fulltext" &&
       article.contentFetched &&
+      !article.leadOnly &&
       Number(article.contentAttempts || 0) > 0 &&
       article.linkType !== "aggregator" &&
       /^https?:\/\//i.test(article.url || "") &&
@@ -1168,6 +1186,8 @@ async function loadFeedbackAggregates() {
 
 async function main() {
   const config = await readJson(configPath, {});
+  const registry = JSON.parse(await readFile(new URL("../config/weekly-source-registry.json", import.meta.url), "utf8"));
+  const registryEntries = registryPlan(registry, config);
   const previous = await readJson(outputPath, { articles: [] });
   const lookbackDays = Number(process.env.COLLECT_LOOKBACK_DAYS || config.lookbackDays || 8);
   const maxArticles = Number(process.env.COLLECT_MAX_ARTICLES || config.maxArticles || 36);
@@ -1220,7 +1240,11 @@ async function main() {
       }];
     })
   );
-  const jobs = [...newsJobs, ...webJobs, ...researchJobs];
+  const registryJobs = registryEntries.filter((entry) => entry.source && sourceSelected(entry.source.id)).map(({ source }) => ({
+    id: source.id, label: source.label, type: "registry",
+    run: () => collectDomainNews(source, lookbackDays)
+  }));
+  const jobs = [...newsJobs, ...webJobs, ...researchJobs, ...registryJobs];
 
   console.log(`开始采集 ${jobs.length} 个数据通道，回看 ${lookbackDays} 天...`);
   const newsResults = [];
@@ -1250,7 +1274,8 @@ async function main() {
     }
     await delay(1200);
   }
-  const results = [...newsResults, ...webResults, ...researchResults];
+  const registryResults = await runRegistryJobs(registryJobs);
+  const results = [...newsResults, ...webResults, ...researchResults, ...registryResults];
   const rawArticles = [];
   results.forEach((result, index) => {
     if (result.status === "fulfilled") {
@@ -1546,7 +1571,11 @@ async function main() {
         feedbackReviews: [...aiReasons.values()].filter((reason) => reason === "feedback-review").length,
         experienceReviews: [...aiReasons.values()].filter((reason) => reason === "experience-review").length
       },
-      sources: channelResults
+      sources: channelResults,
+      registry: {
+        reference: registry.reference, referenceDate: registry.referenceDate,
+        entries: registryCoverage(registryEntries, channelResults, currentArticles, now.toISOString())
+      }
     },
     reliabilityMethod: {
       version: "1.0",

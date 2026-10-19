@@ -22,6 +22,16 @@ function uniqueParagraphs(nodes) {
 
 export function extractHtmlContent(html, maxCharacters = 14000) {
   const root = parse(String(html || "").slice(0, 3_000_000));
+  const articleSchemas = [];
+  function readArticleSchemas(value) {
+    if (!value || typeof value !== "object") return;
+    if (Array.isArray(value)) return value.forEach(readArticleSchemas);
+    if (/Article|NewsArticle|ScholarlyArticle|BlogPosting/.test(String(value["@type"] || ""))) articleSchemas.push(value);
+    if (value["@graph"]) readArticleSchemas(value["@graph"]);
+  }
+  for (const node of root.querySelectorAll('script[type="application/ld+json"]')) {
+    try { readArticleSchemas(JSON.parse(node.text)); } catch {}
+  }
   root.querySelectorAll("script, style, noscript, nav, footer, form, iframe, svg, canvas, aside")
     .forEach((node) => node.remove());
   const title = cleanText(
@@ -51,8 +61,13 @@ export function extractHtmlContent(html, maxCharacters = 14000) {
     root.querySelector('meta[name="citation_date"]')?.getAttribute("content") ||
     root.querySelector('meta[name="date"]')?.getAttribute("content") ||
     root.querySelector('meta[name="DC.date"]')?.getAttribute("content") ||
+    root.querySelector('[itemprop="datePublished"]')?.getAttribute("content") ||
+    root.querySelector('[itemprop="datePublished"]')?.getAttribute("datetime") ||
+    articleSchemas.find((value) => value.datePublished)?.datePublished ||
+    root.querySelector('article time[datetime]')?.getAttribute("datetime") ||
     ""
   );
+  const journal = cleanText(root.querySelector('meta[name="citation_journal_title"]')?.getAttribute("content") || "");
   const selectors = [
     '[itemprop="abstract"]',
     '[itemprop="articleBody"]', "article", ".article-content", ".article-body", ".articleText",
@@ -73,7 +88,7 @@ export function extractHtmlContent(html, maxCharacters = 14000) {
     if (text.length >= 240) candidates.push({ text, score: text.length });
   }
   const fullText = candidates.sort((left, right) => right.score - left.score)[0]?.text.slice(0, maxCharacters) || "";
-  return { title, description, fullText, publishedAt };
+  return { title, description, fullText, publishedAt, journal };
 }
 
 function normalizedReaderTitle(value) {

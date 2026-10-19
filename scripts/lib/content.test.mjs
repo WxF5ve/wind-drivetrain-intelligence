@@ -8,6 +8,13 @@ import {
   readerSummaryIndicatesNonArticle
 } from "./content.mjs";
 
+test("publisher structured data preserves publication date and journal, not modification date", () => {
+  const result = extractHtmlContent(`<html><head><meta name="citation_journal_title" content="Machines"><script type="application/ld+json">{"@graph":[{"@type":"ScholarlyArticle","datePublished":"2021-02-23","dateModified":"2026-10-19"}]}</script></head><body></body></html>`);
+  assert.equal(result.publishedAt, "2021-02-23");
+  assert.equal(result.journal, "Machines");
+  assert.equal(extractHtmlContent('<script type="application/ld+json">{"@type":"Organization","datePublished":"2026-10-19"}</script>').publishedAt, "");
+});
+
 test("HTML content extraction prefers article paragraphs over navigation and footer text", () => {
   const paragraph = "风电齿轮箱试验验证了行星架强度与齿轮箱振动之间的关系，并给出了可核验的载荷数据。";
   const html = `

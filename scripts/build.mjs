@@ -1,5 +1,6 @@
 import { cp, readFile, rm, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { writeSourceCoverage } from "./lib/source-coverage.mjs";
 
 const publicDirectory = new URL("../public/", import.meta.url);
 const outputDirectory = new URL("../dist/", import.meta.url);
@@ -8,6 +9,7 @@ const feedbackEndpoint = String(process.env.FEEDBACK_API_URL || "").replace(/\/$
 
 await rm(outputDirectory, { recursive: true, force: true });
 await cp(publicDirectory, outputDirectory, { recursive: true });
+await writeSourceCoverage(new URL("data/source-coverage.json", outputDirectory));
 
 const indexPath = new URL("index.html", outputDirectory);
 let html = await readFile(indexPath, "utf8");

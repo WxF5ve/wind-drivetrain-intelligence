@@ -12,7 +12,8 @@
     "migrate:taxonomy": "node scripts/migrate-taxonomy.mjs",
     "build": "node scripts/build.mjs",
     "test": "node --test",
-    "test:visual": "node scripts/visual-check.cjs"
+    "test:visual": "node scripts/visual-check.cjs",
+    "test:workbench": "node scripts/workbench-visual.cjs"
   },
   "engines": {
     "node": ">=20"

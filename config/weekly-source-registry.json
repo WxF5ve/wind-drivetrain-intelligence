@@ -1,0 +1,766 @@
+{
+  "version": 1,
+  "reference": "周报生成 · 风电传动信息渠道清单",
+  "referenceDate": "2026-10-19",
+  "sources": [
+    {
+      "id": "cgnpc",
+      "name": "中广核新能源",
+      "group": "采购与现场运维",
+      "urls": [
+        "https://www.cgn.com.cn"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "chnenergy",
+      "name": "中国华能",
+      "group": "采购与现场运维",
+      "urls": [
+        "https://www.chng.com.cn"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "华能风场传动部件技改、采购及应用线索。"
+    },
+    {
+      "id": "datang",
+      "name": "中国大唐",
+      "group": "采购与现场运维",
+      "urls": [
+        "https://www.china-cdt.com"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "secwind",
+      "name": "上海电气风电",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.shanghai-electric.com"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "goldwind",
+      "name": "金风科技",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.goldwind.com"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "mingyang",
+      "name": "明阳智能",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.myse.com.cn"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "windey",
+      "name": "运达能源",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.inwind.cn"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "csgear",
+      "name": "南高齿（中国高速传动）",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.ngctransmission.com/",
+        "https://www.ngcgears.com/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "齿轮箱新品、制造、交付与GearSight监测；中英文官网对读。"
+    },
+    {
+      "id": "crrcqsy",
+      "name": "中车戚墅堰所",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.crrcgc.cc"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "razor",
+      "name": "容知日新",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.razor.com.cn"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "vestas",
+      "name": "Vestas",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.vestas.com"
+      ],
+      "region": "海外",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "siemens_gamesa",
+      "name": "Siemens Gamesa",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.siemensgamesa.com"
+      ],
+      "region": "海外",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "ge_vernova",
+      "name": "GE Vernova",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.gevernova.com"
+      ],
+      "region": "海外",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "nrel",
+      "name": "NLR（原NREL）风电传动研究",
+      "group": "试验与科研项目",
+      "urls": [
+        "https://www.nlr.gov/wind/facilities-dynamometer",
+        "https://www.nlr.gov/wind/technology-innovation",
+        "https://data.nlr.gov/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期检索未收录",
+      "scope": "Drivetrain Reliability Collaborative、测功机、轴承与齿轮箱试验数据。"
+    },
+    {
+      "id": "wes",
+      "name": "Wind Energy Science (Copernicus)",
+      "group": "学术与数据",
+      "urls": [
+        "https://wes.copernicus.org"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期检索未收录",
+      "scope": "风电主轴承、传动载荷与可靠性开放论文。"
+    },
+    {
+      "id": "ieee_iot",
+      "name": "IEEE Internet of Things Journal",
+      "group": "学术与数据",
+      "urls": [
+        "https://ieeexplore.ieee.org"
+      ],
+      "region": "海外",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "mdpi_machines",
+      "name": "MDPI Machines",
+      "group": "学术与数据",
+      "urls": [
+        "https://www.mdpi.com/journal/machines"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期采用",
+      "scope": "传动诊断、制造和机器设计论文；卷期扫刊配合DOI日期。"
+    },
+    {
+      "id": "mdpi_energies",
+      "name": "MDPI Energies",
+      "group": "学术与数据",
+      "urls": [
+        "https://www.mdpi.com/journal/energies"
+      ],
+      "region": "海外",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "bjx_wind",
+      "name": "北极星风力发电网",
+      "group": "行业媒体与会议",
+      "urls": [
+        "https://wind.bjx.com.cn"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "windheadline",
+      "name": "风电头条",
+      "group": "行业媒体与会议",
+      "urls": [
+        "https://www.windheadline.com"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "cnea_wind",
+      "name": "中国可再生能源学会风能专业委员会",
+      "group": "行业媒体与会议",
+      "urls": [
+        "https://www.cwea.org.cn"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "传动专题、技术活动与政策线索，追溯原始企业/政府来源。"
+    },
+    {
+      "id": "cnipa",
+      "name": "国家知识产权局（中国专利公布公告）",
+      "group": "知识产权",
+      "urls": [
+        "https://www.cnipa.gov.cn/"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "中国专利官方入口；核申请号、公开号、授权号及法律状态。"
+    },
+    {
+      "id": "waic",
+      "name": "WAIC 世界人工智能大会",
+      "group": "行业媒体与会议",
+      "urls": [
+        "https://www.worldaic.com.cn"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "围绕传动链相关部件检索；整机泛新闻不收录。"
+    },
+    {
+      "id": "nvc",
+      "name": "《噪声与振动控制》",
+      "group": "学术与数据",
+      "urls": [
+        "https://nvc.sjtu.edu.cn/CN/volumn/current.shtml",
+        "https://nvc.sjtu.edu.cn/CN/volumn/volumn_96.shtml"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "中文卷期、摘要与开放全文；主轴承、齿轮箱振动与诊断。"
+    },
+    {
+      "id": "mechanika",
+      "name": "Mechanika",
+      "group": "学术与数据",
+      "urls": [
+        "https://mechanika.ktu.lt/index.php/Mech"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期采用",
+      "scope": "齿轮几何、制造工艺、强度与机械设计。"
+    },
+    {
+      "id": "emerald_ilt",
+      "name": "Emerald · Industrial Lubrication and Tribology",
+      "group": "学术与数据",
+      "urls": [
+        "https://www.emerald.com/ilt"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期采用",
+      "scope": "摩擦、表面织构、润滑及磨损。"
+    },
+    {
+      "id": "crossref",
+      "name": "Crossref DOI元数据",
+      "group": "学术与数据",
+      "urls": [
+        "https://api.crossref.org/works"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期采用",
+      "scope": "按日期、部件、失效/制造主题交叉检索，核在线日、刊期、摘要与作者。"
+    },
+    {
+      "id": "iop",
+      "name": "IOP · MST / Engineering Research Express",
+      "group": "学术与数据",
+      "urls": [
+        "https://iopscience.iop.org/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期采用",
+      "scope": "计量、振动、状态监测与传动工程。"
+    },
+    {
+      "id": "wiley_qre",
+      "name": "Wiley · QRE及相关机械期刊",
+      "group": "学术与数据",
+      "urls": [
+        "https://onlinelibrary.wiley.com/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期采用",
+      "scope": "可靠性、失效、因果分析及运维研究。"
+    },
+    {
+      "id": "elsevier_mech",
+      "name": "ScienceDirect · MSSP / Tribology / Wear / EAAI",
+      "group": "学术与数据",
+      "urls": [
+        "https://www.sciencedirect.com/"
+      ],
+      "region": "海外",
+      "referenceStatus": "历史采用",
+      "scope": "机械信号、齿轮/轴承磨损、材料与工程智能。"
+    },
+    {
+      "id": "mdpi_sensors",
+      "name": "MDPI Sensors",
+      "group": "学术与数据",
+      "urls": [
+        "https://www.mdpi.com/journal/sensors"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期采用",
+      "scope": "振动采集、传感器、转速估计与轴承监测。"
+    },
+    {
+      "id": "mdpi_lubricants",
+      "name": "MDPI Lubricants",
+      "group": "学术与数据",
+      "urls": [
+        "https://www.mdpi.com/journal/lubricants"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期采用",
+      "scope": "弹流润滑、滑动/滚动轴承、贫油与表面工程。"
+    },
+    {
+      "id": "etasr",
+      "name": "ETASR",
+      "group": "学术与数据",
+      "urls": [
+        "https://www.etasr.com/index.php/ETASR"
+      ],
+      "region": "海外",
+      "referenceStatus": "历史采用",
+      "scope": "开放工程论文，补充结构、建模参数与验证数据。"
+    },
+    {
+      "id": "bindt",
+      "name": "BINDT Insight",
+      "group": "学术与数据",
+      "urls": [
+        "https://www.bindt.org/publications/insight-journal/This-months-Insight/"
+      ],
+      "region": "海外",
+      "referenceStatus": "历史采用",
+      "scope": "无损检测、工业现场诊断。"
+    },
+    {
+      "id": "oae_ir",
+      "name": "OAE Intelligence & Robotics",
+      "group": "学术与数据",
+      "urls": [
+        "https://www.oaepublish.com/ir"
+      ],
+      "region": "海外",
+      "referenceStatus": "历史采用",
+      "scope": "传动PHM、数字孪生与综述参考文献追溯。"
+    },
+    {
+      "id": "eureka",
+      "name": "Patsnap Eureka公开专利文本",
+      "group": "知识产权",
+      "urls": [
+        "https://eureka.patsnap.com/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "说明书、权利要求、申请与公开/授权日期。"
+    },
+    {
+      "id": "google_patents",
+      "name": "Google Patents",
+      "group": "知识产权",
+      "urls": [
+        "https://patents.google.com/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期访问受限",
+      "scope": "跨国同族、优先权、引用与原始专利全文。"
+    },
+    {
+      "id": "justia_patents",
+      "name": "Justia美国专利原文库",
+      "group": "知识产权",
+      "urls": [
+        "https://patents.justia.com/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期采用",
+      "scope": "美国授权、公开申请与说明书权利要求。"
+    },
+    {
+      "id": "oepm",
+      "name": "OEPM风能专利技术监测",
+      "group": "知识产权",
+      "urls": [
+        "https://oepm.es/gl/informacion-tecnologica/vigilancia-tecnologica/alertas-tecnologicas/alerta?id=1000&page=2"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期采用",
+      "scope": "西班牙专利商标局风能技术索引，用于跨国公开号发现与核对。"
+    },
+    {
+      "id": "espacenet",
+      "name": "EPO Espacenet",
+      "group": "知识产权",
+      "urls": [
+        "https://worldwide.espacenet.com/"
+      ],
+      "region": "海外",
+      "referenceStatus": "待逐站复核",
+      "scope": "欧洲与全球同族、原文和法律事件。"
+    },
+    {
+      "id": "patentscope",
+      "name": "WIPO PATENTSCOPE",
+      "group": "知识产权",
+      "urls": [
+        "https://patentscope.wipo.int/"
+      ],
+      "region": "海外",
+      "referenceStatus": "待逐站复核",
+      "scope": "PCT申请、国际公开、检索报告。"
+    },
+    {
+      "id": "samr",
+      "name": "全国标准信息公共服务平台",
+      "group": "标准与规则",
+      "urls": [
+        "https://std.samr.gov.cn/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期检索未收录",
+      "scope": "国标计划、征求意见、发布/实施与替代关系。"
+    },
+    {
+      "id": "ttbz",
+      "name": "全国团体标准信息平台",
+      "group": "标准与规则",
+      "urls": [
+        "https://www.ttbz.org.cn/"
+      ],
+      "region": "国内",
+      "referenceStatus": "历史采用",
+      "scope": "风电齿轮箱、轴承、运维与检测团体标准。"
+    },
+    {
+      "id": "iso",
+      "name": "ISO标准目录与技术委员会",
+      "group": "标准与规则",
+      "urls": [
+        "https://www.iso.org/standards.html"
+      ],
+      "region": "海外",
+      "referenceStatus": "待逐站复核",
+      "scope": "ISO/TC 60齿轮、TC 4滚动轴承；版本、修订与投票进展。"
+    },
+    {
+      "id": "iec",
+      "name": "IEC Webstore",
+      "group": "标准与规则",
+      "urls": [
+        "https://webstore.iec.ch/"
+      ],
+      "region": "海外",
+      "referenceStatus": "待逐站复核",
+      "scope": "IEC风电齿轮箱与传动监测相关标准。"
+    },
+    {
+      "id": "mpma",
+      "name": "MPMA · AGMA/ABMA标准与活动",
+      "group": "标准与规则",
+      "urls": [
+        "https://motionpower.org/standards-technology/standards/",
+        "https://motionpower.org/events/month/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期检索未收录",
+      "scope": "齿轮与轴承标准目录、委员会及技术活动。"
+    },
+    {
+      "id": "skf",
+      "name": "SKF",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.skf.com/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期检索未收录",
+      "scope": "风电轴承、状态监测、润滑与修复。"
+    },
+    {
+      "id": "schaeffler",
+      "name": "Schaeffler",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.schaeffler.com/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期检索未收录",
+      "scope": "风电轴承、涂层、制造与试验。"
+    },
+    {
+      "id": "winergy",
+      "name": "Winergy / Flender",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.winergy-group.com/",
+        "https://www.flender.com/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期检索未收录",
+      "scope": "齿轮箱、联轴器、修复、服务和传动研发。"
+    },
+    {
+      "id": "abs_wind",
+      "name": "ABS Wind / Atlantic Bearing Services",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.atlantic-bearing.com/news-and-media/wind/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期检索未收录",
+      "scope": "独立传动维修、轴承与齿轮箱后市场。"
+    },
+    {
+      "id": "onyx",
+      "name": "ONYX Insight",
+      "group": "企业与产品",
+      "urls": [
+        "https://onyxinsight.com/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期检索未收录",
+      "scope": "风机振动监测、预测维护、软件及服务案例。"
+    },
+    {
+      "id": "bonfiglioli",
+      "name": "Bonfiglioli",
+      "group": "企业与产品",
+      "urls": [
+        "https://www.bonfiglioli.com/international/en/press/windenergy2026"
+      ],
+      "region": "海外",
+      "referenceStatus": "历史采用",
+      "scope": "偏航/变桨驱动、减速器、扭矩系列与产品发布。"
+    },
+    {
+      "id": "gt_procurement",
+      "name": "通用技术集团中心采购平台",
+      "group": "采购与现场运维",
+      "urls": [
+        "https://cg.gt.cn/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "轴承、齿轮箱、备件、候选/成交/终止公告。"
+    },
+    {
+      "id": "chnenergy_bid",
+      "name": "国能e招",
+      "group": "采购与现场运维",
+      "urls": [
+        "https://www.chnenergybidding.com.cn/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "国家能源集团部件采购、检修技改和成交候选。"
+    },
+    {
+      "id": "cssc_bid",
+      "name": "中国船舶招标平台",
+      "group": "采购与现场运维",
+      "urls": [
+        "https://csscbidding.com/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "传动制造设备、部件和技改项目。"
+    },
+    {
+      "id": "msa",
+      "name": "海事局与地方局航行通告",
+      "group": "采购与现场运维",
+      "urls": [
+        "https://www.msa.gov.cn/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期检索未收录",
+      "scope": "海上机位齿轮箱、发电机、主轴与变桨轴承更换作业。"
+    },
+    {
+      "id": "bid_aggregators",
+      "name": "采购聚合渠道（千里马/乙方宝/销邦等）",
+      "group": "采购与现场运维",
+      "urls": [
+        "https://www.qianlima.com/",
+        "https://www.yfbzb.com/",
+        "https://www.ixbang.com/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "用项目号反查采购原平台，补充维修与换油线索。"
+    },
+    {
+      "id": "dnv",
+      "name": "DNV",
+      "group": "试验与科研项目",
+      "urls": [
+        "https://www.dnv.com/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期检索未收录",
+      "scope": "传动设计评估、型式试验、认证与技术研究。"
+    },
+    {
+      "id": "optigen",
+      "name": "OptiGen / LIGHTWIND项目",
+      "group": "试验与科研项目",
+      "urls": [
+        "https://www.optigen.org/"
+      ],
+      "region": "海外",
+      "referenceStatus": "历史采用",
+      "scope": "轻量传动链、试验台及项目里程碑。"
+    },
+    {
+      "id": "iwes",
+      "name": "Fraunhofer IWES",
+      "group": "试验与科研项目",
+      "urls": [
+        "https://www.iwes.fraunhofer.de/"
+      ],
+      "region": "海外",
+      "referenceStatus": "本期访问受限",
+      "scope": "大型传动链试验、轴承耐久、认证及公开项目成果。"
+    },
+    {
+      "id": "sdju",
+      "name": "上海电机学院机械学院项目公示",
+      "group": "试验与科研项目",
+      "urls": [
+        "https://jixie.sdju.edu.cn/"
+      ],
+      "region": "国内",
+      "referenceStatus": "历史采用",
+      "scope": "齿轮箱和大功率传动结构、产学研项目。"
+    },
+    {
+      "id": "cninfo",
+      "name": "巨潮资讯",
+      "group": "公告与投资披露",
+      "urls": [
+        "https://www.cninfo.com.cn/"
+      ],
+      "region": "国内",
+      "referenceStatus": "待逐站复核",
+      "scope": "齿轮箱、轴承、主轴等上市部件企业公告和投资者关系记录。"
+    },
+    {
+      "id": "sse_roadshow",
+      "name": "上证路演中心",
+      "group": "公告与投资披露",
+      "urls": [
+        "https://roadshow.sseinfo.com/"
+      ],
+      "region": "国内",
+      "referenceStatus": "历史采用",
+      "scope": "部件公司业绩说明会、问答与路演记录。"
+    },
+    {
+      "id": "sina_disclosure",
+      "name": "上市公司公告原件公开镜像（新浪）",
+      "group": "公告与投资披露",
+      "urls": [
+        "https://money.finance.sina.com.cn/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "公司公告PDF、投资者关系记录，反查公告编号及原件。"
+    },
+    {
+      "id": "cwp",
+      "name": "CWP北京国际风能大会暨展览会",
+      "group": "行业媒体与会议",
+      "urls": [
+        "https://www.chinawind.org.cn/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期检索未收录",
+      "scope": "展商目录、议程、论文集与传动专题线索。"
+    },
+    {
+      "id": "ceeia",
+      "name": "中国电器工业协会",
+      "group": "行业媒体与会议",
+      "urls": [
+        "https://www.ceeia.com/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "企业供稿、传动新品与产业协会技术动态。"
+    },
+    {
+      "id": "sinolub",
+      "name": "中国润滑油信息网",
+      "group": "行业媒体与会议",
+      "urls": [
+        "https://www.sinolub.com/",
+        "https://wap.sinolub.com/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "润滑新品、现场专访及传动润滑应用。"
+    },
+    {
+      "id": "in_en",
+      "name": "国际能源网风电频道",
+      "group": "行业媒体与会议",
+      "urls": [
+        "https://wind.in-en.com/",
+        "https://mnewenergy.in-en.com/"
+      ],
+      "region": "国内",
+      "referenceStatus": "本期采用",
+      "scope": "风电传动新品、行业访谈、采购与展会线索。"
+    }
+  ]
+}
+

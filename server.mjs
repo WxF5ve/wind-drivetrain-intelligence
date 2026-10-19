@@ -2,6 +2,7 @@ import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
+import { writeSourceCoverage } from "./scripts/lib/source-coverage.mjs";
 
 const root = fileURLToPath(new URL("./public/", import.meta.url));
 const port = Number(process.env.PORT || 4173);
@@ -26,8 +27,20 @@ function resolvePublicPath(pathname) {
   return candidate.startsWith(root) ? candidate : null;
 }
 
-const server = createServer((request, response) => {
+const server = createServer(async (request, response) => {
   const url = new URL(request.url || "/", `http://${request.headers.host || "localhost"}`);
+
+  if (url.pathname === "/data/source-coverage.json") {
+    try {
+      const coverage = await writeSourceCoverage();
+      response.writeHead(200, { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" });
+      response.end(JSON.stringify(coverage));
+    } catch {
+      response.writeHead(503);
+      response.end("Source coverage unavailable");
+    }
+    return;
+  }
 
   if (url.pathname === "/api/health") {
     response.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });

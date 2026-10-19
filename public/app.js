@@ -1,4 +1,7 @@
 import { readingContent, readingHighlightSegments } from "./lib/reading.mjs";
+import { mountWorkbench } from "./workbench.js";
+
+let engineeringWorkbench;
 
 const DRIVETRAIN_COMPONENTS = [
   "传动链整体",
@@ -1610,6 +1613,9 @@ function articleCard(article) {
             <i data-lucide="chevron-right"></i>
           </button>
           <div class="article-actions">
+            <button class="icon-button" type="button" data-action="compare" title="加入或移出方案对照" aria-label="加入或移出方案对照" aria-pressed="false">
+              <i data-lucide="columns-3"></i>
+            </button>
             <button class="icon-button ${saved ? "saved" : ""}" type="button" data-action="save" title="${saved ? "取消收藏" : "收藏"}" aria-label="${saved ? "取消收藏" : "收藏"}">
               <i data-lucide="${saved ? "bookmark-check" : "bookmark"}"></i>
             </button>
@@ -1665,6 +1671,7 @@ function renderFeed() {
   }
 
   elements.savedCount.textContent = state.saved.size;
+  engineeringWorkbench?.syncSelection();
   renderActiveFilters();
   renderIcons();
 }
@@ -2432,6 +2439,7 @@ function wireEvents() {
     if (action === "experience") openArticle(article, { focusExperience: true });
     if (action === "save") toggleSaved(article);
     if (action === "share") shareArticle(article);
+    if (action === "compare") engineeringWorkbench?.toggleComparison(article);
   });
 
   elements.activeFilters.addEventListener("click", (event) => {
@@ -2577,6 +2585,21 @@ async function loadData() {
     renderDimensionFilters();
     renderFeed();
     renderIcons();
+    engineeringWorkbench = mountWorkbench({
+      root: document.querySelector("#engineering-workbench"), articles: state.articles, generatedAt: state.data.generatedAt,
+      components: relatedComponentTags, reading: articleReading, renderParagraphs: renderReadingParagraphs,
+      openArticle, icons: renderIcons, toast: showToast,
+      browseComponent: (component) => {
+        state.query = "";
+        elements.searchInput.value = "";
+        state.view = "all";
+        state.region = "全部";
+        state.sourceType = "全部";
+        setCategory("全部");
+        setComponent(component);
+        elements.feedTitle.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
     flushPendingFeedback();
     flushPendingExperience();
 
