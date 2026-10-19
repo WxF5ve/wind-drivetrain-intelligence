@@ -1,9 +1,10 @@
-const CACHE_NAME = "wind-intel-v13";
+const CACHE_NAME = "wind-intel-v14";
 const scopedUrl = (path) => new URL(path, self.registration.scope).toString();
 const APP_SHELL = [
   "./",
   "styles.css",
   "app.js",
+  "lib/reading.mjs",
   "manifest.webmanifest",
   "vendor/lucide.min.js",
   "assets/gearbox-cover.png",

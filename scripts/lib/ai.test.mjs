@@ -141,6 +141,21 @@ test("not-applicable detail objects may be null without dropping the batch", () 
   assert.equal(parsed.get("article-1").industryDetails.eventType, "");
 });
 
+test("AI parser accepts concise engineering copy and drops only an unsupported reading brief", () => {
+  const payload = validSummary();
+  payload.articles[0].engineeringImpact = "";
+  payload.articles[0].readingBrief = {
+    headline: "风电齿轮箱诊断模型在试验集上达到95%准确率",
+    paragraphs: ["研究面向风电齿轮箱状态识别，利用振动数据训练诊断模型，在试验数据集上达到95%准确率；结果适用于所测试工况。"],
+    highlights: ["95%准确率"]
+  };
+  const source = { id: "article-1", title: "Gearbox diagnosis", contentAccess: "abstract", snippet: "Accuracy on the test dataset was 95%." };
+  assert.equal(parseSummaryJson(JSON.stringify(payload), [source]).get(source.id).readingBrief.version, 1);
+  const unsupported = parseSummaryJson(JSON.stringify(payload), [{ ...source, snippet: "A diagnostic method." }]).get(source.id);
+  assert.equal(unsupported.readingBrief, null);
+  assert.equal(unsupported.summary, payload.articles[0].summary);
+});
+
 test("DeepSeek adapter uses chat completions and validates its response", async () => {
   let request;
   const fetchImpl = async (url, options) => {

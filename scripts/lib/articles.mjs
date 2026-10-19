@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { normalizeReadingBrief } from "../../public/lib/reading.mjs";
 
 export const DRIVETRAIN_TAXONOMY = [
   {
@@ -1347,6 +1348,7 @@ export function toPublicArticle(article, summaryData) {
       ...classification.technicalTags
     ])].map(cleanText).filter(Boolean).slice(0, 16),
     summary: cleanText(summaryData.summary),
+    readingBrief: contentAccess === "metadata" ? null : normalizeReadingBrief(summaryData.readingBrief),
     keyPoints: (summaryData.keyPoints || []).map(cleanText).filter(Boolean).slice(0, 5),
     engineeringImpact: cleanText(summaryData.engineeringImpact),
     paperDetails: normalizedPaperDetails(summaryData.paperDetails),

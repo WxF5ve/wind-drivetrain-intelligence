@@ -11,6 +11,7 @@ const contentTypes = {
   ".html": "text/html; charset=utf-8",
   ".ico": "image/x-icon",
   ".js": "text/javascript; charset=utf-8",
+  ".mjs": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
   ".png": "image/png",
   ".svg": "image/svg+xml",
@@ -60,5 +61,5 @@ const server = createServer((request, response) => {
 });
 
 server.listen(port, "0.0.0.0", () => {
-  console.log(`机械中心-传动技术部在线平台已启动: http://localhost:${port}`);
+  console.log(`机械中心-传动技术部在线平台已启动: http://localhost:${server.address().port}`);
 });

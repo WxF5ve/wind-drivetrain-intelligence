@@ -1,3 +1,5 @@
+import { readingContent, readingHighlightSegments } from "./lib/reading.mjs";
+
 const DRIVETRAIN_COMPONENTS = [
   "传动链整体",
   "主轴",
@@ -333,7 +335,7 @@ function articleSearchScore(article) {
     title: article.title.toLowerCase(),
     titleZh: (article.titleZh || "").toLowerCase(),
     tags: (article.tags || []).join(" ").toLowerCase(),
-    summary: article.summary.toLowerCase(),
+    summary: [article.summary, article.readingBrief?.headline, ...(article.readingBrief?.paragraphs || [])].join(" ").toLowerCase(),
     points: article.keyPoints.join(" ").toLowerCase(),
     impact: (article.engineeringImpact || "").toLowerCase(),
     source: article.source.toLowerCase(),
@@ -752,12 +754,14 @@ function isReportDisclosureGap(sentence) {
     /(?:公开(?:资料|信息|内容|摘要|报道|公告)|原文|该(?:资料|信息|报道|项目|研究)|相关(?:信息|资料)).{0,36}(?:未|尚未|没有|缺少|不足|有限|无法).{0,42}(?:披露|提供|说明|给出|明确|获知|核验|评估|判断|确认|数据|参数|细节|结论|边界)/i,
     /(?:未|尚未|没有|缺少|不足|有限|无法).{0,42}(?:披露|提供|说明|给出|明确|核验|评估|判断|确认).{0,42}(?:数据|参数|指标|金额|机型|细节|内容|结果|时间|边界)?/i,
     /(?:信息|资料|摘要|公开内容|披露)(?:有限|不足|缺失|不完整)/i,
+    /(?:摘录中缺失|结论边界限于)/i,
     /(?:无法|难以)(?:判断|评估|确认|核验)/i
   ].some((pattern) => pattern.test(text));
 }
 
 function cleanReportProse(value) {
   const cleaned = stripReportLabels(value)
+    .replace(/[，,；;]\s*待验证问题包括[^。！？!?]*/g, "")
     .replace(/^[^。！？!?]{1,120}?发布的信息显示[，,]\s*/, "")
     .replace(/(?:该|此)?(?:信息|资讯|报道|成果|资料)?\s*属于(?:行业资讯(?:类)?(?:官方公告)?|官方公告|媒体报道|企业声明)(?=[，,；;。.!！?？]|$)/gi, "")
     .replace(/[，,；;]\s*(?:属于|归为)(?:行业|厂商|企业|政策|官方|媒体|新闻)[^，,；;。.!！?？]{0,20}(?=[，,；;。.!！?？]|$)/gi, "")
@@ -846,6 +850,8 @@ function reportSentenceIsDuplicate(sentence, accepted) {
 }
 
 function reportNarrativePlain(item) {
+  const reading = readingContent(item.article);
+  if (reading.version) return reading.paragraphs.join("");
   const missingData = reportMissingDataPoints(item);
   const opening = cleanReportProse(reportOpening(item));
   const factual = [opening, ...missingData.map(cleanReportProse)].filter(Boolean).join("，");
@@ -859,6 +865,11 @@ function reportNarrativePlain(item) {
 }
 
 function reportHighlightSegments(item) {
+  const reading = readingContent(item.article);
+  if (reading.version) return readingHighlightSegments(reading.paragraphs.join(""), {
+    highlights: reading.highlights,
+    organizations: item.article.industryDetails?.companies || []
+  });
   const narrative = reportNarrativePlain(item);
   const roles = Array.from({ length: narrative.length }, () => "");
   const applyRange = (start, length, role) => {
@@ -1048,7 +1059,7 @@ function renderReportItem(item, index) {
         <div class="report-item-meta">
           ${reportMetaItems(article).map((value) => `<span>${escapeHtml(value)}</span>`).join("")}
         </div>
-        <h3>${escapeHtml(article.titleZh || article.title)}</h3>
+        <h3>${escapeHtml(articleReading(article).headline)}</h3>
         ${renderReportTags(item)}
         <div class="report-narrative">
           <p class="report-paragraph">${reportNarrativeHtml(item)}</p>
@@ -1096,7 +1107,7 @@ function renderWeeklyReport(model = buildWeeklyReport(activeWeeklyReportKind)) {
       <span class="report-section-kicker">EXECUTIVE SUMMARY</span>
       <h2>本周摘要</h2>
       <p>${escapeHtml(reportSummary)}</p>
-      ${model.highlights.length ? `<div class="report-highlights"><strong>优先关注</strong>${model.highlights.map((item) => `<a href="#report-${escapeHtml(item.article.id)}">${escapeHtml(item.article.titleZh || item.article.title)}</a>`).join("")}</div>` : ""}
+      ${model.highlights.length ? `<div class="report-highlights"><strong>优先关注</strong>${model.highlights.map((item) => `<a href="#report-${escapeHtml(item.article.id)}">${escapeHtml(articleReading(item.article).headline)}</a>`).join("")}</div>` : ""}
     </section>
     ${model.groups.length ? model.groups.map((group, groupIndex) => `
       <section class="report-section" aria-labelledby="report-group-${escapeHtml(group.key)}">
@@ -1124,7 +1135,7 @@ function weeklyReportPlainText(model = activeWeeklyReport || buildWeeklyReport(a
     group.componentGroups.forEach((componentGroup) => {
       lines.push(`〔${componentGroup.title} · ${componentGroup.items.length} 条〕`);
       componentGroup.items.forEach((item) => {
-        lines.push(`${item.reportIndex + 1}. ${item.article.titleZh || item.article.title}`);
+        lines.push(`${item.reportIndex + 1}. ${articleReading(item.article).headline}`);
         lines.push(item.reportTags.map((tag) => `#${tag}`).join(" "));
         lines.push(reportNarrativePlain(item));
         lines.push(`原文链接：${item.article.url}`);
@@ -1324,7 +1335,7 @@ function pdfItemHeight(context, item) {
   const contentWidth = pdfPageSize.width - pdfPageSize.margin * 2;
   const textWidth = contentWidth - 76;
   const reportTags = item.reportTags.map((tag) => `#${tag}`).join("  ");
-  return pdfPlainHeight(context, item.article.titleZh || item.article.title, textWidth, { size: 27, lineHeight: 37 })
+  return pdfPlainHeight(context, articleReading(item.article).headline, textWidth, { size: 27, lineHeight: 37 })
     + pdfPlainHeight(context, reportMetaItems(item.article).join("  ·  "), textWidth, { size: 15, lineHeight: 23 })
     + pdfPlainHeight(context, reportTags, textWidth, { size: 16, lineHeight: 24 })
     + pdfRichHeight(context, pdfNarrativeSegments(item), textWidth, { size: 19, lineHeight: 31 })
@@ -1339,7 +1350,7 @@ function pdfDrawItem(context, item, index, y) {
   pdfText(context, String(index + 1).padStart(2, "0"), pdfPageSize.margin + 8, y + 6, 45, { size: 18, weight: 700, color: "#176c55" });
   const titleX = pdfPageSize.margin + 76;
   const titleWidth = contentWidth - 76;
-  y = pdfText(context, item.article.titleZh || item.article.title, titleX, y, titleWidth, { size: 27, weight: 700, lineHeight: 37, color: "#17231f" }) + 5;
+  y = pdfText(context, articleReading(item.article).headline, titleX, y, titleWidth, { size: 27, weight: 700, lineHeight: 37, color: "#17231f" }) + 5;
   y = pdfText(context, reportMetaItems(item.article).join("  ·  "), titleX, y, titleWidth, { size: 15, color: "#53635d" }) + 14;
   y = pdfText(context, item.reportTags.map((tag) => `#${tag}`).join("  "), titleX, y, titleWidth, { size: 16, weight: 700, lineHeight: 24, color: "#216873" }) + 10;
   y = pdfRichText(context, pdfNarrativeSegments(item), titleX, y, titleWidth, { size: 19, lineHeight: 31 }) + 18;
@@ -1383,7 +1394,7 @@ function createWeeklyReportCanvases(model) {
   if (model.highlights.length) {
     y = pdfText(context, "优先关注", pdfPageSize.margin, y, 900, { size: 19, weight: 700, color: "#3b8792" }) + 30;
     model.highlights.forEach((item, index) => {
-      y = pdfText(context, `${index + 1}. ${item.article.titleZh || item.article.title}`, pdfPageSize.margin + 18, y, pdfPageSize.width - pdfPageSize.margin * 2 - 18, { size: 18, lineHeight: 28, color: "#34463f" }) + 8;
+      y = pdfText(context, `${index + 1}. ${articleReading(item.article).headline}`, pdfPageSize.margin + 18, y, pdfPageSize.width - pdfPageSize.margin * 2 - 18, { size: 18, lineHeight: 28, color: "#34463f" }) + 8;
     });
   }
   y += 18;
@@ -1542,18 +1553,36 @@ function titleClueCard(article) {
   `;
 }
 
+function articleReading(article) {
+  return readingContent(article, cleanReportProse);
+}
+
+function renderReadingParagraphs(article) {
+  const reading = articleReading(article);
+  return reading.paragraphs.map((paragraph) => {
+    const segments = readingHighlightSegments(paragraph, {
+      highlights: reading.highlights,
+      technologies: reading.version ? [] : (article.technicalTags || []).slice(0, 4)
+    });
+    return `<p class="article-summary">${segments.map((segment) => {
+      const content = highlight(segment.text);
+      return segment.role === "body" ? content : `<strong class="reading-key-${segment.role}">${content}</strong>`;
+    }).join("")}</p>`;
+  }).join("");
+}
+
 function articleCard(article) {
   const saved = state.saved.has(article.id);
   const reliability = article.reliability || { score: 0, grade: "D", label: "待评估" };
-  const displayTitle = article.titleZh || article.title;
+  const displayTitle = articleReading(article).headline;
   const access = contentAccessMeta(article);
   return `
     <article class="article-card" data-id="${escapeHtml(article.id)}">
-      <div class="article-media">
-        <img src="./assets/gearbox-cover.png" alt="" loading="lazy">
-        <span class="media-category">${escapeHtml(primarySection(article))}</span>
-      </div>
       <div class="article-body">
+        <div class="article-heading-meta">
+          <span class="article-section-label">${escapeHtml(primarySection(article))}</span>
+          <time datetime="${escapeHtml(article.publishedAt)}">${formatDate(article.publishedAt)}</time>
+        </div>
         <div class="article-meta">
           <span class="source">${escapeHtml(article.source)}</span>
           <span class="reliability-badge grade-${escapeHtml(reliability.grade.toLowerCase())}" title="可靠度 ${reliability.score} 分">
@@ -1562,22 +1591,19 @@ function articleCard(article) {
           <span class="meta-separator" aria-hidden="true"></span>
           <span>${escapeHtml(article.region)}</span>
           <span class="meta-separator" aria-hidden="true"></span>
-          <time datetime="${escapeHtml(article.publishedAt)}">${formatDate(article.publishedAt)}</time>
           <span class="content-access access-${escapeHtml(access.access)}"><i data-lucide="${access.icon}"></i>${access.label}</span>
-          <span class="meta-separator reading-separator" aria-hidden="true"></span>
-          <span class="reading-time">${article.readingMinutes || 4} 分钟</span>
         </div>
         <h3 class="article-title">
           <button type="button" data-action="details">${highlight(displayTitle)}</button>
         </h3>
-        <p class="article-summary">${highlight(article.summary)}</p>
         ${renderRelatedComponentTags(article)}
-        <button class="experience-link" type="button" data-action="experience">
-          <i data-lucide="wrench"></i>
-          <span>工程经验</span>
-          <i data-lucide="chevron-right"></i>
-        </button>
+        <div class="article-reading">${renderReadingParagraphs(article)}</div>
         <div class="article-footer">
+          <button class="experience-link" type="button" data-action="experience">
+            <i data-lucide="wrench"></i>
+            <span>工程经验</span>
+            <i data-lucide="chevron-right"></i>
+          </button>
           <div class="article-actions">
             <button class="icon-button ${saved ? "saved" : ""}" type="button" data-action="save" title="${saved ? "取消收藏" : "收藏"}" aria-label="${saved ? "取消收藏" : "收藏"}">
               <i data-lucide="${saved ? "bookmark-check" : "bookmark"}"></i>
@@ -1994,7 +2020,7 @@ function renderExperienceReview(article) {
 
 function openArticle(article, { focusExperience = false } = {}) {
   if (!article) return;
-  const displayTitle = article.titleZh || article.title;
+  const displayTitle = articleReading(article).headline;
   updateShareMetadata(`${displayTitle}｜机械中心-传动技术部在线平台`, article.summary);
   elements.dialogSource.textContent = `${article.source} · ${article.sourceType}`;
   const linkLabel = article.linkType === "aggregator" ? "聚合跳转" : "发布方原文";
@@ -2006,7 +2032,7 @@ function openArticle(article, { focusExperience = false } = {}) {
   elements.dialogContent.innerHTML = `
     <article class="dialog-article">
       <h2>${escapeHtml(displayTitle)}</h2>
-      ${article.titleZh && article.titleZh !== article.title ? `<p class="original-title">${escapeHtml(article.title)}</p>` : ""}
+      ${displayTitle !== article.title ? `<p class="original-title">${escapeHtml(article.title)}</p>` : ""}
       <div class="dialog-meta">
         <span class="dialog-section">${escapeHtml(primarySection(article))}</span>
         <span>·</span>
@@ -2026,7 +2052,7 @@ function openArticle(article, { focusExperience = false } = {}) {
       ${renderTechnicalClassification(article)}
       ${renderAiWindDetails(article)}
       ${renderPaperMetadata(article)}
-      <p class="dialog-summary">${escapeHtml(article.summary)}</p>
+      <div class="article-reading dialog-reading">${renderReadingParagraphs(article)}</div>
       ${renderPaperDetails(article)}
       ${renderIndustryDetails(article)}
       <section class="reliability-section" aria-labelledby="reliability-title">
@@ -2051,8 +2077,6 @@ function openArticle(article, { focusExperience = false } = {}) {
           .map((point, index) => `<li><span>${index + 1}</span><div>${escapeHtml(point)}</div></li>`)
           .join("")}
       </ol>
-      <h3>工程启示</h3>
-      <div class="impact-box">${escapeHtml(article.engineeringImpact)}</div>
       ${renderExperienceReview(article)}
       <div class="tag-list" style="margin-top: 18px">
         ${(article.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}

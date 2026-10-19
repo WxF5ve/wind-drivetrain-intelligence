@@ -788,9 +788,7 @@ kbd {
 }
 
 .article-card {
-  display: grid;
-  grid-template-columns: 174px minmax(0, 1fr);
-  min-height: 218px;
+  display: block;
   overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -842,7 +840,28 @@ kbd {
 
 .article-body {
   min-width: 0;
-  padding: 18px 18px 14px;
+  padding: 22px 24px 16px;
+}
+
+.article-heading-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-bottom: 9px;
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+
+.article-heading-meta time {
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.article-section-label {
+  color: var(--green);
+  font-weight: 750;
 }
 
 .article-meta {
@@ -927,7 +946,7 @@ kbd {
 }
 
 .article-title {
-  margin: 8px 0 7px;
+  margin: 12px 0 9px;
   font-size: 18px;
   line-height: 1.42;
 }
@@ -955,14 +974,36 @@ mark {
 }
 
 .article-summary {
-  display: -webkit-box;
+  display: block;
   margin: 0;
-  overflow: hidden;
-  color: var(--ink-soft);
-  font-size: 13px;
-  line-height: 1.72;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
+  color: #34443e;
+  font-size: 15px;
+  line-height: 1.95;
+}
+
+.article-reading {
+  margin-top: 15px;
+}
+
+.article-reading .article-summary + .article-summary {
+  margin-top: 10px;
+}
+
+.reading-key-data {
+  color: #935510;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.reading-key-technology,
+.reading-key-organization {
+  color: #17604d;
+  font-weight: 750;
+}
+
+.dialog-reading {
+  margin: 22px 0;
 }
 
 .related-component-tags {
@@ -1077,7 +1118,7 @@ mark {
 .article-footer {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 12px;
   margin-top: 12px;
 }
@@ -2703,12 +2744,11 @@ dialog::backdrop {
   }
 
   .article-card {
-    grid-template-columns: 112px minmax(0, 1fr);
-    min-height: 248px;
+    min-height: 0;
   }
 
   .article-body {
-    padding: 13px 12px 11px;
+    padding: 16px 15px 12px;
   }
 
   .article-meta {
@@ -2723,14 +2763,13 @@ dialog::backdrop {
 
   .article-title {
     margin: 7px 0 6px;
-    font-size: 15px;
-    line-height: 1.46;
+    font-size: 17px;
+    line-height: 1.6;
   }
 
   .article-summary {
-    font-size: 12px;
-    line-height: 1.65;
-    -webkit-line-clamp: 2;
+    font-size: 14px;
+    line-height: 1.9;
   }
 
   .related-component-tags {

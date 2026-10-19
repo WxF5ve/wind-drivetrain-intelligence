@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { GoogleDecoder } from "google-news-url-decoder";
+import { needsReadingBriefUpgrade } from "../public/lib/reading.mjs";
 import {
   classifyArticle,
   cleanText,
@@ -1347,6 +1348,7 @@ async function main() {
     if (!existing) reason = "new";
     else if (hasContentUpgrade(existing, article)) reason = "content-upgrade";
     else if (needsDetailedSummaryUpgrade(existing)) reason = "schema-upgrade";
+    else if (needsReadingBriefUpgrade(existing, article)) reason = "reading-upgrade";
     else if (forceAiSummary) reason = "manual-refresh";
     else if (feedbackNeedsAiReview(article.feedbackAggregate, existing.aiAnalysis, minimumFeedback)) {
       reason = "feedback-review";
@@ -1380,6 +1382,7 @@ async function main() {
         ? existing.intelligenceType
         : "technical",
       snippet: cleanText(`${existing.summary || ""} ${(existing.keyPoints || []).join(" ")}`).slice(0, 1800),
+      sourceEvidenceKind: "previous-summary",
       previousSummary: existing.summary || "",
       feedbackAggregate: existing.feedbackAggregate || {},
       engineeringExperience: existing.engineeringExperience || {},
@@ -1417,6 +1420,7 @@ async function main() {
       ? {
           titleZh: existing.titleZh,
           summary: existing.summary,
+          readingBrief: existing.readingBrief,
           keyPoints: existing.keyPoints,
           engineeringImpact: existing.engineeringImpact,
           category: existing.category,
@@ -1459,6 +1463,7 @@ async function main() {
       ...article,
       titleZh: generatedSummary.titleZh,
       summary: generatedSummary.summary,
+      readingBrief: generatedSummary.readingBrief || article.readingBrief || null,
       keyPoints: generatedSummary.keyPoints,
       engineeringImpact: generatedSummary.engineeringImpact,
       category: article.intelligenceType === "industry" ? "厂商动态" : generatedSummary.category,
