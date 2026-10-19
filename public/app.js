@@ -1205,7 +1205,8 @@ function pdfWrapText(context, value, maxWidth) {
     let line = "";
     for (const character of Array.from(paragraph)) {
       const candidate = line + character;
-      if (line && context.measureText(candidate).width > maxWidth) {
+      const canHangPunctuation = /[，。；：、！？）》】％%]/.test(character);
+      if (line && context.measureText(candidate).width > maxWidth && !canHangPunctuation) {
         lines.push(line);
         line = character;
       } else {
@@ -1244,7 +1245,11 @@ function pdfRichLines(context, segments, maxWidth, options = {}) {
     const style = { ...baseStyle, ...segment };
     delete style.text;
     const styleKey = `${style.size}|${style.weight}|${style.family}|${style.color}`;
-    for (const character of Array.from(String(segment.text || ""))) {
+    const text = String(segment.text || "");
+    pdfSetFont(context, style);
+    // Short emphasized runs (especially values with units) must not split mid-number.
+    const keepTogether = style.weight >= 700 && !text.includes("\n") && context.measureText(text).width <= maxWidth / 2;
+    for (const character of keepTogether ? [text] : Array.from(text)) {
       if (character === "\n") {
         lines.push([]);
         lineWidth = 0;
@@ -1252,7 +1257,7 @@ function pdfRichLines(context, segments, maxWidth, options = {}) {
       }
       pdfSetFont(context, style);
       const width = context.measureText(character).width;
-      const canHangPunctuation = /[，。；：、！？）》】％%]/.test(character);
+      const canHangPunctuation = /^[，。；：、！？）》】％%]+$/.test(character);
       if (lineWidth && lineWidth + width > maxWidth && !canHangPunctuation) {
         lines.push([]);
         lineWidth = 0;
